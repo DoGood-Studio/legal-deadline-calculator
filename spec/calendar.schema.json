@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/DoGood-Studio/lexdays/blob/main/spec/calendar.schema.json",
+  "$id": "https://github.com/DoGood-Studio/legal-deadline-calculator/blob/main/spec/calendar.schema.json",
   "title": "lexdays holiday calendar",
   "description": "A holiday calendar: weekend days plus holiday rules. The engine performs the same checks at load time and rejects unknown fields.",
   "type": "object",

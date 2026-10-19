@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=nl"><strong>Live demo</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=nl"><strong>Live demo</strong></a> ·
   <a href="docs/usage.md">Documentatie (Engels)</a> ·
   <a href="docs/verification.md">Verificatierapport (Engels)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=nl">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=nl">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-nl-dark.png">
       <img alt="De lexdays-demo in het Nederlands: termijn voor een beroep bij het Hof van Justitie van de EU vanaf een bekendmaking in het Publicatieblad, met de kalender en de onderbouwing van elke stap." src="docs/images/hero-nl-light.png" width="860">
@@ -112,7 +112,7 @@ Meer voorbeelden, alle opties en de API: [docs/usage.md](docs/usage.md) (Engels)
 
 ## Bijdragen
 
-Correcties en beoordelingen door juristen zijn het waardevolst. Is een resultaat onjuist, open dan een [regelcorrectie](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) met de bron. Een nieuw rechtsstelsel is een JSON-regelpakket met testgevallen; zie [CONTRIBUTING.md](CONTRIBUTING.md) en [docs/rulepacks.md](docs/rulepacks.md).
+Correcties en beoordelingen door juristen zijn het waardevolst. Is een resultaat onjuist, open dan een [regelcorrectie](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) met de bron. Een nieuw rechtsstelsel is een JSON-regelpakket met testgevallen; zie [CONTRIBUTING.md](CONTRIBUTING.md) en [docs/rulepacks.md](docs/rulepacks.md).
 
 ---
 

@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=zh"><strong>在线演示</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=zh"><strong>在线演示</strong></a> ·
   <a href="docs/usage.md">文档（英文）</a> ·
   <a href="docs/verification.md">验证报告（英文）</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=zh">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=zh">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-zh-dark.png">
       <img alt="lexdays 中文演示：美国联邦期限，因邮寄送达增加三天，附日历和每一步的依据。" src="docs/images/hero-zh-light.png" width="860">
@@ -112,7 +112,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang zh
 
 ## 参与贡献
 
-最有价值的贡献是法律专业人士的更正和审阅。如果某个结果有误，请附上出处提交[规则更正](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml)。新增法域只需一个 JSON 规则包和测试用例；参见 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [docs/rulepacks.md](docs/rulepacks.md)。
+最有价值的贡献是法律专业人士的更正和审阅。如果某个结果有误，请附上出处提交[规则更正](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml)。新增法域只需一个 JSON 规则包和测试用例；参见 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [docs/rulepacks.md](docs/rulepacks.md)。
 
 ---
 

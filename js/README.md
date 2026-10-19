@@ -28,6 +28,6 @@ calendar("tr").addBusinessDays("2026-05-22", 3);   // "2026-06-01": skips the Fe
 
 Dates are plain `YYYY-MM-DD` strings. JavaScript `Date` objects are rejected on purpose, because which calendar day a moment belongs to depends on a time zone.
 
-Documentation, rule sources and the live demo: <https://github.com/DoGood-Studio/lexdays>
+Documentation, rule sources and the live demo: <https://github.com/DoGood-Studio/legal-deadline-calculator>
 
 This is an informational tool, not legal advice. Always check a deadline that matters.

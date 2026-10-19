@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=de"><strong>Live-Demo</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=de"><strong>Live-Demo</strong></a> ·
   <a href="docs/usage.md">Dokumentation (englisch)</a> ·
   <a href="docs/verification.md">Prüfbericht (englisch)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=de">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=de">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-de-dark.png">
       <img alt="Die lexdays-Demo auf Deutsch: Berufungsfrist nach der ZPO an einem Münchner Gericht, mit Kalender und Begründung jedes Schritts." src="docs/images/hero-de-light.png" width="860">
@@ -112,7 +112,7 @@ Weitere Beispiele, alle Optionen und die API: [docs/usage.md](docs/usage.md) (en
 
 ## Mitwirken
 
-Korrekturen und Prüfungen durch Juristinnen und Juristen sind am wertvollsten. Wenn ein Ergebnis falsch ist, eröffnen Sie eine [Regelkorrektur](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) mit der Quelle. Eine neue Rechtsordnung ist ein JSON-Regelpaket mit Testfällen; siehe [CONTRIBUTING.md](CONTRIBUTING.md) und [docs/rulepacks.md](docs/rulepacks.md).
+Korrekturen und Prüfungen durch Juristinnen und Juristen sind am wertvollsten. Wenn ein Ergebnis falsch ist, eröffnen Sie eine [Regelkorrektur](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) mit der Quelle. Eine neue Rechtsordnung ist ein JSON-Regelpaket mit Testfällen; siehe [CONTRIBUTING.md](CONTRIBUTING.md) und [docs/rulepacks.md](docs/rulepacks.md).
 
 ---
 

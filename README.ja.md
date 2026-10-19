@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=ja"><strong>ライブデモ</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ja"><strong>ライブデモ</strong></a> ·
   <a href="docs/usage.md">ドキュメント（英語）</a> ·
   <a href="docs/verification.md">検証レポート（英語）</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=ja">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ja">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-ja-dark.png">
       <img alt="日本語の lexdays デモ：郵便送達で 3 日が加算される米国連邦の期限。カレンダーと各ステップの根拠を表示。" src="docs/images/hero-ja-light.png" width="860">
@@ -112,7 +112,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang ja
 
 ## コントリビュート
 
-最も価値ある貢献は、法律家による訂正とレビューです。結果が誤っている場合は、出典を添えて[ルールの訂正](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml)を作成してください。新しい法域は JSON のルールパックとテストケースで追加できます。[CONTRIBUTING.md](CONTRIBUTING.md) と [docs/rulepacks.md](docs/rulepacks.md) をご覧ください。
+最も価値ある貢献は、法律家による訂正とレビューです。結果が誤っている場合は、出典を添えて[ルールの訂正](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml)を作成してください。新しい法域は JSON のルールパックとテストケースで追加できます。[CONTRIBUTING.md](CONTRIBUTING.md) と [docs/rulepacks.md](docs/rulepacks.md) をご覧ください。
 
 ---
 

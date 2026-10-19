@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=fr"><strong>Démo en ligne</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=fr"><strong>Démo en ligne</strong></a> ·
   <a href="docs/usage.md">Documentation (en anglais)</a> ·
   <a href="docs/verification.md">Rapport de vérification (en anglais)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=fr">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=fr">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-fr-dark.png">
       <img alt="La démo de lexdays en français : délai de recours devant la Cour de justice de l'UE à compter d'une publication au Journal officiel, avec le calendrier et la justification de chaque étape." src="docs/images/hero-fr-light.png" width="860">
@@ -112,7 +112,7 @@ Plus d'exemples, toutes les options et l'API : [docs/usage.md](docs/usage.md) (e
 
 ## Contribuer
 
-Les corrections et les relectures par des juristes sont les contributions les plus précieuses. Si un résultat est faux, ouvrez une [correction de règle](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) avec la source. Une nouvelle juridiction est un paquet de règles JSON accompagné de cas de test ; voir [CONTRIBUTING.md](CONTRIBUTING.md) et [docs/rulepacks.md](docs/rulepacks.md).
+Les corrections et les relectures par des juristes sont les contributions les plus précieuses. Si un résultat est faux, ouvrez une [correction de règle](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) avec la source. Une nouvelle juridiction est un paquet de règles JSON accompagné de cas de test ; voir [CONTRIBUTING.md](CONTRIBUTING.md) et [docs/rulepacks.md](docs/rulepacks.md).
 
 ---
 

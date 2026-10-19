@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center" dir="rtl">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=ar"><strong>العرض المباشر</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ar"><strong>العرض المباشر</strong></a> ·
   <a href="docs/usage.md">التوثيق (بالإنجليزية)</a> ·
   <a href="docs/verification.md">تقرير التحقق (بالإنجليزية)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=ar">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ar">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-ar-dark.png">
       <img alt="العرض التجريبي لـ lexdays بالعربية: ميعاد فدرالي أمريكي مع ثلاثة أيام إضافية للتبليغ بالبريد، مع التقويم وتبرير كل خطوة." src="docs/images/hero-ar-light.png" width="860">
@@ -139,7 +139,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang ar
 
 ## المساهمة
 
-أثمن المساهمات هي التصويبات ومراجعات القانونيين. إذا كانت نتيجة ما خاطئة، فافتح [تصويب قاعدة](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) مع المصدر. الولاية القضائية الجديدة هي حزمة قواعد JSON مع حالات اختبار؛ راجع [CONTRIBUTING.md](CONTRIBUTING.md) و[docs/rulepacks.md](docs/rulepacks.md).
+أثمن المساهمات هي التصويبات ومراجعات القانونيين. إذا كانت نتيجة ما خاطئة، فافتح [تصويب قاعدة](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) مع المصدر. الولاية القضائية الجديدة هي حزمة قواعد JSON مع حالات اختبار؛ راجع [CONTRIBUTING.md](CONTRIBUTING.md) و[docs/rulepacks.md](docs/rulepacks.md).
 
 </div>
 

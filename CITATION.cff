@@ -4,8 +4,8 @@ title: "lexdays: explainable legal deadlines and business days"
 type: software
 authors:
   - alias: DoGood-Studio
-repository-code: "https://github.com/DoGood-Studio/lexdays"
-url: "https://dogood-studio.github.io/lexdays/"
+repository-code: "https://github.com/DoGood-Studio/legal-deadline-calculator"
+url: "https://dogood-studio.github.io/legal-deadline-calculator/"
 abstract: >-
   A jurisdiction-agnostic engine that computes legal deadlines and business
   days from rules expressed as data, and explains every result with the

@@ -2,7 +2,7 @@
 
 *English summary: how the Turkish rule packs work, the statutes and decisions they rely on, and the points on which case law is divided. Disputed points are options; the default follows settled high-court case law, otherwise the earlier, safer date.*
 
-Bu sayfa `tr/*` kural paketlerinin hangi kurala dayandığını ve içtihadın bölündüğü yerlerde nasıl davrandığını özetler. Paketlerin durumu **beta**dır: kanun metinleri ve kararlar incelenmiştir, ancak henüz uygulamacı avukatlarca gözden geçirilmemiştir. Düzeltme ve görüşler için ["Kural düzeltmesi" şablonunu](https://github.com/DoGood-Studio/lexdays/issues/new/choose) kullanın.
+Bu sayfa `tr/*` kural paketlerinin hangi kurala dayandığını ve içtihadın bölündüğü yerlerde nasıl davrandığını özetler. Paketlerin durumu **beta**dır: kanun metinleri ve kararlar incelenmiştir, ancak henüz uygulamacı avukatlarca gözden geçirilmemiştir. Düzeltme ve görüşler için ["Kural düzeltmesi" şablonunu](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new/choose) kullanın.
 
 ## Ortak kurallar
 

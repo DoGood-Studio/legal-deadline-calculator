@@ -6,12 +6,13 @@ Releases are published to PyPI and npm by `.github/workflows/release.yml` using 
 
 1. **GitHub environments.** In *Settings → Environments*, create `pypi` and `npm`. Optionally require a reviewer before deployment.
 2. **PyPI.** At https://pypi.org/manage/account/publishing/ add a *pending publisher*:
-   - project name `lexdays`, owner `DoGood-Studio`, repository `lexdays`, workflow `release.yml`, environment `pypi`.
+   - project name `lexdays`, owner `DoGood-Studio`, repository `legal-deadline-calculator`, workflow `release.yml`, environment `pypi`.
+   - The repository and the packages have different names on purpose: the repository is named after what people search for, the packages keep the short name.
 3. **npm.** The first version has to be published manually. Trusted publishing can only be configured for a package that already exists.
    ```bash
    cd js && npm ci && npm run build && npm publish --access public
    ```
-   Then, in the package settings on npmjs.com, add a trusted publisher: GitHub Actions, repository `DoGood-Studio/lexdays`, workflow `release.yml`, environment `npm`. Finally, disallow token-based publishing.
+   Then, in the package settings on npmjs.com, add a trusted publisher: GitHub Actions, repository `DoGood-Studio/legal-deadline-calculator`, workflow `release.yml`, environment `npm`. Finally, disallow token-based publishing.
 4. **Repository settings.** Enable private vulnerability reporting (*Security → Settings*), GitHub Pages from GitHub Actions, and a ruleset on `main` that blocks force pushes and deletion and requires pull requests and passing CI.
 
 ## Every release

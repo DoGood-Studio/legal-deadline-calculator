@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=it"><strong>Demo online</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=it"><strong>Demo online</strong></a> ·
   <a href="docs/usage.md">Documentazione (in inglese)</a> ·
   <a href="docs/verification.md">Rapporto di verifica (in inglese)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=it">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=it">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-it-dark.png">
       <img alt="La demo di lexdays in italiano: termine per un ricorso alla Corte di giustizia dell'UE dalla pubblicazione nella Gazzetta ufficiale, con il calendario e la motivazione di ogni passaggio." src="docs/images/hero-it-light.png" width="860">
@@ -112,7 +112,7 @@ Altri esempi, tutte le opzioni e l'API: [docs/usage.md](docs/usage.md) (in ingle
 
 ## Contribuire
 
-Le correzioni e le revisioni da parte di giuristi sono i contributi più preziosi. Se un risultato è sbagliato, apri una [correzione di regola](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) con la fonte. Un nuovo ordinamento è un pacchetto di regole JSON con casi di test; vedi [CONTRIBUTING.md](CONTRIBUTING.md) e [docs/rulepacks.md](docs/rulepacks.md).
+Le correzioni e le revisioni da parte di giuristi sono i contributi più preziosi. Se un risultato è sbagliato, apri una [correzione di regola](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) con la fonte. Un nuovo ordinamento è un pacchetto di regole JSON con casi di test; vedi [CONTRIBUTING.md](CONTRIBUTING.md) e [docs/rulepacks.md](docs/rulepacks.md).
 
 ---
 

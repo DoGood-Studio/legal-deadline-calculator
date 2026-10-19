@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://github.com/DoGood-Studio/lexdays/blob/main/spec/rulepack.schema.json",
+  "$id": "https://github.com/DoGood-Studio/legal-deadline-calculator/blob/main/spec/rulepack.schema.json",
   "title": "lexdays rule pack",
   "description": "A jurisdiction's deadline rules as an ordered list of steps. Each executed step is recorded in the explanation trace together with its citation.",
   "type": "object",

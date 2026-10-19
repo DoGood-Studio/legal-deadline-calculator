@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/"><strong>Live demo</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/"><strong>Live demo</strong></a> ·
   <a href="docs/usage.md">Documentation</a> ·
   <a href="docs/verification.md">Verification report</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-dark.png">
       <img alt="The lexdays demo: Turkish civil procedure, two weeks from service on 29 July 2027. The judicial recess extends the period to Wednesday 8 September 2027, shown on a calendar with the recess highlighted." src="docs/images/hero-light.png" width="860">
@@ -114,7 +114,7 @@ More examples, every option and the API: [docs/usage.md](docs/usage.md).
 
 ## Contributing
 
-Corrections and reviews by lawyers matter most. If a result is wrong, open a [rule correction](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) with the source. A new jurisdiction is a JSON rule pack plus test vectors; see [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/rulepacks.md](docs/rulepacks.md).
+Corrections and reviews by lawyers matter most. If a result is wrong, open a [rule correction](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) with the source. A new jurisdiction is a JSON rule pack plus test vectors; see [CONTRIBUTING.md](CONTRIBUTING.md) and [docs/rulepacks.md](docs/rulepacks.md).
 
 ---
 

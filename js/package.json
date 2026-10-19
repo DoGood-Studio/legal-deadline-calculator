@@ -18,13 +18,13 @@
   ],
   "license": "MIT",
   "author": "DoGood-Studio",
-  "homepage": "https://github.com/DoGood-Studio/lexdays#readme",
+  "homepage": "https://github.com/DoGood-Studio/legal-deadline-calculator#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/DoGood-Studio/lexdays.git",
+    "url": "git+https://github.com/DoGood-Studio/legal-deadline-calculator.git",
     "directory": "js"
   },
-  "bugs": "https://github.com/DoGood-Studio/lexdays/issues",
+  "bugs": "https://github.com/DoGood-Studio/legal-deadline-calculator/issues",
   "type": "module",
   "sideEffects": false,
   "main": "./dist/index.cjs",

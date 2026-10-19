@@ -17,20 +17,20 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="LICENSE"><img alt="MIT lisansı" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=tr"><strong>Canlı demo</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=tr"><strong>Canlı demo</strong></a> ·
   <a href="docs/jurisdictions/tr.md">Türkiye kuralları</a> ·
   <a href="docs/verification.md">Doğrulama raporu</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/lexdays/?lang=tr">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=tr">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-tr-dark.png">
       <img alt="lexdays demosu: HMK, 29 Temmuz 2027 tebliğinden itibaren iki hafta. Adli tatil süreyi 8 Eylül 2027 Çarşamba'ya uzatır; takvimde adli tatil işaretlidir." src="docs/images/hero-tr-light.png" width="860">
@@ -127,7 +127,7 @@ Aynı motor ABD federal mahkemeleri (FRCP 6), İngiltere ve Galler (CPR), AB Ada
 
 ## Katkı
 
-En değerli katkı, avukatların kural incelemesi ve hata bildirimidir. Yanlış bulduğunuz bir sonucu dayanağıyla birlikte ["Kural düzeltmesi" formuyla](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) bildirin. Ayrıntılar [CONTRIBUTING.md](CONTRIBUTING.md) dosyasındadır.
+En değerli katkı, avukatların kural incelemesi ve hata bildirimidir. Yanlış bulduğunuz bir sonucu dayanağıyla birlikte ["Kural düzeltmesi" formuyla](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) bildirin. Ayrıntılar [CONTRIBUTING.md](CONTRIBUTING.md) dosyasındadır.
 
 ---
 

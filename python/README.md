@@ -40,6 +40,6 @@ lexdays deadline de/zpo 2025-07-25 P2W --calendar de-by-augsburg
 lexdays holidays tr 2026
 ```
 
-Documentation, rule sources and the live demo: <https://github.com/DoGood-Studio/lexdays>
+Documentation, rule sources and the live demo: <https://github.com/DoGood-Studio/legal-deadline-calculator>
 
 This is an informational tool, not legal advice. Always check a deadline that matters.

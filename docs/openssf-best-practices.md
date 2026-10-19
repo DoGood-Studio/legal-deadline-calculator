@@ -9,7 +9,7 @@ Status values:
 - **After publishing**: needs the public repository, a release or a repository setting.
 - **Maintainer must confirm**: a statement about the people on the project. Only the maintainer can answer it.
 
-When entering URLs on bestpractices.dev, turn the relative links below into `https://github.com/DoGood-Studio/lexdays/blob/main/...`.
+When entering URLs on bestpractices.dev, turn the relative links below into `https://github.com/DoGood-Studio/legal-deadline-calculator/blob/main/...`.
 
 ## Summary
 
@@ -44,7 +44,7 @@ All MUST criteria that can be met before publishing are met.
 
 | Criterion | Level | Status | Evidence |
 |---|---|---|---|
-| `repo_public` | MUST | After publishing | `https://github.com/DoGood-Studio/lexdays` |
+| `repo_public` | MUST | After publishing | `https://github.com/DoGood-Studio/legal-deadline-calculator` |
 | `repo_track` | MUST | Met | Git records what changed, who changed it and when. |
 | `repo_interim` | MUST | Met | Work is committed to `main` between releases, not only at release time. |
 | `repo_distributed` | SUGGESTED | Met | Git. |
@@ -124,7 +124,7 @@ All MUST criteria that can be met before publishing are met.
 1. Make the repository public and push `main`.
 2. Enable private vulnerability reporting:
    ```bash
-   gh api -X PUT repos/DoGood-Studio/lexdays/private-vulnerability-reporting
+   gh api -X PUT repos/DoGood-Studio/legal-deadline-calculator/private-vulnerability-reporting
    ```
 3. Let CI, CodeQL and Scorecard run once, and fix any CodeQL alert of medium or higher severity.
 4. Sign in to <https://www.bestpractices.dev/> with GitHub, choose **Get Your Badge Now**, and add the repository URL.

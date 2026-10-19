@@ -41,11 +41,11 @@ dependencies = []
 lexdays = "lexdays.cli:main"
 
 [project.urls]
-Homepage = "https://github.com/DoGood-Studio/lexdays"
-Documentation = "https://github.com/DoGood-Studio/lexdays#readme"
-Repository = "https://github.com/DoGood-Studio/lexdays"
-Issues = "https://github.com/DoGood-Studio/lexdays/issues"
-Changelog = "https://github.com/DoGood-Studio/lexdays/blob/main/CHANGELOG.md"
+Homepage = "https://github.com/DoGood-Studio/legal-deadline-calculator"
+Documentation = "https://github.com/DoGood-Studio/legal-deadline-calculator#readme"
+Repository = "https://github.com/DoGood-Studio/legal-deadline-calculator"
+Issues = "https://github.com/DoGood-Studio/legal-deadline-calculator/issues"
+Changelog = "https://github.com/DoGood-Studio/legal-deadline-calculator/blob/main/CHANGELOG.md"
 
 [dependency-groups]
 dev = [

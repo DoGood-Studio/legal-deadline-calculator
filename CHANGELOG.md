@@ -21,5 +21,5 @@ First public release.
 - Shared conformance vectors, property-based tests, a Python/TypeScript differential test, and calendar cross-checks against python-holidays and the GOV.UK bank holidays feed.
 - A pre-release verification report (docs/verification.md): every rule pack checked against primary sources, 41 new test vectors, translations reviewed in all languages, and the demo tested in Chromium, Firefox and WebKit.
 
-[Unreleased]: https://github.com/DoGood-Studio/lexdays/compare/v0.1.0...HEAD
-[0.1.0]: https://github.com/DoGood-Studio/lexdays/releases/tag/v0.1.0
+[Unreleased]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/DoGood-Studio/legal-deadline-calculator/releases/tag/v0.1.0
