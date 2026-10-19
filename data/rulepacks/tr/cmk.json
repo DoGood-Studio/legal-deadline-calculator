@@ -143,7 +143,17 @@
       },
       "name": {
         "en": "judicial recess",
-        "tr": "adli tatil"
+        "tr": "adli tatil",
+        "de": "Gerichtsferien",
+        "fr": "les vacances judiciaires",
+        "es": "las vacaciones judiciales",
+        "it": "le ferie giudiziarie",
+        "pt": "as férias judiciais",
+        "nl": "het gerechtelijk reces",
+        "ru": "судебные каникулы",
+        "ar": "العطلة القضائية",
+        "zh": "司法休庭期",
+        "ja": "裁判所休廷期間"
       },
       "periods": [
         {
@@ -164,7 +174,17 @@
       "extension_days": 3,
       "name": {
         "en": "judicial recess",
-        "tr": "adli tatil"
+        "tr": "adli tatil",
+        "de": "Gerichtsferien",
+        "fr": "les vacances judiciaires",
+        "es": "las vacaciones judiciales",
+        "it": "le ferie giudiziarie",
+        "pt": "as férias judiciais",
+        "nl": "het gerechtelijk reces",
+        "ru": "судебные каникулы",
+        "ar": "العطلة القضائية",
+        "zh": "司法休庭期",
+        "ja": "裁判所休廷期間"
       },
       "periods": [
         {

@@ -11,7 +11,7 @@ from typing import Any
 
 from . import __version__
 from ._calendar import calendar, list_calendars
-from ._i18n import format_date
+from ._i18n import format_date, languages
 from ._rules import compute, list_rulepacks, rulepack
 from .errors import LexdaysError
 
@@ -99,7 +99,7 @@ def build_parser() -> argparse.ArgumentParser:
     )
     parser.add_argument("--version", action="version", version=f"lexdays {__version__}")
     common = argparse.ArgumentParser(add_help=False)
-    common.add_argument("--lang", default="en", choices=["en", "tr"], help="output language")
+    common.add_argument("--lang", default="en", choices=list(languages()), help="output language")
     common.add_argument("--json", action="store_true", help="machine-readable output")
     sub = parser.add_subparsers(dest="command", required=True)
 

@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 
 import lexdays
+import lexdays._i18n
 
 from .conftest import VECTORS, load_vectors
 
@@ -93,7 +94,7 @@ def test_bundled_deadline_vector(case: dict[str, Any]) -> None:
     if "notices" in expect:
         assert [n.code for n in result.notices] == expect["notices"]
     for step in result.trace:
-        for lang in ("en", "tr"):
+        for lang in lexdays._i18n.languages():
             assert not re.search(r"\{\w+\}", step.message[lang])
 
 

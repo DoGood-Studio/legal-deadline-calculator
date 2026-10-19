@@ -1,149 +1,509 @@
 {
-  "languages": ["en", "tr"],
+  "languages": ["en", "tr", "de", "fr", "es", "it", "pt", "nl", "ru", "ar", "zh", "ja"],
   "date_format": {
     "en": "{iso} ({weekday})",
-    "tr": "{dd}.{mm}.{yyyy} {weekday}"
+    "tr": "{dd}.{mm}.{yyyy} {weekday}",
+    "de": "{dd}.{mm}.{yyyy} ({weekday})",
+    "fr": "{dd}/{mm}/{yyyy} ({weekday})",
+    "es": "{dd}/{mm}/{yyyy} ({weekday})",
+    "it": "{dd}/{mm}/{yyyy} ({weekday})",
+    "pt": "{dd}/{mm}/{yyyy} ({weekday})",
+    "nl": "{dd}-{mm}-{yyyy} ({weekday})",
+    "ru": "{dd}.{mm}.{yyyy} ({weekday})",
+    "ar": "{dd}/{mm}/{yyyy} ({weekday})",
+    "zh": "{yyyy}-{mm}-{dd}（{weekday}）",
+    "ja": "{yyyy}-{mm}-{dd}（{weekday}）"
   },
   "weekdays": {
     "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "tr": ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+    "tr": ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"],
+    "de": ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"],
+    "fr": ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"],
+    "es": ["lunes", "martes", "miércoles", "jueves", "viernes", "sábado", "domingo"],
+    "it": ["lunedì", "martedì", "mercoledì", "giovedì", "venerdì", "sabato", "domenica"],
+    "pt": ["segunda-feira", "terça-feira", "quarta-feira", "quinta-feira", "sexta-feira", "sábado", "domingo"],
+    "nl": ["maandag", "dinsdag", "woensdag", "donderdag", "vrijdag", "zaterdag", "zondag"],
+    "ru": ["понедельник", "вторник", "среда", "четверг", "пятница", "суббота", "воскресенье"],
+    "ar": ["الاثنين", "الثلاثاء", "الأربعاء", "الخميس", "الجمعة", "السبت", "الأحد"],
+    "zh": ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+    "ja": ["月曜日", "火曜日", "水曜日", "木曜日", "金曜日", "土曜日", "日曜日"]
   },
   "messages": {
     "shift_trigger": {
       "en": "Start date moved by {days} day(s): {from} → {to}.",
-      "tr": "Başlangıç tarihi {days} gün kaydırıldı: {from} → {to}."
+      "tr": "Başlangıç tarihi {days} gün kaydırıldı: {from} → {to}.",
+      "de": "Anfangsdatum um {days} Tag(e) verschoben: {from} → {to}.",
+      "fr": "Date de départ décalée de {days} jour(s) : {from} → {to}.",
+      "es": "Fecha inicial desplazada {days} día(s): {from} → {to}.",
+      "it": "Data iniziale spostata di {days} giorni: {from} → {to}.",
+      "pt": "Data inicial deslocada {days} dia(s): {from} → {to}.",
+      "nl": "Begindatum {days} dag(en) verschoven: {from} → {to}.",
+      "ru": "Начальная дата сдвинута на {days} дн.: {from} → {to}.",
+      "ar": "تم تحريك تاريخ البداية بمقدار {days} يوم: من {from} إلى {to}.",
+      "zh": "起始日顺延 {days} 天：{from} → {to}。",
+      "ja": "起算日を {days} 日ずらしました：{from} → {to}。"
     },
     "count.day": {
       "en": "Counted {n} day(s) from {from}, not counting the start day: {to}.",
-      "tr": "{from} tarihinden itibaren, başlangıç günü sayılmadan {n} gün sayıldı: {to}."
+      "tr": "{from} tarihinden itibaren, başlangıç günü sayılmadan {n} gün sayıldı: {to}.",
+      "de": "{n} Tag(e) ab {from} gezählt, ohne den Anfangstag: {to}.",
+      "fr": "{n} jour(s) comptés à partir du {from}, sans compter le jour de départ : {to}.",
+      "es": "Se contaron {n} día(s) desde el {from}, sin contar el día inicial: {to}.",
+      "it": "Contati {n} giorni dal {from}, escluso il giorno iniziale: {to}.",
+      "pt": "Contados {n} dia(s) a partir de {from}, sem contar o dia inicial: {to}.",
+      "nl": "{n} dag(en) geteld vanaf {from}, zonder de begindag: {to}.",
+      "ru": "Отсчитано {n} дн. с {from}, не считая начального дня: {to}.",
+      "ar": "تم احتساب {n} يوم من {from} دون احتساب يوم البداية: {to}.",
+      "zh": "自 {from} 起计算 {n} 天（不计起始日）：{to}。",
+      "ja": "{from} から起算日を含めずに {n} 日を数えました：{to}。"
     },
     "count.day.inclusive": {
       "en": "Counted {n} day(s) starting on {from}, counting the start day: {to}.",
-      "tr": "{from} günü de sayılarak {n} gün sayıldı: {to}."
+      "tr": "{from} günü de sayılarak {n} gün sayıldı: {to}.",
+      "de": "{n} Tag(e) ab {from} gezählt, einschließlich des Anfangstags: {to}.",
+      "fr": "{n} jour(s) comptés à partir du {from}, jour de départ compris : {to}.",
+      "es": "Se contaron {n} día(s) desde el {from}, incluido el día inicial: {to}.",
+      "it": "Contati {n} giorni dal {from}, compreso il giorno iniziale: {to}.",
+      "pt": "Contados {n} dia(s) a partir de {from}, incluindo o dia inicial: {to}.",
+      "nl": "{n} dag(en) geteld vanaf {from}, inclusief de begindag: {to}.",
+      "ru": "Отсчитано {n} дн. с {from}, включая начальный день: {to}.",
+      "ar": "تم احتساب {n} يوم بدءًا من {from} مع احتساب يوم البداية: {to}.",
+      "zh": "自 {from} 起计算 {n} 天（含起始日）：{to}。",
+      "ja": "{from} を含めて {n} 日を数えました：{to}。"
     },
     "count.day.clear": {
       "en": "Counted {n} clear day(s) from {from} (neither the start day nor the end day counts): {to}.",
-      "tr": "{from} tarihinden itibaren {n} tam gün sayıldı (başlangıç ve bitiş günü sayılmaz): {to}."
+      "tr": "{from} tarihinden itibaren {n} tam gün sayıldı (başlangıç ve bitiş günü sayılmaz): {to}.",
+      "de": "{n} volle Tag(e) ab {from} gezählt (weder Anfangs- noch Endtag zählen): {to}.",
+      "fr": "{n} jour(s) francs comptés à partir du {from} (ni le jour de départ ni le jour d'échéance ne comptent) : {to}.",
+      "es": "Se contaron {n} día(s) completos desde el {from} (no cuentan ni el día inicial ni el final): {to}.",
+      "it": "Contati {n} giorni liberi dal {from} (non contano né il giorno iniziale né quello finale): {to}.",
+      "pt": "Contados {n} dia(s) completos a partir de {from} (não contam o dia inicial nem o final): {to}.",
+      "nl": "{n} volle dag(en) geteld vanaf {from} (begin- en einddag tellen niet mee): {to}.",
+      "ru": "Отсчитано {n} полн. дн. с {from} (не считая ни начального, ни конечного дня): {to}.",
+      "ar": "تم احتساب {n} يوم كامل من {from} (لا يُحتسب يوم البداية ولا يوم النهاية): {to}.",
+      "zh": "自 {from} 起计算 {n} 个完整日（起止两日均不计）：{to}。",
+      "ja": "{from} から {n} 日を数えました（初日と末日はいずれも算入しない）：{to}。"
     },
     "count.day.before": {
       "en": "Counted {n} day(s) back from {from}: {to}.",
-      "tr": "{from} tarihinden geriye doğru {n} gün sayıldı: {to}."
+      "tr": "{from} tarihinden geriye doğru {n} gün sayıldı: {to}.",
+      "de": "{n} Tag(e) von {from} zurückgezählt: {to}.",
+      "fr": "{n} jour(s) comptés à rebours à partir du {from} : {to}.",
+      "es": "Se contaron {n} día(s) hacia atrás desde el {from}: {to}.",
+      "it": "Contati {n} giorni a ritroso dal {from}: {to}.",
+      "pt": "Contados {n} dia(s) para trás a partir de {from}: {to}.",
+      "nl": "{n} dag(en) teruggeteld vanaf {from}: {to}.",
+      "ru": "Отсчитано {n} дн. назад от {from}: {to}.",
+      "ar": "تم احتساب {n} يوم رجوعًا من {from}: {to}.",
+      "zh": "自 {from} 向前倒数 {n} 天：{to}。",
+      "ja": "{from} から {n} 日さかのぼりました：{to}。"
     },
     "count.day.before.clear": {
       "en": "Counted {n} clear day(s) back from {from} (neither {from} nor the deadline day counts): {to}.",
-      "tr": "{from} tarihinden geriye doğru {n} tam gün sayıldı (iki uç gün de sayılmaz): {to}."
+      "tr": "{from} tarihinden geriye doğru {n} tam gün sayıldı (iki uç gün de sayılmaz): {to}.",
+      "de": "{n} volle Tag(e) von {from} zurückgezählt (weder {from} noch der Fristtag zählen): {to}.",
+      "fr": "{n} jour(s) francs comptés à rebours à partir du {from} (ni le {from} ni le jour limite ne comptent) : {to}.",
+      "es": "Se contaron {n} día(s) completos hacia atrás desde el {from} (no cuentan ni el {from} ni el día límite): {to}.",
+      "it": "Contati {n} giorni liberi a ritroso dal {from} (non contano né il {from} né il giorno di scadenza): {to}.",
+      "pt": "Contados {n} dia(s) completos para trás a partir de {from} (não contam {from} nem o dia final): {to}.",
+      "nl": "{n} volle dag(en) teruggeteld vanaf {from} (noch {from} noch de einddag telt mee): {to}.",
+      "ru": "Отсчитано {n} полн. дн. назад от {from} (не считая ни {from}, ни последнего дня): {to}.",
+      "ar": "تم احتساب {n} يوم كامل رجوعًا من {from} (لا يُحتسب {from} ولا يوم الموعد): {to}.",
+      "zh": "自 {from} 向前倒数 {n} 个完整日（{from} 与截止日均不计）：{to}。",
+      "ja": "{from} から {n} 日さかのぼりました（{from} と期限日はいずれも算入しない）：{to}。"
     },
     "count.week": {
       "en": "{n} week(s) from {from} end on the same weekday of the last week: {to}.",
-      "tr": "{from} tarihinden itibaren {n} hafta, son haftada aynı adı taşıyan günde biter: {to}."
+      "tr": "{from} tarihinden itibaren {n} hafta, son haftada aynı adı taşıyan günde biter: {to}.",
+      "de": "{n} Woche(n) ab {from} enden am gleichen Wochentag der letzten Woche: {to}.",
+      "fr": "{n} semaine(s) à partir du {from} expirent le même jour de la dernière semaine : {to}.",
+      "es": "{n} semana(s) desde el {from} vencen el mismo día de la semana en la última semana: {to}.",
+      "it": "{n} settimane dal {from} scadono nello stesso giorno della settimana dell'ultima settimana: {to}.",
+      "pt": "{n} semana(s) a partir de {from} terminam no mesmo dia da semana da última semana: {to}.",
+      "nl": "{n} week/weken vanaf {from} eindigen op dezelfde weekdag van de laatste week: {to}.",
+      "ru": "{n} нед. с {from} истекают в тот же день недели последней недели: {to}.",
+      "ar": "مدة {n} أسبوع من {from} تنتهي في اليوم نفسه من الأسبوع الأخير: {to}.",
+      "zh": "自 {from} 起 {n} 周，于最后一周的同一星期几届满：{to}。",
+      "ja": "{from} から {n} 週間は、最終週の同じ曜日に満了します：{to}。"
     },
     "count.week.before": {
       "en": "{n} week(s) back from {from}: {to}.",
-      "tr": "{from} tarihinden geriye doğru {n} hafta: {to}."
+      "tr": "{from} tarihinden geriye doğru {n} hafta: {to}.",
+      "de": "{n} Woche(n) vor {from}: {to}.",
+      "fr": "{n} semaine(s) à rebours à partir du {from} : {to}.",
+      "es": "{n} semana(s) hacia atrás desde el {from}: {to}.",
+      "it": "{n} settimane a ritroso dal {from}: {to}.",
+      "pt": "{n} semana(s) para trás a partir de {from}: {to}.",
+      "nl": "{n} week/weken terug vanaf {from}: {to}.",
+      "ru": "{n} нед. назад от {from}: {to}.",
+      "ar": "مدة {n} أسبوع رجوعًا من {from}: {to}.",
+      "zh": "自 {from} 向前 {n} 周：{to}。",
+      "ja": "{from} から {n} 週間さかのぼりました：{to}。"
     },
     "count.month": {
       "en": "{n} month(s) from {from} end on the corresponding day of the last month: {to}.",
-      "tr": "{from} tarihinden itibaren {n} ay, son ayda karşılık gelen günde biter: {to}."
+      "tr": "{from} tarihinden itibaren {n} ay, son ayda karşılık gelen günde biter: {to}.",
+      "de": "{n} Monat(e) ab {from} enden am entsprechenden Tag des letzten Monats: {to}.",
+      "fr": "{n} mois à partir du {from} expirent le jour correspondant du dernier mois : {to}.",
+      "es": "{n} mes(es) desde el {from} vencen el día correspondiente del último mes: {to}.",
+      "it": "{n} mesi dal {from} scadono nel giorno corrispondente dell'ultimo mese: {to}.",
+      "pt": "{n} mês(es) a partir de {from} terminam no dia correspondente do último mês: {to}.",
+      "nl": "{n} maand(en) vanaf {from} eindigen op de overeenkomstige dag van de laatste maand: {to}.",
+      "ru": "{n} мес. с {from} истекают в соответствующее число последнего месяца: {to}.",
+      "ar": "مدة {n} شهر من {from} تنتهي في اليوم المقابل من الشهر الأخير: {to}.",
+      "zh": "自 {from} 起 {n} 个月，于最后一个月的对应日届满：{to}。",
+      "ja": "{from} から {n} か月は、最終月の応当日に満了します：{to}。"
     },
     "count.month.clamped": {
       "en": "{n} month(s) from {from}: the last month has no corresponding day, so the period ends on that month's last day: {to}.",
-      "tr": "{from} tarihinden itibaren {n} ay: son ayda karşılık gelen gün bulunmadığından süre o ayın son günü biter: {to}."
+      "tr": "{from} tarihinden itibaren {n} ay: son ayda karşılık gelen gün bulunmadığından süre o ayın son günü biter: {to}.",
+      "de": "{n} Monat(e) ab {from}: Im letzten Monat fehlt der entsprechende Tag, daher endet die Frist mit dem letzten Tag dieses Monats: {to}.",
+      "fr": "{n} mois à partir du {from} : le dernier mois n'a pas de jour correspondant, le délai expire donc le dernier jour de ce mois : {to}.",
+      "es": "{n} mes(es) desde el {from}: el último mes no tiene día correspondiente, por lo que el plazo vence el último día de ese mes: {to}.",
+      "it": "{n} mesi dal {from}: l'ultimo mese non ha il giorno corrispondente, quindi il termine scade l'ultimo giorno di quel mese: {to}.",
+      "pt": "{n} mês(es) a partir de {from}: o último mês não tem dia correspondente, por isso o prazo termina no último dia desse mês: {to}.",
+      "nl": "{n} maand(en) vanaf {from}: de laatste maand heeft geen overeenkomstige dag, dus de termijn eindigt op de laatste dag van die maand: {to}.",
+      "ru": "{n} мес. с {from}: в последнем месяце нет соответствующего числа, поэтому срок истекает в последний день этого месяца: {to}.",
+      "ar": "مدة {n} شهر من {from}: لا يوجد يوم مقابل في الشهر الأخير، لذا تنتهي المدة في آخر يوم من ذلك الشهر: {to}.",
+      "zh": "自 {from} 起 {n} 个月：最后一个月没有对应日，因此期间于该月最后一日届满：{to}。",
+      "ja": "{from} から {n} か月：最終月に応当日がないため、その月の末日に満了します：{to}。"
     },
     "count.month.before": {
       "en": "{n} month(s) back from {from}: {to}.",
-      "tr": "{from} tarihinden geriye doğru {n} ay: {to}."
+      "tr": "{from} tarihinden geriye doğru {n} ay: {to}.",
+      "de": "{n} Monat(e) vor {from}: {to}.",
+      "fr": "{n} mois à rebours à partir du {from} : {to}.",
+      "es": "{n} mes(es) hacia atrás desde el {from}: {to}.",
+      "it": "{n} mesi a ritroso dal {from}: {to}.",
+      "pt": "{n} mês(es) para trás a partir de {from}: {to}.",
+      "nl": "{n} maand(en) terug vanaf {from}: {to}.",
+      "ru": "{n} мес. назад от {from}: {to}.",
+      "ar": "مدة {n} شهر رجوعًا من {from}: {to}.",
+      "zh": "自 {from} 向前 {n} 个月：{to}。",
+      "ja": "{from} から {n} か月さかのぼりました：{to}。"
     },
     "count.year": {
       "en": "{n} year(s) from {from} end on the corresponding day of the last year: {to}.",
-      "tr": "{from} tarihinden itibaren {n} yıl, son yılda karşılık gelen günde biter: {to}."
+      "tr": "{from} tarihinden itibaren {n} yıl, son yılda karşılık gelen günde biter: {to}.",
+      "de": "{n} Jahr(e) ab {from} enden am entsprechenden Tag des letzten Jahres: {to}.",
+      "fr": "{n} an(s) à partir du {from} expirent le jour correspondant de la dernière année : {to}.",
+      "es": "{n} año(s) desde el {from} vencen el día correspondiente del último año: {to}.",
+      "it": "{n} anni dal {from} scadono nel giorno corrispondente dell'ultimo anno: {to}.",
+      "pt": "{n} ano(s) a partir de {from} terminam no dia correspondente do último ano: {to}.",
+      "nl": "{n} jaar vanaf {from} eindigt op de overeenkomstige dag van het laatste jaar: {to}.",
+      "ru": "{n} г. с {from} истекают в соответствующий день последнего года: {to}.",
+      "ar": "مدة {n} سنة من {from} تنتهي في اليوم المقابل من السنة الأخيرة: {to}.",
+      "zh": "自 {from} 起 {n} 年，于最后一年的对应日届满：{to}。",
+      "ja": "{from} から {n} 年は、最終年の応当日に満了します：{to}。"
     },
     "count.year.clamped": {
       "en": "{n} year(s) from {from}: the last year has no 29 February, so the period ends on 28 February: {to}.",
-      "tr": "{from} tarihinden itibaren {n} yıl: son yılda 29 Şubat bulunmadığından süre 28 Şubat'ta biter: {to}."
+      "tr": "{from} tarihinden itibaren {n} yıl: son yılda 29 Şubat bulunmadığından süre 28 Şubat'ta biter: {to}.",
+      "de": "{n} Jahr(e) ab {from}: Im letzten Jahr gibt es keinen 29. Februar, daher endet die Frist am 28. Februar: {to}.",
+      "fr": "{n} an(s) à partir du {from} : la dernière année n'a pas de 29 février, le délai expire donc le 28 février : {to}.",
+      "es": "{n} año(s) desde el {from}: el último año no tiene 29 de febrero, por lo que el plazo vence el 28 de febrero: {to}.",
+      "it": "{n} anni dal {from}: l'ultimo anno non ha il 29 febbraio, quindi il termine scade il 28 febbraio: {to}.",
+      "pt": "{n} ano(s) a partir de {from}: o último ano não tem 29 de fevereiro, por isso o prazo termina a 28 de fevereiro: {to}.",
+      "nl": "{n} jaar vanaf {from}: het laatste jaar heeft geen 29 februari, dus de termijn eindigt op 28 februari: {to}.",
+      "ru": "{n} г. с {from}: в последнем году нет 29 февраля, поэтому срок истекает 28 февраля: {to}.",
+      "ar": "مدة {n} سنة من {from}: لا يوجد 29 فبراير في السنة الأخيرة، لذا تنتهي المدة في 28 فبراير: {to}.",
+      "zh": "自 {from} 起 {n} 年：最后一年没有 2 月 29 日，因此期间于 2 月 28 日届满：{to}。",
+      "ja": "{from} から {n} 年：最終年に 2 月 29 日がないため、2 月 28 日に満了します：{to}。"
     },
     "count.year.before": {
       "en": "{n} year(s) back from {from}: {to}.",
-      "tr": "{from} tarihinden geriye doğru {n} yıl: {to}."
+      "tr": "{from} tarihinden geriye doğru {n} yıl: {to}.",
+      "de": "{n} Jahr(e) vor {from}: {to}.",
+      "fr": "{n} an(s) à rebours à partir du {from} : {to}.",
+      "es": "{n} año(s) hacia atrás desde el {from}: {to}.",
+      "it": "{n} anni a ritroso dal {from}: {to}.",
+      "pt": "{n} ano(s) para trás a partir de {from}: {to}.",
+      "nl": "{n} jaar terug vanaf {from}: {to}.",
+      "ru": "{n} г. назад от {from}: {to}.",
+      "ar": "مدة {n} سنة رجوعًا من {from}: {to}.",
+      "zh": "自 {from} 向前 {n} 年：{to}。",
+      "ja": "{from} から {n} 年さかのぼりました：{to}。"
     },
     "count.business_day": {
       "en": "Counted {n} working day(s) from {from}, skipping non-working days: {to}.",
-      "tr": "{from} tarihinden itibaren, çalışılmayan günler atlanarak {n} iş günü sayıldı: {to}."
+      "tr": "{from} tarihinden itibaren, çalışılmayan günler atlanarak {n} iş günü sayıldı: {to}.",
+      "de": "{n} Werktag(e) ab {from} gezählt, arbeitsfreie Tage übersprungen: {to}.",
+      "fr": "{n} jour(s) ouvrable(s) comptés à partir du {from}, jours chômés exclus : {to}.",
+      "es": "Se contaron {n} día(s) hábiles desde el {from}, omitiendo los inhábiles: {to}.",
+      "it": "Contati {n} giorni lavorativi dal {from}, saltando i giorni non lavorativi: {to}.",
+      "pt": "Contados {n} dia(s) útil(eis) a partir de {from}, saltando os dias não úteis: {to}.",
+      "nl": "{n} werkdag(en) geteld vanaf {from}, niet-werkdagen overgeslagen: {to}.",
+      "ru": "Отсчитано {n} раб. дн. с {from}, нерабочие дни пропущены: {to}.",
+      "ar": "تم احتساب {n} يوم عمل من {from} مع تخطي أيام العطل: {to}.",
+      "zh": "自 {from} 起计算 {n} 个工作日（跳过非工作日）：{to}。",
+      "ja": "{from} から休業日を除いて {n} 営業日を数えました：{to}。"
     },
     "count.business_day.before": {
       "en": "Counted {n} working day(s) back from {from}, skipping non-working days: {to}.",
-      "tr": "{from} tarihinden geriye doğru, çalışılmayan günler atlanarak {n} iş günü sayıldı: {to}."
+      "tr": "{from} tarihinden geriye doğru, çalışılmayan günler atlanarak {n} iş günü sayıldı: {to}.",
+      "de": "{n} Werktag(e) von {from} zurückgezählt, arbeitsfreie Tage übersprungen: {to}.",
+      "fr": "{n} jour(s) ouvrable(s) comptés à rebours à partir du {from}, jours chômés exclus : {to}.",
+      "es": "Se contaron {n} día(s) hábiles hacia atrás desde el {from}, omitiendo los inhábiles: {to}.",
+      "it": "Contati {n} giorni lavorativi a ritroso dal {from}, saltando i giorni non lavorativi: {to}.",
+      "pt": "Contados {n} dia(s) útil(eis) para trás a partir de {from}, saltando os dias não úteis: {to}.",
+      "nl": "{n} werkdag(en) teruggeteld vanaf {from}, niet-werkdagen overgeslagen: {to}.",
+      "ru": "Отсчитано {n} раб. дн. назад от {from}, нерабочие дни пропущены: {to}.",
+      "ar": "تم احتساب {n} يوم عمل رجوعًا من {from} مع تخطي أيام العطل: {to}.",
+      "zh": "自 {from} 向前倒数 {n} 个工作日（跳过非工作日）：{to}。",
+      "ja": "{from} から休業日を除いて {n} 営業日さかのぼりました：{to}。"
     },
     "count.business_day.clear": {
       "en": "Counted {n} clear working day(s) from {from} (neither end day counts; non-working days are skipped): {to}.",
-      "tr": "{from} tarihinden itibaren {n} tam iş günü sayıldı (uç günler sayılmaz, çalışılmayan günler atlanır): {to}."
+      "tr": "{from} tarihinden itibaren {n} tam iş günü sayıldı (uç günler sayılmaz, çalışılmayan günler atlanır): {to}.",
+      "de": "{n} volle Werktag(e) ab {from} gezählt (Anfangs- und Endtag zählen nicht, arbeitsfreie Tage übersprungen): {to}.",
+      "fr": "{n} jour(s) ouvrable(s) francs comptés à partir du {from} (les jours extrêmes ne comptent pas, jours chômés exclus) : {to}.",
+      "es": "Se contaron {n} día(s) hábiles completos desde el {from} (no cuentan los días extremos; se omiten los inhábiles): {to}.",
+      "it": "Contati {n} giorni lavorativi liberi dal {from} (i giorni estremi non contano; saltati i non lavorativi): {to}.",
+      "pt": "Contados {n} dia(s) útil(eis) completos a partir de {from} (os dias extremos não contam; dias não úteis saltados): {to}.",
+      "nl": "{n} volle werkdag(en) geteld vanaf {from} (begin- en einddag tellen niet mee, niet-werkdagen overgeslagen): {to}.",
+      "ru": "Отсчитано {n} полн. раб. дн. с {from} (крайние дни не считаются, нерабочие пропущены): {to}.",
+      "ar": "تم احتساب {n} يوم عمل كامل من {from} (لا يُحتسب اليومان الطرفيان وتُتخطى أيام العطل): {to}.",
+      "zh": "自 {from} 起计算 {n} 个完整工作日（起止日不计，跳过非工作日）：{to}。",
+      "ja": "{from} から {n} 営業日を数えました（初日と末日は算入せず、休業日を除く）：{to}。"
     },
     "count.business_day.before.clear": {
       "en": "Counted {n} clear working day(s) back from {from} (neither {from} nor the deadline day counts; non-working days are skipped): {to}.",
-      "tr": "{from} tarihinden geriye doğru {n} tam iş günü sayıldı (iki uç gün de sayılmaz, çalışılmayan günler atlanır): {to}."
+      "tr": "{from} tarihinden geriye doğru {n} tam iş günü sayıldı (iki uç gün de sayılmaz, çalışılmayan günler atlanır): {to}.",
+      "de": "{n} volle Werktag(e) von {from} zurückgezählt (weder {from} noch der Fristtag zählen, arbeitsfreie Tage übersprungen): {to}.",
+      "fr": "{n} jour(s) ouvrable(s) francs comptés à rebours à partir du {from} (ni le {from} ni le jour limite ne comptent, jours chômés exclus) : {to}.",
+      "es": "Se contaron {n} día(s) hábiles completos hacia atrás desde el {from} (no cuentan ni el {from} ni el día límite; se omiten los inhábiles): {to}.",
+      "it": "Contati {n} giorni lavorativi liberi a ritroso dal {from} (non contano né il {from} né il giorno di scadenza; saltati i non lavorativi): {to}.",
+      "pt": "Contados {n} dia(s) útil(eis) completos para trás a partir de {from} (não contam {from} nem o dia final; dias não úteis saltados): {to}.",
+      "nl": "{n} volle werkdag(en) teruggeteld vanaf {from} (noch {from} noch de einddag telt mee, niet-werkdagen overgeslagen): {to}.",
+      "ru": "Отсчитано {n} полн. раб. дн. назад от {from} (не считая ни {from}, ни последнего дня; нерабочие пропущены): {to}.",
+      "ar": "تم احتساب {n} يوم عمل كامل رجوعًا من {from} (لا يُحتسب {from} ولا يوم الموعد وتُتخطى أيام العطل): {to}.",
+      "zh": "自 {from} 向前倒数 {n} 个完整工作日（{from} 与截止日均不计，跳过非工作日）：{to}。",
+      "ja": "{from} から {n} 営業日さかのぼりました（{from} と期限日は算入せず、休業日を除く）：{to}。"
     },
     "recess.extend": {
       "en": "{from} falls within the {recess} ({start} – {end}); the period is extended by {days} day(s) counted from the end of the recess: {to}.",
-      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre tatilin bittiği günden itibaren {days} gün uzar: {to}."
+      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre tatilin bittiği günden itibaren {days} gün uzar: {to}.",
+      "de": "{from} fällt in die {recess} ({start} – {end}); die Frist verlängert sich um {days} Tag(e), gerechnet ab deren Ende: {to}.",
+      "fr": "{from} tombe pendant {recess} ({start} – {end}) ; le délai est prorogé de {days} jour(s) à compter de la fin de cette période : {to}.",
+      "es": "{from} cae dentro de {recess} ({start} – {end}); el plazo se prorroga {days} día(s) contados desde el fin de ese periodo: {to}.",
+      "it": "{from} cade durante {recess} ({start} – {end}); il termine è prorogato di {days} giorni dalla fine di tale periodo: {to}.",
+      "pt": "{from} cai durante {recess} ({start} – {end}); o prazo é prorrogado {days} dia(s) a contar do fim desse período: {to}.",
+      "nl": "{from} valt in {recess} ({start} – {end}); de termijn wordt verlengd met {days} dag(en), gerekend vanaf het einde daarvan: {to}.",
+      "ru": "{from} приходится на {recess} ({start} – {end}); срок продлевается на {days} дн., считая с окончания этого периода: {to}.",
+      "ar": "يقع {from} ضمن {recess} ({start} – {end})؛ تُمدَّد المدة {days} يوم تُحسب من نهاية هذه الفترة: {to}.",
+      "zh": "{from} 落在{recess}（{start} – {end}）内；期间自该期间结束起延长 {days} 天：{to}。",
+      "ja": "{from} は{recess}（{start} – {end}）中にあたるため、その終了日から起算して {days} 日延長されます：{to}。"
     },
     "recess.extend.next_day": {
       "en": "{from} falls within the {recess} ({start} – {end}); the period is extended by {days} day(s) counted from {next}, the day after the recess ends: {to}.",
-      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre, tatilin bitimini izleyen {next} tarihinden itibaren {days} gün uzar: {to}."
+      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre, tatilin bitimini izleyen {next} tarihinden itibaren {days} gün uzar: {to}.",
+      "de": "{from} fällt in die {recess} ({start} – {end}); die Frist verlängert sich um {days} Tag(e), gerechnet ab {next}, dem Tag nach deren Ende: {to}.",
+      "fr": "{from} tombe pendant {recess} ({start} – {end}) ; le délai est prorogé de {days} jour(s) à compter du {next}, lendemain de la fin de cette période : {to}.",
+      "es": "{from} cae dentro de {recess} ({start} – {end}); el plazo se prorroga {days} día(s) contados desde el {next}, día siguiente al fin de ese periodo: {to}.",
+      "it": "{from} cade durante {recess} ({start} – {end}); il termine è prorogato di {days} giorni a partire dal {next}, giorno successivo alla fine di tale periodo: {to}.",
+      "pt": "{from} cai durante {recess} ({start} – {end}); o prazo é prorrogado {days} dia(s) a contar de {next}, dia seguinte ao fim desse período: {to}.",
+      "nl": "{from} valt in {recess} ({start} – {end}); de termijn wordt verlengd met {days} dag(en), gerekend vanaf {next}, de dag na het einde daarvan: {to}.",
+      "ru": "{from} приходится на {recess} ({start} – {end}); срок продлевается на {days} дн., считая с {next}, следующего дня после окончания этого периода: {to}.",
+      "ar": "يقع {from} ضمن {recess} ({start} – {end})؛ تُمدَّد المدة {days} يوم تُحسب من {next}، وهو اليوم التالي لنهاية هذه الفترة: {to}.",
+      "zh": "{from} 落在{recess}（{start} – {end}）内；期间自该期间结束后的次日 {next} 起延长 {days} 天：{to}。",
+      "ja": "{from} は{recess}（{start} – {end}）中にあたるため、終了日の翌日 {next} から起算して {days} 日延長されます：{to}。"
     },
     "recess.defer_start": {
       "en": "{from} falls within the {recess} ({start} – {end}); the period only starts running after the recess, as if served on {to}.",
-      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre tatilden sonra işlemeye başlar, {to} tarihinde tebliğ edilmiş gibi sayılır."
+      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre tatilden sonra işlemeye başlar, {to} tarihinde tebliğ edilmiş gibi sayılır.",
+      "de": "{from} fällt in die {recess} ({start} – {end}); die Frist beginnt erst danach zu laufen, als wäre am {to} zugestellt worden.",
+      "fr": "{from} tombe pendant {recess} ({start} – {end}) ; le délai ne court qu'après cette période, comme si la notification avait eu lieu le {to}.",
+      "es": "{from} cae dentro de {recess} ({start} – {end}); el plazo solo empieza a correr después de ese periodo, como si se hubiera notificado el {to}.",
+      "it": "{from} cade durante {recess} ({start} – {end}); il termine decorre solo dopo tale periodo, come se la notifica fosse avvenuta il {to}.",
+      "pt": "{from} cai durante {recess} ({start} – {end}); o prazo só começa a correr depois desse período, como se a notificação tivesse ocorrido em {to}.",
+      "nl": "{from} valt in {recess} ({start} – {end}); de termijn begint pas daarna te lopen, alsof op {to} betekend werd.",
+      "ru": "{from} приходится на {recess} ({start} – {end}); срок начинает течь только после этого периода, как если бы вручение состоялось {to}.",
+      "ar": "يقع {from} ضمن {recess} ({start} – {end})؛ لا تبدأ المدة إلا بعد انتهاء هذه الفترة، كأن التبليغ تم في {to}.",
+      "zh": "{from} 落在{recess}（{start} – {end}）内；期间在该期间结束后才开始计算，视为于 {to} 送达。",
+      "ja": "{from} は{recess}（{start} – {end}）中にあたるため、期間はその終了後に進行を始め、{to} に送達されたものとみなされます。"
     },
     "recess.outside": {
       "en": "{from} is outside the {recess}; no extension applies.",
-      "tr": "{from}, {recess} dışında; uzatma uygulanmaz."
+      "tr": "{from}, {recess} dışında; uzatma uygulanmaz.",
+      "de": "{from} liegt außerhalb der {recess}; keine Verlängerung.",
+      "fr": "{from} ne tombe pas pendant {recess} ; aucune prorogation.",
+      "es": "{from} no cae dentro de {recess}; no hay prórroga.",
+      "it": "{from} non cade durante {recess}; nessuna proroga.",
+      "pt": "{from} não cai durante {recess}; não há prorrogação.",
+      "nl": "{from} valt niet in {recess}; geen verlenging.",
+      "ru": "{from} не приходится на {recess}; продление не применяется.",
+      "ar": "لا يقع {from} ضمن {recess}؛ لا يُطبَّق أي تمديد.",
+      "zh": "{from} 不在{recess}内；不予延长。",
+      "ja": "{from} は{recess}にあたらないため、延長はありません。"
     },
     "recess.suspend": {
       "en": "{days} day(s) of the {recess} fall inside the period and are not counted: {from} → {to}.",
-      "tr": "Süre içine düşen {days} günlük {recess} sayılmaz: {from} → {to}."
+      "tr": "Süre içine düşen {days} günlük {recess} sayılmaz: {from} → {to}.",
+      "de": "{days} Tag(e) der {recess} fallen in die Frist und werden nicht mitgezählt: {from} → {to}.",
+      "fr": "{days} jour(s) pendant {recess} tombent dans le délai et ne sont pas comptés : {from} → {to}.",
+      "es": "{days} día(s) de {recess} caen dentro del plazo y no se cuentan: {from} → {to}.",
+      "it": "{days} giorni durante {recess} cadono nel termine e non sono computati: {from} → {to}.",
+      "pt": "{days} dia(s) durante {recess} caem no prazo e não são contados: {from} → {to}.",
+      "nl": "{days} dag(en) van {recess} vallen binnen de termijn en tellen niet mee: {from} → {to}.",
+      "ru": "{days} дн. периода «{recess}» приходятся на срок и не учитываются: {from} → {to}.",
+      "ar": "تقع {days} يوم من {recess} ضمن المدة ولا تُحتسب: من {from} إلى {to}.",
+      "zh": "期间内有 {days} 天属于{recess}，不予计算：{from} → {to}。",
+      "ja": "期間中の{recess} {days} 日は算入しません：{from} → {to}。"
     },
     "roll.forward": {
       "en": "{from} is not a working day ({reason}); the period ends on the next working day: {to}.",
-      "tr": "{from} iş günü değil ({reason}); süre izleyen ilk iş günü biter: {to}."
+      "tr": "{from} iş günü değil ({reason}); süre izleyen ilk iş günü biter: {to}.",
+      "de": "{from} ist kein Werktag ({reason}); die Frist endet am nächsten Werktag: {to}.",
+      "fr": "{from} n'est pas un jour ouvrable ({reason}) ; le délai expire le jour ouvrable suivant : {to}.",
+      "es": "{from} no es día hábil ({reason}); el plazo vence el siguiente día hábil: {to}.",
+      "it": "{from} non è un giorno lavorativo ({reason}); il termine scade il primo giorno lavorativo successivo: {to}.",
+      "pt": "{from} não é dia útil ({reason}); o prazo termina no dia útil seguinte: {to}.",
+      "nl": "{from} is geen werkdag ({reason}); de termijn eindigt op de volgende werkdag: {to}.",
+      "ru": "{from} нерабочий день ({reason}); срок истекает в следующий рабочий день: {to}.",
+      "ar": "{from} ليس يوم عمل ({reason})؛ تنتهي المدة في يوم العمل التالي: {to}.",
+      "zh": "{from} 不是工作日（{reason}）；期间于下一个工作日届满：{to}。",
+      "ja": "{from} は休業日（{reason}）のため、翌営業日に満了します：{to}。"
     },
     "roll.backward": {
       "en": "{from} is not a working day ({reason}); the deadline moves back to the previous working day: {to}.",
-      "tr": "{from} iş günü değil ({reason}); süre önceki ilk iş gününe çekilir: {to}."
+      "tr": "{from} iş günü değil ({reason}); süre önceki ilk iş gününe çekilir: {to}.",
+      "de": "{from} ist kein Werktag ({reason}); die Frist wird auf den vorherigen Werktag vorverlegt: {to}.",
+      "fr": "{from} n'est pas un jour ouvrable ({reason}) ; l'échéance est avancée au jour ouvrable précédent : {to}.",
+      "es": "{from} no es día hábil ({reason}); el plazo se adelanta al día hábil anterior: {to}.",
+      "it": "{from} non è un giorno lavorativo ({reason}); la scadenza è anticipata al giorno lavorativo precedente: {to}.",
+      "pt": "{from} não é dia útil ({reason}); o prazo é antecipado para o dia útil anterior: {to}.",
+      "nl": "{from} is geen werkdag ({reason}); de termijn wordt vervroegd naar de vorige werkdag: {to}.",
+      "ru": "{from} нерабочий день ({reason}); срок переносится на предыдущий рабочий день: {to}.",
+      "ar": "{from} ليس يوم عمل ({reason})؛ يُقدَّم الموعد إلى يوم العمل السابق: {to}.",
+      "zh": "{from} 不是工作日（{reason}）；截止日提前至前一个工作日：{to}。",
+      "ja": "{from} は休業日（{reason}）のため、直前の営業日に繰り上げます：{to}。"
     },
     "roll.none": {
       "en": "{from} is a working day; no adjustment needed.",
-      "tr": "{from} iş günü; düzeltme gerekmez."
+      "tr": "{from} iş günü; düzeltme gerekmez.",
+      "de": "{from} ist ein Werktag; keine Anpassung nötig.",
+      "fr": "{from} est un jour ouvrable ; aucun ajustement.",
+      "es": "{from} es día hábil; no hace falta ajuste.",
+      "it": "{from} è un giorno lavorativo; nessun adeguamento.",
+      "pt": "{from} é dia útil; sem ajuste.",
+      "nl": "{from} is een werkdag; geen aanpassing nodig.",
+      "ru": "{from} рабочий день; корректировка не нужна.",
+      "ar": "{from} يوم عمل؛ لا حاجة إلى تعديل.",
+      "zh": "{from} 是工作日，无需调整。",
+      "ja": "{from} は営業日のため、調整は不要です。"
     },
     "add_days": {
       "en": "{days} day(s) added: {from} → {to}.",
-      "tr": "{days} gün eklendi: {from} → {to}."
+      "tr": "{days} gün eklendi: {from} → {to}.",
+      "de": "{days} Tag(e) hinzugefügt: {from} → {to}.",
+      "fr": "{days} jour(s) ajoutés : {from} → {to}.",
+      "es": "Se añadieron {days} día(s): {from} → {to}.",
+      "it": "Aggiunti {days} giorni: {from} → {to}.",
+      "pt": "Acrescentados {days} dia(s): {from} → {to}.",
+      "nl": "{days} dag(en) toegevoegd: {from} → {to}.",
+      "ru": "Добавлено {days} дн.: {from} → {to}.",
+      "ar": "أُضيف {days} يوم: من {from} إلى {to}.",
+      "zh": "增加 {days} 天：{from} → {to}。",
+      "ja": "{days} 日を加算しました：{from} → {to}。"
     },
     "ends_at": {
       "en": "On the last day the period ends at {time}.",
-      "tr": "Süre son günün {time} saatinde sona erer."
+      "tr": "Süre son günün {time} saatinde sona erer.",
+      "de": "Am letzten Tag endet die Frist um {time} Uhr.",
+      "fr": "Le dernier jour, le délai expire à {time}.",
+      "es": "El último día, el plazo vence a las {time}.",
+      "it": "L'ultimo giorno il termine scade alle {time}.",
+      "pt": "No último dia, o prazo termina às {time}.",
+      "nl": "Op de laatste dag eindigt de termijn om {time} uur.",
+      "ru": "В последний день срок истекает в {time}.",
+      "ar": "في اليوم الأخير تنتهي المدة الساعة {time}.",
+      "zh": "期间于最后一日 {time} 届满。",
+      "ja": "期間は最終日の {time} に満了します。"
     },
     "holiday.observed": {
       "en": "{name} (observed)",
-      "tr": "{name} (telafi günü)"
+      "tr": "{name} (telafi günü)",
+      "de": "{name} (Ersatztag)",
+      "fr": "{name} (jour de remplacement)",
+      "es": "{name} (día sustitutivo)",
+      "it": "{name} (giorno sostitutivo)",
+      "pt": "{name} (dia de substituição)",
+      "nl": "{name} (vervangende dag)",
+      "ru": "{name} (перенесённый выходной)",
+      "ar": "{name} (يوم بديل)",
+      "zh": "{name}（补休日）",
+      "ja": "{name}（振替休日）"
     },
     "reason.weekend": {
       "en": "weekend",
-      "tr": "hafta sonu"
+      "tr": "hafta sonu",
+      "de": "Wochenende",
+      "fr": "week-end",
+      "es": "fin de semana",
+      "it": "fine settimana",
+      "pt": "fim de semana",
+      "nl": "weekend",
+      "ru": "выходной",
+      "ar": "عطلة نهاية الأسبوع",
+      "zh": "周末",
+      "ja": "週末"
     },
     "reason.half_day": {
       "en": "{holiday}, non-working from {time}",
-      "tr": "{holiday}, saat {time} itibarıyla tatil"
+      "tr": "{holiday}, saat {time} itibarıyla tatil",
+      "de": "{holiday}, arbeitsfrei ab {time} Uhr",
+      "fr": "{holiday}, chômé à partir de {time}",
+      "es": "{holiday}, inhábil desde las {time}",
+      "it": "{holiday}, non lavorativo dalle {time}",
+      "pt": "{holiday}, não útil a partir das {time}",
+      "nl": "{holiday}, vrij vanaf {time} uur",
+      "ru": "{holiday}, нерабочее время с {time}",
+      "ar": "{holiday}، عطلة ابتداءً من الساعة {time}",
+      "zh": "{holiday}，{time} 起休息",
+      "ja": "{holiday}、{time} 以降は休業"
     },
     "explain.deadline": {
       "en": "Deadline: {date}",
-      "tr": "Son gün: {date}"
+      "tr": "Son gün: {date}",
+      "de": "Fristende: {date}",
+      "fr": "Échéance : {date}",
+      "es": "Vencimiento: {date}",
+      "it": "Scadenza: {date}",
+      "pt": "Prazo final: {date}",
+      "nl": "Einddatum: {date}",
+      "ru": "Последний день: {date}",
+      "ar": "اليوم الأخير: {date}",
+      "zh": "截止日：{date}",
+      "ja": "期限：{date}"
     },
     "explain.ends_at": {
       "en": "Ends at: {time}",
-      "tr": "Bitiş saati: {time}"
+      "tr": "Bitiş saati: {time}",
+      "de": "Endet um: {time}",
+      "fr": "Heure limite : {time}",
+      "es": "Hora límite: {time}",
+      "it": "Ora di scadenza: {time}",
+      "pt": "Termina às: {time}",
+      "nl": "Eindigt om: {time}",
+      "ru": "Окончание: {time}",
+      "ar": "ينتهي الساعة: {time}",
+      "zh": "届满时间：{time}",
+      "ja": "終了時刻：{time}"
     },
     "explain.warning": {
       "en": "Note: {text}",
-      "tr": "Not: {text}"
+      "tr": "Not: {text}",
+      "de": "Hinweis: {text}",
+      "fr": "Remarque : {text}",
+      "es": "Nota: {text}",
+      "it": "Nota: {text}",
+      "pt": "Nota: {text}",
+      "nl": "Let op: {text}",
+      "ru": "Примечание: {text}",
+      "ar": "ملاحظة: {text}",
+      "zh": "注意：{text}",
+      "ja": "注記：{text}"
     }
   }
 }

@@ -4,6 +4,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { languages } from "../src/i18n.js";
 import {
   Calendar,
   CoverageError,
@@ -107,7 +108,7 @@ describe("deadline vectors", () => {
       if (e.ends_at) expect(result.endsAt).toBe(e.ends_at);
       expect(result.notices.map((n) => n.code)).toEqual(e.notices ?? []);
       for (const step of result.trace) {
-        for (const lang of ["en", "tr"]) {
+        for (const lang of languages()) {
           expect(step.message[lang]).toBeTruthy();
           expect(step.message[lang]).not.toMatch(/\{\w+\}/);
         }

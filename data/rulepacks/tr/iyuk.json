@@ -16,10 +16,17 @@
     "en": "Informational tool, not legal advice. Check the statute, case law and the court's practice before relying on a result; disputed points are reported as notices.",
     "tr": "Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Sonuca güvenmeden önce kanunu, içtihadı ve mahkeme uygulamasını kontrol edin; tartışmalı noktalar uyarı olarak bildirilir."
   },
-  "non_working": { "half_days": { "$option": "half_day_last_day" } },
+  "non_working": {
+    "half_days": {
+      "$option": "half_day_last_day"
+    }
+  },
   "options": {
     "service": {
-      "values": ["date_of_service", "e_notification_delivery"],
+      "values": [
+        "date_of_service",
+        "e_notification_delivery"
+      ],
       "default": "date_of_service",
       "description": {
         "en": "Which date you entered: the date of service, or the date an electronic notification reached the recipient's e-address.",
@@ -27,7 +34,10 @@
       }
     },
     "filing": {
-      "values": ["electronic", "physical"],
+      "values": [
+        "electronic",
+        "physical"
+      ],
       "default": "electronic",
       "description": {
         "en": "Electronic filing (UYAP, e-Devlet) ends at the end of the day (Art. 31 with HMK Art. 445/4); physical filing at the end of the working day.",
@@ -35,7 +45,10 @@
       }
     },
     "court_break": {
-      "values": ["applies", "not_applicable"],
+      "values": [
+        "applies",
+        "not_applicable"
+      ],
       "default": "applies",
       "description": {
         "en": "Choose 'not_applicable' where the court does not take the summer break (Art. 61/1: places with a single administrative or tax court outside the seat of a regional court). Whether Art. 8/3 still applies there is unsettled.",
@@ -43,7 +56,10 @@
       }
     },
     "half_day_last_day": {
-      "values": ["working", "non_working"],
+      "values": [
+        "working",
+        "non_working"
+      ],
       "default": "working",
       "description": {
         "en": "How a half-day holiday is treated when it is the last day. The morning of a feast eve is a working day.",
@@ -53,74 +69,169 @@
   },
   "citations": {
     "tk_7a": {
-      "label": { "en": "Notification Law No. 7201, Art. 7/a", "tr": "7201 s. Tebligat K. m.7/a" },
+      "label": {
+        "en": "Notification Law No. 7201, Art. 7/a",
+        "tr": "7201 s. Tebligat K. m.7/a"
+      },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.7201.pdf",
-      "quote": { "tr": "Elektronik yolla tebligat, muhatabın elektronik adresine ulaştığı tarihi izleyen beşinci günün sonunda yapılmış sayılır." }
+      "quote": {
+        "tr": "Elektronik yolla tebligat, muhatabın elektronik adresine ulaştığı tarihi izleyen beşinci günün sonunda yapılmış sayılır."
+      }
     },
     "iyuk_8_1": {
-      "label": { "en": "İYUK Art. 8/1", "tr": "İYUK m.8/1" },
+      "label": {
+        "en": "İYUK Art. 8/1",
+        "tr": "İYUK m.8/1"
+      },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf",
-      "quote": { "tr": "Süreler, tebliğ, yayın veya ilan tarihini izleyen günden itibaren işlemeye başlar." }
+      "quote": {
+        "tr": "Süreler, tebliğ, yayın veya ilan tarihini izleyen günden itibaren işlemeye başlar."
+      }
     },
     "iyuk_8_2": {
-      "label": { "en": "İYUK Art. 8/2", "tr": "İYUK m.8/2" },
+      "label": {
+        "en": "İYUK Art. 8/2",
+        "tr": "İYUK m.8/2"
+      },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf",
-      "quote": { "tr": "Tatil günleri sürelere dahildir. Şu kadarki, sürenin son günü tatil gününe rastlarsa, süre tatil gününü izleyen çalışma gününün bitimine kadar uzar." }
+      "quote": {
+        "tr": "Tatil günleri sürelere dahildir. Şu kadarki, sürenin son günü tatil gününe rastlarsa, süre tatil gününü izleyen çalışma gününün bitimine kadar uzar."
+      }
     },
     "iyuk_8_3": {
-      "label": { "en": "İYUK Arts. 8/3 and 61", "tr": "İYUK m.8/3 ve m.61" },
+      "label": {
+        "en": "İYUK Arts. 8/3 and 61",
+        "tr": "İYUK m.8/3 ve m.61"
+      },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf",
-      "quote": { "tr": "m.8/3: Bu Kanunda yazılı sürelerin bitmesi çalışmaya ara verme zamanına rastlarsa bu süreler, ara vermenin sona erdiği günü izleyen tarihten itibaren yedi gün uzamış sayılır. m.61/1: Bölge idare, idare ve vergi mahkemeleri her yıl bir eylülde başlamak üzere, yirmi temmuzdan otuz bir ağustosa kadar çalışmaya ara verirler." }
+      "quote": {
+        "tr": "m.8/3: Bu Kanunda yazılı sürelerin bitmesi çalışmaya ara verme zamanına rastlarsa bu süreler, ara vermenin sona erdiği günü izleyen tarihten itibaren yedi gün uzamış sayılır. m.61/1: Bölge idare, idare ve vergi mahkemeleri her yıl bir eylülde başlamak üzere, yirmi temmuzdan otuz bir ağustosa kadar çalışmaya ara verirler."
+      }
     },
     "hmk_445": {
-      "label": { "en": "İYUK Art. 31 with HMK Art. 445/4", "tr": "İYUK m.31 ile HMK m.445/4" },
+      "label": {
+        "en": "İYUK Art. 31 with HMK Art. 445/4",
+        "tr": "İYUK m.31 ile HMK m.445/4"
+      },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf",
-      "quote": { "tr": "Elektronik ortamda yapılan işlemlerde süre gün sonunda biter." }
+      "quote": {
+        "tr": "Elektronik ortamda yapılan işlemlerde süre gün sonunda biter."
+      }
     },
     "danistay_2008": {
-      "label": { "en": "Council of State 8th Chamber, E.2007/1550 K.2008/1381", "tr": "Danıştay 8. D. E.2007/1550 K.2008/1381" },
-      "quote": { "tr": "idari izinlerin resmi tatil olarak kabul edilmesine olanak bulunmadığı gibi 2577 sayılı … Yasası ile belirlenen dava açma süresini dahi durdurmayacağı yerleşik içtihatlar gereğidir" }
+      "label": {
+        "en": "Council of State 8th Chamber, E.2007/1550 K.2008/1381",
+        "tr": "Danıştay 8. D. E.2007/1550 K.2008/1381"
+      },
+      "quote": {
+        "tr": "idari izinlerin resmi tatil olarak kabul edilmesine olanak bulunmadığı gibi 2577 sayılı … Yasası ile belirlenen dava açma süresini dahi durdurmayacağı yerleşik içtihatlar gereğidir"
+      }
     }
   },
   "steps": [
     {
-      "type": "shift_trigger", "days": 5, "cite": "tk_7a",
-      "when": { "option": "service", "equals": "e_notification_delivery" },
+      "type": "shift_trigger",
+      "days": 5,
+      "cite": "tk_7a",
+      "when": {
+        "option": "service",
+        "equals": "e_notification_delivery"
+      },
       "message": {
         "en": "An electronic notification is deemed served at the end of the fifth day after it reached the e-address: {from} + {days} days = {to}.",
         "tr": "Elektronik tebligat, adrese ulaştığı tarihi izleyen beşinci günün sonunda yapılmış sayılır: {from} + {days} gün = {to}."
       }
     },
-    { "type": "count", "cite": "iyuk_8_1" },
-    { "type": "roll", "cite": "iyuk_8_2" },
     {
-      "type": "recess", "cite": "iyuk_8_3",
-      "when": { "option": "court_break", "equals": "applies" },
-      "name": { "en": "summer break of the courts", "tr": "çalışmaya ara verme" },
-      "periods": [ { "start": "07-20", "end": "08-31", "since": 2012 } ],
-      "mode": "extend", "extension_days": 7, "count_from": "end"
+      "type": "count",
+      "cite": "iyuk_8_1"
     },
-    { "type": "roll", "cite": "iyuk_8_2" },
-    { "type": "ends_at", "time": "23:59", "cite": "hmk_445", "when": { "option": "filing", "equals": "electronic" } },
     {
-      "type": "notice", "code": "half-day-last-day",
-      "when": { "all": [ { "day_has": "half_day" }, { "option": "half_day_last_day", "equals": "working" } ] },
+      "type": "roll",
+      "cite": "iyuk_8_2"
+    },
+    {
+      "type": "recess",
+      "cite": "iyuk_8_3",
+      "when": {
+        "option": "court_break",
+        "equals": "applies"
+      },
+      "name": {
+        "en": "summer break of the courts",
+        "tr": "çalışmaya ara verme",
+        "de": "Sommerpause der Gerichte",
+        "fr": "la pause estivale des juridictions",
+        "es": "la pausa estival de los tribunales",
+        "it": "la pausa estiva dei tribunali",
+        "pt": "a pausa de verão dos tribunais",
+        "nl": "het zomerreces van de rechtbanken",
+        "ru": "летний перерыв в работе судов",
+        "ar": "العطلة الصيفية للمحاكم",
+        "zh": "法院夏季休庭期",
+        "ja": "裁判所の夏季休廷期間"
+      },
+      "periods": [
+        {
+          "start": "07-20",
+          "end": "08-31",
+          "since": 2012
+        }
+      ],
+      "mode": "extend",
+      "extension_days": 7,
+      "count_from": "end"
+    },
+    {
+      "type": "roll",
+      "cite": "iyuk_8_2"
+    },
+    {
+      "type": "ends_at",
+      "time": "23:59",
+      "cite": "hmk_445",
+      "when": {
+        "option": "filing",
+        "equals": "electronic"
+      }
+    },
+    {
+      "type": "notice",
+      "code": "half-day-last-day",
+      "when": {
+        "all": [
+          {
+            "day_has": "half_day"
+          },
+          {
+            "option": "half_day_last_day",
+            "equals": "working"
+          }
+        ]
+      },
       "text": {
         "en": "The last day is a half-day holiday (from 13:00). The period still ends that day; offices are open in the morning.",
         "tr": "Son gün yarım günlük tatildir (13.00'ten itibaren). Süre yine o gün biter; daireler öğleden önce açıktır."
       }
     },
     {
-      "type": "notice", "code": "administrative-leave", "cite": "danistay_2008",
-      "when": { "day_has": "administrative" },
+      "type": "notice",
+      "code": "administrative-leave",
+      "cite": "danistay_2008",
+      "when": {
+        "day_has": "administrative"
+      },
       "text": {
         "en": "The last day is an administrative leave day for civil servants. Recent Council of State decisions do not extend the period, but older decisions are split.",
         "tr": "Son gün kamu personeli için idari izin günüdür. Danıştay'ın yakın tarihli kararları süreyi uzatmaz, ancak eski kararlar bölünmüştür."
       }
     },
     {
-      "type": "notice", "code": "break-dates-unverified",
-      "when": { "trigger_before": "2012-01-01" },
+      "type": "notice",
+      "code": "break-dates-unverified",
+      "when": {
+        "trigger_before": "2012-01-01"
+      },
       "text": {
         "en": "Court break dates before 2012 are not verified; this pack applies 20 July – 31 August from 2012 only.",
         "tr": "2012 öncesi ara verme tarihleri doğrulanmadı; bu paket 20 Temmuz – 31 Ağustos dönemini yalnızca 2012'den itibaren uygular."

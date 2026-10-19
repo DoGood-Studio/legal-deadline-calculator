@@ -9,6 +9,7 @@ from typing import Any
 import pytest
 
 import lexdays
+import lexdays._i18n
 from lexdays import Calendar, RulePack
 
 from .conftest import load_vectors
@@ -108,7 +109,7 @@ def test_deadline_vector(case: dict[str, Any]) -> None:
     assert [n.code for n in result.notices] == expect.get("notices", [])
     # Every message must be fully rendered in every language.
     for step in result.trace:
-        for lang in ("en", "tr"):
+        for lang in lexdays._i18n.languages():
             text = step.message[lang]
             assert text
             assert not re.search(r"\{\w+\}", text), text

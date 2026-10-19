@@ -1,275 +1,524 @@
-// Demo page for lexdays. Uses the published ESM bundle (copied to assets/ at build time).
-import { calendar, compute, listCalendars, listRulepacks, rulepack } from "./assets/lexdays.js";
+// lexdays demo page. All calculations use the published ESM bundle (assets/lexdays.js).
+import { calendar, compute, listCalendars, rulepack } from "./assets/lexdays.js";
+import { BASIC_OPTIONS, COUNTRIES, LANGUAGES, PRESETS } from "./labels.js";
 
-const UI = {
-  en: {
-    "nav.github": "GitHub", "nav.reliability": "Reliability",
-    "hero.title": "Legal deadlines, explained.",
-    "hero.lead": "Pick a jurisdiction, enter the date of service and the period. You get the last day, every step that led to it, and the article or decision behind each step.",
-    "tab.deadline": "Deadline", "tab.business": "Business days",
-    "f.pack": "Rules", "f.trigger": "Date of service / event", "f.calendar": "Court's location (holidays)",
-    "f.amount": "Period", "f.unit": "Unit", "f.direction": "Direction", "f.options": "Options",
-    "u.day": "days", "u.week": "weeks", "u.month": "months", "u.year": "years", "u.business_day": "business days",
-    "d.after": "after the date", "d.before": "before the date (e.g. a hearing)",
-    "r.deadline": "Last day", "r.endsAt": "Ends at", "r.code": "Same calculation in code",
-    "b.calendar": "Calendar", "b.date": "Start date", "b.n": "± business days",
-    "b.half": "Treat half days (eves) as non-working", "b.result": "Result", "b.holidays": "Holidays in",
-    "b.business": "business day", "b.weekend": "weekend",
-    "i.title": "Use it in your code",
-    "i.text": "Zero dependencies, MIT licensed. Python and TypeScript give identical results, checked by a shared test-suite and 1,800 random differential cases.",
-    "foot.disclaimer": "Informational tool, not legal advice. Statutes, case law, court orders and local practice take precedence. Always check a deadline that matters.",
-    "opt.default": "default",
-  },
-  tr: {
-    "nav.github": "GitHub", "nav.reliability": "Güvenilirlik",
-    "hero.title": "Hukuki süreler, gerekçesiyle.",
-    "hero.lead": "Kural paketini seçin, tebliğ tarihini ve süreyi girin. Son günü, oraya götüren her adımı ve her adımın dayandığı kanun maddesini veya kararı görürsünüz.",
-    "tab.deadline": "Süre hesapla", "tab.business": "İş günü",
-    "f.pack": "Kurallar", "f.trigger": "Tebliğ / olay tarihi", "f.calendar": "Mahkemenin yeri (tatiller)",
-    "f.amount": "Süre", "f.unit": "Birim", "f.direction": "Yön", "f.options": "Seçenekler",
-    "u.day": "gün", "u.week": "hafta", "u.month": "ay", "u.year": "yıl", "u.business_day": "iş günü",
-    "d.after": "tarihten sonra", "d.before": "tarihten önce (ör. duruşma)",
-    "r.deadline": "Son gün", "r.endsAt": "Bitiş saati", "r.code": "Aynı hesap kodla",
-    "b.calendar": "Takvim", "b.date": "Başlangıç tarihi", "b.n": "± iş günü",
-    "b.half": "Yarım günleri (arife) çalışılmayan say", "b.result": "Sonuç", "b.holidays": "Tatiller:",
-    "b.business": "iş günü", "b.weekend": "hafta sonu",
-    "i.title": "Kodunuzda kullanın",
-    "i.text": "Bağımlılıksız, MIT lisanslı. Python ve TypeScript aynı sonucu verir; ortak test kümesi ve 1.800 rastgele karşılaştırma vakasıyla doğrulanır.",
-    "foot.disclaimer": "Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir. Önemli bir süreyi mutlaka kontrol edin.",
-    "opt.default": "varsayılan",
-  },
-};
+// Interface text lives in i18n/<code>.js; English is always loaded as the fallback.
+const dicts = { en: (await import("./i18n/en.js")).default };
+async function loadDict(code) {
+  dicts[code] ??= (await import(`./i18n/${code}.js`)).default;
+}
+
+// ------------------------------------------------------------------ helpers
 
 const $ = (id) => document.getElementById(id);
-const pick = (text, lang) => (text ? text[lang] ?? text.en ?? Object.values(text)[0] ?? "" : "");
-const today = new Date();
-const isoToday = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
-
 const params = new URLSearchParams(location.search);
-let lang = params.get("lang") === "tr" || (!params.get("lang") && navigator.language?.startsWith("tr")) ? "tr" : "en";
+const SUPPORTED = new Set(LANGUAGES.map((l) => l.code));
 
-function t(key) {
-  return UI[lang][key] ?? UI.en[key] ?? key;
+// ?lang= wins, then the browser's preferred languages, then English.
+function detectLang() {
+  if (SUPPORTED.has(params.get("lang"))) return params.get("lang");
+  for (const tag of navigator.languages ?? [navigator.language]) {
+    const base = String(tag ?? "").toLowerCase().split("-")[0];
+    if (SUPPORTED.has(base)) return base;
+  }
+  return "en";
 }
 
-function applyLanguage() {
-  document.documentElement.lang = lang;
-  for (const el of document.querySelectorAll("[data-i18n]")) el.textContent = t(el.dataset.i18n);
-  $("lang-toggle").textContent = lang === "tr" ? "EN" : "TR";
-  fillPacks();
-  fillCalendars();
-  render();
-  renderBusiness();
+const state = { lang: detectLang(), pack: null, options: {} };
+
+// Looks up a path such as ("packs", "tr/hmk", 0) in the current language, then in English.
+function label(...path) {
+  for (const dict of [dicts[state.lang], dicts.en]) {
+    let value = dict;
+    for (const key of path) value = value?.[key];
+    if (value != null) return value;
+  }
+  return null;
+}
+function t(key, vars = {}) {
+  return (label("ui", key) ?? key).replace(/\{(\w+)\}/g, (_, k) => String(vars[k] ?? ""));
 }
 
-// ---------------------------------------------------------------- deadline
+// Text from the rule data ({en, tr, ...}). Notes and citations are not translated into every
+// language; when one falls back to English the page says so.
+const fellBack = new Set();
+function txt(obj, area) {
+  if (!obj) return "";
+  if (obj[state.lang] != null) return obj[state.lang];
+  if (area) fellBack.add(area);
+  return obj.en ?? Object.values(obj)[0] ?? "";
+}
+const updateLangNote = () => ($("r-langnote").hidden = fellBack.size === 0);
+const engineLang = () => state.lang;
+// Arabic keeps Latin digits so dates match the explanation text the library produces.
+const locale = () => (state.lang === "ar" ? "ar-u-nu-latn" : state.lang);
+const num = (n) => new Intl.NumberFormat(locale(), { useGrouping: false }).format(n);
+const quantity = (n, unit) => new Intl.NumberFormat(locale(), { style: "unit", unit, unitDisplay: "long" }).format(n);
+const utc = (iso) => {
+  const [y, m, d] = iso.split("-").map(Number);
+  return new Date(Date.UTC(y, m - 1, d));
+};
+const fmt = (iso, opts) => new Intl.DateTimeFormat(locale(), { timeZone: "UTC", ...opts }).format(utc(iso));
+const isoOf = (date) => `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}-${String(date.getDate()).padStart(2, "0")}`;
+const todayIso = () => isoOf(new Date());
+const dayDiff = (a, b) => Math.round((utc(b) - utc(a)) / 86400000);
+const addDaysIso = (iso, n) => new Date(utc(iso).getTime() + n * 86400000).toISOString().slice(0, 10);
 
-const packs = listRulepacks().map((id) => rulepack(id));
-
-function fillPacks() {
-  const select = $("pack");
-  const current = select.value || params.get("pack") || (lang === "tr" ? "tr/hmk" : "us/frcp");
-  select.innerHTML = "";
-  const groups = new Map();
-  for (const p of packs) {
-    const key = p.jurisdiction ?? "";
-    if (!groups.has(key)) groups.set(key, []);
-    groups.get(key).push(p);
+function el(tag, attrs = {}, ...children) {
+  const node = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (k === "class") node.className = v;
+    else if (k.startsWith("on")) node.addEventListener(k.slice(2), v);
+    else if (v !== false && v != null) node.setAttribute(k, v === true ? "" : v);
   }
-  for (const [jurisdiction, list] of groups) {
-    const group = document.createElement("optgroup");
-    group.label = jurisdiction;
-    for (const p of list) group.append(new Option(pick(p.name, lang), p.id));
-    select.append(group);
-  }
-  select.value = packs.some((p) => p.id === current) ? current : packs[0].id;
-  onPackChange(false);
+  for (const child of children) if (child != null) node.append(child);
+  return node;
 }
 
-function onPackChange(rerender = true) {
-  const pack = rulepack($("pack").value);
-  $("pack-desc").textContent = pick(pack.description, lang);
-  const calField = $("calendar-field");
-  const calSelect = $("calendar");
-  calSelect.innerHTML = "";
-  if (pack.calendarFamily) {
-    const family = pack.calendarFamily;
-    for (const id of listCalendars().filter((c) => c === family || c.startsWith(`${family}-`))) {
-      calSelect.append(new Option(pick(calendar(id).name, lang), id));
-    }
-    calSelect.value = pack.calendar.id;
-    calField.hidden = false;
-  } else {
-    calField.hidden = true;
-  }
-  const box = $("options");
-  box.innerHTML = "";
-  const names = Object.keys(pack.options);
-  if (names.length) {
-    const legend = document.createElement("legend");
-    legend.textContent = t("f.options");
-    box.append(legend);
-  }
-  for (const name of names) {
-    const spec = pack.options[name];
-    const label = document.createElement("label");
-    label.className = "field";
-    const title = document.createElement("span");
-    title.textContent = name;
-    const select = document.createElement("select");
-    select.dataset.option = name;
-    for (const value of spec.values) {
-      const text = value === spec.default ? `${value} (${t("opt.default")})` : String(value);
-      const option = new Option(text, JSON.stringify(value));
-      select.append(option);
-    }
-    select.value = JSON.stringify(spec.default);
-    const hint = document.createElement("small");
-    hint.className = "hint";
-    hint.textContent = pick(spec.description, lang);
-    label.append(title, select, hint);
-    box.append(label);
-  }
-  if (rerender) render();
+function radioGroup(container, items, isChecked, onPick) {
+  container.replaceChildren(
+    ...items.map((item) =>
+      el(
+        "button",
+        { type: "button", role: "radio", "aria-checked": String(isChecked(item)), class: item.className ?? "", onclick: () => onPick(item) },
+        ...item.content,
+      ),
+    ),
+  );
 }
 
-function periodString(amount, unit) {
-  return unit === "business_day" ? `${amount}bd` : `P${amount}${unit[0].toUpperCase()}`;
-}
+// ------------------------------------------------------------ deadline form
 
-function render() {
-  const packId = $("pack").value;
-  const trigger = $("trigger").value;
-  const amount = Number($("amount").value);
-  const unit = $("unit").value;
-  const direction = $("direction").value;
-  const options = {};
-  for (const select of $("options").querySelectorAll("select")) options[select.dataset.option] = JSON.parse(select.value);
+const countryOf = (packId) => COUNTRIES.find((c) => c.packs.includes(packId));
+
+function setPack(packId, applyPreset = true) {
   const pack = rulepack(packId);
-  const cal = pack.calendarFamily ? $("calendar").value : undefined;
+  state.pack = packId;
+  state.options = Object.fromEntries(Object.entries(pack.options).map(([k, spec]) => [k, spec.default]));
+  state.calendar = pack.calendar.id;
+  if (applyPreset) usePreset(PRESETS[packId]?.[0]);
+}
+
+function usePreset(preset) {
+  state.preset = preset ?? null;
+  if (!preset) return;
+  const [period, direction] = preset;
+  const match = /^P(\d+)([DWMY])$/.exec(period);
+  $("amount").value = match[1];
+  $("unit").value = { D: "day", W: "week", M: "month", Y: "year" }[match[2]];
+  setDirection(direction);
+}
+
+function setDirection(value) {
+  for (const b of $("direction").querySelectorAll("button")) b.setAttribute("aria-checked", String(b.dataset.value === value));
+}
+const direction = () => $("direction").querySelector('[aria-checked="true"]').dataset.value;
+const periodString = () => {
+  const unit = $("unit").value;
+  const n = Math.max(1, Math.round(Number($("amount").value) || 1));
+  return unit === "business_day" ? `${n}bd` : `P${n}${unit[0].toUpperCase()}`;
+};
+
+function renderForm() {
+  const country = countryOf(state.pack);
+  radioGroup(
+    $("countries"),
+    COUNTRIES.map((c) => ({ ...c, content: [label("countries", c.id)] })),
+    (c) => c.id === country.id,
+    (c) => {
+      if (c.id === country.id) return;
+      setPack(c.packs[0]);
+      renderForm();
+      run();
+    },
+  );
+  radioGroup(
+    $("packs"),
+    country.packs.map((id) => ({ id, className: "pack", content: [el("strong", {}, label("packs", id, 0)), el("span", {}, label("packs", id, 1))] })),
+    (p) => p.id === state.pack,
+    (p) => {
+      setPack(p.id);
+      renderForm();
+      run();
+    },
+  );
+  $("trigger-label").textContent = direction() === "before" ? t("trigger.before") : label("packs", state.pack, 2);
+  renderPresets();
+  renderCalendarField();
+  renderOptions();
+}
+
+function renderPresets() {
+  const presets = PRESETS[state.pack] ?? [];
+  radioGroup(
+    $("presets"),
+    presets.map((p, i) => ({ p, className: "preset", content: [label("presets", state.pack, i), el("small", {}, `${periodLabel(p[0])} · ${p[2]}`)] })),
+    ({ p }) => p === activePreset(presets),
+    ({ p }) => {
+      usePreset(p);
+      renderForm();
+      run();
+    },
+  );
+}
+
+// The preset the user picked, or else the first one matching the current period.
+function activePreset(presets) {
+  const matches = (p) => periodString() === p[0] && direction() === p[1];
+  if (state.preset && presets.includes(state.preset) && matches(state.preset)) return state.preset;
+  return presets.find(matches) ?? null;
+}
+
+function periodLabel(period) {
+  const [, n, u] = /^P(\d+)([DWMY])$/.exec(period);
+  return quantity(Number(n), { D: "day", W: "week", M: "month", Y: "year" }[u]);
+}
+
+function renderCalendarField() {
+  const pack = rulepack(state.pack);
+  const field = $("calendar-field");
+  field.hidden = !pack.calendarFamily;
+  if (!pack.calendarFamily) return;
+  const family = pack.calendarFamily;
+  const ids = listCalendars().filter((id) => id === family || id.startsWith(`${family}-`));
+  $("calendar").replaceChildren(...ids.map((id) => el("option", { value: id }, txt(calendar(id).name))));
+  $("calendar").value = state.calendar;
+}
+
+function renderOptions() {
+  const pack = rulepack(state.pack);
+  const basic = [];
+  const advanced = [];
+  fellBack.delete("form");
+  for (const [name, spec] of Object.entries(pack.options)) {
+    const box = el("div", { class: "opt", role: "radiogroup", "aria-labelledby": `q-${name}` });
+    box.append(el("div", { class: "opt__q", id: `q-${name}` }, label("options", name) ?? name));
+    const choices = el("div", { class: "opt__choices" });
+    for (const value of spec.values) {
+      const text = label("values", name, String(value)) ?? String(value);
+      const input = el("input", { type: "radio", name: `opt-${name}`, value: JSON.stringify(value), checked: state.options[name] === value });
+      input.addEventListener("change", () => {
+        state.options[name] = value;
+        run();
+      });
+      choices.append(el("label", { class: "choice" }, input, el("span", {}, text)));
+    }
+    box.append(choices);
+    const hint = txt(spec.description, "form");
+    if (hint) box.append(el("p", { class: "opt__hint" }, hint));
+    (BASIC_OPTIONS.has(name) ? basic : advanced).push(box);
+  }
+  $("basic-options").replaceChildren(...basic);
+  $("advanced-options").replaceChildren(...advanced);
+  $("advanced").hidden = advanced.length === 0;
+  $("details-step").hidden = basic.length === 0 && advanced.length === 0 && !pack.calendarFamily;
+  updateLangNote();
+}
+
+// ------------------------------------------------------------------ result
+
+let lastResult = null;
+
+function run() {
+  const trigger = $("trigger").value;
   $("r-error").hidden = true;
+  fellBack.delete("result");
   try {
-    const result = compute(packId, trigger, periodString(amount, unit), { direction, options, calendar: cal });
-    const lines = result.explain(lang).split("\n");
-    $("r-date").textContent = lines.find((l) => /^(Deadline|Son gün):/.test(l))?.split(": ").slice(1).join(": ") ?? result.deadline;
-    $("r-time").textContent = result.endsAt ? `${t("r.endsAt")}: ${result.endsAt}${result.timezone ? ` (${result.timezone})` : ""}` : "";
-    const list = $("r-trace");
-    list.innerHTML = "";
-    for (const step of result.trace) {
-      const li = document.createElement("li");
-      if (step.changed) li.className = "changed";
-      li.append(document.createTextNode(pick(step.message, lang)));
-      if (step.citation) {
-        li.append(document.createElement("br"));
-        const cite = document.createElement(step.citation.url ? "a" : "span");
-        cite.className = "cite";
-        cite.textContent = pick(step.citation.label, lang);
-        if (step.citation.url) {
-          cite.href = step.citation.url;
-          cite.target = "_blank";
-          cite.rel = "noopener";
-        }
-        const quote = pick(step.citation.quote, lang);
-        if (quote) cite.title = quote;
-        li.append(cite);
-      }
-      list.append(li);
-    }
-    const notices = $("r-notices");
-    notices.innerHTML = "";
-    for (const n of result.notices) {
-      const li = document.createElement("li");
-      li.textContent = pick(n.message, lang);
-      notices.append(li);
-    }
-    const opts = Object.keys(options).length ? `, options=${JSON.stringify(options)}` : "";
-    const calArg = cal && cal !== pack.calendar.id ? `, calendar="${cal}"` : "";
-    const dirArg = direction === "before" ? `, direction="before"` : "";
-    $("r-code").textContent =
-      `import lexdays\n\nr = lexdays.compute("${packId}", "${trigger}", "${periodString(amount, unit)}"${dirArg}${opts.replace(/true/g, "True").replace(/false/g, "False")}${calArg})\nprint(r.deadline)\nprint(r.explain("${lang}"))`;
-    const url = new URL(location.href);
-    url.search = new URLSearchParams({ lang, pack: packId, date: trigger, n: String(amount), unit }).toString();
-    history.replaceState(null, "", url);
+    const pack = rulepack(state.pack);
+    const result = compute(state.pack, trigger, periodString(), {
+      direction: direction(),
+      options: state.options,
+      calendar: pack.calendarFamily ? state.calendar : undefined,
+    });
+    lastResult = result;
+    renderVerdict(result.deadline, "leaf", "r-date");
+    $("r-time").textContent = result.endsAt ? `${t("r.ends")}: ${result.endsAt}${result.timezone ? ` (${result.timezone})` : ""}` : "";
+    const diff = dayDiff(todayIso(), result.deadline);
+    const cd = $("r-countdown");
+    cd.textContent = diff > 0 ? t("cd.left", { d: quantity(diff, "day") }) : diff === 0 ? t("cd.today") : t("cd.past", { d: quantity(-diff, "day") });
+    cd.classList.toggle("past", diff < 0);
+    renderChanges(result);
+    renderMonths(result);
+    renderTrace(result);
+    $("r-notices").replaceChildren(...result.notices.map((n) => el("li", {}, txt(n.message, "result"))));
+    renderCode(result);
+    saveUrl();
+    renderPresets();
+    updateLangNote();
   } catch (err) {
-    $("r-date").textContent = "–";
-    $("r-time").textContent = "";
-    $("r-trace").innerHTML = "";
-    $("r-notices").innerHTML = "";
+    lastResult = null;
     $("r-error").textContent = err.message;
     $("r-error").hidden = false;
+    for (const id of ["r-changes", "r-months", "r-legend", "r-trace", "r-notices"]) $(id).replaceChildren();
+    $("r-countdown").textContent = "";
   }
+}
+
+function renderVerdict(iso, leafPrefix, dateId) {
+  $(`${leafPrefix}-month`).textContent = fmt(iso, { month: "long", year: "numeric" }).toLocaleUpperCase(state.lang);
+  $(`${leafPrefix}-day`).textContent = num(Number(iso.slice(8)));
+  $(`${leafPrefix}-weekday`).textContent = fmt(iso, { weekday: "long" });
+  $(dateId).textContent = fmt(iso, { day: "numeric", month: "long", year: "numeric", weekday: "long" });
+}
+
+function renderChanges(result) {
+  const chips = [];
+  for (const s of result.trace) {
+    if (!s.changed) continue;
+    const d = quantity(Math.abs(dayDiff(s.before, s.after)), "day");
+    if (s.step === "shift_trigger") chips.push(t("chg.shift", { d }));
+    else if (s.step === "recess") chips.push(t("chg.recess", { d }));
+    else if (s.step === "roll") chips.push(t("chg.roll", { d }));
+    else if (s.step === "add_days") chips.push(t("chg.add", { d }));
+  }
+  $("r-changes").replaceChildren(...chips.map((c) => el("li", {}, c)));
+}
+
+function recessWindows(pack, year) {
+  const windows = [];
+  for (const step of pack.steps) {
+    if (step.type !== "recess" || step.mode === "defer_start") continue;
+    for (const p of step.periods) {
+      if ((p.since && year < p.since) || (p.until && year > p.until)) continue;
+      const endYear = p.end < p.start ? year + 1 : year;
+      windows.push([`${year}-${p.start}`, `${endYear}-${p.end}`]);
+    }
+  }
+  return windows;
+}
+
+function renderMonths(result) {
+  const count = result.trace.find((s) => s.step === "count");
+  const rawEnd = count?.after;
+  const start = count?.before;
+  const cal = calendar(result.calendar);
+  const pack = rulepack(result.rulepack);
+  const showRecess = result.trace.some((s) => s.step === "recess");
+  const months = [...new Set([rawEnd, result.deadline].filter(Boolean).map((d) => d.slice(0, 7)))].sort().slice(-2);
+  const used = new Set();
+  const weekdays = Array.from({ length: 7 }, (_, i) => fmt(addDaysIso("2024-01-01", i), { weekday: "short" }));
+  const tables = months.map((ym) => {
+    const [y, m] = ym.split("-").map(Number);
+    const first = `${ym}-01`;
+    const offset = (utc(first).getUTCDay() + 6) % 7;
+    const days = new Date(Date.UTC(y, m, 0)).getUTCDate();
+    const windows = showRecess ? [...recessWindows(pack, y - 1), ...recessWindows(pack, y)] : [];
+    const rows = [];
+    let row = [];
+    for (let i = 0; i < offset; i++) row.push(el("td", { class: "out" }));
+    for (let d = 1; d <= days; d++) {
+      const iso = `${ym}-${String(d).padStart(2, "0")}`;
+      const classes = [];
+      let title = "";
+      if (cal.weekend.has(((utc(iso).getUTCDay() + 6) % 7) + 1)) classes.push("we");
+      try {
+        const hols = cal.holidaysOn(iso, { kinds: ["public"] });
+        if (hols.length) {
+          classes.push(hols.every((h) => h.halfDayFrom) ? "half" : "hol", "hol");
+          title = hols.map((h) => txt(h.name)).join(", ");
+          used.add("hol");
+        }
+      } catch {
+        /* outside the calendar's verified years */
+      }
+      if (windows.some(([a, b]) => a <= iso && iso <= b)) classes.push("recess"), used.add("recess");
+      if (iso === start) classes.push("start"), used.add("start");
+      if (iso === rawEnd && rawEnd !== result.deadline) classes.push("counted"), used.add("counted");
+      if (iso === result.deadline) classes.push("final"), used.add("final");
+      row.push(el("td", { class: classes.join(" "), title: title || false, "aria-current": iso === result.deadline ? "date" : false }, num(d)));
+      if (row.length === 7) rows.push(el("tr", {}, ...row)), (row = []);
+    }
+    if (row.length) rows.push(el("tr", {}, ...row));
+    return el(
+      "div",
+      { class: "month" },
+      el("h3", {}, fmt(first, { month: "long", year: "numeric" })),
+      el("table", { role: "grid" }, el("thead", {}, el("tr", {}, ...weekdays.map((w) => el("th", { scope: "col" }, w)))), el("tbody", {}, ...rows)),
+    );
+  });
+  $("r-months").replaceChildren(...tables);
+  const legend = [
+    ["final", "k-final", "lg.final"],
+    ["counted", "k-counted", "lg.counted"],
+    ["recess", "k-recess", "lg.recess"],
+    ["hol", "k-hol", "lg.hol"],
+    ["start", "k-start", "lg.start"],
+  ].filter(([key]) => used.has(key));
+  $("r-legend").replaceChildren(...legend.map(([, cls, key]) => el("li", {}, el("i", { class: cls }), t(key))));
+}
+
+function renderTrace(result) {
+  $("r-trace").replaceChildren(
+    ...result.trace.map((s) => {
+      const li = el("li", { class: s.changed ? "changed" : "" }, el("span", {}, txt(s.message)));
+      if (s.citation) {
+        const name = txt(s.citation.label, "result");
+        const quote = txt(s.citation.quote, "result");
+        const cite = s.citation.url
+          ? el("a", { class: "cite", href: s.citation.url, target: "_blank", rel: "noopener", title: quote || false }, name)
+          : el("span", { class: "cite", title: quote || false }, name);
+        li.append(el("br"), cite);
+      }
+      return li;
+    }),
+  );
+}
+
+function renderCode(result) {
+  const pack = rulepack(state.pack);
+  const changed = Object.entries(state.options).filter(([k, v]) => pack.options[k].default !== v);
+  const opts = changed.length ? `, options={${changed.map(([k, v]) => `"${k}": ${JSON.stringify(v)}`).join(", ")}}` : "";
+  const cal = pack.calendarFamily && state.calendar !== pack.calendar.id ? `, calendar="${state.calendar}"` : "";
+  const dir = direction() === "before" ? ', direction="before"' : "";
+  $("r-code").textContent = `import lexdays\n\nr = lexdays.compute("${state.pack}", "${result.trigger}", "${periodString()}"${dir}${opts}${cal})\nprint(r.deadline)   # ${result.deadline}\nprint(r.explain("${engineLang()}"))`;
+}
+
+function saveUrl() {
+  const q = new URLSearchParams({ lang: state.lang, pack: state.pack, date: $("trigger").value, period: periodString(), dir: direction() });
+  const pack = rulepack(state.pack);
+  if (pack.calendarFamily && state.calendar !== pack.calendar.id) q.set("cal", state.calendar);
+  for (const [k, v] of Object.entries(state.options)) if (pack.options[k].default !== v) q.set(`o.${k}`, String(v));
+  history.replaceState(null, "", `${location.pathname}?${q}`);
+}
+
+function loadUrl() {
+  const pack = params.get("pack");
+  const known = COUNTRIES.flatMap((c) => c.packs);
+  setPack(known.includes(pack) ? pack : state.lang === "tr" ? "tr/hmk" : state.lang === "de" ? "de/zpo" : "us/frcp", true);
+  const period = params.get("period");
+  const match = period && /^P(\d+)([DWMY])$|^(\d+)bd$/.exec(period);
+  if (match) {
+    $("amount").value = match[1] ?? match[3];
+    $("unit").value = match[3] ? "business_day" : { D: "day", W: "week", M: "month", Y: "year" }[match[2]];
+  }
+  if (params.get("dir") === "before") setDirection("before");
+  const spec = rulepack(state.pack);
+  if (params.get("cal") && spec.calendarFamily) state.calendar = params.get("cal");
+  for (const [k, s] of Object.entries(spec.options)) {
+    const raw = params.get(`o.${k}`);
+    const value = s.values.find((v) => String(v) === raw);
+    if (value !== undefined) state.options[k] = value;
+  }
+  $("trigger").value = /^\d{4}-\d{2}-\d{2}$/.test(params.get("date") ?? "") ? params.get("date") : todayIso();
 }
 
 // ------------------------------------------------------------ business days
 
-function fillCalendars() {
-  const select = $("b-calendar");
-  const current = select.value || (lang === "tr" ? "tr" : "us");
-  select.innerHTML = "";
-  for (const id of listCalendars()) select.append(new Option(`${id} — ${pick(calendar(id).name, lang)}`, id));
-  select.value = current;
-}
-
 function renderBusiness() {
-  const cal = calendar($("b-calendar").value);
+  const calId = $("b-calendar").value;
+  const cal = calendar(calId);
   const date = $("b-date").value;
-  const n = Number($("b-n").value);
+  const n = Math.round(Number($("b-n").value) || 0);
   const halfDays = $("b-half").checked ? "non_working" : "working";
+  $("b-error").hidden = true;
   try {
     const out = cal.addBusinessDays(date, n, { halfDays });
-    $("b-out").textContent = out;
+    renderVerdict(out, "b-leaf", "b-date-out");
     const why = cal.nonWorkingReason(date, { halfDays });
-    const label = why === null ? t("b.business") : why === "weekend" ? t("b.weekend") : pick(why.name, lang);
-    $("b-reason").textContent = `${date}: ${label}`;
-    const year = Number(date.slice(0, 4));
-    $("b-year").textContent = String(year);
-    const list = $("b-holidays");
-    list.innerHTML = "";
-    for (const h of cal.holidays(year)) {
-      const li = document.createElement("li");
-      const time = document.createElement("time");
-      time.dateTime = h.date;
-      time.textContent = h.date;
-      li.append(time, document.createTextNode(pick(h.name, lang)));
-      for (const tag of [h.kind !== "public" ? h.kind : null, h.halfDayFrom ? `${h.halfDayFrom}–` : null, h.observedFrom ? "observed" : null]) {
-        if (!tag) continue;
-        const span = document.createElement("span");
-        span.className = "tag";
-        span.textContent = tag;
-        li.append(span);
-      }
-      list.append(li);
-    }
+    const label = why === null ? t("b.business") : why === "weekend" ? t("b.weekend") : txt(why.name);
+    $("b-start").textContent = `${fmt(date, { day: "numeric", month: "long", year: "numeric" })}: ${label}`;
+    const year = Number(out.slice(0, 4));
+    $("b-year").textContent = num(year);
+    $("b-holidays").replaceChildren(
+      ...cal.holidays(year).map((h) =>
+        el(
+          "li",
+          {},
+          el("time", { datetime: h.date }, fmt(h.date, { day: "numeric", month: "short", weekday: "short" })),
+          el("span", {}, txt(h.name)),
+          h.kind !== "public" ? el("span", { class: "tag" }, h.kind) : null,
+          h.halfDayFrom ? el("span", { class: "tag" }, `${h.halfDayFrom}–`) : null,
+        ),
+      ),
+    );
   } catch (err) {
-    $("b-out").textContent = "–";
-    $("b-reason").textContent = err.message;
-    $("b-holidays").innerHTML = "";
+    $("b-error").textContent = err.message;
+    $("b-error").hidden = false;
+    $("b-holidays").replaceChildren();
   }
 }
 
-// ------------------------------------------------------------------- wiring
-
-function selectTab(name) {
-  for (const tab of ["deadline", "business"]) {
-    $(`tab-${tab}`).setAttribute("aria-selected", String(tab === name));
-    $(`panel-${tab}`).hidden = tab !== name;
-  }
+function renderBusinessCalendars() {
+  const current = $("b-calendar").value || (state.lang === "tr" ? "tr" : "us");
+  $("b-calendar").replaceChildren(...listCalendars().map((id) => el("option", { value: id }, txt(calendar(id).name))));
+  $("b-calendar").value = current;
 }
 
-$("trigger").value = params.get("date") ?? isoToday;
-$("amount").value = params.get("n") ?? "2";
-$("unit").value = params.get("unit") ?? "week";
-$("b-date").value = isoToday;
-$("pack").addEventListener("change", () => onPackChange());
-$("calendar").addEventListener("change", render);
-for (const id of ["trigger", "amount", "unit", "direction"]) $(id).addEventListener("input", render);
-$("options").addEventListener("change", render);
-for (const id of ["b-calendar", "b-date", "b-n", "b-half"]) $(id).addEventListener("input", renderBusiness);
-$("tab-deadline").addEventListener("click", () => selectTab("deadline"));
-$("tab-business").addEventListener("click", () => selectTab("business"));
-$("lang-toggle").addEventListener("click", () => {
-  lang = lang === "tr" ? "en" : "tr";
-  applyLanguage();
+// ------------------------------------------------------------------ wiring
+
+async function applyLanguage() {
+  await loadDict(state.lang);
+  const root = document.documentElement;
+  root.lang = state.lang;
+  root.dir = LANGUAGES.find((l) => l.code === state.lang)?.dir ?? "ltr";
+  document.title = t("doc.title");
+  for (const node of document.querySelectorAll("[data-i18n]")) node.textContent = t(node.dataset.i18n);
+  renderForm();
+  run();
+  renderBusinessCalendars();
+  renderBusiness();
+}
+
+async function copy(text, okKey) {
+  try {
+    await navigator.clipboard.writeText(text);
+    $("toast").textContent = t(okKey);
+  } catch {
+    $("toast").textContent = t("copyFail");
+  }
+  setTimeout(() => ($("toast").textContent = ""), 2500);
+}
+
+$("lang").replaceChildren(...LANGUAGES.map((l) => el("option", { value: l.code, lang: l.code }, l.name)));
+$("lang").value = state.lang;
+$("lang").addEventListener("change", () => {
+  state.lang = $("lang").value;
+  applyLanguage().catch((err) => console.error(err));
 });
+$("today").addEventListener("click", () => {
+  $("trigger").value = todayIso();
+  run();
+});
+$("trigger").addEventListener("input", run);
+for (const id of ["amount", "unit"]) $(id).addEventListener("input", run);
+$("direction").addEventListener("click", (event) => {
+  const button = event.target.closest("button");
+  if (!button) return;
+  setDirection(button.dataset.value);
+  renderForm();
+  run();
+});
+$("calendar").addEventListener("change", () => {
+  state.calendar = $("calendar").value;
+  run();
+});
+$("copy-result").addEventListener("click", () => {
+  if (!lastResult) return;
+  const head = `${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}: ${$("r-date").textContent}\n\n`;
+  copy(head + lastResult.explain(engineLang()) + `\n\n${location.href}`, "copied");
+});
+$("copy-link").addEventListener("click", () => copy(location.href, "linkCopied"));
+for (const id of ["b-calendar", "b-date", "b-n", "b-half"]) $(id).addEventListener("input", renderBusiness);
+$("b-today").addEventListener("click", () => {
+  $("b-date").value = todayIso();
+  renderBusiness();
+});
+for (const tab of ["deadline", "business"]) {
+  $(`tab-${tab}`).addEventListener("click", () => {
+    for (const other of ["deadline", "business"]) {
+      $(`tab-${other}`).setAttribute("aria-selected", String(other === tab));
+      $(`panel-${other}`).hidden = other !== tab;
+    }
+  });
+}
+for (const button of document.querySelectorAll(".codetabs button")) {
+  button.addEventListener("click", () => {
+    for (const b of document.querySelectorAll(".codetabs button")) b.setAttribute("aria-selected", String(b === button));
+    for (const pre of document.querySelectorAll(".snippet")) pre.hidden = pre.dataset.code !== button.dataset.code;
+  });
+}
 document.addEventListener("submit", (event) => event.preventDefault());
-applyLanguage();
+
+$("b-date").value = todayIso();
+loadUrl();
+await applyLanguage();

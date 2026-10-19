@@ -42,7 +42,7 @@ Ends at: 23:59 (Europe/Istanbul)
 ## Why lexdays
 
 - **Real deadline rules, not just holidays.** Judicial recesses that extend or suspend periods, half-day feast eves, deemed service of electronic notifications, add-on days for service by mail, counting backwards from a hearing, "clear days", month-end clamping, last-day roll-forward. Each one is modelled with its own rules.
-- **Explainable and citable.** Each step of the calculation is recorded with the article or decision it comes from, in English and Turkish, so a result can be checked and audited.
+- **Explainable and citable.** Each step of the calculation is recorded with the article or decision it comes from, so a result can be checked and audited. The explanation is available in 12 languages (English, Turkish, German, French, Spanish, Italian, Portuguese, Dutch, Russian, Arabic, Chinese and Japanese); rule notes and citation labels are written in English and, where relevant, the court's own language.
 - **Honest about uncertainty.** Where courts or practitioners disagree (e.g. 7 or 8 September after the Turkish judicial recess), the point becomes an **option** and the result carries a **notice**. The default follows settled high-court case law; where there is none, it is the earlier, safer date.
 - **Refuses to guess.** Asking for a year outside a calendar's verified data raises `CoverageError` instead of silently returning a wrong date.
 - **One engine, two languages, identical answers.** Python and TypeScript share the same data and test vectors, and 1,800 random cases must give byte-identical results in both.

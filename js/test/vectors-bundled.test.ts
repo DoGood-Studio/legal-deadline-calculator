@@ -4,6 +4,7 @@ import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
+import { languages } from "../src/i18n.js";
 import {
   calendar,
   compute,
@@ -92,7 +93,7 @@ describe("bundled deadline vectors", () => {
       if (e.steps) expect(result.trace.map((s) => s.step)).toEqual(e.steps);
       if ("ends_at" in e) expect(result.endsAt).toBe(e.ends_at);
       if (e.notices) expect(result.notices.map((n) => n.code)).toEqual(e.notices);
-      for (const s of result.trace) for (const lang of ["en", "tr"]) expect(s.message[lang]).not.toMatch(/\{\w+\}/);
+      for (const s of result.trace) for (const lang of languages()) expect(s.message[lang]).not.toMatch(/\{\w+\}/);
     });
   }
 });

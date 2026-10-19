@@ -39,7 +39,7 @@ Bitiş saati: 23:59 (Europe/Istanbul)
   - e-tebligatta 5. gün kuralı
   - son günün resmî tatile, Cumartesiye veya bayrama rastlaması
   - ay sonu kuralı (31 Ocak + 1 ay = 28/29 Şubat)
-- **Kaynak gösterir.** Her adımda dayandığı kanun maddesi veya karar yazar. Sonuç denetlenebilir ve dilekçeye ya da iç kayda eklenebilir.
+- **Kaynak gösterir.** Her adımda dayandığı kanun maddesi veya karar yazar. Sonuç denetlenebilir ve dilekçeye ya da iç kayda eklenebilir. Açıklama 12 dilde alınabilir: Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, İtalyanca, Portekizce, Felemenkçe, Rusça, Arapça, Çince ve Japonca. Kural notları ve atıf etiketleri İngilizce ve gerektiğinde mahkemenin dilindedir.
 - **Tartışmalı noktaları gizlemez.** İçtihadın veya uygulamanın bölündüğü yerler seçenek olarak sunulur ve sonuca açıklayıcı bir not eklenir. Varsayılan, yerleşik yüksek mahkeme içtihadı varsa onu izler; yoksa daha erken, yani güvenli tarihtir. Örnekler:
   - adli tatil sonrası 7 Eylül mü, 8 Eylül mü
   - süre arifede biterse ne olur

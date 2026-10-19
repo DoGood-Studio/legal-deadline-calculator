@@ -1,158 +1,226 @@
 <!doctype html>
-<html lang="en">
+<html lang="tr">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>lexdays — legal deadline and business day calculator</title>
-  <meta name="description" content="Free, open-source legal deadline calculator that explains every step and cites the law: Türkiye (HMK, İİK, CMK, İYUK, VUK, adli tatil, e-tebligat), US federal courts (FRCP 6), England & Wales (CPR 2.8), EU Court of Justice, Germany (ZPO). Hukuki süre ve iş günü hesaplama.">
+  <title>lexdays — hukuki süre ve iş günü hesaplama</title>
+  <meta name="description" content="Ücretsiz ve açık kaynak hukuki süre hesaplama: son günü, her adımın gerekçesini ve dayandığı kanun maddesini gösterir. Türkiye (HMK, İİK, CMK, İYUK, VUK, adli tatil, e-tebligat), ABD (FRCP 6), İngiltere (CPR 2.8), AB Adalet Divanı, Almanya (ZPO). Legal deadline calculator.">
   <link rel="canonical" href="https://DoGood-Studio.github.io/lexdays/">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="lexdays — explainable legal deadlines">
-  <meta property="og:description" content="Every deadline with its reasons and legal sources. Türkiye, US, UK, EU, Germany. Python, TypeScript, CLI. MIT.">
+  <meta property="og:title" content="lexdays: son gün ve gerekçesi">
+  <meta property="og:description" content="Hukuki süreler, her adımı ve kanun maddesiyle. Türkiye, ABD, İngiltere, AB, Almanya. Açık kaynak, MIT.">
   <meta property="og:url" content="https://DoGood-Studio.github.io/lexdays/">
-  <meta name="theme-color" content="#1f3a5f">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231f3a5f'/%3E%3Cpath d='M9 7v18h14' stroke='%23f2c14e' stroke-width='3.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#1e3a5c">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='4' width='26' height='25' rx='4' fill='%23fff' stroke='%231e3a5c' stroke-width='2'/%3E%3Crect x='3' y='4' width='26' height='8' rx='3' fill='%231e3a5c'/%3E%3Ctext x='16' y='26' font-family='Arial' font-weight='700' font-size='12' text-anchor='middle' fill='%23b42318'%3E8%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
   <link rel="stylesheet" href="style.css">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "lexdays",
-    "applicationCategory": "DeveloperApplication",
+    "applicationCategory": "BusinessApplication",
     "operatingSystem": "Any",
-    "description": "Explainable legal deadline and business-day calculator for Python, TypeScript and the command line.",
+    "description": "Explainable legal deadline and business-day calculator. Türkiye, US federal courts, England and Wales, EU Court of Justice, Germany.",
     "license": "https://opensource.org/licenses/MIT",
     "url": "https://DoGood-Studio.github.io/lexdays/",
     "codeRepository": "https://github.com/DoGood-Studio/lexdays",
-    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
-    "inLanguage": ["en", "tr"]
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" }
   }
   </script>
 </head>
 <body>
-  <header class="top">
-    <div class="wrap top__row">
-      <a class="brand" href="./"><span class="brand__mark" aria-hidden="true">L</span> lexdays</a>
-      <nav class="top__nav">
-        <a href="https://github.com/DoGood-Studio/lexdays" data-i18n="nav.github">GitHub</a>
-        <a href="https://github.com/DoGood-Studio/lexdays/blob/main/docs/RELIABILITY.md" data-i18n="nav.reliability">Reliability</a>
-        <button type="button" id="lang-toggle" class="chip" aria-label="Türkçe / English">TR</button>
+  <a class="skip" href="#tool" data-i18n="skip">İçeriğe geç</a>
+  <header class="bar">
+    <div class="wrap bar__row">
+      <a class="brand" href="./">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="3" y="4" width="26" height="25" rx="4" class="m-sheet"/><rect x="3" y="4" width="26" height="8" rx="3" class="m-band"/><text x="16" y="26" class="m-day">8</text></svg>
+        <span>lexdays</span>
+      </a>
+      <nav class="bar__nav" aria-label="Site">
+        <a href="#tool" data-i18n="nav.tool">Hesapla</a>
+        <a href="#developers" data-i18n="nav.dev">Geliştiriciler</a>
+        <a href="https://github.com/DoGood-Studio/lexdays">GitHub</a>
+        <label class="lang">
+          <span class="sr-only" data-i18n="nav.lang">Dil</span>
+          <select id="lang"></select>
+        </label>
       </nav>
     </div>
   </header>
 
-  <main class="wrap">
-    <section class="hero">
-      <h1 data-i18n="hero.title">Legal deadlines, explained.</h1>
-      <p class="hero__lead" data-i18n="hero.lead">Pick a jurisdiction, enter the date of service and the period. You get the last day, every step that led to it, and the article or decision behind each step.</p>
-    </section>
-
-    <div class="tabs" role="tablist">
-      <button role="tab" id="tab-deadline" aria-selected="true" aria-controls="panel-deadline" data-i18n="tab.deadline">Deadline</button>
-      <button role="tab" id="tab-business" aria-selected="false" aria-controls="panel-business" data-i18n="tab.business">Business days</button>
+  <main id="tool" class="wrap">
+    <div class="intro">
+      <h1 data-i18n="hero.title">Son günü bulun, gerekçesini görün.</h1>
+      <p data-i18n="hero.lead">Süre türünü ve tebliğ tarihini seçin. Adli tatil, bayramlar, arife ve e-tebligat kuralları hesaba katılır; her adımın dayandığı kanun maddesi yanında yazar.</p>
     </div>
 
-    <section id="panel-deadline" role="tabpanel" aria-labelledby="tab-deadline" class="grid">
-      <form id="deadline-form" class="card form" autocomplete="off">
-        <label class="field">
-          <span data-i18n="f.pack">Rules</span>
-          <select id="pack"></select>
-          <small id="pack-desc" class="hint"></small>
-        </label>
-        <div class="row">
-          <label class="field">
-            <span data-i18n="f.trigger">Date of service / event</span>
+    <div class="modes" role="tablist" aria-label="Araç">
+      <button type="button" role="tab" id="tab-deadline" aria-selected="true" aria-controls="panel-deadline" data-i18n="tab.deadline">Süre hesapla</button>
+      <button type="button" role="tab" id="tab-business" aria-selected="false" aria-controls="panel-business" data-i18n="tab.business">İş günü hesapla</button>
+    </div>
+
+    <section id="panel-deadline" role="tabpanel" aria-labelledby="tab-deadline" class="tool">
+      <form id="form" class="form" novalidate>
+        <fieldset class="step">
+          <legend><span class="step__n">1</span><span data-i18n="s1">Süre türü</span></legend>
+          <div class="seg" id="countries" role="radiogroup"></div>
+          <div class="packs" id="packs" role="radiogroup"></div>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><span class="step__n">2</span><span id="trigger-label">Tebliğ tarihi</span></legend>
+          <div class="date-row">
             <input type="date" id="trigger" required>
-          </label>
+            <button type="button" class="ghost" id="today" data-i18n="today">Bugün</button>
+          </div>
           <label class="field" id="calendar-field" hidden>
-            <span data-i18n="f.calendar">Court's location (holidays)</span>
+            <span data-i18n="f.calendar">Mahkemenin bulunduğu yer (tatiller buna göre)</span>
             <select id="calendar"></select>
           </label>
-        </div>
-        <div class="row">
-          <label class="field field--small">
-            <span data-i18n="f.amount">Period</span>
-            <input type="number" id="amount" min="1" max="1000" value="2" required>
-          </label>
-          <label class="field">
-            <span class="sr-only" data-i18n="f.unit">Unit</span>
-            <select id="unit">
-              <option value="day" data-i18n="u.day">days</option>
-              <option value="week" selected data-i18n="u.week">weeks</option>
-              <option value="month" data-i18n="u.month">months</option>
-              <option value="year" data-i18n="u.year">years</option>
-              <option value="business_day" data-i18n="u.business_day">business days</option>
+        </fieldset>
+
+        <fieldset class="step">
+          <legend><span class="step__n">3</span><span data-i18n="s3">Süre</span></legend>
+          <div class="presets" id="presets" role="radiogroup"></div>
+          <div class="period">
+            <input type="number" id="amount" min="1" max="1000" value="2" inputmode="numeric" aria-labelledby="period-label">
+            <select id="unit" aria-labelledby="period-label">
+              <option value="day" data-i18n="u.day">gün</option>
+              <option value="week" data-i18n="u.week">hafta</option>
+              <option value="month" data-i18n="u.month">ay</option>
+              <option value="year" data-i18n="u.year">yıl</option>
+              <option value="business_day" data-i18n="u.business_day">iş günü</option>
             </select>
-          </label>
-          <label class="field">
-            <span data-i18n="f.direction">Direction</span>
-            <select id="direction">
-              <option value="after" data-i18n="d.after">after the date</option>
-              <option value="before" data-i18n="d.before">before the date (e.g. a hearing)</option>
-            </select>
-          </label>
-        </div>
-        <fieldset id="options" class="options"></fieldset>
+            <span id="period-label" class="sr-only" data-i18n="s3">Süre</span>
+          </div>
+          <div class="seg seg--small" role="radiogroup" aria-label="Yön" id="direction">
+            <button type="button" role="radio" aria-checked="true" data-value="after" data-i18n="d.after">Bu tarihten sonra</button>
+            <button type="button" role="radio" aria-checked="false" data-value="before" data-i18n="d.before">Bu tarihten önce (ör. duruşma)</button>
+          </div>
+        </fieldset>
+
+        <fieldset class="step" id="details-step">
+          <legend><span class="step__n">4</span><span data-i18n="s4">Ayrıntılar</span></legend>
+          <div id="basic-options" class="opts"></div>
+          <details id="advanced" class="adv">
+            <summary data-i18n="adv">Tartışmalı noktalar</summary>
+            <p class="adv__hint" data-i18n="adv.hint">İçtihadın bölündüğü konular. Varsayılanlar yerleşik yüksek mahkeme içtihadını, o yoksa daha erken tarihi izler.</p>
+            <div id="advanced-options" class="opts"></div>
+          </details>
+        </fieldset>
       </form>
 
-      <section class="card result" aria-live="polite" id="result">
-        <p class="result__label" data-i18n="r.deadline">Last day</p>
-        <p class="result__date" id="r-date">–</p>
-        <p class="result__time" id="r-time"></p>
+      <section class="result" id="result" aria-live="polite" aria-atomic="false">
+        <div class="verdict">
+          <div class="leaf" aria-hidden="true">
+            <div class="leaf__month" id="leaf-month">EYLÜL 2026</div>
+            <div class="leaf__day" id="leaf-day">8</div>
+            <div class="leaf__weekday" id="leaf-weekday">Salı</div>
+          </div>
+          <div class="verdict__text">
+            <p class="verdict__label" data-i18n="r.last">Son gün</p>
+            <p class="verdict__date" id="r-date">8 Eylül 2026 Salı</p>
+            <p class="verdict__time" id="r-time"></p>
+            <p class="countdown" id="r-countdown"></p>
+          </div>
+        </div>
+        <ul class="changes" id="r-changes"></ul>
+        <div class="months" id="r-months"></div>
+        <ul class="legend" id="r-legend"></ul>
+        <h2 class="why" data-i18n="r.why">Neden bu tarih?</h2>
         <ol class="trace" id="r-trace"></ol>
         <ul class="notices" id="r-notices"></ul>
-        <p class="result__error" id="r-error" hidden></p>
+        <p class="langnote" id="r-langnote" data-i18n="note.lang" hidden></p>
+        <p class="error" id="r-error" role="alert" hidden></p>
+        <div class="actions">
+          <button type="button" class="btn" id="copy-result" data-i18n="a.copy">Sonucu kopyala</button>
+          <button type="button" class="btn btn--ghost" id="copy-link" data-i18n="a.link">Bağlantıyı kopyala</button>
+          <span class="toast" id="toast" role="status"></span>
+        </div>
         <details class="code">
-          <summary data-i18n="r.code">Same calculation in code</summary>
+          <summary data-i18n="a.code">Bu hesabın kodu</summary>
           <pre><code id="r-code"></code></pre>
         </details>
       </section>
     </section>
 
-    <section id="panel-business" role="tabpanel" aria-labelledby="tab-business" class="grid" hidden>
-      <form id="business-form" class="card form" autocomplete="off">
-        <label class="field">
-          <span data-i18n="b.calendar">Calendar</span>
+    <section id="panel-business" role="tabpanel" aria-labelledby="tab-business" class="tool" hidden>
+      <form id="bform" class="form" novalidate>
+        <fieldset class="step">
+          <legend><span class="step__n">1</span><span data-i18n="b.calendar">Takvim</span></legend>
           <select id="b-calendar"></select>
-        </label>
-        <div class="row">
-          <label class="field">
-            <span data-i18n="b.date">Start date</span>
-            <input type="date" id="b-date" required>
-          </label>
-          <label class="field field--small">
-            <span data-i18n="b.n">± business days</span>
-            <input type="number" id="b-n" value="5" min="-500" max="500" required>
-          </label>
-        </div>
-        <label class="check">
-          <input type="checkbox" id="b-half">
-          <span data-i18n="b.half">Treat half days (eves) as non-working</span>
-        </label>
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="step__n">2</span><span data-i18n="b.date">Başlangıç tarihi</span></legend>
+          <div class="date-row"><input type="date" id="b-date"><button type="button" class="ghost" id="b-today" data-i18n="today">Bugün</button></div>
+        </fieldset>
+        <fieldset class="step">
+          <legend><span class="step__n">3</span><span data-i18n="b.n">Kaç iş günü?</span></legend>
+          <div class="period">
+            <input type="number" id="b-n" value="5" min="-500" max="500" inputmode="numeric" aria-labelledby="b-n-label">
+            <span id="b-n-label" class="unit-text" data-i18n="b.unit">iş günü (eksi değer geriye sayar)</span>
+          </div>
+          <label class="check"><input type="checkbox" id="b-half"><span data-i18n="b.half">Arife gibi yarım günleri tatil say</span></label>
+        </fieldset>
       </form>
-      <section class="card result" aria-live="polite">
-        <p class="result__label" data-i18n="b.result">Result</p>
-        <p class="result__date" id="b-out">–</p>
-        <p class="result__time" id="b-reason"></p>
-        <h2 class="holidays__title"><span data-i18n="b.holidays">Holidays in</span> <span id="b-year"></span></h2>
+      <section class="result" aria-live="polite">
+        <div class="verdict">
+          <div class="leaf" aria-hidden="true">
+            <div class="leaf__month" id="b-leaf-month"></div>
+            <div class="leaf__day" id="b-leaf-day"></div>
+            <div class="leaf__weekday" id="b-leaf-weekday"></div>
+          </div>
+          <div class="verdict__text">
+            <p class="verdict__label" data-i18n="b.result">Sonuç</p>
+            <p class="verdict__date" id="b-date-out"></p>
+            <p class="verdict__time" id="b-start"></p>
+          </div>
+        </div>
+        <h2 class="why"><span data-i18n="b.holidays">Resmî tatiller</span> <span id="b-year"></span></h2>
         <ul class="holidays" id="b-holidays"></ul>
+        <p class="error" id="b-error" role="alert" hidden></p>
       </section>
     </section>
 
-    <section class="install card">
-      <h2 data-i18n="i.title">Use it in your code</h2>
-      <div class="install__grid">
-        <pre><code>pip install lexdays</code></pre>
-        <pre><code>npm install lexdays</code></pre>
+    <section id="developers" class="dev">
+      <div class="dev__text">
+        <h2 data-i18n="dev.title">Kendi yazılımınızda kullanın</h2>
+        <p data-i18n="dev.text">Bu sayfadaki hesapların hepsi açık kaynak lexdays kütüphanesiyle yapılıyor. Bağımlılığı yok, MIT lisanslı. Python ve TypeScript sürümleri aynı test kümesiyle doğrulanır ve aynı sonucu verir.</p>
+        <p><a href="https://github.com/DoGood-Studio/lexdays" data-i18n="dev.repo">GitHub'da kaynak kodu ve dokümanlar</a></p>
       </div>
-      <p data-i18n="i.text">Zero dependencies, MIT licensed. Python and TypeScript give identical results, checked by a shared test-suite and 1,800 random differential cases.</p>
+      <div class="dev__code">
+        <div class="codetabs" role="tablist" aria-label="Kod">
+          <button type="button" role="tab" aria-selected="true" data-code="py">Python</button>
+          <button type="button" role="tab" aria-selected="false" data-code="ts">TypeScript</button>
+          <button type="button" role="tab" aria-selected="false" data-code="cli">CLI</button>
+        </div>
+        <pre class="snippet" data-code="py"><code>pip install lexdays
+
+import lexdays
+r = lexdays.compute("tr/hmk", "2026-07-30", "P2W")
+print(r.deadline)          # 2026-09-08
+print(r.explain("tr"))</code></pre>
+        <pre class="snippet" data-code="ts" hidden><code>npm install lexdays
+
+import { compute } from "lexdays";
+const r = compute("tr/hmk", "2026-07-30", "P2W");
+r.deadline;                // "2026-09-08"
+r.explain("tr");</code></pre>
+        <pre class="snippet" data-code="cli" hidden><code>pip install lexdays
+lexdays deadline tr/hmk 2026-07-30 2w --lang tr
+lexdays holidays tr 2027 --lang tr
+lexdays add tr 2026-05-22 3</code></pre>
+      </div>
     </section>
   </main>
 
   <footer class="foot">
-    <div class="wrap">
-      <p data-i18n="foot.disclaimer">Informational tool, not legal advice. Statutes, case law, court orders and local practice take precedence. Always check a deadline that matters.</p>
-      <p><a href="https://github.com/DoGood-Studio/lexdays">github.com/DoGood-Studio/lexdays</a> · MIT</p>
+    <div class="wrap foot__row">
+      <p data-i18n="foot">Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir. Önemli bir süreyi mutlaka kontrol edin.</p>
+      <p><a href="https://github.com/DoGood-Studio/lexdays">lexdays</a>, MIT lisansı</p>
     </div>
   </footer>
 
