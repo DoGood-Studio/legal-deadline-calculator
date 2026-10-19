@@ -4,7 +4,7 @@
   "extends": "de",
   "name": {
     "en": "Germany — Saxony (Sachsen)",
-    "de": "Deutschland — Saxony (Sachsen)"
+    "de": "Deutschland — Sachsen"
   },
   "holidays": [
     {
@@ -36,5 +36,15 @@
   ],
   "description": {
     "en": "Corpus Christi is a holiday in some Sorbian municipalities only and is not included."
-  }
+  },
+  "sources": [
+    {
+      "title": "Sächsisches Sonn- und Feiertagsgesetz (SächsSFG)",
+      "url": "https://revosax.sachsen.de/vorschrift/3997-SaechsSFG"
+    },
+    {
+      "title": "Fronleichnamsverordnung (Sachsen)",
+      "url": "https://revosax.sachsen.de/vorschrift/4142"
+    }
+  ]
 }

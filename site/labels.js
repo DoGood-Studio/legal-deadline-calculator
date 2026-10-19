@@ -34,7 +34,7 @@ export const PRESETS = {
   "tr/vuk": [["P15D", "after", "VUK m.18"], ["P30D", "after", "VUK m.18"]],
   "tr/aym": [["P30D", "after", "6216 s.K. m.47/5"]],
   "us/frcp": [["P21D", "after", "FRCP 12(a)(1)(A)(i)"], ["P28D", "after", "FRCP 59(b)"], ["P14D", "before", "FRCP 6(c)(1)"]],
-  "gb-eaw/cpr": [["P14D", "after", "CPR 10.3"], ["P28D", "after", "CPR 15.4"], ["P3D", "before", "CPR 23.7"]],
+  "gb-eaw/cpr": [["P14D", "after", "CPR 10.3", { act: "at_court_office" }], ["P28D", "after", "CPR 15.4", { act: "at_court_office" }], ["P3D", "before", "CPR 23.7"]],
   "eu/cj": [["P2M", "after", "TFEU Art. 263"], ["P2M", "after", "Statute Art. 56"]],
   "de/zpo": [["P1M", "after", "§ 517 ZPO"], ["P2M", "after", "§ 520 ZPO"], ["P2W", "after", "§ 339 ZPO"], ["P1M", "after", "§ 548 ZPO"]],
 };

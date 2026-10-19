@@ -69,6 +69,14 @@
     { "type": "roll", "cite": "vuk_18_4" },
     { "type": "ends_at", "time": "23:59", "when": { "option": "filing", "equals": "electronic" } },
     {
+      "type": "notice", "code": "electronic-end-of-day",
+      "when": { "option": "filing", "equals": "electronic" },
+      "text": {
+        "en": "VUK Art. 18 itself ends a period at the close of office hours and has no end-of-day rule for electronic acts. 23:59 follows GİB practice for electronic filing; check the GİB announcement for the act.",
+        "tr": "VUK m.18 süreyi mesai saati bitiminde sona erdirir ve elektronik işlemler için gün sonu kuralı içermez. 23:59, GİB'in elektronik işlem uygulamasına dayanır; ilgili GİB duyurusunu kontrol edin."
+      }
+    },
+    {
       "type": "notice", "code": "administrative-extensions", "cite": "vuk_mukerrer_28",
       "text": {
         "en": "GİB can move filing and payment deadlines by up to one month (repeated Art. 28) and grant extra time (Art. 17); force majeure suspends periods (Art. 15). These are not in this calculation.",

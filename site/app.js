@@ -104,11 +104,14 @@ function setPack(packId, applyPreset = true) {
 function usePreset(preset) {
   state.preset = preset ?? null;
   if (!preset) return;
-  const [period, direction] = preset;
+  // A preset is [period, direction, citation, options?]; options set what the act implies
+  // (e.g. a filing is an act at the court office).
+  const [period, direction, , options] = preset;
   const match = /^P(\d+)([DWMY])$/.exec(period);
   $("amount").value = match[1];
   $("unit").value = { D: "day", W: "week", M: "month", Y: "year" }[match[2]];
   setDirection(direction);
+  if (options) Object.assign(state.options, options);
 }
 
 function setDirection(value) {

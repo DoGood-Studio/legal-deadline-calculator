@@ -15,7 +15,7 @@ Bu sayfa `tr/*` kural paketlerinin hangi kurala dayandığını ve içtihadın b
 | Son gün tatil | İlk iş gününe kayar. Cumartesi de tatil sayılır (657 s.K. m.99; Yargıtay HGK E.2024/9-158) | HMK m.93, İİK m.19/3, CMK m.39/4, İYUK m.8/2, VUK m.18/4 |
 | Elektronik işlem | Son gün 23.59'a kadar; esas alınan an sisteme kayıt zamanıdır | HMK m.445/4, İİK m.8/a, CMK m.38/A-9; HGK E.2024/9-158 |
 | Fizikî işlem | Mesai saati sonunda biter. Saat kanunda sabit değildir (657 s.K. m.100) | Yönetmelik m.5/14 |
-| E-tebligat | Tebliğ, ulaşmayı izleyen 5. günün sonunda yapılmış sayılır. 5. gün tatile rastlasa da kaymaz; süre ertesi gün başlar | TK m.7/a; Yargıtay HGK E.2019/623 K.2020/9; AYM Mehmet Özcan |
+| E-tebligat | Tebliğ, ulaşmayı izleyen 5. günün sonunda yapılmış sayılır. 5. gün tatile rastlasa da kaymaz; süre ertesi gün başlar | TK m.7/a; Yargıtay HGK E.2022/3-295 K.2022/612 (26.04.2022: 5. gün Cumartesi, kaydırılmadı); HGK E.2019/623 K.2020/9; AYM Mehmet Özcan |
 | İdari izin | Resmî tatil değildir, süreyi uzatmaz | Yargıtay 16. HD E.2016/14817; 7. HD E.2021/454; Danıştay 8. D. E.2007/1550 |
 
 ## Adli tatil
@@ -24,22 +24,24 @@ Bu sayfa `tr/*` kural paketlerinin hangi kurala dayandığını ve içtihadın b
 |---|---|---|
 | `tr/hmk` | Adli tatile tabi işlerde son gün 20.07–31.08 içine düşerse bir hafta uzar (m.104) | **8 Eylül** (HGK E.2017/20-2873: bir hafta 1 Eylül'den başlar); 8 Eylül tatilse ilk iş günü |
 | `tr/cmk` | Adli tatile rastlayan süreler işlemez ve tatil bitiminden itibaren üç gün uzar (m.331/4). Tutuklu işler istisna değildir (CGK E.2019/16-292; AYM Ramazan Seçen) | **3 Eylül**; tatilse ilk iş günü |
-| `tr/iyuk` | Son gün (tatil kaydırması sonrasında da) ara vermeye düşerse yedi gün uzar (m.8/3) | **7 Eylül**; tatilse ilk iş günü |
+| `tr/iyuk` | Ham son gün ara vermeye düşerse yedi gün uzar (m.8/3); tatil kuralı (m.8/2) bu kontrolden sonra uygulanır | **7 Eylül**; tatilse ilk iş günü |
 | `tr/iik` | İcra daireleri ve icra mahkemeleri adli tatilde çalışır; HMK m.104 uygulanmaz | Uzama yok (HGK E.2017/(6)8-1853 K.2021/1529) |
 | `tr/vuk` | Adli tatil VUK sürelerini etkilemez | Uzama yok. Vergi mahkemesinde dava açma süresi için `tr/iyuk` kullanılır |
 | `tr/aym` | Bireysel başvuruda adli tatil uygulanmaz | Uzama yok (AYM Turgut Tayyar 2013/7168) |
 
-Adli tatilde görülen işler (HMK m.103: nafaka, soybağı, işçinin iş sözleşmesinden doğan davaları, çekişmesiz yargı, iflas, icra mahkemesi, kamulaştırma, kadastro, mahkemece ivedi sayılan işler) için `tr/hmk` paketinde `judicial_recess="exempt"` seçilir.
+Adli tatilde görülen işler (HMK m.103; ör. geçici hukuki korumalar, nafaka, soybağı, velayet, işçi davaları, iflas ve konkordato, çekişmesiz yargı; kanunla veya mahkemece ivedi sayılan işler, m.103/1-h, ör. İİK m.18/1 uyarınca icra mahkemesi) için `tr/hmk` paketinde `judicial_recess="exempt"` seçilir. m.104 yalnız HMK'nın belirlediği süreleri uzatır; uzama uygulandığında `recess-scope-check` notu bunu hatırlatır.
 
 ## Tartışmalı noktalar ve paketlerin davranışı
 
 | # | Konu | Varsayılan | Seçenek | Not |
 |---|---|---|---|---|
-| D-1 | HMK m.104 uzaması: 7 Eylül mü, 8 Eylül mü? | **8 Eylül**: Yargıtay HGK E.2017/20-2873 ve daire kararları bu yöntemle tutarlıdır | `recess_extension_from="end"` → 7 Eylül (daha erken, en temkinli) | Uzama uygulandığında `recess-extension-hgk-method` notu "şüphede 7 Eylül'e kadar işlem yapın" der; 7 Eylül seçilirse `recess-7-september-method` notu eklenir |
+| D-1 | HMK m.104 uzaması: 7 Eylül mü, 8 Eylül mü? | **8 Eylül**: Yargıtay HGK E.2017/20-2873 (29.11.2017); 2. HD E.2019/2507, E.2021/2526 ve E.2022/11190 aynı yöntemi izler. 11. HD E.2020/7447 K.2022/133 gerekçesinde "7 Eylül" demiştir (o dosyada başvuru 7 Eylül'de yapılmıştı) | `recess_extension_from="end"` → 7 Eylül (daha erken, en temkinli) | Uzama uygulandığında `recess-extension-hgk-method` notu "şüphede 7 Eylül'e kadar işlem yapın" der; 7 Eylül seçilirse `recess-7-september-method` notu eklenir |
 | D-2 | Son gün arife veya 28 Ekim | Süre **o gün biter** (Yargıtay 12. HD E.2016/29555; CGK E.2001/5-52; AYM Abdulkadir Önen) | `half_day_last_day="non_working"` → bayram sonrası (azınlık görüşü, kararı yok) | Fizikî işlemde 13.00 kapanışı yaygın kabul görür, kararla teyitli değildir; `half-day-last-day` notu |
 | D-5 | Son gün tatil kuralıyla (m.93) adli tatile kayarsa (ör. 19 Temmuz Pazar → 20 Temmuz) | **20 Temmuz** (uzamasız, erken tarih) | `recess_after_holiday_shift="yes"` → 8 Eylül | Doğrudan karar yok; `holiday-shift-into-recess` notu |
-| CMK D1 | Adli tatil içinde yapılan tebliğ | Süre işler, tatilde biterse **3 Eylül** (erken tarih) | `served_in_recess="defer_start"` → süre tatil bitiminden itibaren işler (çoğunluk görüşü) | `served-in-recess` notu |
-| İYUK D7 | Ara vermeden yararlanmayan tek mahkemeli yerler (m.61/1) | Ara verme uygulanır | `court_break="not_applicable"` | Belirsiz |
+| CMK D1 | Adli tatil içinde yapılan tebliğ | Süre işler, tatilde biterse **3 Eylül** (erken tarih) | `served_in_recess="defer_start"` → süre tatil bitiminden itibaren işler | CGK E.2019/16-292 K.2021/275 bu okumayla bir temyizi süresinde saymıştır; yerleşik olup olmadığı avukatça doğrulanmalı. `served-in-recess` notu |
+| CMK D2 | Son gün m.39/4 ile adli tatile kayarsa | **20 Temmuz** (erken tarih) | – | Karar yok; `holiday-shift-into-recess` notu |
+| İYUK D6 | Son gün m.8/2 ile ara vermeye kayarsa | **Uzamasız** (erken tarih) | `break_after_holiday_shift="yes"` → 7 Eylül | Karar yok; `holiday-shift-into-break` notu |
+| İYUK D7 | Ara vermeden yararlanmayan tek mahkemeli yerler (m.61/1) | Ara verme uygulanır | `court_break="not_applicable"` | Belirsiz; uzama uygulandığında `single-court-no-break` notu |
 | İİK | 1.6.2024 öncesi hafta kuralı | Hafta = 7n gün | – | `week-rule-from-2024` notu: eski sürelerin çoğu "on gün" idi |
 | Tümü | 2012 öncesi adli tatil dönemleri | Paketler 20.07–31.08'i 2012'den itibaren uygular | – | 2005–2011: 1 Ağustos–5 Eylül; 2004 ve öncesi: 20 Temmuz–5 Eylül. Eski uzama kuralları doğrulanmadığı için 2012 öncesi tebliğlerde uyarı verilir |
 

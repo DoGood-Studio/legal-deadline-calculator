@@ -60,7 +60,7 @@
       "quote": { "tr": "Elektronik ortamda yapılan işlemlerde süre gün sonunda biter." }
     },
     "hgk_2021": {
-      "label": { "en": "Court of Cassation General Assembly, E.2017/(6)8-1853 K.2021/1529", "tr": "Yargıtay HGK E.2017/(6)8-1853 K.2021/1529" },
+      "label": { "en": "Court of Cassation General Assembly, E.2017/(6)8-1853 K.2021/1529 (30.11.2021)", "tr": "Yargıtay HGK E.2017/(6)8-1853 K.2021/1529 (30.11.2021)" },
       "quote": { "tr": "icra (ve iflâs) daireleri ile icra mahkemeleri, adlî tatilde de normal olarak iş başındadır. Bu nedenle, HMK'nın 104. madde hükmü İİK'daki süreler hakkında uygulanmaz." }
     },
     "yargitay_arife": {
@@ -80,6 +80,14 @@
     { "type": "count", "cite": "iik_19" },
     { "type": "roll", "cite": "iik_19" },
     { "type": "ends_at", "time": "23:59", "cite": "iik_8a", "when": { "option": "filing", "equals": "electronic" } },
+    {
+      "type": "notice", "code": "physical-filing-office-hours",
+      "when": { "option": "filing", "equals": "physical" },
+      "text": {
+        "en": "Physical filing ends at the close of office hours on the last day; the hour is set locally (Law No. 657 Art. 100), not by the İİK.",
+        "tr": "Fizikî işlemde süre son günün mesai saati sonunda biter; saat İİK'da değil, yerel olarak belirlenir (657 s.K. m.100)."
+      }
+    },
     {
       "type": "notice", "code": "no-judicial-recess", "cite": "hgk_2021",
       "when": { "date_within": [ { "start": "07-20", "end": "08-31" } ] },

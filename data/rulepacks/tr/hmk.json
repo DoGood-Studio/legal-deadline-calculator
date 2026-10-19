@@ -51,8 +51,8 @@
       ],
       "default": "applies",
       "description": {
-        "en": "Choose 'exempt' for matters heard during the judicial recess (HMK Art. 103: e.g. maintenance, parentage, employees' employment claims, non-contentious matters, bankruptcy, enforcement courts, expropriation, cadastre) or declared urgent by the court.",
-        "tr": "Adli tatilde görülen işler için 'exempt' seçin (HMK m.103: ör. nafaka, soybağı, işçinin iş sözleşmesine dayanan davaları, çekişmesiz yargı, iflas, icra mahkemesi, kamulaştırma, kadastro) veya mahkemece ivedi sayılan işler."
+        "en": "Choose 'exempt' for matters heard during the judicial recess (HMK Art. 103, e.g. interim relief, maintenance, parentage, custody, employees' claims, bankruptcy and concordat, non-contentious matters; and matters urgent by law or court order, Art. 103/1-h, e.g. enforcement courts under İİK Art. 18/1).",
+        "tr": "Adli tatilde görülen işler için 'exempt' seçin (HMK m.103; ör. geçici hukuki korumalar, nafaka, soybağı, velayet, işçi davaları, iflas ve konkordato, çekişmesiz yargı; kanunla veya mahkemece ivedi sayılan işler, m.103/1-h, ör. İİK m.18/1 uyarınca icra mahkemesi)."
       }
     },
     "recess_extension_from": {
@@ -142,8 +142,8 @@
     },
     "hgk_2017": {
       "label": {
-        "en": "Court of Cassation General Assembly, E.2017/20-2873 K.2017/1449",
-        "tr": "Yargıtay HGK E.2017/20-2873 K.2017/1449"
+        "en": "Court of Cassation General Assembly, E.2017/20-2873 K.2017/1449 (29.11.2017)",
+        "tr": "Yargıtay HGK E.2017/20-2873 K.2017/1449 (29.11.2017)"
       },
       "quote": {
         "tr": "uzatılması gereken bir haftalık sürenin adli tatilin sona erdiği 31 Ağustos tarihini takip eden 1 Eylül tarihinden itibaren başlatılması gerekmektedir."
@@ -157,8 +157,8 @@
     },
     "yargitay_idari_izin": {
       "label": {
-        "en": "Court of Cassation 16th Civil Chamber, E.2016/14817 K.2017/1983",
-        "tr": "Yargıtay 16. HD E.2016/14817 K.2017/1983"
+        "en": "Court of Cassation 16th Civil Chamber, E.2016/14817 K.2017/1983 (28.03.2017)",
+        "tr": "Yargıtay 16. HD E.2016/14817 K.2017/1983 (28.03.2017)"
       },
       "quote": {
         "tr": "Devlet memurlarının Bakanlar Kurulu Kararı ile idari izinli sayıldığı günler hakkında 93. madde hükmü uygulanmaz."
@@ -182,22 +182,6 @@
     {
       "type": "count",
       "cite": "hmk_92"
-    },
-    {
-      "type": "roll",
-      "cite": "hmk_93",
-      "when": {
-        "all": [
-          {
-            "option": "judicial_recess",
-            "equals": "applies"
-          },
-          {
-            "option": "recess_after_holiday_shift",
-            "equals": "yes"
-          }
-        ]
-      }
     },
     {
       "type": "recess",
@@ -238,6 +222,64 @@
       "cite": "hmk_93"
     },
     {
+      "type": "recess",
+      "cite": "hmk_104",
+      "when": {
+        "all": [
+          {
+            "option": "judicial_recess",
+            "equals": "applies"
+          },
+          {
+            "option": "recess_after_holiday_shift",
+            "equals": "yes"
+          }
+        ]
+      },
+      "name": {
+        "en": "judicial recess",
+        "tr": "adli tatil",
+        "de": "Gerichtsferien",
+        "fr": "les vacances judiciaires",
+        "es": "las vacaciones judiciales",
+        "it": "le ferie giudiziarie",
+        "pt": "as férias judiciais",
+        "nl": "het gerechtelijk reces",
+        "ru": "судебные каникулы",
+        "ar": "العطلة القضائية",
+        "zh": "司法休庭期",
+        "ja": "裁判所休廷期間"
+      },
+      "periods": [
+        {
+          "start": "07-20",
+          "end": "08-31",
+          "since": 2012
+        }
+      ],
+      "mode": "extend",
+      "extension_days": 7,
+      "count_from": {
+        "$option": "recess_extension_from"
+      }
+    },
+    {
+      "type": "roll",
+      "cite": "hmk_93",
+      "when": {
+        "all": [
+          {
+            "option": "judicial_recess",
+            "equals": "applies"
+          },
+          {
+            "option": "recess_after_holiday_shift",
+            "equals": "yes"
+          }
+        ]
+      }
+    },
+    {
       "type": "ends_at",
       "time": "23:59",
       "cite": "hmk_445",
@@ -260,6 +302,18 @@
     },
     {
       "type": "notice",
+      "code": "recess-scope-check",
+      "cite": "hmk_104",
+      "when": {
+        "applied": "recess"
+      },
+      "text": {
+        "en": "Art. 104 extends only periods set by the HMK in matters subject to the judicial recess. Matters heard during the recess (Art. 103, e.g. maintenance, custody, employees' claims, bankruptcy, non-contentious matters; matters urgent by law, e.g. enforcement courts under İİK Art. 18/1) are not extended: choose judicial_recess='exempt'. Periods from other laws may not be extended either.",
+        "tr": "m.104 yalnız adli tatile tabi işlerde HMK'nın belirlediği süreleri uzatır. Adli tatilde görülen işlerde (m.103; ör. nafaka, velayet, işçi davaları, iflas, çekişmesiz yargı; kanunla ivedi işler, ör. İİK m.18/1 uyarınca icra mahkemesi) uzama olmaz: judicial_recess='exempt' seçin. Başka kanunlardaki süreler de uzamayabilir."
+      }
+    },
+    {
+      "type": "notice",
       "code": "recess-extension-hgk-method",
       "cite": "hgk_2017",
       "when": {
@@ -274,8 +328,8 @@
         ]
       },
       "text": {
-        "en": "The judicial recess extension was counted as the Court of Cassation General Assembly does: one week from 1 September. Some practitioners count from 31 August (7 September); if in doubt, act by the earlier date (recess_extension_from='end').",
-        "tr": "Adli tatil uzaması Yargıtay Hukuk Genel Kurulu'nun yöntemiyle hesaplandı: 1 Eylül'den itibaren bir hafta. Bazı uygulamacılar 31 Ağustos'tan sayar (7 Eylül); şüphede daha erken tarihte işlem yapın (recess_extension_from='end')."
+        "en": "The judicial recess extension was counted as the Court of Cassation General Assembly does: one week from 1 September. Some practitioners, and some chamber decisions, count from 31 August (7 September); if in doubt, act by the earlier date (recess_extension_from='end').",
+        "tr": "Adli tatil uzaması Yargıtay Hukuk Genel Kurulu'nun yöntemiyle hesaplandı: 1 Eylül'den itibaren bir hafta. Bazı uygulamacılar ve bazı daire kararları 31 Ağustos'tan sayar (7 Eylül); şüphede daha erken tarihte işlem yapın (recess_extension_from='end')."
       }
     },
     {

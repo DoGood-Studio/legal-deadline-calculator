@@ -9,8 +9,8 @@
   "calendar": "tr",
   "status": "beta",
   "description": {
-    "en": "The 30-day period for an individual application, counted from the date the final decision was learned (Law No. 6216 Art. 47/5). The judicial recess does not apply; a last day on a weekend or holiday moves to the next working day.",
-    "tr": "Bireysel başvuru için 30 günlük süre; nihai kararın öğrenildiği tarihten itibaren işler (6216 s.K. m.47/5). Adli tatil uygulanmaz; hafta sonu veya tatile rastlayan son gün ilk iş gününe kayar."
+    "en": "The 30-day period for an individual application (Law No. 6216 Art. 47/5: from the exhaustion of remedies), which the Constitutional Court counts from the date the final decision was learned (Mehmet Özcan). The judicial recess does not apply; a last day on a weekend or holiday moves to the next working day.",
+    "tr": "Bireysel başvuru için 30 günlük süre (6216 s.K. m.47/5: başvuru yollarının tüketildiği tarihten); Anayasa Mahkemesi süreyi nihai kararın öğrenildiği tarihten itibaren işletir (Mehmet Özcan). Adli tatil uygulanmaz; hafta sonu veya tatile rastlayan son gün ilk iş gününe kayar."
   },
   "disclaimer": {
     "en": "Informational tool, not legal advice. Check the Constitutional Court's admissibility case law before relying on a result.",
@@ -24,16 +24,16 @@
     },
     "tayyar": {
       "label": { "en": "Constitutional Court, Turgut Tayyar, App. No. 2013/7168", "tr": "AYM, Turgut Tayyar, B.No 2013/7168" },
-      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/",
-      "quote": { "tr": "6216 sayılı Kanun ve İçtüzük'te Anayasa Mahkemesinin adli tatile tabi olduğu yönünde bir hüküm bulunmadığından … bireysel başvuru açısından adli tatil hükümlerinin süre hesabında dikkate alınmasına hukuken olanak yoktur." }
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/BB/2013/7168",
+      "quote": { "tr": "… bireysel başvuru açısından adli tatil hükümlerinin süre hesabında dikkate alınmasına hukuken olanak bulunmamaktadır." }
     },
     "onen": {
       "label": { "en": "Constitutional Court, Abdulkadir Önen, App. No. 2014/16212", "tr": "AYM, Abdulkadir Önen, B.No 2014/16212" },
-      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/"
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/BB/2014/16212"
     },
     "ozcan": {
       "label": { "en": "Constitutional Court, Mehmet Özcan, App. No. 2019/6266", "tr": "AYM, Mehmet Özcan, B.No 2019/6266" },
-      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/"
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/BB/2019/6266"
     }
   },
   "steps": [
@@ -44,6 +44,13 @@
       "text": {
         "en": "Enter the date the final decision was learned. Opening an electronic notification or reading the decision on UYAP starts the period, even before the notification is deemed served.",
         "tr": "Nihai kararın öğrenildiği tarihi girin. Elektronik tebligatın açılması veya kararın UYAP'ta okunması, tebligat yapılmış sayılmadan önce bile süreyi başlatır."
+      }
+    },
+    {
+      "type": "notice", "code": "office-hours", "cite": "onen",
+      "text": {
+        "en": "The Constitutional Court required an application to be filed by the end of office hours on the last day (Abdulkadir Önen). Whether an electronic application counts until 23:59 is unsettled; file during office hours.",
+        "tr": "Anayasa Mahkemesi başvurunun son günün mesai bitimine kadar yapılmasını aramıştır (Abdulkadir Önen). Elektronik başvurunun 23:59'a kadar geçerli olup olmadığı belirsizdir; mesai saati içinde başvurun."
       }
     },
     {

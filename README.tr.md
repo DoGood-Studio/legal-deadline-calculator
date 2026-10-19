@@ -10,7 +10,8 @@
   <a href="README.md">English</a> ·
   <a href="https://dogood-studio.github.io/lexdays/">Canlı demo</a> ·
   <a href="docs/jurisdictions/tr.md">Türkiye kuralları ve tartışmalı noktalar</a> ·
-  <a href="docs/RELIABILITY.md">Güvenilirlik raporu</a>
+  <a href="docs/RELIABILITY.md">Güvenilirlik raporu</a> ·
+  <a href="docs/verification.md">Doğrulama raporu</a>
 </p>
 
 ---

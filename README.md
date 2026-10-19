@@ -18,7 +18,8 @@
   <a href="README.tr.md">Türkçe</a> ·
   <a href="https://dogood-studio.github.io/lexdays/">Live demo</a> ·
   <a href="docs/rulepacks.md">Write a rule pack</a> ·
-  <a href="docs/RELIABILITY.md">Reliability report</a>
+  <a href="docs/RELIABILITY.md">Reliability report</a> ·
+  <a href="docs/verification.md">Verification report</a>
 </p>
 
 ---

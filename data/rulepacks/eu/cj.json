@@ -6,7 +6,7 @@
   "calendar": "eu-cj",
   "status": "beta",
   "description": {
-    "en": "Procedural time limits before the Court of Justice (Rules of Procedure Arts. 49–51) and the General Court (Arts. 58–60): the event day is excluded, months end on the same date, every time limit is extended on account of distance by a single period of 10 days, and a time limit ending on a Saturday, Sunday or official holiday is extended to the end of the next working day. Judicial vacations do not suspend time limits."
+    "en": "Procedural time limits before the Court of Justice (Rules of Procedure Arts. 49–51) and the General Court (Arts. 58–60): the event day is excluded, months end on the same date, procedural time limits are extended on account of distance by a single period of 10 days unless the Rules exclude it, and a time limit ending on a Saturday, Sunday or official holiday is extended to the end of the next working day. Judicial vacations do not suspend time limits."
   },
   "disclaimer": {
     "en": "Informational tool, not legal advice. Check the Rules of Procedure and the Court's practice directions before relying on a result."
@@ -20,7 +20,12 @@
     "service": {
       "values": ["date_of_service", "ecuria_not_opened"],
       "default": "date_of_service",
-      "description": { "en": "'ecuria_not_opened' when you entered the day the e-Curia notification e-mail was sent and the document was never opened: it is deemed served at the expiry of the seventh day after that day." }
+      "description": { "en": "'ecuria_not_opened' when you entered the day the e-Curia notification e-mail was sent and the document was never opened: it is deemed served at the expiry of the seventh day after that day. Ignored when the time limit runs from publication in the Official Journal." }
+    },
+    "distance_extension": {
+      "values": ["applies", "excluded"],
+      "default": "applies",
+      "description": { "en": "'excluded' where the Rules disapply the 10-day extension on account of distance (Art. 51 / General Court Art. 60), e.g. CJ Rules of Procedure Art. 206(2) or General Court Art. 86(1)." }
     }
   },
   "citations": {
@@ -40,13 +45,13 @@
       "quote": { "en": "Where the time-limit allowed for initiating proceedings against a measure adopted by an institution runs from the publication of that measure, that time-limit shall be calculated ... from the end of the 14th day after publication of the measure in the Official Journal of the European Union." }
     },
     "rp_51": {
-      "label": { "en": "CJ Rules of Procedure, Art. 51 (General Court Art. 60); C-660/17 P RF v Commission, para. 68" },
-      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62017CJ0660",
+      "label": { "en": "CJ Rules of Procedure, Art. 51 (General Court Art. 60); ordering: C-660/17 P RF v Commission, EU:C:2019:509, para. 12" },
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)",
       "quote": { "en": "The procedural time-limits shall be extended on account of distance by a single period of 10 days." }
     },
     "ecuria_7": {
-      "label": { "en": "General Court e-Curia decision of 10 July 2024, Art. 7" },
-      "url": "http://data.europa.eu/eli/proc_internal/2024/2096/oj",
+      "label": { "en": "e-Curia decisions: Court of Justice decision of 4 September 2024, Art. 7 (OJ L 2024/2490); General Court decision of 10 July 2024, Art. 7 (OJ L 2024/2096)" },
+      "url": "http://data.europa.eu/eli/dec/2024/2490/oj",
       "quote": { "en": "In the absence of any request for access, the document shall be deemed to have been served on the expiry of the seventh day following the day on which the notification email was sent." }
     }
   },
@@ -58,12 +63,18 @@
     },
     {
       "type": "shift_trigger", "days": 7, "cite": "ecuria_7",
-      "when": { "option": "service", "equals": "ecuria_not_opened" },
+      "when": { "all": [ { "option": "service", "equals": "ecuria_not_opened" }, { "option": "start", "equals": "event" } ] },
       "message": { "en": "e-Curia document not opened: deemed served at the expiry of the seventh day after the notification e-mail: {from} + {days} days = {to}." }
+    },
+    {
+      "type": "notice", "code": "publication-and-service", "cite": "rp_50",
+      "when": { "all": [ { "option": "start", "equals": "oj_publication" }, { "option": "service", "equals": "ecuria_not_opened" } ] },
+      "text": { "en": "A time limit that runs from publication in the Official Journal does not depend on service; the e-Curia option was ignored." }
     },
     { "type": "count", "cite": "rp_49" },
     {
       "type": "add_days", "days": 10, "cite": "rp_51",
+      "when": { "option": "distance_extension", "equals": "applies" },
       "message": { "en": "Extension on account of distance: a single period of 10 days is added to the time limit (before any weekend or holiday extension): {from} → {to}." }
     },
     { "type": "roll", "cite": "rp_49_2" },

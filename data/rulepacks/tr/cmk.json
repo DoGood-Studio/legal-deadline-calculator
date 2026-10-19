@@ -51,8 +51,8 @@
       ],
       "default": "extend",
       "description": {
-        "en": "Service during the recess. 'extend' (earlier, safer date): the period runs and, if it ends in the recess, ends on 3 September. 'defer_start' (majority view): the period starts only after the recess, as if served on 31 August.",
-        "tr": "Adli tatilde tebliğ. 'extend' (daha erken, güvenli tarih): süre işler; tatilde biterse 3 Eylül'de biter. 'defer_start' (çoğunluk görüşü): süre tatilden sonra, 31 Ağustos'ta tebliğ edilmiş gibi işlemeye başlar."
+        "en": "Service during the judicial recess: 'extend' runs the period and extends it to 3 September if it ends in the recess (earlier date, default); 'defer_start' starts the period after the recess. The Criminal General Assembly (E.2019/16-292 K.2021/275) held an appeal timely on the 'defer_start' reading; a lawyer should confirm whether this is settled before relying on it.",
+        "tr": "Adli tatilde tebliğ: 'extend' süreyi işletir, tatilde biterse 3 Eylül'e uzatır (daha erken tarih, varsayılan); 'defer_start' süreyi tatilden sonra başlatır. Ceza Genel Kurulu (E.2019/16-292 K.2021/275) 'defer_start' okumasıyla bir temyizi süresinde saymıştır; buna dayanmadan önce yerleşik olup olmadığı bir avukatça doğrulanmalıdır."
       }
     },
     "half_day_last_day": {
@@ -117,6 +117,23 @@
       "quote": {
         "tr": "Elektronik ortamda yapılan işlemlerde süre gün sonunda biter."
       }
+    },
+    "cgk_2021_275": {
+      "label": {
+        "en": "Court of Cassation, Criminal General Assembly, E.2019/16-292 K.2021/275 (10.6.2021)",
+        "tr": "Yargıtay CGK 10.6.2021, E.2019/16-292 K.2021/275"
+      },
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/BB/2021/37483",
+      "quote": {
+        "tr": "CMK'nın 331/4. maddesinde yer alan düzenleme adli tatilde sürelerin işlemeyeceği kuralına yer vermiştir."
+      }
+    },
+    "cgk_2013_372": {
+      "label": {
+        "en": "Court of Cassation, Criminal General Assembly, E.2013/5-17 K.2013/372 (17.9.2013)",
+        "tr": "Yargıtay CGK 17.9.2013, E.2013/5-17 K.2013/372"
+      },
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/BB/2014/16212"
     }
   },
   "steps": [
@@ -199,6 +216,30 @@
       "cite": "cmk_39_4"
     },
     {
+      "type": "notice",
+      "code": "holiday-shift-into-recess",
+      "cite": "cmk_331",
+      "when": {
+        "all": [
+          {
+            "trigger_from": "2012-01-01"
+          },
+          {
+            "date_within": [
+              {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Art. 39/4 moved the last day into the judicial recess. Whether Art. 331/4 then extends it to 3 September is unsettled; this is the earlier date.",
+        "tr": "m.39/4 son günü adli tatile kaydırdı. m.331/4'ün bu durumda süreyi 3 Eylül'e uzatıp uzatmadığı belirsizdir; bu daha erken tarihtir."
+      }
+    },
+    {
       "type": "ends_at",
       "time": "23:59",
       "cite": "cmk_38a",
@@ -210,9 +251,12 @@
     {
       "type": "notice",
       "code": "served-in-recess",
-      "cite": "cmk_331",
+      "cite": "cgk_2021_275",
       "when": {
         "all": [
+          {
+            "trigger_from": "2012-01-01"
+          },
           {
             "trigger_within": [
               {
@@ -228,8 +272,8 @@
         ]
       },
       "text": {
-        "en": "Service took place during the judicial recess. Many decisions hold that the period only starts after the recess ('defer_start'); this result uses the earlier, safer reading.",
-        "tr": "Tebliğ adli tatil içinde yapıldı. Birçok karar sürenin tatilden sonra işlemeye başladığını kabul eder ('defer_start'); bu sonuç daha erken ve güvenli okumayı kullanır."
+        "en": "Served during the judicial recess. This result runs the period and extends it to 3 September (the earlier date). The Criminal General Assembly (E.2019/16-292 K.2021/275) held an appeal filed after that date timely, reading Art. 331/4 as stopping the period during the recess (served_in_recess='defer_start').",
+        "tr": "Tebliğ adli tatilde yapılmış. Bu sonuç süreyi işletip 3 Eylül'e uzatır (daha erken tarih). Ceza Genel Kurulu (E.2019/16-292 K.2021/275) m.331/4'ü sürenin tatilde işlemediği şeklinde yorumlayıp bu tarihten sonra yapılan temyizi süresinde saymıştır (served_in_recess='defer_start')."
       }
     },
     {
@@ -260,6 +304,18 @@
       "text": {
         "en": "The last day is an administrative leave day for civil servants. It is not an official holiday and does not extend the period.",
         "tr": "Son gün kamu personeli için idari izin günüdür. Resmî tatil değildir ve süreyi uzatmaz."
+      },
+      "cite": "cgk_2013_372"
+    },
+    {
+      "type": "notice",
+      "code": "recess-dates-unverified",
+      "when": {
+        "trigger_before": "2012-01-01"
+      },
+      "text": {
+        "en": "The judicial recess before 2012 had different dates and is not modelled; check the law in force at the time.",
+        "tr": "2012'den önceki adli tatil farklı tarihlerdeydi ve modellenmedi; o tarihte yürürlükteki hükmü kontrol edin."
       }
     }
   ]

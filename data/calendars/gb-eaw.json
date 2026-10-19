@@ -150,6 +150,29 @@
         "avoid_collision": true
       },
       "source": "Banking and Financial Dealings Act 1971, Sch. 1; royal proclamations"
+    },
+    {
+      "id": "court_office_christmas",
+      "kind": "court_closure",
+      "name": {
+        "en": "Court offices closed (further day over Christmas, PD 2A Annex)"
+      },
+      "rule": {
+        "type": "dates",
+        "dates": [
+          "2019-12-27",
+          "2020-12-24",
+          "2021-12-24",
+          "2022-12-28",
+          "2023-12-27",
+          "2024-12-27",
+          "2025-12-24",
+          "2026-12-24",
+          "2027-12-24",
+          "2028-12-27"
+        ]
+      },
+      "source": "CPR PD 2A paras 2.1(1)(d), 3.2(d) and Annex"
     }
   ],
   "one_off": [

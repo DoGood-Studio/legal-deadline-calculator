@@ -1,7 +1,7 @@
 {
   "description": "Germany (§ 222 ZPO, §§ 187-188 BGB) vectors, derived from the statute text; de-7a/de-7b illustrate BGH VI ZA 27/11 (holidays at the court's seat).",
   "cases": [
-    { "id": "de-1-no-31-april", "pack": "de/zpo", "trigger": "2025-03-31", "period": "P1M", "expect": { "deadline": "2025-04-30", "notices": ["court-seat-holidays"] }, "source": "§ 188 Abs. 3 BGB" },
+    { "id": "de-1-no-31-april", "pack": "de/zpo", "trigger": "2025-03-31", "period": "P1M", "expect": { "deadline": "2025-04-30", "notices": ["court-seat-holidays", "five-month-cap"] }, "source": "§ 188 Abs. 3 BGB" },
     { "id": "de-2-no-end-of-month-rule", "pack": "de/zpo", "trigger": "2025-02-28", "period": "P1M", "expect": { "deadline": "2025-03-28" }, "source": "§ 188 Abs. 2 BGB" },
     { "id": "de-3-leap-year", "pack": "de/zpo", "trigger": "2024-01-30", "period": "P1M", "expect": { "deadline": "2024-02-29" }, "source": "§ 188 Abs. 3 BGB" },
     { "id": "de-4-ascension-day", "pack": "de/zpo", "trigger": "2025-05-15", "period": "P2W", "expect": { "deadline": "2025-05-30" }, "source": "§ 222 Abs. 2 ZPO" },
@@ -11,6 +11,14 @@
     { "id": "de-6b-no-holiday-in-hesse", "pack": "de/zpo", "calendar": "de-he", "trigger": "2027-02-22", "period": "P2W", "expect": { "deadline": "2027-03-08" }, "source": "§ 222 Abs. 2 ZPO" },
     { "id": "de-7a-assumption-not-in-karlsruhe", "pack": "de/zpo", "calendar": "de-bw", "trigger": "2025-07-15", "period": "P1M", "expect": { "deadline": "2025-08-15" }, "source": "BGH VI ZA 27/11 (principle)" },
     { "id": "de-7b-assumption-in-munich", "pack": "de/zpo", "calendar": "de-by-catholic", "trigger": "2025-07-15", "period": "P1M", "expect": { "deadline": "2025-08-18" }, "source": "BGH VI ZA 27/11 (principle)" },
-    { "id": "de-9-two-months-saturday", "pack": "de/zpo", "calendar": "de-nw", "trigger": "2025-03-31", "period": "P2M", "expect": { "deadline": "2025-06-02" }, "source": "§ 520 Abs. 2 ZPO; § 222 Abs. 2 ZPO" }
+    { "id": "de-9-two-months-saturday", "pack": "de/zpo", "calendar": "de-nw", "trigger": "2025-03-31", "period": "P2M", "expect": { "deadline": "2025-06-02" }, "source": "§ 520 Abs. 2 ZPO; § 222 Abs. 2 ZPO" },
+    { "id": "de-10-31-january-plus-one-month", "pack": "de/zpo", "trigger": "2025-01-31", "period": "P1M", "expect": { "deadline": "2025-02-28", "ends_at": "23:59", "notices": ["court-seat-holidays", "five-month-cap"] }, "source": "§ 188 Abs. 3 BGB (https://www.gesetze-im-internet.de/bgb/__188.html)" },
+    { "id": "de-11-month-end-then-saturday", "pack": "de/zpo", "trigger": "2025-12-31", "period": "P2M", "expect": { "deadline": "2026-03-02", "ends_at": "23:59" }, "source": "§ 520 Abs. 2 S. 1 ZPO; § 188 Abs. 3 BGB (28.02.2026 is a Saturday); § 222 Abs. 2 ZPO" },
+    { "id": "de-12a-peace-festival-augsburg", "pack": "de/zpo", "calendar": "de-by-augsburg", "trigger": "2025-07-25", "period": "P2W", "expect": { "deadline": "2025-08-11" }, "source": "§§ 339 Abs. 1, 340 Abs. 1 ZPO; Art. 1 Abs. 2 BayFTG (https://www.gesetze-bayern.de/Content/Document/BayFTG-1); BGH, Beschl. v. 10.01.2012 - VI ZA 27/11" },
+    { "id": "de-12b-peace-festival-not-in-munich", "pack": "de/zpo", "calendar": "de-by-catholic", "trigger": "2025-07-25", "period": "P2W", "expect": { "deadline": "2025-08-08" }, "source": "Art. 1 Abs. 2 BayFTG (Stadt Augsburg only); BGH VI ZA 27/11" },
+    { "id": "de-13a-reformation-day-bremen", "pack": "de/zpo", "calendar": "de-hb", "trigger": "2024-10-17", "period": "P2W", "expect": { "deadline": "2024-11-01" }, "source": "§ 222 Abs. 2 ZPO; Brem. FeiertagsG idF Brem.GBl. 2018 Nr. 63 S. 302" },
+    { "id": "de-13b-reformation-day-bremen-before-2018", "pack": "de/zpo", "calendar": "de-hb", "trigger": "2016-10-17", "period": "P2W", "expect": { "deadline": "2016-10-31" }, "source": "Brem.GBl. 2018 Nr. 63 S. 302 (in force 29.06.2018)" },
+    { "id": "de-14a-repentance-day-saxony", "pack": "de/zpo", "calendar": "de-sn", "trigger": "2025-11-05", "period": "P2W", "expect": { "deadline": "2025-11-20" }, "source": "§ 222 Abs. 2 ZPO; § 1 Abs. 1 SächsSFG (https://revosax.sachsen.de/vorschrift/3997-SaechsSFG)" },
+    { "id": "de-14b-repentance-day-not-in-bavaria", "pack": "de/zpo", "calendar": "de-by", "trigger": "2025-11-05", "period": "P2W", "expect": { "deadline": "2025-11-19" }, "source": "Art. 1 Abs. 1 BayFTG (no Buß- und Bettag)" }
   ]
 }

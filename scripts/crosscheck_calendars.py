@@ -42,8 +42,14 @@ def weekday_dates(dates: set[date]) -> set[date]:
     return {d for d in dates if d.isoweekday() <= 5}
 
 
+# Days that are not public holidays and that python-holidays does not model: administrative leave,
+# executive-order closures, county-only observances and court-office closures.
+NOT_COMPARED = {"administrative", "executive_closure", "suffolk", "court_closure"}
+
+
 def ours(cal_id: str, year: int) -> set[date]:
-    return weekday_dates({h.date for h in lexdays.calendar(cal_id).holidays(year)})
+    items = lexdays.calendar(cal_id).holidays(year)
+    return weekday_dates({h.date for h in items if h.kind not in NOT_COMPARED})
 
 
 def theirs(country: str, subdiv: str | None, cats: tuple[str, ...], year: int, cal_id: str = "") -> set[date]:

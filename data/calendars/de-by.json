@@ -4,7 +4,7 @@
   "extends": "de",
   "name": {
     "en": "Germany — Bavaria (Bayern)",
-    "de": "Deutschland — Bavaria (Bayern)"
+    "de": "Deutschland — Bayern"
   },
   "holidays": [
     {
@@ -44,6 +44,17 @@
     }
   ],
   "description": {
-    "en": "Assumption Day (15 August) is a holiday only in municipalities with a predominantly Catholic population: use de-by-catholic for those (e.g. Munich, Augsburg) and de-by-augsburg for the city of Augsburg."
-  }
+    "en": "Assumption Day (15 August) is a holiday only in municipalities the Bavarian statistics office lists as predominantly Catholic (Art. 1(3) FTG): use de-by-catholic there (e.g. Munich). For the city of Augsburg use de-by-augsburg (adds 8 August).",
+    "de": "Mariä Himmelfahrt ist nur in den vom Landesamt für Statistik festgestellten Gemeinden mit überwiegend katholischer Bevölkerung Feiertag (Art. 1 Abs. 3 FTG): dort de-by-catholic verwenden (z. B. München); für die Stadt Augsburg de-by-augsburg (zusätzlich 8. August)."
+  },
+  "sources": [
+    {
+      "title": "Bayerisches Landesamt für Statistik: Mariä Himmelfahrt (Gemeinden mit überwiegend katholischer Bevölkerung)",
+      "url": "https://www.statistik.bayern.de/statistik/gebiet_bevoelkerung/zensus/himmelfahrt/index.php"
+    },
+    {
+      "title": "Bayerisches Feiertagsgesetz (FTG), Art. 1",
+      "url": "https://www.gesetze-bayern.de/Content/Document/BayFTG-1"
+    }
+  ]
 }

@@ -6,7 +6,7 @@
     "en": "United States — federal holidays plus Massachusetts state holidays"
   },
   "description": {
-    "en": "Adds Massachusetts state holidays (kind 'state'). Suffolk County observances (Evacuation Day, Bunker Hill Day) are not included."
+    "en": "Adds Massachusetts state holidays (kind 'state'). Evacuation Day and Bunker Hill Day are legal holidays in Suffolk County only; they have the kind 'suffolk' and do not move a deadline."
   },
   "sources": [
     {
@@ -28,6 +28,42 @@
       },
       "kind": "state",
       "source": "M.G.L. c. 4, § 7"
+    },
+    {
+      "id": "evacuation_day",
+      "name": {
+        "en": "Evacuation Day (Suffolk County)"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 17
+      },
+      "kind": "suffolk",
+      "observed": {
+        "shift": {
+          "7": 1
+        }
+      },
+      "source": "M.G.L. c. 4, § 7, cl. Eighteenth"
+    },
+    {
+      "id": "bunker_hill_day",
+      "name": {
+        "en": "Bunker Hill Day (Suffolk County)"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 17
+      },
+      "kind": "suffolk",
+      "observed": {
+        "shift": {
+          "7": 1
+        }
+      },
+      "source": "M.G.L. c. 4, § 7, cl. Eighteenth"
     }
   ]
 }

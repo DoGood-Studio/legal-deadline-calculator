@@ -65,7 +65,8 @@ def test_result_serialisation_and_explanation() -> None:
     assert data["deadline"] == "2026-09-07"
     assert data["timezone"] == "Europe/Istanbul"
     assert data["trace"][1]["citation"]["label"]["tr"] == "HMK m.102 ve m.104"
-    assert data["notices"][0]["citation"]["id"] == "hgk_2017"
+    method = next(n for n in data["notices"] if n["code"] == "recess-7-september-method")
+    assert method["citation"]["id"] == "hgk_2017"
     text = result.explain("tr")
     assert "Bitiş saati: 23:59 (Europe/Istanbul)" in text
     assert "Not:" in text

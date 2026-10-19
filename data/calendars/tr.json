@@ -196,5 +196,9 @@
       },
       "source": "2429 m.2/B-2; dates: Diyanet"
     }
+  ],
+  "one_off": [
+    { "id": "administrative_leave", "name": { "en": "Administrative leave (civil servants, morning before the half-day eve)", "tr": "İdari izin (kamu personeli, arife öncesi yarım gün)" }, "date": "2014-10-03", "kind": "administrative", "source": "Başbakanlık genelgesi 24.09.2014, 69471265-010-06/8385 (AYM Abdulkadir Önen §12)" },
+    { "id": "administrative_leave", "name": { "en": "Administrative leave (civil servants)", "tr": "İdari izin (kamu personeli)" }, "date": "2016-07-08", "kind": "administrative", "source": "Yargıtay 16. HD E.2016/14817 K.2017/1983" }
   ]
 }

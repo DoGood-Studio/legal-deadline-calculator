@@ -68,7 +68,7 @@
           "holiday-shift-into-recess"
         ]
       },
-      "source": "Yargıtay 13. HD E.2017/1503 K.2017/1614"
+      "source": "Yargıtay 13. HD E.2017/1503 K.2017/1614 (6502 m.70; confirms 20.07.2015 timely; m.104 not decided)"
     },
     {
       "id": "hmk-v07-administrative-leave-not-holiday",
@@ -98,6 +98,7 @@
       "expect": {
         "deadline": "2018-09-10",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -111,6 +112,7 @@
       "expect": {
         "deadline": "2020-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -124,6 +126,7 @@
       "expect": {
         "deadline": "2017-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -347,6 +350,7 @@
       "expect": {
         "deadline": "2026-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -363,6 +367,7 @@
       "expect": {
         "deadline": "2026-09-07",
         "notices": [
+          "recess-scope-check",
           "recess-7-september-method"
         ]
       },
@@ -376,6 +381,7 @@
       "expect": {
         "deadline": "2026-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -389,6 +395,7 @@
       "expect": {
         "deadline": "2026-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -418,6 +425,7 @@
       "expect": {
         "deadline": "2026-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -444,6 +452,7 @@
       "expect": {
         "deadline": "2026-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -480,6 +489,7 @@
       "expect": {
         "deadline": "2020-09-08",
         "notices": [
+          "recess-scope-check",
           "recess-extension-hgk-method"
         ]
       },
@@ -660,7 +670,7 @@
           "served-in-recess"
         ]
       },
-      "source": "AYM Ramazan Seçen 2021/37483 (extension model)"
+      "source": "AYM Ramazan Seçen 2021/37483 §§7, 38-44 (served 21.7.2020, appeal 31.8.2020 timely); 3 September = CMK m.331/4 extension reading"
     },
     {
       "id": "cmk-served-in-recess-deferred",
@@ -719,7 +729,9 @@
       "period": "P60D",
       "expect": {
         "deadline": "2026-09-07",
-        "notices": []
+        "notices": [
+          "single-court-no-break"
+        ]
       },
       "source": "İYUK m.8/2-3"
     },
@@ -741,7 +753,9 @@
       "period": "P60D",
       "expect": {
         "deadline": "2026-09-07",
-        "notices": []
+        "notices": [
+          "single-court-no-break"
+        ]
       },
       "source": "İYUK m.8/3"
     },
@@ -752,7 +766,9 @@
       "period": "P30D",
       "expect": {
         "deadline": "2025-09-08",
-        "notices": []
+        "notices": [
+          "single-court-no-break"
+        ]
       },
       "source": "İYUK m.8/2-3"
     },
@@ -789,6 +805,7 @@
       "expect": {
         "deadline": "2019-05-22",
         "notices": [
+          "electronic-end-of-day",
           "administrative-extensions"
         ]
       },
@@ -802,7 +819,8 @@
       "expect": {
         "deadline": "2013-09-02",
         "notices": [
-          "starts-when-learned"
+          "starts-when-learned",
+          "office-hours"
         ]
       },
       "source": "AYM Turgut Tayyar 2013/7168"
@@ -816,7 +834,9 @@
         "deadline": "2014-10-03",
         "notices": [
           "starts-when-learned",
-          "half-day-last-day"
+          "office-hours",
+          "half-day-last-day",
+          "administrative-leave"
         ]
       },
       "source": "AYM Abdulkadir Önen 2014/16212"
@@ -829,7 +849,8 @@
       "expect": {
         "deadline": "2019-02-14",
         "notices": [
-          "starts-when-learned"
+          "starts-when-learned",
+          "office-hours"
         ]
       },
       "source": "AYM Mehmet Özcan 2019/6266"
@@ -842,10 +863,185 @@
       "expect": {
         "deadline": "2017-01-20",
         "notices": [
-          "starts-when-learned"
+          "starts-when-learned",
+          "office-hours"
         ]
       },
       "source": "AYM Hüseyin Aşkan 2017/15649"
+    },
+    {
+      "id": "iik-hgk-2021-ihtar-30-days-in-recess",
+      "pack": "tr/iik",
+      "trigger": "2014-07-07",
+      "period": "P30D",
+      "expect": {
+        "deadline": "2014-08-06",
+        "ends_at": "23:59",
+        "notices": [
+          "no-judicial-recess"
+        ]
+      },
+      "source": "Yargıtay HGK E.2017/(6)8-1853 K.2021/1529 (30.11.2021) para. 22-23: ödeme emri 07.07.2014, 30-day ihtar ends 06.08.2014, no HMK 104 extension"
+    },
+    {
+      "id": "hmk-hgk-2022-e-notification-saturday-deemed",
+      "pack": "tr/hmk",
+      "trigger": "2021-11-29",
+      "period": "P2W",
+      "options": {
+        "service": "e_notification_delivery"
+      },
+      "expect": {
+        "deadline": "2021-12-20",
+        "ends_at": "23:59",
+        "notices": [],
+        "steps": [
+          "shift_trigger",
+          "count",
+          "recess",
+          "roll",
+          "ends_at"
+        ]
+      },
+      "source": "Yargıtay HGK E.2022/3-295 K.2022/612 (26.04.2022): reached e-address 29.11.2021, deemed served 04.12.2021 (Saturday, not moved), last day 20.12.2021"
+    },
+    {
+      "id": "iik-hgk-2021-e-notification-10-days",
+      "pack": "tr/iik",
+      "trigger": "2021-02-04",
+      "period": "P10D",
+      "options": {
+        "service": "e_notification_delivery"
+      },
+      "expect": {
+        "deadline": "2021-02-19",
+        "ends_at": "23:59",
+        "notices": []
+      },
+      "source": "Yargıtay HGK E.2021/12-254 K.2021/550 (18.05.2021): UETS 04.02.2021, served 09.02.2021, last day 19.02.2021, filing 20.02.2021 late"
+    },
+    {
+      "id": "hmk-11hd-renewal-last-day-20-july",
+      "pack": "tr/hmk",
+      "trigger": "2015-04-20",
+      "period": "P3M",
+      "options": {
+        "recess_extension_from": "end"
+      },
+      "expect": {
+        "deadline": "2015-09-07",
+        "ends_at": "23:59"
+      },
+      "source": "Yargıtay 11. HD E.2020/7447 K.2022/133: işlemden kaldırma 20.04.2015, HMK 150 three months, last day 20.07.2015, 'sürenin son günü 07.09.2015 olacaktır'"
+    },
+    {
+      "id": "hmk-5hd-expropriation-exempt-sunday",
+      "pack": "tr/hmk",
+      "trigger": "2019-08-04",
+      "period": "P2W",
+      "options": {
+        "judicial_recess": "exempt"
+      },
+      "expect": {
+        "deadline": "2019-08-19",
+        "ends_at": "23:59",
+        "notices": []
+      },
+      "source": "Yargıtay 5. HD E.2019/11209 K.2020/2811 (19.02.2020): kamulaştırma, tebliğ 04.08.2019, appeal of 02.09.2019 late; 18.08.2019 Sunday -> 19.08 (HMK 93)"
+    },
+    {
+      "id": "iyuk-last-day-victory-day-in-break",
+      "pack": "tr/iyuk",
+      "trigger": "2024-07-01",
+      "period": "P60D",
+      "expect": {
+        "deadline": "2024-09-09",
+        "ends_at": "23:59"
+      },
+      "source": "İYUK m.8/3 + 8/2: raw last day 30.08.2024 falls in the break -> 07.09.2024 (Sat) -> 09.09.2024; day-after method as in AYM E-BA İnşaat 2015/13921 §13"
+    },
+    {
+      "id": "iyuk-one-day-earlier-same-result",
+      "pack": "tr/iyuk",
+      "trigger": "2024-06-30",
+      "period": "P60D",
+      "expect": {
+        "deadline": "2024-09-09"
+      },
+      "source": "İYUK m.8/3: raw last day 29.08.2024 in the break; must not end earlier than the case served one day later"
+    },
+    {
+      "id": "iyuk-holiday-shift-into-break-safe",
+      "pack": "tr/iyuk",
+      "trigger": "2026-05-19",
+      "period": "P60D",
+      "expect": {
+        "deadline": "2026-07-20",
+        "notices": [
+          "holiday-shift-into-break"
+        ]
+      },
+      "source": "İYUK m.8/2-3; unsettled point, no decision found; earlier date per stated policy"
+    },
+    {
+      "id": "iyuk-holiday-shift-into-break-later-reading",
+      "pack": "tr/iyuk",
+      "trigger": "2026-05-19",
+      "period": "P60D",
+      "options": {
+        "break_after_holiday_shift": "yes"
+      },
+      "expect": {
+        "deadline": "2026-09-07"
+      },
+      "source": "İYUK m.8/2-3 (later reading: the shifted last day is also extended)"
+    },
+    {
+      "id": "cmk-cgk-2021-served-in-recess-deferred",
+      "pack": "tr/cmk",
+      "trigger": "2018-07-25",
+      "period": "P15D",
+      "options": {
+        "served_in_recess": "defer_start"
+      },
+      "expect": {
+        "deadline": "2018-09-17",
+        "notices": []
+      },
+      "source": "Yargıtay CGK 10.6.2021 E.2019/16-292 K.2021/275 (quoted in AYM Ramazan Seçen 2021/37483 §11): served 25.07.2018, appeal 05.09.2018 held timely; CMK m.291 (15 days, before Law 7499), m.331/4, m.39/4"
+    },
+    {
+      "id": "cmk-holiday-shift-into-recess",
+      "pack": "tr/cmk",
+      "trigger": "2026-07-05",
+      "period": "P2W",
+      "expect": {
+        "deadline": "2026-07-20",
+        "notices": [
+          "holiday-shift-into-recess"
+        ]
+      },
+      "source": "CMK m.39/4 (19.07.2026 Sunday -> 20.07.2026); m.331/4 extension after the shift unsettled, earlier date per stated policy"
+    },
+    {
+      "id": "aym-last-day-in-recess-weekday",
+      "pack": "tr/aym",
+      "trigger": "2026-07-01",
+      "period": "P30D",
+      "expect": {
+        "deadline": "2026-07-31"
+      },
+      "source": "6216 m.47/5; AYM Turgut Tayyar 2013/7168 §18 (no judicial recess)"
+    },
+    {
+      "id": "vuk-month-end-clamp",
+      "pack": "tr/vuk",
+      "trigger": "2025-01-31",
+      "period": "P1M",
+      "expect": {
+        "deadline": "2025-02-28"
+      },
+      "source": "VUK m.18/2, second sentence"
     }
   ]
 }

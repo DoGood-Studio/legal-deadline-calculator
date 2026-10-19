@@ -24,9 +24,9 @@
       "description": { "en": "Electronic filing ends at midnight in the court's time zone; paper filing when the clerk's office is scheduled to close (Rule 6(a)(4))." }
     },
     "observed_friday": {
-      "values": ["not_holiday", "holiday"],
-      "default": "not_holiday",
-      "description": { "en": "Whether the Friday on which a Saturday holiday is observed counts as a 'legal holiday'. Unsettled; 'not_holiday' gives the earlier, safer date." }
+      "values": ["safe", "not_holiday", "holiday"],
+      "default": "safe",
+      "description": { "en": "Whether the Friday on which a Saturday holiday is observed counts as a 'legal holiday'. Unsettled. 'safe' (default) takes the earlier date: a working day for periods counted forward, a holiday for periods counted backward." }
     }
   },
   "citations": {
@@ -60,19 +60,24 @@
     { "type": "count", "cite": "frcp_6a1" },
     {
       "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "state"],
-      "when": { "all": [ { "direction": "after" }, { "option": "observed_friday", "equals": "not_holiday" } ] }
+      "when": { "all": [ { "direction": "after" }, { "option": "observed_friday", "in": ["safe", "not_holiday"] } ] }
     },
     {
       "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "state", "observed_friday"],
       "when": { "all": [ { "direction": "after" }, { "option": "observed_friday", "equals": "holiday" } ] }
     },
     {
-      "type": "roll", "cite": "frcp_6a5", "kinds": ["public"],
-      "when": { "all": [ { "direction": "before" }, { "option": "observed_friday", "equals": "not_holiday" } ] }
+      "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "executive_closure"],
+      "when": { "all": [ { "direction": "before" }, { "option": "observed_friday", "in": ["safe", "not_holiday"] } ] }
     },
     {
-      "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "observed_friday"],
-      "when": { "all": [ { "direction": "before" }, { "option": "observed_friday", "equals": "holiday" } ] }
+      "type": "notice", "code": "observed-friday-before",
+      "when": { "all": [ { "direction": "before" }, { "day_has": "observed_friday" }, { "option": "observed_friday", "in": ["safe", "not_holiday"] } ] },
+      "text": { "en": "Counting backward reaches a Friday on which a Saturday holiday is observed. Whether it is a 'legal holiday' under Rule 6(a)(6) is unsettled. Treating it as one moves the deadline to the preceding working day, the earlier, safer date (default). With observed_friday='not_holiday' the Friday itself is the deadline." }
+    },
+    {
+      "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "observed_friday", "executive_closure"],
+      "when": { "all": [ { "direction": "before" }, { "option": "observed_friday", "in": ["safe", "holiday"] } ] }
     },
     {
       "type": "add_days", "days": 3, "cite": "frcp_6d",
@@ -81,7 +86,7 @@
     },
     {
       "type": "roll", "cite": "note_2005", "kinds": ["public", "state"],
-      "when": { "all": [ { "direction": "after" }, { "option": "service", "in": ["mail", "leaving_with_clerk", "other_consented"] }, { "option": "observed_friday", "equals": "not_holiday" } ] }
+      "when": { "all": [ { "direction": "after" }, { "option": "service", "in": ["mail", "leaving_with_clerk", "other_consented"] }, { "option": "observed_friday", "in": ["safe", "not_holiday"] } ] }
     },
     {
       "type": "roll", "cite": "note_2005", "kinds": ["public", "state", "observed_friday"],
@@ -95,8 +100,18 @@
     },
     {
       "type": "notice", "code": "observed-friday",
-      "when": { "all": [ { "day_has": "observed_friday" }, { "option": "observed_friday", "equals": "not_holiday" } ] },
+      "when": { "all": [ { "direction": "after" }, { "day_has": "observed_friday" }, { "option": "observed_friday", "in": ["safe", "not_holiday"] } ] },
       "text": { "en": "The last day is the Friday on which a Saturday holiday is observed. Federal courts are usually closed, but whether it is a 'legal holiday' under Rule 6(a)(6) is unsettled; this is the earlier, safer date. Set observed_friday='holiday' for the later reading." }
+    },
+    {
+      "type": "notice", "code": "rule-6d-scope",
+      "when": { "all": [ { "direction": "after" }, { "option": "service", "in": ["mail", "leaving_with_clerk", "other_consented"] } ] },
+      "text": { "en": "The 3 added days apply only when the period runs from being served under Rule 5(b)(2)(C), (D) or (F). They do not apply to periods running from entry of judgment (e.g. Rule 59(b)), from service of the summons and complaint under Rule 4, or from a party's own service (2016 Committee Note)." }
+    },
+    {
+      "type": "notice", "code": "suffolk-county-holiday",
+      "when": { "all": [ { "direction": "after" }, { "day_has": "suffolk" } ] },
+      "text": { "en": "The last day is Evacuation Day or Bunker Hill Day, a legal holiday in Suffolk County only (M.G.L. c. 4, § 7). Whether it is a 'legal holiday' under Rule 6(a)(6)(C) for the Boston courthouse is unsettled; this is the earlier, safer date." }
     },
     {
       "type": "notice", "code": "check-local-rules",

@@ -19,6 +19,7 @@ First public release.
 - JSON Schemas for calendars and rule packs.
 - Demo page on GitHub Pages with a deadline calculator and a business-day tool, in the same 12 languages, including a right-to-left layout for Arabic. Shareable links keep the language and every input.
 - Shared conformance vectors, property-based tests, a Python/TypeScript differential test, and calendar cross-checks against python-holidays and the GOV.UK bank holidays feed.
+- A pre-release verification report (docs/verification.md): every rule pack checked against primary sources, 41 new test vectors, translations reviewed in all languages, and the demo tested in Chromium, Firefox and WebKit.
 
 [Unreleased]: https://github.com/DoGood-Studio/lexdays/compare/v0.1.0...HEAD
 [0.1.0]: https://github.com/DoGood-Studio/lexdays/releases/tag/v0.1.0

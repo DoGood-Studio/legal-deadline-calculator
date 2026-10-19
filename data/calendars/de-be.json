@@ -37,6 +37,20 @@
         "de": "Tag der Befreiung"
       },
       "date": "2025-05-08"
+    },
+    {
+      "id": "uprising_anniversary",
+      "name": {
+        "en": "75th anniversary of the 1953 uprising",
+        "de": "75. Jahrestag des Volksaufstands vom 17. Juni 1953"
+      },
+      "date": "2028-06-17"
+    }
+  ],
+  "sources": [
+    {
+      "title": "Berlin: einmaliger Feiertag am 8. Mai 2025",
+      "url": "https://www.berlin.de/aktuelles/9188766-958090-einmaliger-feiertag-am-8-mai-2025.html"
     }
   ]
 }

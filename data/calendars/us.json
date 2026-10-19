@@ -5,7 +5,7 @@
     "en": "United States — federal legal public holidays (5 U.S.C. § 6103)"
   },
   "description": {
-    "en": "Federal legal public holidays. A holiday on Sunday is observed on Monday (5 U.S.C. § 6103(b)). A holiday on Saturday is observed by federal employees on the preceding Friday (Executive Order 11582); that Friday has the kind 'observed_friday' because whether it is a 'legal holiday' for court deadlines is unsettled. State holidays are separate calendars (us-<state>) with the kind 'state'."
+    "en": "Federal legal public holidays. A holiday on Saturday is observed on the preceding Friday (5 U.S.C. § 6103(b)(1)); that Friday has the kind 'observed_friday' because whether it is a 'legal holiday' for court deadlines is unsettled. A holiday on Sunday is observed on the following Monday (Executive Order 11582, § 3(a)). Executive-order closures of federal agencies have the kind 'executive_closure'. State holidays are separate calendars (us-<state>) with the kind 'state'."
   },
   "timezone": null,
   "weekend": [
@@ -220,6 +220,26 @@
         }
       },
       "source": "5 U.S.C. § 6103(a)"
+    }
+  ],
+  "one_off": [
+    {
+      "id": "executive_closure",
+      "name": {
+        "en": "Federal executive closure (E.O. 14371)"
+      },
+      "date": "2025-12-24",
+      "kind": "executive_closure",
+      "source": "Executive Order 14371 of 18 December 2025"
+    },
+    {
+      "id": "executive_closure",
+      "name": {
+        "en": "Federal executive closure (E.O. 14371)"
+      },
+      "date": "2025-12-26",
+      "kind": "executive_closure",
+      "source": "Executive Order 14371 of 18 December 2025"
     }
   ]
 }

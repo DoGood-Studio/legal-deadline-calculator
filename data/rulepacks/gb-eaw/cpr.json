@@ -37,11 +37,14 @@
     "service": {
       "values": [
         "deemed_date",
-        "first_class_post"
+        "first_class_post",
+        "claim_form",
+        "personal_or_electronic_before_1630",
+        "personal_or_electronic_after_1630"
       ],
       "default": "deemed_date",
       "description": {
-        "en": "Which date you entered: the date of (deemed) service, or the date a document other than a claim form was posted first class (deemed served on the second day after posting if that is a business day, otherwise the next business day; CPR 6.26)."
+        "en": "Which date you entered: the date of (deemed) service; the date a document other than a claim form was posted first class or left with a document exchange (deemed served on the second day after posting if that is a business day, otherwise the next business day; CPR 6.26); the date of the step taken to serve a claim form (deemed served on the second business day after it; CPR 6.14); or the day a document was served personally, delivered to a permitted address, faxed or e-mailed, before or after 4.30pm (CPR 6.26). Counting back from a hearing, 'first_class_post' gives the last day to post."
       }
     }
   },
@@ -88,7 +91,43 @@
       },
       "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part06",
       "quote": {
-        "en": "First class post ... The second day after it was posted, left with, delivered to or collected by the relevant service provider provided that day is a business day; or if not, the next business day after that day."
+        "en": "First class post ... The second day after it was posted, left with, delivered to or collected by the relevant service provider provided that day is a business day; or if not, the next business day after that day. ... If the document is served personally before 4.30p.m. on a business day, on that day; or in any other case, on the next business day after that day."
+      }
+    },
+    "cpr_6_14": {
+      "label": {
+        "en": "CPR 6.14"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part06",
+      "quote": {
+        "en": "A claim form served within the United Kingdom in accordance with this Part is deemed to be served on the second business day after completion of the relevant step under rule 7.5(1)."
+      }
+    },
+    "pd_2a": {
+      "label": {
+        "en": "CPR PD 2A paras 2.1, 3.2 and Annex"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02/pd_part02a",
+      "quote": {
+        "en": "The court offices will be closed ... on a further day over the Christmas period determined in accordance with the table annexed to this practice direction."
+      }
+    },
+    "pd_5b_4_2": {
+      "label": {
+        "en": "CPR PD 5B para 4.2"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part05/pd_part05b",
+      "quote": {
+        "en": "... received by the court at or after 4.00pm ... the next day the court office is open."
+      }
+    },
+    "cpr_2_8_1": {
+      "label": {
+        "en": "CPR 2.8(1)"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02",
+      "quote": {
+        "en": "This rule shows how to calculate any period of time for doing any act which is specified – (a) by these Rules; (b) by a practice direction; or (c) by a judgment or order of the court."
       }
     }
   },
@@ -98,8 +137,15 @@
       "days": 2,
       "cite": "cpr_6_26",
       "when": {
-        "option": "service",
-        "equals": "first_class_post"
+        "all": [
+          {
+            "option": "service",
+            "equals": "first_class_post"
+          },
+          {
+            "direction": "after"
+          }
+        ]
       },
       "message": {
         "en": "First class post: deemed served on the second day after posting: {from} + {days} days = {to}."
@@ -110,8 +156,156 @@
       "direction": "forward",
       "cite": "cpr_6_26",
       "when": {
-        "option": "service",
-        "equals": "first_class_post"
+        "all": [
+          {
+            "option": "service",
+            "equals": "first_class_post"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "messages": {
+        "roll.forward": {
+          "en": "{from} is not a business day ({reason}); the document is deemed served on the next business day: {to}."
+        }
+      }
+    },
+    {
+      "type": "shift_trigger",
+      "days": 1,
+      "cite": "cpr_6_14",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "claim_form"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "message": {
+        "en": "Claim form: deemed served on the second business day after the step taken ({from}); first day after it: {to}."
+      }
+    },
+    {
+      "type": "roll",
+      "direction": "forward",
+      "cite": "cpr_6_14",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "claim_form"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "messages": {
+        "roll.forward": {
+          "en": "{from} is not a business day ({reason}); the first business day after the step is {to}."
+        }
+      }
+    },
+    {
+      "type": "shift_trigger",
+      "days": 1,
+      "cite": "cpr_6_14",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "claim_form"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "message": {
+        "en": "The second business day after the step: from {from} to {to}."
+      }
+    },
+    {
+      "type": "roll",
+      "direction": "forward",
+      "cite": "cpr_6_14",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "claim_form"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "messages": {
+        "roll.forward": {
+          "en": "{from} is not a business day ({reason}); the claim form is deemed served on {to}."
+        }
+      }
+    },
+    {
+      "type": "roll",
+      "direction": "forward",
+      "cite": "cpr_6_26",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "personal_or_electronic_before_1630"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "messages": {
+        "roll.forward": {
+          "en": "{from} is not a business day ({reason}); the document is deemed served on the next business day: {to}."
+        }
+      }
+    },
+    {
+      "type": "shift_trigger",
+      "days": 1,
+      "cite": "cpr_6_26",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "personal_or_electronic_after_1630"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "message": {
+        "en": "Served after 4.30pm: deemed served on the next business day after {from}: {to}."
+      }
+    },
+    {
+      "type": "roll",
+      "direction": "forward",
+      "cite": "cpr_6_26",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "personal_or_electronic_after_1630"
+          },
+          {
+            "direction": "after"
+          }
+        ]
       },
       "messages": {
         "roll.forward": {
@@ -219,10 +413,21 @@
       "type": "count",
       "cite": "cpr_2_10",
       "when": {
-        "not": {
-          "unit": "day"
-        }
+        "unit_in": [
+          "month",
+          "year"
+        ]
       }
+    },
+    {
+      "type": "count",
+      "when": {
+        "unit_in": [
+          "week",
+          "business_day"
+        ]
+      },
+      "cite": "cpr_2_8_1"
     },
     {
       "type": "roll",
@@ -238,6 +443,42 @@
             "direction": "after"
           }
         ]
+      },
+      "kinds": [
+        "public",
+        "court_closure"
+      ]
+    },
+    {
+      "type": "roll",
+      "direction": "backward",
+      "cite": "cpr_6_26",
+      "when": {
+        "direction": "before"
+      },
+      "messages": {
+        "roll.backward": {
+          "en": "{from} is not a business day ({reason}); a document cannot be deemed served on it (CPR 6.26), so the last day for deemed service is {to}."
+        }
+      }
+    },
+    {
+      "type": "add_days",
+      "days": -2,
+      "cite": "cpr_6_26",
+      "when": {
+        "all": [
+          {
+            "option": "service",
+            "equals": "first_class_post"
+          },
+          {
+            "direction": "before"
+          }
+        ]
+      },
+      "message": {
+        "en": "Posted first class, a document is deemed served on the second day after posting: post it by {to}."
       }
     },
     {
@@ -251,11 +492,45 @@
           {
             "option": "act",
             "equals": "other"
+          },
+          {
+            "direction": "after"
           }
         ]
       },
       "text": {
         "en": "The last day is not a business day. CPR 2.8(5) extends only acts at the court office; for service on another party there is no extension, and deemed-service rules may move effective service later. Set act='at_court_office' for a filing."
+      }
+    },
+    {
+      "type": "notice",
+      "code": "service-cutoff-1630",
+      "cite": "cpr_6_26",
+      "when": {
+        "all": [
+          {
+            "option": "act",
+            "equals": "other"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      },
+      "text": {
+        "en": "Personal service, delivery to a permitted address, fax or e-mail counts on the day only if done before 4.30pm on a business day (CPR 6.26); otherwise it is deemed served on the next business day."
+      }
+    },
+    {
+      "type": "notice",
+      "code": "filing-cutoff",
+      "cite": "pd_5b_4_2",
+      "when": {
+        "option": "act",
+        "equals": "at_court_office"
+      },
+      "text": {
+        "en": "An e-mail received by the court at or after 4.00pm is treated as filed on the next day the court office is open (PD 5B para 4.2). Check the cut-off of the filing route you use."
       }
     }
   ]

@@ -5,7 +5,7 @@
     "en": "European Union — official holidays of the Court of Justice and the General Court"
   },
   "description": {
-    "en": "Official holidays observed by the Court of Justice (Rules of Procedure Art. 24(6)) and applied by the General Court (Art. 58(3)). Judicial vacations do not suspend time limits and are not listed. The list is published annually in the Official Journal; coverage is limited to the years verified."
+    "en": "Official holidays observed by the Court of Justice (Rules of Procedure Art. 24(4) and (6)) and applied by the General Court (Art. 58(3)). Judicial vacations do not suspend time limits and are not listed. The list is published annually in the Official Journal; coverage is limited to the years verified."
   },
   "timezone": "Europe/Luxembourg",
   "weekend": [
@@ -18,8 +18,16 @@
   },
   "sources": [
     {
-      "title": "Court of Justice decision C/2025/1569 (OJ C)",
+      "title": "Court of Justice decision C/2024/2123 (OJ C, 12.3.2024)",
+      "url": "http://data.europa.eu/eli/C/2024/2123/oj"
+    },
+    {
+      "title": "Court of Justice decision C/2025/1569 (OJ C, 7.3.2025)",
       "url": "http://data.europa.eu/eli/C/2025/1569/oj"
+    },
+    {
+      "title": "CJEU list of official holidays and judicial vacations C/2026/1114 (OJ C, 18.2.2026)",
+      "url": "http://data.europa.eu/eli/C/2026/1114/oj"
     }
   ],
   "holidays": [
