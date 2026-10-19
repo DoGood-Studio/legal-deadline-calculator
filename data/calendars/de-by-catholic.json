@@ -1,0 +1,23 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-by-catholic",
+  "extends": "de-by",
+  "name": {
+    "en": "Germany — Bavaria, predominantly Catholic municipalities (e.g. Munich)",
+    "de": "Deutschland — Bayern, Gemeinden mit überwiegend katholischer Bevölkerung (z. B. München)"
+  },
+  "holidays": [
+    {
+      "id": "assumption",
+      "name": {
+        "en": "Assumption Day",
+        "de": "Mariä Himmelfahrt"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 15
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-st",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Saxony-Anhalt (Sachsen-Anhalt)",
+    "de": "Deutschland — Saxony-Anhalt (Sachsen-Anhalt)"
+  },
+  "holidays": [
+    {
+      "id": "epiphany",
+      "name": {
+        "en": "Epiphany",
+        "de": "Heilige Drei Könige"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 6
+      }
+    },
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day",
+        "de": "Reformationstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31
+      }
+    }
+  ]
+}

@@ -73,6 +73,14 @@
       "en": "Counted {n} working day(s) back from {from}, skipping non-working days: {to}.",
       "tr": "{from} tarihinden geriye doğru, çalışılmayan günler atlanarak {n} iş günü sayıldı: {to}."
     },
+    "count.business_day.clear": {
+      "en": "Counted {n} clear working day(s) from {from} (neither end day counts; non-working days are skipped): {to}.",
+      "tr": "{from} tarihinden itibaren {n} tam iş günü sayıldı (uç günler sayılmaz, çalışılmayan günler atlanır): {to}."
+    },
+    "count.business_day.before.clear": {
+      "en": "Counted {n} clear working day(s) back from {from} (neither {from} nor the deadline day counts; non-working days are skipped): {to}.",
+      "tr": "{from} tarihinden geriye doğru {n} tam iş günü sayıldı (iki uç gün de sayılmaz, çalışılmayan günler atlanır): {to}."
+    },
     "recess.extend": {
       "en": "{from} falls within the {recess} ({start} – {end}); the period is extended by {days} day(s) counted from the end of the recess: {to}.",
       "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre tatilin bittiği günden itibaren {days} gün uzar: {to}."

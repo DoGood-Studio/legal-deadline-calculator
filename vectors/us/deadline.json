@@ -1,0 +1,19 @@
+{
+  "description": "United States (FRCP 6) vectors. us-1 to us-4 are the worked examples in the Advisory Committee Note to the 2009 amendment; us-6/us-7 follow the pattern of the 2005 note; the rest are derived from the rule text.",
+  "cases": [
+    { "id": "us-1-2009-note-forward-labor-day", "pack": "us/frcp", "trigger": "2007-08-02", "period": "P30D", "expect": { "deadline": "2007-09-04", "ends_at": "23:59", "notices": ["check-local-rules"] }, "source": "FRCP 6, 2009 Advisory Committee Note" },
+    { "id": "us-2-2009-note-backward", "pack": "us/frcp", "trigger": "2007-09-22", "period": "P21D", "direction": "before", "expect": { "deadline": "2007-08-31" }, "source": "FRCP 6, 2009 Advisory Committee Note" },
+    { "id": "us-3-2009-note-state-holiday-forward", "pack": "us/frcp", "calendar": "us-ma", "trigger": "2008-04-07", "period": "P14D", "expect": { "deadline": "2008-04-22" }, "source": "FRCP 6, 2009 Advisory Committee Note (Patriots' Day, Massachusetts)" },
+    { "id": "us-4-2009-note-state-holiday-ignored-backward", "pack": "us/frcp", "calendar": "us-ma", "trigger": "2008-05-05", "period": "P14D", "direction": "before", "expect": { "deadline": "2008-04-21" }, "source": "FRCP 6, 2009 Advisory Committee Note" },
+    { "id": "us-6-mail-plus-3-after-labor-day", "pack": "us/frcp", "trigger": "2025-07-31", "period": "P30D", "options": { "service": "mail" }, "expect": { "deadline": "2025-09-05", "steps": ["count", "roll", "add_days", "roll", "ends_at"] }, "source": "FRCP 6(d); 2005 Advisory Committee Note pattern" },
+    { "id": "us-7-mail-plus-3-lands-on-mlk-day", "pack": "us/frcp", "trigger": "2025-01-03", "period": "P14D", "options": { "service": "mail" }, "expect": { "deadline": "2025-01-21" }, "source": "FRCP 6(d); 2005 Advisory Committee Note" },
+    { "id": "us-7e-electronic-service-no-extra-days", "pack": "us/frcp", "trigger": "2025-01-03", "period": "P14D", "expect": { "deadline": "2025-01-17", "steps": ["count", "roll", "ends_at"] }, "source": "FRCP 6(d) as amended in 2016" },
+    { "id": "us-8-juneteenth", "pack": "us/frcp", "trigger": "2025-06-05", "period": "P14D", "expect": { "deadline": "2025-06-20" }, "source": "FRCP 6(a)(6)(A) as amended in 2023" },
+    { "id": "us-9-observed-friday-safe-reading", "pack": "us/frcp", "trigger": "2026-06-03", "period": "P30D", "expect": { "deadline": "2026-07-03", "notices": ["observed-friday", "check-local-rules"] }, "source": "FRCP 6(a)(6); 5 U.S.C. § 6103(b) (unsettled point)" },
+    { "id": "us-9-observed-friday-as-holiday", "pack": "us/frcp", "trigger": "2026-06-03", "period": "P30D", "options": { "observed_friday": "holiday" }, "expect": { "deadline": "2026-07-06", "notices": ["check-local-rules"] }, "source": "FRCP 6(a)(6) (unsettled point, later reading)" },
+    { "id": "us-11-backward-over-labor-day", "pack": "us/frcp", "trigger": "2025-09-15", "period": "P14D", "direction": "before", "expect": { "deadline": "2025-08-29" }, "source": "FRCP 6(c)(1), 6(a)(5)" },
+    { "id": "us-12-seven-days-before-hearing", "pack": "us/frcp", "trigger": "2025-09-15", "period": "P7D", "direction": "before", "expect": { "deadline": "2025-09-08" }, "source": "FRCP 6(c)(2)" },
+    { "id": "us-paper-filing", "pack": "us/frcp", "trigger": "2025-09-15", "period": "P7D", "options": { "filing": "paper" }, "expect": { "deadline": "2025-09-22", "ends_at": null, "notices": ["paper-filing-clerk-hours", "check-local-rules"] }, "source": "FRCP 6(a)(4)(B)" },
+    { "id": "us-wrong-calendar-family", "pack": "us/frcp", "calendar": "gb-eaw", "trigger": "2025-09-15", "period": "P7D", "error": "OptionError" }
+  ]
+}

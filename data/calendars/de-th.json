@@ -1,0 +1,39 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-th",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Thuringia (Thüringen)",
+    "de": "Deutschland — Thuringia (Thüringen)"
+  },
+  "holidays": [
+    {
+      "id": "world_childrens_day",
+      "name": {
+        "en": "World Children's Day",
+        "de": "Weltkindertag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 9,
+        "day": 20
+      },
+      "since": 2019
+    },
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day",
+        "de": "Reformationstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31
+      }
+    }
+  ],
+  "description": {
+    "en": "Corpus Christi is a holiday in some municipalities of the Eichsfeld district only and is not included."
+  }
+}

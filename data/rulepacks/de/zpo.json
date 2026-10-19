@@ -1,0 +1,44 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "de/zpo",
+  "name": { "en": "Germany — civil procedure (ZPO § 222 with BGB §§ 187–188)", "de": "Deutschland — Zivilprozess (§ 222 ZPO i. V. m. §§ 187, 188 BGB)" },
+  "jurisdiction": "DE",
+  "calendar": "de",
+  "calendar_family": "de",
+  "status": "beta",
+  "description": {
+    "en": "Court time limits (Fristen) under § 222 ZPO: the day of service is not counted (§ 187(1) BGB); weeks and months end on the corresponding day, or on the last day of a shorter month (§ 188 BGB); a period ending on a Saturday, Sunday or general public holiday ends at the end of the next working day (§ 222(2) ZPO). Holidays at the court's seat apply, so pass calendar='de-<Land>' (e.g. 'de-nw', 'de-by-catholic').",
+    "de": "Gerichtliche Fristen nach § 222 ZPO: der Tag der Zustellung wird nicht mitgerechnet (§ 187 Abs. 1 BGB); Wochen- und Monatsfristen enden mit dem entsprechenden Tag bzw. dem letzten Tag eines kürzeren Monats (§ 188 BGB); fällt das Ende auf einen Sonnabend, Sonntag oder allgemeinen Feiertag, endet die Frist mit Ablauf des nächsten Werktages (§ 222 Abs. 2 ZPO). Maßgeblich sind die Feiertage am Gerichtsort: calendar='de-<Land>' angeben (z. B. 'de-nw', 'de-by-catholic')."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal advice. Check the statute, case law and the court's practice before relying on a result.",
+    "de": "Informationswerkzeug, keine Rechtsberatung. Vor Verwendung Gesetz, Rechtsprechung und Gerichtspraxis prüfen."
+  },
+  "citations": {
+    "zpo_222_1": {
+      "label": { "en": "ZPO § 222(1) with BGB §§ 187(1), 188", "de": "§ 222 Abs. 1 ZPO i. V. m. §§ 187 Abs. 1, 188 BGB" },
+      "url": "https://www.gesetze-im-internet.de/zpo/__222.html",
+      "quote": { "de": "§ 187 Abs. 1 BGB: Ist für den Anfang einer Frist ein Ereignis oder ein in den Lauf eines Tages fallender Zeitpunkt maßgebend, so wird bei der Berechnung der Frist der Tag nicht mitgerechnet, in welchen das Ereignis oder der Zeitpunkt fällt. § 188 Abs. 3 BGB: Fehlt bei einer nach Monaten bestimmten Frist in dem letzten Monat der für ihren Ablauf maßgebende Tag, so endigt die Frist mit dem Ablauf des letzten Tages dieses Monats." }
+    },
+    "zpo_222_2": {
+      "label": { "en": "ZPO § 222(2)", "de": "§ 222 Abs. 2 ZPO" },
+      "url": "https://www.gesetze-im-internet.de/zpo/__222.html",
+      "quote": { "de": "Fällt das Ende einer Frist auf einen Sonntag, einen allgemeinen Feiertag oder einen Sonnabend, so endet die Frist mit Ablauf des nächsten Werktages." }
+    },
+    "bgh_vi_za_27_11": {
+      "label": { "en": "BGH, decision of January 2012, VI ZA 27/11", "de": "BGH, Beschluss vom Januar 2012, VI ZA 27/11" }
+    }
+  },
+  "steps": [
+    { "type": "count", "cite": "zpo_222_1" },
+    { "type": "roll", "cite": "zpo_222_2" },
+    { "type": "ends_at", "time": "23:59" },
+    {
+      "type": "notice", "code": "court-seat-holidays", "cite": "bgh_vi_za_27_11",
+      "text": {
+        "en": "Holidays at the court's seat decide. Use the calendar of the Land or municipality of the court (e.g. 'de-bw' for Karlsruhe, 'de-by-catholic' for Munich).",
+        "de": "Maßgeblich sind die Feiertage am Gerichtsort. Kalender des Landes bzw. der Gemeinde des Gerichts verwenden (z. B. 'de-bw' für Karlsruhe, 'de-by-catholic' für München)."
+      }
+    }
+  ]
+}

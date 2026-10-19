@@ -15,7 +15,8 @@ from datetime import date, timedelta
 from typing import Any, TypeAlias
 
 from . import _data, _dates, _i18n
-from ._calendar import Calendar, Holiday, _check_keys, _check_name, calendar
+from ._calendar import Calendar, Holiday, _check_keys, _check_name
+from ._calendar import calendar as _load_calendar
 from .errors import DataError, OptionError
 
 UNITS = ("day", "week", "month", "year", "business_day")
@@ -39,10 +40,10 @@ _MONTH_DAY = re.compile(r"^(\d{2})-(\d{2})$")
 _MAX_AMOUNT = 100_000
 
 _PACK_KEYS = {
-    "$schema", "id", "name", "description", "jurisdiction", "calendar", "status",
+    "$schema", "id", "name", "description", "jurisdiction", "calendar", "calendar_family", "status",
     "non_working", "options", "steps", "citations", "sources", "disclaimer", "notes",
 }
-_COMMON_STEP_KEYS = {"type", "when", "cite", "message", "note"}
+_COMMON_STEP_KEYS = {"type", "when", "cite", "message", "messages", "note"}
 _STEP_KEYS = {
     "shift_trigger": {"days"},
     "count": {"exclude_start_day", "clear_days", "business_days"},
@@ -55,7 +56,7 @@ _STEP_KEYS = {
 _CONDITION_KEYS = {
     "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
     "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
-    "all", "any", "not",
+    "non_working_day", "all", "any", "not",
 }
 
 
@@ -235,8 +236,14 @@ class _Context:
     options: Mapping[str, Any]
     trace: list[TraceStep] = field(default_factory=list)
     notices: list[Notice] = field(default_factory=list)
+    calendar: Calendar | None = None
     ends_at: str | None = None
     count_start: date | None = None
+
+    @property
+    def cal(self) -> Calendar:
+        assert self.calendar is not None
+        return self.calendar
 
 
 Steps = list[Mapping[str, Any]]
@@ -261,9 +268,13 @@ class RulePack:
         if calendar_override is not None:
             self.calendar = calendar_override
         elif "calendar" in spec:
-            self.calendar = calendar(spec["calendar"])
+            self.calendar = _load_calendar(spec["calendar"])
         else:
             raise DataError(f"{self._where}: 'calendar' is required")
+        family = spec.get("calendar_family")
+        if family is not None and not isinstance(family, str):
+            raise DataError(f"{self._where}: 'calendar_family' must be a string")
+        self.calendar_family: str | None = family
         self.citations: dict[str, Citation] = self._load_citations(spec.get("citations", {}))
         self.options: dict[str, Mapping[str, Any]] = self._load_options(spec.get("options", {}))
         self.non_working: Mapping[str, Any] = self._load_non_working(spec.get("non_working", {}))
@@ -372,6 +383,8 @@ class RulePack:
                     _month_day(window.get(part), f"{where}.{key}[{i}].{part}")
         if "day_has" in cond and not isinstance(cond["day_has"], str):
             raise DataError(f"{where}.day_has must be 'half_day' or a holiday kind")
+        if "non_working_day" in cond and not isinstance(cond["non_working_day"], bool):
+            raise DataError(f"{where}.non_working_day must be true or false")
         for key in ("all", "any"):
             if key in cond:
                 if not isinstance(cond[key], list) or not cond[key]:
@@ -397,6 +410,11 @@ class RulePack:
                 raise DataError(f"{here}: cites unknown citation {step['cite']!r}")
             if "message" in step:
                 _check_name(step["message"], f"{here}.message")
+            if "messages" in step:
+                if not isinstance(step["messages"], Mapping) or not step["messages"]:
+                    raise DataError(f"{here}.messages must map message keys to {{lang: text}} objects")
+                for key, text in step["messages"].items():
+                    _check_name(text, f"{here}.messages[{key}]")
             if stype == "count":
                 seen_count = True
                 for key in ("exclude_start_day", "clear_days", "business_days"):
@@ -470,17 +488,20 @@ class RulePack:
         *,
         direction: str = "after",
         options: Mapping[str, Any] | None = None,
+        calendar: str | Mapping[str, Any] | Calendar | None = None,
     ) -> DeadlineResult:
         """Compute the deadline for ``period`` counted from ``trigger``.
 
         ``direction="before"`` counts backwards (e.g. "at least 7 days before
-        the hearing").
+        the hearing"). ``calendar`` selects the holiday calendar of the place
+        that matters (e.g. the court's seat, ``"de-by"``) when the pack allows it.
         """
         start = _dates.parse_date(trigger, field="trigger")
         parsed = Period.parse(period)
         if direction not in DIRECTIONS:
             raise ValueError(f"direction must be one of {DIRECTIONS}, got {direction!r}")
         ctx = _Context(start, parsed, direction, self._option_values(options))
+        ctx.calendar = self._calendar_for(calendar)
         current = start
         counted = False
         for step in self.steps:
@@ -500,13 +521,24 @@ class RulePack:
             period=parsed,
             direction=direction,
             rulepack=self.id,
-            calendar=self.calendar.id,
+            calendar=ctx.cal.id,
             options=ctx.options,
             trace=tuple(ctx.trace),
             notices=tuple(ctx.notices),
             ends_at=ctx.ends_at,
-            timezone=self.calendar.timezone,
+            timezone=ctx.cal.timezone,
         )
+
+    def _calendar_for(self, override: str | Mapping[str, Any] | Calendar | None) -> Calendar:
+        if override is None:
+            return self.calendar
+        chosen = _load_calendar(override)
+        family = self.calendar_family
+        if family is None:
+            raise OptionError(f"{self._where} does not take a calendar override")
+        if chosen.id != family and not chosen.id.startswith(family + "-"):
+            raise OptionError(f"{self._where}: calendar must be {family!r} or {family}-*, got {chosen.id!r}")
+        return chosen
 
     def _eval(self, cond: Mapping[str, Any], ctx: _Context, current: date) -> bool:
         if "option" in cond:
@@ -541,6 +573,10 @@ class RulePack:
             return False
         if "day_has" in cond and not self._day_has(current, cond["day_has"], ctx):
             return False
+        if "non_working_day" in cond:
+            reason = ctx.cal.non_working_reason(current, **self._nw({}, ctx))
+            if (reason is not None) != cond["non_working_day"]:
+                return False
         if "all" in cond and not all(self._eval(c, ctx, current) for c in cond["all"]):
             return False
         if "any" in cond and not any(self._eval(c, ctx, current) for c in cond["any"]):
@@ -550,8 +586,8 @@ class RulePack:
     def _day_has(self, day: date, what: str, ctx: _Context) -> bool:
         if what == "half_day":
             kinds = self._resolve(self.non_working["kinds"], ctx, self._where)
-            return any(h.is_half_day for h in self.calendar.holidays_on(day, kinds=kinds))
-        return any(h.kind == what for h in self.calendar.holidays_on(day))
+            return any(h.is_half_day for h in ctx.cal.holidays_on(day, kinds=kinds))
+        return any(h.kind == what for h in ctx.cal.holidays_on(day))
 
     def _in_window(self, window: Mapping[str, Any], day: date) -> bool:
         for year in (day.year - 1, day.year):
@@ -568,7 +604,8 @@ class RulePack:
         self, ctx: _Context, step: Mapping[str, Any], key: str, before: date, after: date,
         *, params: Mapping[str, Any],
     ) -> None:
-        message = _i18n.render(key, {"from": before, "to": after, **params}, step.get("message"))
+        override = step.get("messages", {}).get(key) or step.get("message")
+        message = _i18n.render(key, {"from": before, "to": after, **params}, override)
         citation = self.citations.get(step["cite"]) if "cite" in step else None
         ctx.trace.append(TraceStep(step["type"], before, after, message, citation))
 
@@ -587,8 +624,9 @@ class RulePack:
         business_flag = bool(self._resolve(step.get("business_days", False), ctx, self._where))
         if unit == "business_day" or (business_flag and unit == "day"):
             conf = self._nw(step, ctx)
-            new = self.calendar.add_business_days(current, sign * n, **conf)
-            key = "count.business_day" + suffix
+            clear = bool(self._resolve(step.get("clear_days", False), ctx, self._where))
+            new = ctx.cal.add_business_days(current, sign * (n + int(clear)), **conf)
+            key = "count.business_day" + suffix + (".clear" if clear else "")
         elif unit == "day":
             clear = bool(self._resolve(step.get("clear_days", False), ctx, self._where))
             exclude = bool(self._resolve(step.get("exclude_start_day", True), ctx, self._where))
@@ -690,14 +728,14 @@ class RulePack:
         direction = step.get("direction", "auto")
         if direction == "auto":
             direction = "backward" if ctx.direction == "before" else "forward"
-        why = self.calendar.non_working_reason(current, **conf)
+        why = ctx.cal.non_working_reason(current, **conf)
         if why is None:
             self._record(ctx, step, "roll.none", current, current, params={})
             return current
         if direction == "forward":
-            new = self.calendar.next_business_day(current, **conf)
+            new = ctx.cal.next_business_day(current, **conf)
         else:
-            new = self.calendar.previous_business_day(current, **conf)
+            new = ctx.cal.previous_business_day(current, **conf)
         self._record(ctx, step, f"roll.{direction}", current, new, params={"reason": self._reason(why)})
         return new
 
@@ -761,9 +799,12 @@ def compute(
     *,
     direction: str = "after",
     options: Mapping[str, Any] | None = None,
+    calendar: str | Mapping[str, Any] | Calendar | None = None,
 ) -> DeadlineResult:
     """Compute a deadline: ``compute("tr/hmk", "2026-07-10", "P2W")``."""
-    return rulepack(pack).compute(trigger, period, direction=direction, options=options)
+    return rulepack(pack).compute(
+        trigger, period, direction=direction, options=options, calendar=calendar
+    )
 
 
 def list_rulepacks() -> list[str]:

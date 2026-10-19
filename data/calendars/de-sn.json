@@ -1,0 +1,40 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-sn",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Saxony (Sachsen)",
+    "de": "Deutschland — Saxony (Sachsen)"
+  },
+  "holidays": [
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day",
+        "de": "Reformationstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31
+      }
+    },
+    {
+      "id": "repentance_day",
+      "name": {
+        "en": "Repentance and Prayer Day",
+        "de": "Buß- und Bettag"
+      },
+      "rule": {
+        "type": "weekday_relative",
+        "month": 11,
+        "day": 22,
+        "weekday": 3,
+        "direction": "on_or_before"
+      }
+    }
+  ],
+  "description": {
+    "en": "Corpus Christi is a holiday in some Sorbian municipalities only and is not included."
+  }
+}

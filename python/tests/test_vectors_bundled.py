@@ -77,6 +77,7 @@ def test_bundled_deadline_vector(case: dict[str, Any]) -> None:
         case["period"],
         direction=case.get("direction", "after"),
         options=case.get("options"),
+        calendar=case.get("calendar"),
     )
     if "error" in case:
         with pytest.raises(ERRORS[case["error"]]):

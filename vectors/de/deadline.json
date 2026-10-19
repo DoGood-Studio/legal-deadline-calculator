@@ -1,0 +1,16 @@
+{
+  "description": "Germany (§ 222 ZPO, §§ 187-188 BGB) vectors, derived from the statute text; de-7a/de-7b illustrate BGH VI ZA 27/11 (holidays at the court's seat).",
+  "cases": [
+    { "id": "de-1-no-31-april", "pack": "de/zpo", "trigger": "2025-03-31", "period": "P1M", "expect": { "deadline": "2025-04-30", "notices": ["court-seat-holidays"] }, "source": "§ 188 Abs. 3 BGB" },
+    { "id": "de-2-no-end-of-month-rule", "pack": "de/zpo", "trigger": "2025-02-28", "period": "P1M", "expect": { "deadline": "2025-03-28" }, "source": "§ 188 Abs. 2 BGB" },
+    { "id": "de-3-leap-year", "pack": "de/zpo", "trigger": "2024-01-30", "period": "P1M", "expect": { "deadline": "2024-02-29" }, "source": "§ 188 Abs. 3 BGB" },
+    { "id": "de-4-ascension-day", "pack": "de/zpo", "trigger": "2025-05-15", "period": "P2W", "expect": { "deadline": "2025-05-30" }, "source": "§ 222 Abs. 2 ZPO" },
+    { "id": "de-5a-reformation-day-hamburg", "pack": "de/zpo", "calendar": "de-hh", "trigger": "2025-10-17", "period": "P2W", "expect": { "deadline": "2025-11-03" }, "source": "§ 222 Abs. 2 ZPO; Hamburg Feiertagsgesetz" },
+    { "id": "de-5b-not-a-holiday-in-munich", "pack": "de/zpo", "calendar": "de-by-catholic", "trigger": "2025-10-17", "period": "P2W", "expect": { "deadline": "2025-10-31" }, "source": "§ 222 Abs. 2 ZPO" },
+    { "id": "de-6a-womens-day-berlin", "pack": "de/zpo", "calendar": "de-be", "trigger": "2027-02-22", "period": "P2W", "expect": { "deadline": "2027-03-09" }, "source": "§ 222 Abs. 2 ZPO; Berlin Feiertagsgesetz" },
+    { "id": "de-6b-no-holiday-in-hesse", "pack": "de/zpo", "calendar": "de-he", "trigger": "2027-02-22", "period": "P2W", "expect": { "deadline": "2027-03-08" }, "source": "§ 222 Abs. 2 ZPO" },
+    { "id": "de-7a-assumption-not-in-karlsruhe", "pack": "de/zpo", "calendar": "de-bw", "trigger": "2025-07-15", "period": "P1M", "expect": { "deadline": "2025-08-15" }, "source": "BGH VI ZA 27/11 (principle)" },
+    { "id": "de-7b-assumption-in-munich", "pack": "de/zpo", "calendar": "de-by-catholic", "trigger": "2025-07-15", "period": "P1M", "expect": { "deadline": "2025-08-18" }, "source": "BGH VI ZA 27/11 (principle)" },
+    { "id": "de-9-two-months-saturday", "pack": "de/zpo", "calendar": "de-nw", "trigger": "2025-03-31", "period": "P2M", "expect": { "deadline": "2025-06-02" }, "source": "§ 520 Abs. 2 ZPO; § 222 Abs. 2 ZPO" }
+  ]
+}

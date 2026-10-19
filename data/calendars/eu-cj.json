@@ -1,0 +1,156 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "eu-cj",
+  "name": {
+    "en": "European Union — official holidays of the Court of Justice and the General Court"
+  },
+  "description": {
+    "en": "Official holidays observed by the Court of Justice (Rules of Procedure Art. 24(6)) and applied by the General Court (Art. 58(3)). Judicial vacations do not suspend time limits and are not listed. The list is published annually in the Official Journal; coverage is limited to the years verified."
+  },
+  "timezone": "Europe/Luxembourg",
+  "weekend": [
+    6,
+    7
+  ],
+  "coverage": {
+    "from": 2025,
+    "to": 2026
+  },
+  "sources": [
+    {
+      "title": "Court of Justice decision C/2025/1569 (OJ C)",
+      "url": "http://data.europa.eu/eli/C/2025/1569/oj"
+    }
+  ],
+  "holidays": [
+    {
+      "id": "new_year",
+      "name": {
+        "en": "New Year's Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 1
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "easter_monday",
+      "name": {
+        "en": "Easter Monday"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 1
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "labour_day",
+      "name": {
+        "en": "1 May"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 1
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "europe_day",
+      "name": {
+        "en": "Europe Day (9 May)"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 9
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "ascension",
+      "name": {
+        "en": "Ascension Day"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 39
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "whit_monday",
+      "name": {
+        "en": "Whit Monday"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 50
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "luxembourg_national_day",
+      "name": {
+        "en": "Luxembourg National Day (23 June)"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 23
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "assumption",
+      "name": {
+        "en": "Assumption (15 August)"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 15
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "all_saints",
+      "name": {
+        "en": "All Saints' Day (1 November)"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 1
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "christmas",
+      "name": {
+        "en": "Christmas Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 25
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    },
+    {
+      "id": "st_stephen",
+      "name": {
+        "en": "26 December"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 26
+      },
+      "source": "Court of Justice decision C/2025/1569, Art. 1"
+    }
+  ]
+}

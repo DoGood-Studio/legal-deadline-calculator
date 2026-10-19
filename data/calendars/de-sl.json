@@ -1,0 +1,46 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-sl",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Saarland",
+    "de": "Deutschland — Saarland"
+  },
+  "holidays": [
+    {
+      "id": "corpus_christi",
+      "name": {
+        "en": "Corpus Christi",
+        "de": "Fronleichnam"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 60
+      }
+    },
+    {
+      "id": "assumption",
+      "name": {
+        "en": "Assumption Day",
+        "de": "Mariä Himmelfahrt"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 15
+      }
+    },
+    {
+      "id": "all_saints",
+      "name": {
+        "en": "All Saints' Day",
+        "de": "Allerheiligen"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-bw",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Baden-Württemberg",
+    "de": "Deutschland — Baden-Württemberg"
+  },
+  "holidays": [
+    {
+      "id": "epiphany",
+      "name": {
+        "en": "Epiphany",
+        "de": "Heilige Drei Könige"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 6
+      }
+    },
+    {
+      "id": "corpus_christi",
+      "name": {
+        "en": "Corpus Christi",
+        "de": "Fronleichnam"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 60
+      }
+    },
+    {
+      "id": "all_saints",
+      "name": {
+        "en": "All Saints' Day",
+        "de": "Allerheiligen"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 1
+      }
+    }
+  ]
+}

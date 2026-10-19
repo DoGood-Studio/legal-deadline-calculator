@@ -1,0 +1,42 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-be",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Berlin",
+    "de": "Deutschland — Berlin"
+  },
+  "holidays": [
+    {
+      "id": "womens_day",
+      "name": {
+        "en": "International Women's Day",
+        "de": "Internationaler Frauentag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 8
+      },
+      "since": 2019
+    }
+  ],
+  "one_off": [
+    {
+      "id": "liberation_day",
+      "name": {
+        "en": "75th anniversary of the end of the Second World War",
+        "de": "Tag der Befreiung"
+      },
+      "date": "2020-05-08"
+    },
+    {
+      "id": "liberation_day",
+      "name": {
+        "en": "80th anniversary of the end of the Second World War",
+        "de": "Tag der Befreiung"
+      },
+      "date": "2025-05-08"
+    }
+  ]
+}

@@ -29,10 +29,10 @@ const TIME = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
 const MONTH_DAY = /^(\d{2})-(\d{2})$/;
 
 const PACK_KEYS = new Set([
-  "$schema", "id", "name", "description", "jurisdiction", "calendar", "status",
+  "$schema", "id", "name", "description", "jurisdiction", "calendar", "calendar_family", "status",
   "non_working", "options", "steps", "citations", "sources", "disclaimer", "notes",
 ]);
-const COMMON_STEP_KEYS = ["type", "when", "cite", "message", "note"];
+const COMMON_STEP_KEYS = ["type", "when", "cite", "message", "messages", "note"];
 const STEP_KEYS: Record<string, ReadonlySet<string>> = Object.fromEntries(
   Object.entries({
     shift_trigger: ["days"],
@@ -47,7 +47,7 @@ const STEP_KEYS: Record<string, ReadonlySet<string>> = Object.fromEntries(
 const CONDITION_KEYS = new Set([
   "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
   "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
-  "all", "any", "not",
+  "non_working_day", "all", "any", "not",
 ]);
 
 // ------------------------------------------------------------------- results
@@ -177,6 +177,7 @@ export class DeadlineResult {
 // ------------------------------------------------------------------- engine
 
 interface Context {
+  calendar: Calendar;
   trigger: number;
   period: Period;
   direction: Direction;
@@ -210,6 +211,8 @@ function monthDay(value: unknown, where: string): [number, number] {
 export interface ComputeOptions {
   direction?: Direction;
   options?: Readonly<Record<string, unknown>>;
+  /** Holiday calendar of the place that matters (e.g. the court's seat, `"de-by"`), when the pack allows it. */
+  calendar?: string | Obj | Calendar;
 }
 
 /** A jurisdiction's deadline rules, loaded from a JSON rule pack. */
@@ -222,6 +225,7 @@ export class RulePack {
   readonly disclaimer: LocalizedText | null;
   readonly sources: readonly unknown[];
   readonly calendar: Calendar;
+  readonly calendarFamily: string | null;
   readonly citations: Readonly<Record<string, Citation>>;
   readonly options: Readonly<Record<string, { values: unknown[]; default: unknown; description?: LocalizedText }>>;
   readonly nonWorking: Readonly<Obj>;
@@ -242,6 +246,10 @@ export class RulePack {
     if (calendarOverride) this.calendar = calendarOverride;
     else if (spec.calendar !== undefined) this.calendar = calendar(spec.calendar as string | Obj);
     else throw new DataError(`${this.where}: 'calendar' is required`);
+    if (spec.calendar_family !== undefined && typeof spec.calendar_family !== "string") {
+      throw new DataError(`${this.where}: 'calendar_family' must be a string`);
+    }
+    this.calendarFamily = (spec.calendar_family as string | undefined) ?? null;
     this.citations = this.loadCitations(spec.citations ?? {});
     this.options = this.loadOptions(spec.options ?? {});
     this.nonWorking = this.loadNonWorking(spec.non_working ?? {});
@@ -354,6 +362,9 @@ export class RulePack {
     if ("day_has" in cond && typeof cond.day_has !== "string") {
       throw new DataError(`${where}.day_has must be 'half_day' or a holiday kind`);
     }
+    if ("non_working_day" in cond && typeof cond.non_working_day !== "boolean") {
+      throw new DataError(`${where}.non_working_day must be true or false`);
+    }
     for (const key of ["all", "any"]) {
       if (key in cond) {
         const list = cond[key];
@@ -379,6 +390,12 @@ export class RulePack {
         throw new DataError(`${here}: cites unknown citation ${JSON.stringify(s.cite)}`);
       }
       if ("message" in s) checkName(s.message, `${here}.message`);
+      if ("messages" in s) {
+        if (!isObj(s.messages) || Object.keys(s.messages).length === 0) {
+          throw new DataError(`${here}.messages must map message keys to {lang: text} objects`);
+        }
+        for (const [key, text] of Object.entries(s.messages)) checkName(text, `${here}.messages[${key}]`);
+      }
       if (type === "count") {
         seenCount = true;
         for (const key of ["exclude_start_day", "clear_days", "business_days"]) {
@@ -456,6 +473,7 @@ export class RulePack {
     const direction = opts.direction ?? "after";
     if (!DIRECTIONS.includes(direction)) throw new InputError(`direction must be one of ${DIRECTIONS.join(", ")}, got ${JSON.stringify(direction)}`);
     const ctx: Context = {
+      calendar: this.calendarFor(opts.calendar),
       trigger: start,
       period: parsed,
       direction,
@@ -482,13 +500,24 @@ export class RulePack {
       parsed,
       direction,
       this.id,
-      this.calendar.id,
+      ctx.calendar.id,
       ctx.options,
       ctx.trace,
       ctx.notices,
       ctx.endsAt,
-      this.calendar.timezone,
+      ctx.calendar.timezone,
     );
+  }
+
+  private calendarFor(override: string | Obj | Calendar | undefined): Calendar {
+    if (override === undefined) return this.calendar;
+    const chosen = calendar(override);
+    const family = this.calendarFamily;
+    if (family === null) throw new OptionError(`${this.where} does not take a calendar override`);
+    if (chosen.id !== family && !chosen.id.startsWith(`${family}-`)) {
+      throw new OptionError(`${this.where}: calendar must be '${family}' or ${family}-*, got '${chosen.id}'`);
+    }
+    return chosen;
   }
 
   private evaluate(cond: Obj, ctx: Context, current: number): boolean {
@@ -509,6 +538,10 @@ export class RulePack {
     if ("trigger_within" in cond && !(cond.trigger_within as Obj[]).some((w) => this.inWindow(w, served))) return false;
     if ("date_within" in cond && !(cond.date_within as Obj[]).some((w) => this.inWindow(w, current))) return false;
     if ("day_has" in cond && !this.dayHas(current, cond.day_has as string, ctx)) return false;
+    if ("non_working_day" in cond) {
+      const reason = ctx.calendar.reasonOn(current, this.nonWorkingFor({ type: "condition" }, ctx));
+      if ((reason !== null) !== cond.non_working_day) return false;
+    }
     if ("all" in cond && !(cond.all as Obj[]).every((c) => this.evaluate(c, ctx, current))) return false;
     if ("any" in cond && !(cond.any as Obj[]).some((c) => this.evaluate(c, ctx, current))) return false;
     return !("not" in cond && this.evaluate(cond.not as Obj, ctx, current));
@@ -518,9 +551,9 @@ export class RulePack {
     const iso = D.formatISO(day);
     if (what === "half_day") {
       const kinds = this.resolve(this.nonWorking.kinds, ctx, this.where) as string[];
-      return this.calendar.holidaysOn(iso, { kinds }).some((h) => h.halfDayFrom !== null);
+      return ctx.calendar.holidaysOn(iso, { kinds }).some((h) => h.halfDayFrom !== null);
     }
-    return this.calendar.holidaysOn(iso).some((h) => h.kind === what);
+    return ctx.calendar.holidaysOn(iso).some((h) => h.kind === what);
   }
 
   private inWindow(window: Obj, day: number): boolean {
@@ -543,7 +576,9 @@ export class RulePack {
   }
 
   private record(ctx: Context, step: Step, key: string, before: number, after: number, params: Record<string, MessageParam>): void {
-    const message = render(key, { from: new DateParam(before), to: new DateParam(after), ...params }, step.message as LocalizedText | undefined);
+    const perKey = isObj(step.messages) ? (step.messages[key] as LocalizedText | undefined) : undefined;
+    const override = perKey ?? (step.message as LocalizedText | undefined);
+    const message = render(key, { from: new DateParam(before), to: new DateParam(after), ...params }, override);
     const citation = "cite" in step ? (this.citations[step.cite as string] ?? null) : null;
     ctx.trace.push({
       step: step.type,
@@ -597,8 +632,9 @@ export class RulePack {
     let next: number;
     let key: string;
     if (unit === "business_day" || (businessFlag && unit === "day")) {
-      next = this.calendar.addBusinessDaysRaw(current, sign * n, this.nonWorkingFor(step, ctx));
-      key = `count.business_day${suffix}`;
+      const clear = Boolean(this.resolve(step.clear_days ?? false, ctx, this.where));
+      next = ctx.calendar.addBusinessDaysRaw(current, sign * (n + (clear ? 1 : 0)), this.nonWorkingFor(step, ctx));
+      key = `count.business_day${suffix}${clear ? ".clear" : ""}`;
     } else if (unit === "day") {
       const clear = Boolean(this.resolve(step.clear_days ?? false, ctx, this.where));
       const exclude = Boolean(this.resolve(step.exclude_start_day ?? true, ctx, this.where));
@@ -699,12 +735,12 @@ export class RulePack {
     const conf = this.nonWorkingFor(step, ctx);
     let direction = (step.direction ?? "auto") as string;
     if (direction === "auto") direction = ctx.direction === "before" ? "backward" : "forward";
-    const why = this.calendar.reasonOn(current, conf);
+    const why = ctx.calendar.reasonOn(current, conf);
     if (why === null) {
       this.record(ctx, step, "roll.none", current, current, {});
       return current;
     }
-    const next = this.calendar.stepDay(current, direction === "forward" ? 1 : -1, false, conf);
+    const next = ctx.calendar.stepDay(current, direction === "forward" ? 1 : -1, false, conf);
     this.record(ctx, step, `roll.${direction}`, current, next, { reason: this.reason(why) });
     return next;
   }

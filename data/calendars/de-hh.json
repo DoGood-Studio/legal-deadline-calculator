@@ -1,0 +1,24 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-hh",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Hamburg",
+    "de": "Deutschland — Hamburg"
+  },
+  "holidays": [
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day",
+        "de": "Reformationstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31
+      },
+      "since": 2018
+    }
+  ]
+}

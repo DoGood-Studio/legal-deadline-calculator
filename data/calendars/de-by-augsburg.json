@@ -1,0 +1,23 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-by-augsburg",
+  "extends": "de-by-catholic",
+  "name": {
+    "en": "Germany — Bavaria, city of Augsburg",
+    "de": "Deutschland — Bayern, Stadt Augsburg"
+  },
+  "holidays": [
+    {
+      "id": "augsburg_peace_festival",
+      "name": {
+        "en": "Augsburg Peace Festival",
+        "de": "Augsburger Hohes Friedensfest"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 8,
+        "day": 8
+      }
+    }
+  ]
+}

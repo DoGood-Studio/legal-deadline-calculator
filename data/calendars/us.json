@@ -1,0 +1,225 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "us",
+  "name": {
+    "en": "United States — federal legal public holidays (5 U.S.C. § 6103)"
+  },
+  "description": {
+    "en": "Federal legal public holidays. A holiday on Sunday is observed on Monday (5 U.S.C. § 6103(b)). A holiday on Saturday is observed by federal employees on the preceding Friday (Executive Order 11582); that Friday has the kind 'observed_friday' because whether it is a 'legal holiday' for court deadlines is unsettled. State holidays are separate calendars (us-<state>) with the kind 'state'."
+  },
+  "timezone": null,
+  "weekend": [
+    6,
+    7
+  ],
+  "coverage": {
+    "from": 1986,
+    "to": 2099
+  },
+  "sources": [
+    {
+      "title": "5 U.S.C. § 6103",
+      "url": "https://www.law.cornell.edu/uscode/text/5/6103"
+    },
+    {
+      "title": "Executive Order 11582",
+      "url": "https://www.archives.gov/federal-register/codification/executive-order/11582.html"
+    }
+  ],
+  "holidays": [
+    {
+      "id": "new_year",
+      "name": {
+        "en": "New Year's Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 1
+      },
+      "observed": {
+        "shift": {
+          "6": -1,
+          "7": 1
+        },
+        "kind": {
+          "6": "observed_friday"
+        }
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "mlk_day",
+      "name": {
+        "en": "Birthday of Martin Luther King, Jr."
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 1,
+        "weekday": 1,
+        "n": 3
+      },
+      "since": 1986,
+      "observed": {
+        "shift": {
+          "6": -1,
+          "7": 1
+        },
+        "kind": {
+          "6": "observed_friday"
+        }
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "washingtons_birthday",
+      "name": {
+        "en": "Washington's Birthday"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 2,
+        "weekday": 1,
+        "n": 3
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "memorial_day",
+      "name": {
+        "en": "Memorial Day"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 5,
+        "weekday": 1,
+        "n": -1
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "juneteenth",
+      "name": {
+        "en": "Juneteenth National Independence Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 6,
+        "day": 19
+      },
+      "since": 2021,
+      "observed": {
+        "shift": {
+          "6": -1,
+          "7": 1
+        },
+        "kind": {
+          "6": "observed_friday"
+        }
+      },
+      "source": "5 U.S.C. § 6103(a), as amended by Pub. L. 117-17"
+    },
+    {
+      "id": "independence_day",
+      "name": {
+        "en": "Independence Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 7,
+        "day": 4
+      },
+      "observed": {
+        "shift": {
+          "6": -1,
+          "7": 1
+        },
+        "kind": {
+          "6": "observed_friday"
+        }
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "labor_day",
+      "name": {
+        "en": "Labor Day"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 9,
+        "weekday": 1,
+        "n": 1
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "columbus_day",
+      "name": {
+        "en": "Columbus Day"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 10,
+        "weekday": 1,
+        "n": 2
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "veterans_day",
+      "name": {
+        "en": "Veterans Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 11
+      },
+      "observed": {
+        "shift": {
+          "6": -1,
+          "7": 1
+        },
+        "kind": {
+          "6": "observed_friday"
+        }
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "thanksgiving",
+      "name": {
+        "en": "Thanksgiving Day"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 11,
+        "weekday": 4,
+        "n": 4
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    },
+    {
+      "id": "christmas",
+      "name": {
+        "en": "Christmas Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 25
+      },
+      "observed": {
+        "shift": {
+          "6": -1,
+          "7": 1
+        },
+        "kind": {
+          "6": "observed_friday"
+        }
+      },
+      "source": "5 U.S.C. § 6103(a)"
+    }
+  ]
+}

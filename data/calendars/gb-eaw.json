@@ -1,0 +1,197 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "gb-eaw",
+  "name": {
+    "en": "United Kingdom — England and Wales bank holidays"
+  },
+  "description": {
+    "en": "Bank holidays in England and Wales, plus Christmas Day and Good Friday (common-law holidays). Substitute days follow the GOV.UK list. Coverage matches the official GOV.UK bank holidays feed."
+  },
+  "timezone": "Europe/London",
+  "weekend": [
+    6,
+    7
+  ],
+  "coverage": {
+    "from": 2019,
+    "to": 2028
+  },
+  "sources": [
+    {
+      "title": "GOV.UK bank holidays (Open Government Licence v3.0)",
+      "url": "https://www.gov.uk/bank-holidays"
+    },
+    {
+      "title": "Banking and Financial Dealings Act 1971",
+      "url": "https://www.legislation.gov.uk/ukpga/1971/80"
+    }
+  ],
+  "holidays": [
+    {
+      "id": "new_year",
+      "name": {
+        "en": "New Year's Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 1
+      },
+      "observed": {
+        "shift": {
+          "6": 2,
+          "7": 1
+        },
+        "avoid_collision": true
+      },
+      "source": "Banking and Financial Dealings Act 1971, Sch. 1; royal proclamations"
+    },
+    {
+      "id": "good_friday",
+      "name": {
+        "en": "Good Friday"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": -2
+      },
+      "source": "common law"
+    },
+    {
+      "id": "easter_monday",
+      "name": {
+        "en": "Easter Monday"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 1
+      },
+      "source": "Banking and Financial Dealings Act 1971, Sch. 1; royal proclamations"
+    },
+    {
+      "id": "early_may",
+      "name": {
+        "en": "Early May bank holiday"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 5,
+        "weekday": 1,
+        "n": 1
+      },
+      "except_years": [
+        2020
+      ],
+      "source": "Banking and Financial Dealings Act 1971, Sch. 1; royal proclamations"
+    },
+    {
+      "id": "spring",
+      "name": {
+        "en": "Spring bank holiday"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 5,
+        "weekday": 1,
+        "n": -1
+      },
+      "except_years": [
+        2022
+      ],
+      "source": "Banking and Financial Dealings Act 1971, Sch. 1; royal proclamations"
+    },
+    {
+      "id": "summer",
+      "name": {
+        "en": "Summer bank holiday"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 8,
+        "weekday": 1,
+        "n": -1
+      },
+      "source": "Banking and Financial Dealings Act 1971, Sch. 1; royal proclamations"
+    },
+    {
+      "id": "christmas",
+      "name": {
+        "en": "Christmas Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 25
+      },
+      "observed": {
+        "shift": {
+          "6": 2,
+          "7": 1
+        },
+        "avoid_collision": true
+      },
+      "source": "common law"
+    },
+    {
+      "id": "boxing_day",
+      "name": {
+        "en": "Boxing Day"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 26
+      },
+      "observed": {
+        "shift": {
+          "6": 2,
+          "7": 1
+        },
+        "avoid_collision": true
+      },
+      "source": "Banking and Financial Dealings Act 1971, Sch. 1; royal proclamations"
+    }
+  ],
+  "one_off": [
+    {
+      "id": "early_may",
+      "name": {
+        "en": "Early May bank holiday (VE day)"
+      },
+      "date": "2020-05-08",
+      "source": "royal proclamation"
+    },
+    {
+      "id": "spring",
+      "name": {
+        "en": "Spring bank holiday"
+      },
+      "date": "2022-06-02",
+      "source": "royal proclamation"
+    },
+    {
+      "id": "platinum_jubilee",
+      "name": {
+        "en": "Platinum Jubilee bank holiday"
+      },
+      "date": "2022-06-03",
+      "source": "royal proclamation"
+    },
+    {
+      "id": "state_funeral",
+      "name": {
+        "en": "Bank Holiday for the State Funeral of Queen Elizabeth II"
+      },
+      "date": "2022-09-19",
+      "source": "royal proclamation"
+    },
+    {
+      "id": "coronation",
+      "name": {
+        "en": "Bank holiday for the coronation of King Charles III"
+      },
+      "date": "2023-05-08",
+      "source": "royal proclamation"
+    }
+  ]
+}

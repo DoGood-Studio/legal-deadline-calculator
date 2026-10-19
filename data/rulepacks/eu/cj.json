@@ -1,0 +1,75 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "eu/cj",
+  "name": { "en": "European Union — Court of Justice and General Court procedural time limits" },
+  "jurisdiction": "EU",
+  "calendar": "eu-cj",
+  "status": "beta",
+  "description": {
+    "en": "Procedural time limits before the Court of Justice (Rules of Procedure Arts. 49–51) and the General Court (Arts. 58–60): the event day is excluded, months end on the same date, every time limit is extended on account of distance by a single period of 10 days, and a time limit ending on a Saturday, Sunday or official holiday is extended to the end of the next working day. Judicial vacations do not suspend time limits."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal advice. Check the Rules of Procedure and the Court's practice directions before relying on a result."
+  },
+  "options": {
+    "start": {
+      "values": ["event", "oj_publication"],
+      "default": "event",
+      "description": { "en": "'oj_publication' when an action against a measure runs from its publication in the Official Journal: the time limit is calculated from the end of the 14th day after publication (Art. 50 / Art. 59)." }
+    },
+    "service": {
+      "values": ["date_of_service", "ecuria_not_opened"],
+      "default": "date_of_service",
+      "description": { "en": "'ecuria_not_opened' when you entered the day the e-Curia notification e-mail was sent and the document was never opened: it is deemed served at the expiry of the seventh day after that day." }
+    }
+  },
+  "citations": {
+    "rp_49": {
+      "label": { "en": "CJ Rules of Procedure, Art. 49(1) (General Court Art. 58(1))" },
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)",
+      "quote": { "en": "(a) ... the day during which that event occurs or that action takes place shall not be counted as falling within the time-limit in question; (b) a time-limit expressed in weeks, months or years shall end with the expiry of whichever day in the last week, month or year is the same day of the week, or falls on the same date ... If, in a time-limit expressed in months or years, the day on which it should expire does not occur in the last month, the time-limit shall end with the expiry of the last day of that month" }
+    },
+    "rp_49_2": {
+      "label": { "en": "CJ Rules of Procedure, Art. 49(2) (General Court Art. 58(2))" },
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)",
+      "quote": { "en": "If the time-limit would otherwise end on a Saturday, Sunday or an official holiday, it shall be extended until the end of the first subsequent working day." }
+    },
+    "rp_50": {
+      "label": { "en": "CJ Rules of Procedure, Art. 50 (General Court Art. 59)" },
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)",
+      "quote": { "en": "Where the time-limit allowed for initiating proceedings against a measure adopted by an institution runs from the publication of that measure, that time-limit shall be calculated ... from the end of the 14th day after publication of the measure in the Official Journal of the European Union." }
+    },
+    "rp_51": {
+      "label": { "en": "CJ Rules of Procedure, Art. 51 (General Court Art. 60); C-660/17 P RF v Commission, para. 68" },
+      "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:62017CJ0660",
+      "quote": { "en": "The procedural time-limits shall be extended on account of distance by a single period of 10 days." }
+    },
+    "ecuria_7": {
+      "label": { "en": "General Court e-Curia decision of 10 July 2024, Art. 7" },
+      "url": "http://data.europa.eu/eli/proc_internal/2024/2096/oj",
+      "quote": { "en": "In the absence of any request for access, the document shall be deemed to have been served on the expiry of the seventh day following the day on which the notification email was sent." }
+    }
+  },
+  "steps": [
+    {
+      "type": "shift_trigger", "days": 14, "cite": "rp_50",
+      "when": { "option": "start", "equals": "oj_publication" },
+      "message": { "en": "Measure published in the Official Journal: the time limit runs from the end of the 14th day after publication: {from} + {days} days = {to}." }
+    },
+    {
+      "type": "shift_trigger", "days": 7, "cite": "ecuria_7",
+      "when": { "option": "service", "equals": "ecuria_not_opened" },
+      "message": { "en": "e-Curia document not opened: deemed served at the expiry of the seventh day after the notification e-mail: {from} + {days} days = {to}." }
+    },
+    { "type": "count", "cite": "rp_49" },
+    {
+      "type": "add_days", "days": 10, "cite": "rp_51",
+      "message": { "en": "Extension on account of distance: a single period of 10 days is added to the time limit (before any weekend or holiday extension): {from} → {to}." }
+    },
+    { "type": "roll", "cite": "rp_49_2" },
+    {
+      "type": "ends_at", "time": "23:59",
+      "message": { "en": "The time limit ends at midnight (Luxembourg time) on the last day; e-Curia lodging counts at the time of validation." }
+    }
+  ]
+}

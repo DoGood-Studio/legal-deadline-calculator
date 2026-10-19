@@ -1,0 +1,9 @@
+{
+  "description": "EU Court of Justice / General Court vectors. The ordering (distance extension on the raw end date, weekend/holiday extension once at the end) follows C-660/17 P RF v Commission, para. 68.",
+  "cases": [
+    { "id": "cj-2-oj-publication-whit-monday", "pack": "eu/cj", "trigger": "2025-03-14", "period": "P2M", "options": { "start": "oj_publication" }, "expect": { "deadline": "2025-06-10", "ends_at": "23:59", "steps": ["shift_trigger", "count", "add_days", "roll", "ends_at"] }, "source": "CJ RP Arts. 49-51" },
+    { "id": "cj-3-ecuria-not-opened-february", "pack": "eu/cj", "trigger": "2025-12-22", "period": "P2M", "options": { "service": "ecuria_not_opened" }, "expect": { "deadline": "2026-03-10" }, "source": "e-Curia decision Art. 7; CJ RP Arts. 49, 51" },
+    { "id": "cj-distance-then-weekend", "pack": "eu/cj", "trigger": "2025-09-05", "period": "P2M", "expect": { "deadline": "2025-11-17" }, "source": "CJ RP Arts. 49, 51" },
+    { "id": "cj-outside-verified-holiday-years", "pack": "eu/cj", "trigger": "2024-03-01", "period": "P2M", "error": "CoverageError" }
+  ]
+}

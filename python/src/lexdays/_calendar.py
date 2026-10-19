@@ -234,7 +234,16 @@ class Calendar:
         checked: dict[str, Any] = {**spec, "_half": _check_half_day(spec.get("half_day"), here)}
         observed = checked.get("observed")
         if observed is not None:
-            _check_keys(observed, {"shift", "avoid_collision"}, f"{here}.observed")
+            _check_keys(observed, {"shift", "avoid_collision", "kind"}, f"{here}.observed")
+            obs_kind = observed.get("kind")
+            kinds_given = (
+                [obs_kind] if isinstance(obs_kind, str)
+                else list(obs_kind.values()) if isinstance(obs_kind, Mapping)
+                else [] if obs_kind is None else [None]
+            )
+            for value in kinds_given:
+                if not isinstance(value, str) or not _KIND.match(value):
+                    raise DataError(f"{here}.observed.kind must be a kind or a {{weekday: kind}} object")
             shift = observed.get("shift")
             if not isinstance(shift, Mapping) or not shift:
                 raise DataError(f"{here}.observed.shift must map ISO weekdays to day offsets")
@@ -345,12 +354,15 @@ class Calendar:
                 while target.isoweekday() in self.weekend or target in taken[holiday.kind]:
                     target += timedelta(days=step)
             taken[holiday.kind].add(target)
+            obs_kind = rule.get("kind")
+            if isinstance(obs_kind, Mapping):
+                obs_kind = obs_kind.get(str(holiday.date.isoweekday()))
             observed.append(
                 Holiday(
                     date=target,
                     id=holiday.id,
                     name=holiday.name,
-                    kind=holiday.kind,
+                    kind=obs_kind or holiday.kind,
                     half_day_from=holiday.half_day_from,
                     observed_from=holiday.date,
                     source=holiday.source,

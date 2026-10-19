@@ -1,0 +1,23 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-bb",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Brandenburg",
+    "de": "Deutschland — Brandenburg"
+  },
+  "holidays": [
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day",
+        "de": "Reformationstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31
+      }
+    }
+  ]
+}

@@ -1,0 +1,262 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "gb-eaw/cpr",
+  "name": {
+    "en": "England and Wales — Civil Procedure Rules, rule 2.8"
+  },
+  "jurisdiction": "GB-EAW",
+  "calendar": "gb-eaw",
+  "status": "beta",
+  "description": {
+    "en": "Time under CPR 2.8: periods in days are clear days; periods of 5 days or less skip weekends, bank holidays, Christmas Day and Good Friday; there is no general roll of a non-business last day, but an act at the court office may be done on the next day the office is open (2.8(5)). Deemed service by first class post follows CPR 6.26."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal advice. Practice directions, court orders and agreements under CPR 2.11 may change a time limit; check them before relying on a result."
+  },
+  "options": {
+    "end_defined_by_event": {
+      "values": [
+        "no",
+        "yes"
+      ],
+      "default": "no",
+      "description": {
+        "en": "For forward periods: 'yes' when the end of the period is an event (e.g. 'the hearing must be at least 28 days after notice'), so that day is excluded too (clear days). Backward periods ('at least 3 days before the hearing') always exclude the event day."
+      }
+    },
+    "act": {
+      "values": [
+        "other",
+        "at_court_office"
+      ],
+      "default": "other",
+      "description": {
+        "en": "'at_court_office' for acts done at the court office (e.g. filing): if the period ends on a day the office is closed, the act is in time on the next day it is open (CPR 2.8(5))."
+      }
+    },
+    "service": {
+      "values": [
+        "deemed_date",
+        "first_class_post"
+      ],
+      "default": "deemed_date",
+      "description": {
+        "en": "Which date you entered: the date of (deemed) service, or the date a document other than a claim form was posted first class (deemed served on the second day after posting if that is a business day, otherwise the next business day; CPR 6.26)."
+      }
+    }
+  },
+  "citations": {
+    "cpr_2_8_3": {
+      "label": {
+        "en": "CPR 2.8(2)–(3)"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02",
+      "quote": {
+        "en": "(2) A period of time expressed as a number of days shall be computed as clear days. (3) In this rule 'clear days' means that in computing the number of days – (a) the day on which the period begins; and (b) if the end of the period is defined by reference to an event, the day on which that event occurs are not included."
+      }
+    },
+    "cpr_2_8_4": {
+      "label": {
+        "en": "CPR 2.8(4)"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02",
+      "quote": {
+        "en": "Where the specified period – (a) is 5 days or less; and (b) includes – (i) a Saturday or Sunday; or (ii) a Bank Holiday, Christmas Day or Good Friday, that day does not count."
+      }
+    },
+    "cpr_2_8_5": {
+      "label": {
+        "en": "CPR 2.8(5)"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02",
+      "quote": {
+        "en": "When the period specified ... for doing any act at the court office ends on a day on which the office is closed, that act shall be in time under these rules if done on the next day on which the court office is open."
+      }
+    },
+    "cpr_2_10": {
+      "label": {
+        "en": "CPR 2.10"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02",
+      "quote": {
+        "en": "Where 'month' occurs in any judgment, order, direction or other document, it means a calendar month."
+      }
+    },
+    "cpr_6_26": {
+      "label": {
+        "en": "CPR 6.26"
+      },
+      "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part06",
+      "quote": {
+        "en": "First class post ... The second day after it was posted, left with, delivered to or collected by the relevant service provider provided that day is a business day; or if not, the next business day after that day."
+      }
+    }
+  },
+  "steps": [
+    {
+      "type": "shift_trigger",
+      "days": 2,
+      "cite": "cpr_6_26",
+      "when": {
+        "option": "service",
+        "equals": "first_class_post"
+      },
+      "message": {
+        "en": "First class post: deemed served on the second day after posting: {from} + {days} days = {to}."
+      }
+    },
+    {
+      "type": "roll",
+      "direction": "forward",
+      "cite": "cpr_6_26",
+      "when": {
+        "option": "service",
+        "equals": "first_class_post"
+      },
+      "messages": {
+        "roll.forward": {
+          "en": "{from} is not a business day ({reason}); the document is deemed served on the next business day: {to}."
+        }
+      }
+    },
+    {
+      "type": "count",
+      "business_days": true,
+      "clear_days": true,
+      "cite": "cpr_2_8_4",
+      "when": {
+        "all": [
+          {
+            "unit": "day"
+          },
+          {
+            "max_amount": 5
+          },
+          {
+            "any": [
+              {
+                "direction": "before"
+              },
+              {
+                "option": "end_defined_by_event",
+                "equals": "yes"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "count",
+      "business_days": true,
+      "cite": "cpr_2_8_4",
+      "when": {
+        "all": [
+          {
+            "unit": "day"
+          },
+          {
+            "max_amount": 5
+          },
+          {
+            "direction": "after"
+          },
+          {
+            "option": "end_defined_by_event",
+            "equals": "no"
+          }
+        ]
+      }
+    },
+    {
+      "type": "count",
+      "clear_days": true,
+      "cite": "cpr_2_8_3",
+      "when": {
+        "all": [
+          {
+            "unit": "day"
+          },
+          {
+            "min_amount": 6
+          },
+          {
+            "any": [
+              {
+                "direction": "before"
+              },
+              {
+                "option": "end_defined_by_event",
+                "equals": "yes"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "count",
+      "cite": "cpr_2_8_3",
+      "when": {
+        "all": [
+          {
+            "unit": "day"
+          },
+          {
+            "min_amount": 6
+          },
+          {
+            "direction": "after"
+          },
+          {
+            "option": "end_defined_by_event",
+            "equals": "no"
+          }
+        ]
+      }
+    },
+    {
+      "type": "count",
+      "cite": "cpr_2_10",
+      "when": {
+        "not": {
+          "unit": "day"
+        }
+      }
+    },
+    {
+      "type": "roll",
+      "direction": "forward",
+      "cite": "cpr_2_8_5",
+      "when": {
+        "all": [
+          {
+            "option": "act",
+            "equals": "at_court_office"
+          },
+          {
+            "direction": "after"
+          }
+        ]
+      }
+    },
+    {
+      "type": "notice",
+      "code": "non-business-last-day",
+      "when": {
+        "all": [
+          {
+            "non_working_day": true
+          },
+          {
+            "option": "act",
+            "equals": "other"
+          }
+        ]
+      },
+      "text": {
+        "en": "The last day is not a business day. CPR 2.8(5) extends only acts at the court office; for service on another party there is no extension, and deemed-service rules may move effective service later. Set act='at_court_office' for a filing."
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-nw",
+  "extends": "de",
+  "name": {
+    "en": "Germany — North Rhine-Westphalia (Nordrhein-Westfalen)",
+    "de": "Deutschland — North Rhine-Westphalia (Nordrhein-Westfalen)"
+  },
+  "holidays": [
+    {
+      "id": "corpus_christi",
+      "name": {
+        "en": "Corpus Christi",
+        "de": "Fronleichnam"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 60
+      }
+    },
+    {
+      "id": "all_saints",
+      "name": {
+        "en": "All Saints' Day",
+        "de": "Allerheiligen"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 11,
+        "day": 1
+      }
+    }
+  ]
+}

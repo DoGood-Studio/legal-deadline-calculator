@@ -1,0 +1,33 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "us-ma",
+  "extends": "us",
+  "name": {
+    "en": "United States — federal holidays plus Massachusetts state holidays"
+  },
+  "description": {
+    "en": "Adds Massachusetts state holidays (kind 'state'). Suffolk County observances (Evacuation Day, Bunker Hill Day) are not included."
+  },
+  "sources": [
+    {
+      "title": "Mass. Gen. Laws ch. 4, § 7",
+      "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleI/Chapter4/Section7"
+    }
+  ],
+  "holidays": [
+    {
+      "id": "patriots_day",
+      "name": {
+        "en": "Patriots' Day"
+      },
+      "rule": {
+        "type": "nth_weekday",
+        "month": 4,
+        "weekday": 1,
+        "n": 3
+      },
+      "kind": "state",
+      "source": "M.G.L. c. 4, § 7"
+    }
+  ]
+}

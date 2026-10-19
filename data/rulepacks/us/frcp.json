@@ -1,0 +1,106 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "us/frcp",
+  "name": { "en": "United States — Federal Rules of Civil Procedure, Rule 6" },
+  "jurisdiction": "US",
+  "calendar": "us",
+  "calendar_family": "us",
+  "status": "beta",
+  "description": {
+    "en": "Computing time under FRCP 6(a) for periods stated in days or longer units, counting forward or backward, plus the 3 extra days of Rule 6(d) for service by mail, by leaving with the clerk or by other consented means. Pass calendar='us-<state>' to include the holidays of the state where the district court sits (Rule 6(a)(6)(C), forward periods only)."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal advice. Local rules, court orders and statutes with their own method of computing time take precedence; check them before relying on a result."
+  },
+  "options": {
+    "service": {
+      "values": ["electronic", "personal", "mail", "leaving_with_clerk", "other_consented"],
+      "default": "electronic",
+      "description": { "en": "How the paper was served. Mail, leaving with the clerk and other consented means add 3 days (Rule 6(d)); electronic service does not (since 2016)." }
+    },
+    "filing": {
+      "values": ["electronic", "paper"],
+      "default": "electronic",
+      "description": { "en": "Electronic filing ends at midnight in the court's time zone; paper filing when the clerk's office is scheduled to close (Rule 6(a)(4))." }
+    },
+    "observed_friday": {
+      "values": ["not_holiday", "holiday"],
+      "default": "not_holiday",
+      "description": { "en": "Whether the Friday on which a Saturday holiday is observed counts as a 'legal holiday'. Unsettled; 'not_holiday' gives the earlier, safer date." }
+    }
+  },
+  "citations": {
+    "frcp_6a1": {
+      "label": { "en": "FRCP 6(a)(1)" },
+      "url": "https://www.law.cornell.edu/rules/frcp/rule_6",
+      "quote": { "en": "(A) exclude the day of the event that triggers the period; (B) count every day, including intermediate Saturdays, Sundays, and legal holidays; and (C) include the last day of the period, but if the last day is a Saturday, Sunday, or legal holiday, the period continues to run until the end of the next day that is not a Saturday, Sunday, or legal holiday." }
+    },
+    "frcp_6a5": {
+      "label": { "en": "FRCP 6(a)(1)(C), (5) and (6)" },
+      "url": "https://www.law.cornell.edu/rules/frcp/rule_6",
+      "quote": { "en": "The \"next day\" is determined by continuing to count forward when the period is measured after an event and backward when measured before an event. ... \"Legal holiday\" means ... (C) for periods that are measured after an event, any other day declared a holiday by the state where the district court is located." }
+    },
+    "frcp_6a4": {
+      "label": { "en": "FRCP 6(a)(4)" },
+      "url": "https://www.law.cornell.edu/rules/frcp/rule_6",
+      "quote": { "en": "Unless a different time is set by a statute, local rule, or court order, the last day ends: (A) for electronic filing, at midnight in the court's time zone; and (B) for filing by other means, when the clerk's office is scheduled to close." }
+    },
+    "frcp_6d": {
+      "label": { "en": "FRCP 6(d)" },
+      "url": "https://www.law.cornell.edu/rules/frcp/rule_6",
+      "quote": { "en": "When a party may or must act within a specified time after being served and service is made under Rule 5(b)(2)(C) (mail), (D) (leaving with the clerk), or (F) (other means consented to), 3 days are added after the period would otherwise expire under Rule 6(a)." }
+    },
+    "note_2005": {
+      "label": { "en": "FRCP 6, Advisory Committee Note to the 2005 amendment" },
+      "url": "https://www.law.cornell.edu/rules/frcp/rule_6",
+      "quote": { "en": "If the third day is a Saturday, Sunday, or legal holiday, the last day to act is the next day that is not a Saturday, Sunday, or legal holiday." }
+    }
+  },
+  "steps": [
+    { "type": "count", "cite": "frcp_6a1" },
+    {
+      "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "state"],
+      "when": { "all": [ { "direction": "after" }, { "option": "observed_friday", "equals": "not_holiday" } ] }
+    },
+    {
+      "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "state", "observed_friday"],
+      "when": { "all": [ { "direction": "after" }, { "option": "observed_friday", "equals": "holiday" } ] }
+    },
+    {
+      "type": "roll", "cite": "frcp_6a5", "kinds": ["public"],
+      "when": { "all": [ { "direction": "before" }, { "option": "observed_friday", "equals": "not_holiday" } ] }
+    },
+    {
+      "type": "roll", "cite": "frcp_6a5", "kinds": ["public", "observed_friday"],
+      "when": { "all": [ { "direction": "before" }, { "option": "observed_friday", "equals": "holiday" } ] }
+    },
+    {
+      "type": "add_days", "days": 3, "cite": "frcp_6d",
+      "when": { "all": [ { "direction": "after" }, { "option": "service", "in": ["mail", "leaving_with_clerk", "other_consented"] } ] },
+      "message": { "en": "Service by mail, by leaving with the clerk or by other consented means: 3 days are added after the period would otherwise expire: {from} → {to}." }
+    },
+    {
+      "type": "roll", "cite": "note_2005", "kinds": ["public", "state"],
+      "when": { "all": [ { "direction": "after" }, { "option": "service", "in": ["mail", "leaving_with_clerk", "other_consented"] }, { "option": "observed_friday", "equals": "not_holiday" } ] }
+    },
+    {
+      "type": "roll", "cite": "note_2005", "kinds": ["public", "state", "observed_friday"],
+      "when": { "all": [ { "direction": "after" }, { "option": "service", "in": ["mail", "leaving_with_clerk", "other_consented"] }, { "option": "observed_friday", "equals": "holiday" } ] }
+    },
+    { "type": "ends_at", "time": "23:59", "cite": "frcp_6a4", "when": { "option": "filing", "equals": "electronic" } },
+    {
+      "type": "notice", "code": "paper-filing-clerk-hours",
+      "when": { "option": "filing", "equals": "paper" },
+      "text": { "en": "Paper filing ends when the clerk's office is scheduled to close (Rule 6(a)(4)(B))." }
+    },
+    {
+      "type": "notice", "code": "observed-friday",
+      "when": { "all": [ { "day_has": "observed_friday" }, { "option": "observed_friday", "equals": "not_holiday" } ] },
+      "text": { "en": "The last day is the Friday on which a Saturday holiday is observed. Federal courts are usually closed, but whether it is a 'legal holiday' under Rule 6(a)(6) is unsettled; this is the earlier, safer date. Set observed_friday='holiday' for the later reading." }
+    },
+    {
+      "type": "notice", "code": "check-local-rules",
+      "text": { "en": "Check local rules and orders: a court-set calendar date is not adjusted by Rule 6(a), and an inaccessible clerk's office extends the time (Rule 6(a)(3))." }
+    }
+  ]
+}

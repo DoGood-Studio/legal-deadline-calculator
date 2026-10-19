@@ -1,0 +1,22 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-he",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Hesse (Hessen)",
+    "de": "Deutschland — Hesse (Hessen)"
+  },
+  "holidays": [
+    {
+      "id": "corpus_christi",
+      "name": {
+        "en": "Corpus Christi",
+        "de": "Fronleichnam"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 60
+      }
+    }
+  ]
+}

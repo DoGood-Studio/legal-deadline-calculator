@@ -1,0 +1,24 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-sh",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Schleswig-Holstein",
+    "de": "Deutschland — Schleswig-Holstein"
+  },
+  "holidays": [
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day",
+        "de": "Reformationstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31
+      },
+      "since": 2018
+    }
+  ]
+}

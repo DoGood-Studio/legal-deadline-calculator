@@ -1,0 +1,36 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de-mv",
+  "extends": "de",
+  "name": {
+    "en": "Germany — Mecklenburg-Vorpommern",
+    "de": "Deutschland — Mecklenburg-Vorpommern"
+  },
+  "holidays": [
+    {
+      "id": "womens_day",
+      "name": {
+        "en": "International Women's Day",
+        "de": "Internationaler Frauentag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 3,
+        "day": 8
+      },
+      "since": 2023
+    },
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day",
+        "de": "Reformationstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 31
+      }
+    }
+  ]
+}

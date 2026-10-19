@@ -83,7 +83,8 @@ describe("bundled calendar vectors", () => {
 describe("bundled deadline vectors", () => {
   for (const c of collect("deadline")) {
     it(`${c._file}:${c.id}`, () => {
-      const run = () => compute(c.pack, c.trigger, c.period, { direction: c.direction ?? "after", options: c.options });
+      const run = () =>
+        compute(c.pack, c.trigger, c.period, { direction: c.direction ?? "after", options: c.options, calendar: c.calendar });
       if (c.error) return expectError(run, c.error);
       const result = run();
       const e = c.expect;

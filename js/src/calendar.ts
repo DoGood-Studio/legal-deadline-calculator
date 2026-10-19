@@ -77,7 +77,7 @@ interface HolidaySpec {
   until: number | null;
   exceptYears: ReadonlySet<number>;
   halfDayFrom: string | null;
-  observed: { shift: Record<string, number>; avoidCollision: boolean } | null;
+  observed: { shift: Record<string, number>; avoidCollision: boolean; kind: string | Record<string, string> | null } | null;
   parsedDates: readonly number[];
   source: string | null;
 }
@@ -160,7 +160,14 @@ function checkHolidaySpec(raw: unknown, where: string): HolidaySpec {
   }
   let observed: HolidaySpec["observed"] = null;
   if (spec.observed !== undefined && spec.observed !== null) {
-    const obs = checkKeys(spec.observed, new Set(["shift", "avoid_collision"]), `${here}.observed`);
+    const obs = checkKeys(spec.observed, new Set(["shift", "avoid_collision", "kind"]), `${here}.observed`);
+    const obsKind = obs.kind ?? null;
+    const kindsGiven = typeof obsKind === "string" ? [obsKind] : isObj(obsKind) ? Object.values(obsKind) : obsKind === null ? [] : [null];
+    for (const value of kindsGiven) {
+      if (typeof value !== "string" || !KIND.test(value)) {
+        throw new DataError(`${here}.observed.kind must be a kind or a {weekday: kind} object`);
+      }
+    }
     if (!isObj(obs.shift) || Object.keys(obs.shift).length === 0) {
       throw new DataError(`${here}.observed.shift must map ISO weekdays to day offsets`);
     }
@@ -169,7 +176,7 @@ function checkHolidaySpec(raw: unknown, where: string): HolidaySpec {
       checkInt(/^\d+$/.test(wd) ? Number(wd) : -1, `${here}.observed.shift key`, 1, 7);
       shift[wd] = checkInt(offset, `${here}.observed.shift[${wd}]`, -6, 6);
     }
-    observed = { shift, avoidCollision: Boolean(obs.avoid_collision) };
+    observed = { shift, avoidCollision: Boolean(obs.avoid_collision), kind: obsKind as string | Record<string, string> | null };
   }
   return {
     id: spec.id,
@@ -341,7 +348,8 @@ export class Calendar {
         while (this.weekend.has(D.isoWeekday(target)) || used.has(target)) target += step;
       }
       used.add(target);
-      observed.push({ ...h, day: target, date: D.formatISO(target), observedFrom: h.date });
+      const kind = typeof rule.kind === "string" ? rule.kind : rule.kind ? rule.kind[String(D.isoWeekday(h.day))] : undefined;
+      observed.push({ ...h, day: target, date: D.formatISO(target), observedFrom: h.date, kind: kind ?? h.kind });
     }
     const result = [...pairs.map((p) => p[0]), ...observed]
       .filter((h) => D.yearOf(h.day) === year)

@@ -1,0 +1,143 @@
+{
+  "$schema": "../../spec/calendar.schema.json",
+  "id": "de",
+  "name": {
+    "en": "Germany — nationwide public holidays",
+    "de": "Deutschland — bundesweite Feiertage"
+  },
+  "description": {
+    "en": "Holidays observed in every Land. Court deadlines depend on the holidays at the court's seat (BGH VI ZA 27/11): use the calendar of the Land (de-by, de-nw, ...) or municipality instead.",
+    "de": "In allen Ländern geltende Feiertage. Für Fristen zählen die Feiertage am Gerichtsort (BGH VI ZA 27/11): Kalender des Landes (de-by, de-nw, ...) oder der Gemeinde verwenden."
+  },
+  "timezone": "Europe/Berlin",
+  "weekend": [
+    6,
+    7
+  ],
+  "coverage": {
+    "from": 1995,
+    "to": 2035
+  },
+  "sources": [
+    {
+      "title": "Feiertagsgesetze der Länder (via python-holidays cross-check)",
+      "url": "https://github.com/vacanza/holidays/blob/main/holidays/countries/germany.py"
+    }
+  ],
+  "holidays": [
+    {
+      "id": "new_year",
+      "name": {
+        "en": "New Year's Day",
+        "de": "Neujahr"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 1,
+        "day": 1
+      }
+    },
+    {
+      "id": "good_friday",
+      "name": {
+        "en": "Good Friday",
+        "de": "Karfreitag"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": -2
+      }
+    },
+    {
+      "id": "easter_monday",
+      "name": {
+        "en": "Easter Monday",
+        "de": "Ostermontag"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 1
+      }
+    },
+    {
+      "id": "labour_day",
+      "name": {
+        "en": "Labour Day",
+        "de": "Tag der Arbeit"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 5,
+        "day": 1
+      }
+    },
+    {
+      "id": "ascension",
+      "name": {
+        "en": "Ascension Day",
+        "de": "Christi Himmelfahrt"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 39
+      }
+    },
+    {
+      "id": "whit_monday",
+      "name": {
+        "en": "Whit Monday",
+        "de": "Pfingstmontag"
+      },
+      "rule": {
+        "type": "easter",
+        "offset": 50
+      }
+    },
+    {
+      "id": "german_unity",
+      "name": {
+        "en": "Day of German Unity",
+        "de": "Tag der Deutschen Einheit"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 10,
+        "day": 3
+      }
+    },
+    {
+      "id": "christmas",
+      "name": {
+        "en": "Christmas Day",
+        "de": "Erster Weihnachtstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 25
+      }
+    },
+    {
+      "id": "st_stephen",
+      "name": {
+        "en": "Second Day of Christmas",
+        "de": "Zweiter Weihnachtstag"
+      },
+      "rule": {
+        "type": "fixed",
+        "month": 12,
+        "day": 26
+      }
+    }
+  ],
+  "one_off": [
+    {
+      "id": "reformation_day",
+      "name": {
+        "en": "Reformation Day (500th anniversary)",
+        "de": "Reformationstag (500. Jahrestag)"
+      },
+      "date": "2017-10-31"
+    }
+  ]
+}
