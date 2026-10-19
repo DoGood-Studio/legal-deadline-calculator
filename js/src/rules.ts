@@ -47,7 +47,7 @@ const STEP_KEYS: Record<string, ReadonlySet<string>> = Object.fromEntries(
 const CONDITION_KEYS = new Set([
   "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
   "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
-  "non_working_day", "all", "any", "not",
+  "non_working_day", "applied", "all", "any", "not",
 ]);
 
 // ------------------------------------------------------------------- results
@@ -365,6 +365,9 @@ export class RulePack {
     if ("non_working_day" in cond && typeof cond.non_working_day !== "boolean") {
       throw new DataError(`${where}.non_working_day must be true or false`);
     }
+    if ("applied" in cond && !(typeof cond.applied === "string" && cond.applied in STEP_KEYS)) {
+      throw new DataError(`${where}.applied must be a step type`);
+    }
     for (const key of ["all", "any"]) {
       if (key in cond) {
         const list = cond[key];
@@ -538,6 +541,7 @@ export class RulePack {
     if ("trigger_within" in cond && !(cond.trigger_within as Obj[]).some((w) => this.inWindow(w, served))) return false;
     if ("date_within" in cond && !(cond.date_within as Obj[]).some((w) => this.inWindow(w, current))) return false;
     if ("day_has" in cond && !this.dayHas(current, cond.day_has as string, ctx)) return false;
+    if ("applied" in cond && !ctx.trace.some((s) => s.step === cond.applied && s.changed)) return false;
     if ("non_working_day" in cond) {
       const reason = ctx.calendar.reasonOn(current, this.nonWorkingFor({ type: "condition" }, ctx));
       if ((reason !== null) !== cond.non_working_day) return false;

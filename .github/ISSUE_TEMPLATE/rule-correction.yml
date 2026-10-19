@@ -1,0 +1,54 @@
+name: Rule correction / Kural düzeltmesi
+description: A deadline or holiday is wrong, or a legal rule is described incorrectly. / Bir süre veya tatil yanlış ya da kural hatalı.
+title: "[rule] "
+labels: ["rule-correction"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you. Corrections backed by a statute article or a court decision are the most valuable contribution to this project.
+        Teşekkürler. Kanun maddesi veya mahkeme kararıyla desteklenen düzeltmeler bu projeye yapılabilecek en değerli katkıdır.
+  - type: input
+    id: pack
+    attributes:
+      label: Rule pack or calendar / Kural paketi veya takvim
+      placeholder: tr/hmk, us/frcp, gb-eaw ...
+    validations:
+      required: true
+  - type: textarea
+    id: input
+    attributes:
+      label: Input / Girdi
+      description: Trigger date, period, direction and options. / Başlangıç tarihi, süre, yön ve seçenekler.
+      placeholder: lexdays.compute("tr/hmk", "2026-07-30", "P2W", options={...})
+    validations:
+      required: true
+  - type: input
+    id: got
+    attributes:
+      label: Result from lexdays / lexdays sonucu
+    validations:
+      required: true
+  - type: input
+    id: expected
+    attributes:
+      label: Correct result / Doğru sonuç
+    validations:
+      required: true
+  - type: textarea
+    id: source
+    attributes:
+      label: Legal source / Hukuki dayanak
+      description: Statute article, court decision (court, case number, date) or official calendar, ideally with a link. / Kanun maddesi, karar (mahkeme, esas/karar no, tarih) veya resmî takvim; mümkünse bağlantıyla.
+    validations:
+      required: true
+  - type: dropdown
+    id: settled
+    attributes:
+      label: Is the point settled? / Konu yerleşik mi?
+      options:
+        - Settled case law or clear statute / Yerleşik içtihat veya açık kanun hükmü
+        - Disputed: courts disagree / Tartışmalı, kararlar farklı
+        - Not sure / Emin değilim
+    validations:
+      required: true

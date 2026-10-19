@@ -1,0 +1,36 @@
+name: New jurisdiction or calendar
+description: Propose a rule pack or holiday calendar for another country, court or region.
+title: "[jurisdiction] "
+labels: ["jurisdiction"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Jurisdiction / court / region
+      placeholder: "Spain — civil procedure (LEC 133-136)"
+    validations:
+      required: true
+  - type: textarea
+    id: rules
+    attributes:
+      label: Deadline rules and their sources
+      description: How periods are counted, what happens on a non-working last day, recesses, service rules. Link the statute.
+    validations:
+      required: true
+  - type: textarea
+    id: holidays
+    attributes:
+      label: Holiday data sources
+      description: Official calendar or statute for public holidays, and how far ahead it is published.
+  - type: textarea
+    id: examples
+    attributes:
+      label: Worked examples
+      description: Real cases or official examples (date of service, period, last day) that can become test vectors.
+  - type: checkboxes
+    id: help
+    attributes:
+      label: Can you help?
+      options:
+        - label: I can write the rule pack
+        - label: I can review it (I practise law in this jurisdiction)

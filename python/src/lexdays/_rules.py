@@ -56,7 +56,7 @@ _STEP_KEYS = {
 _CONDITION_KEYS = {
     "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
     "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
-    "non_working_day", "all", "any", "not",
+    "non_working_day", "applied", "all", "any", "not",
 }
 
 
@@ -385,6 +385,8 @@ class RulePack:
             raise DataError(f"{where}.day_has must be 'half_day' or a holiday kind")
         if "non_working_day" in cond and not isinstance(cond["non_working_day"], bool):
             raise DataError(f"{where}.non_working_day must be true or false")
+        if "applied" in cond and cond["applied"] not in _STEP_KEYS:
+            raise DataError(f"{where}.applied must be a step type")
         for key in ("all", "any"):
             if key in cond:
                 if not isinstance(cond[key], list) or not cond[key]:
@@ -572,6 +574,8 @@ class RulePack:
         ):
             return False
         if "day_has" in cond and not self._day_has(current, cond["day_has"], ctx):
+            return False
+        if "applied" in cond and not any(s.step == cond["applied"] and s.changed for s in ctx.trace):
             return False
         if "non_working_day" in cond:
             reason = ctx.cal.non_working_reason(current, **self._nw({}, ctx))

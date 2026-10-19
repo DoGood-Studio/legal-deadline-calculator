@@ -126,12 +126,20 @@ def test_rolling_packs_never_end_on_a_non_working_day(pd: tuple[str, date], peri
 @settings(max_examples=500)
 @given(pack_and_date, periods)
 def test_later_trigger_never_gives_an_earlier_deadline(pd: tuple[str, date], period: Period) -> None:
+    """Monotonicity, except at the end of a judicial recess.
+
+    There the law itself breaks it: under HMK 104 a 2-week period from 17
+    August 2026 ends on 31 August, inside the recess, and is extended to
+    8 September, while the same period from 18 August ends on 1 September.
+    """
     pack_id, trigger = pd
     if pack_id == "gb-eaw/cpr" and period.unit == "business_day":
         return
-    a = _compute(pack_id, trigger, period).deadline
-    b = _compute(pack_id, trigger + timedelta(days=1), period).deadline
-    assert b >= a
+    a = _compute(pack_id, trigger, period)
+    b = _compute(pack_id, trigger + timedelta(days=1), period)
+    extended = any(s.step == "recess" and s.changed for s in a.trace)
+    if not extended:
+        assert b.deadline >= a.deadline
 
 
 @given(st.dates(min_value=date(10, 1, 1), max_value=date(9990, 12, 31)), st.integers(-60, 60))

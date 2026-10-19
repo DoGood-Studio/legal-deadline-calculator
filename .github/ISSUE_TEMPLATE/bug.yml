@@ -1,0 +1,37 @@
+name: Bug report
+description: The library, CLI or demo page does not behave as documented.
+title: "[bug] "
+labels: ["bug"]
+body:
+  - type: dropdown
+    id: package
+    attributes:
+      label: Package
+      options: [Python, TypeScript / JavaScript, CLI, Demo page]
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version
+      placeholder: "0.1.0"
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Minimal code to reproduce
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What did you expect, and what happened?
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Environment
+      placeholder: "Python 3.13 on Windows 11 / Node 24 on macOS"

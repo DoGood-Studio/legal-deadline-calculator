@@ -111,6 +111,8 @@ describe("deadline properties", () => {
     );
   });
 
+  // Except at the end of a judicial recess, where the law itself breaks monotonicity
+  // (HMK 104: 2 weeks from 17 Aug 2026 -> 8 Sep, from 18 Aug 2026 -> 1 Sep).
   it("a later trigger never gives an earlier deadline", () => {
     fc.assert(
       fc.property(packAndDate(ALL_PACKS), periods, ([pack, trigger], period) => {
@@ -118,6 +120,7 @@ describe("deadline properties", () => {
         const a = tryCompute(pack, trigger, period);
         const b = tryCompute(pack, formatISO(parseDate(trigger) + 1), period);
         if (!a || !b) return;
+        if (a.trace.some((s) => s.step === "recess" && s.changed)) return;
         expect(b.deadline >= a.deadline).toBe(true);
       }),
       { numRuns: 500 },

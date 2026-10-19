@@ -70,6 +70,7 @@
         "date_within": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/window" } },
         "day_has": { "type": "string", "description": "'half_day' or a holiday kind such as 'administrative'." },
         "non_working_day": { "type": "boolean" },
+        "applied": { "enum": ["shift_trigger", "count", "recess", "roll", "add_days", "ends_at", "notice"], "description": "True when an earlier step of this type changed the date." },
         "all": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condition" } },
         "any": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condition" } },
         "not": { "$ref": "#/$defs/condition" }
