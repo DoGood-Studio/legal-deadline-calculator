@@ -1,0 +1,137 @@
+{
+  "languages": ["en", "tr"],
+  "date_format": {
+    "en": "{iso} ({weekday})",
+    "tr": "{dd}.{mm}.{yyyy} {weekday}"
+  },
+  "weekdays": {
+    "en": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "tr": ["Pazartesi", "Salı", "Çarşamba", "Perşembe", "Cuma", "Cumartesi", "Pazar"]
+  },
+  "messages": {
+    "shift_trigger": {
+      "en": "Start date moved by {days} day(s): {from} → {to}.",
+      "tr": "Başlangıç tarihi {days} gün kaydırıldı: {from} → {to}."
+    },
+    "count.day": {
+      "en": "Counted {n} day(s) from {from}, not counting the start day: {to}.",
+      "tr": "{from} tarihinden itibaren, başlangıç günü sayılmadan {n} gün sayıldı: {to}."
+    },
+    "count.day.inclusive": {
+      "en": "Counted {n} day(s) starting on {from}, counting the start day: {to}.",
+      "tr": "{from} günü de sayılarak {n} gün sayıldı: {to}."
+    },
+    "count.day.clear": {
+      "en": "Counted {n} clear day(s) from {from} (neither the start day nor the end day counts): {to}.",
+      "tr": "{from} tarihinden itibaren {n} tam gün sayıldı (başlangıç ve bitiş günü sayılmaz): {to}."
+    },
+    "count.day.before": {
+      "en": "Counted {n} day(s) back from {from}: {to}.",
+      "tr": "{from} tarihinden geriye doğru {n} gün sayıldı: {to}."
+    },
+    "count.day.before.clear": {
+      "en": "Counted {n} clear day(s) back from {from} (neither {from} nor the deadline day counts): {to}.",
+      "tr": "{from} tarihinden geriye doğru {n} tam gün sayıldı (iki uç gün de sayılmaz): {to}."
+    },
+    "count.week": {
+      "en": "{n} week(s) from {from} end on the same weekday of the last week: {to}.",
+      "tr": "{from} tarihinden itibaren {n} hafta, son haftada aynı adı taşıyan günde biter: {to}."
+    },
+    "count.week.before": {
+      "en": "{n} week(s) back from {from}: {to}.",
+      "tr": "{from} tarihinden geriye doğru {n} hafta: {to}."
+    },
+    "count.month": {
+      "en": "{n} month(s) from {from} end on the corresponding day of the last month: {to}.",
+      "tr": "{from} tarihinden itibaren {n} ay, son ayda karşılık gelen günde biter: {to}."
+    },
+    "count.month.clamped": {
+      "en": "{n} month(s) from {from}: the last month has no corresponding day, so the period ends on that month's last day: {to}.",
+      "tr": "{from} tarihinden itibaren {n} ay: son ayda karşılık gelen gün bulunmadığından süre o ayın son günü biter: {to}."
+    },
+    "count.month.before": {
+      "en": "{n} month(s) back from {from}: {to}.",
+      "tr": "{from} tarihinden geriye doğru {n} ay: {to}."
+    },
+    "count.year": {
+      "en": "{n} year(s) from {from} end on the corresponding day of the last year: {to}.",
+      "tr": "{from} tarihinden itibaren {n} yıl, son yılda karşılık gelen günde biter: {to}."
+    },
+    "count.year.clamped": {
+      "en": "{n} year(s) from {from}: the last year has no 29 February, so the period ends on 28 February: {to}.",
+      "tr": "{from} tarihinden itibaren {n} yıl: son yılda 29 Şubat bulunmadığından süre 28 Şubat'ta biter: {to}."
+    },
+    "count.year.before": {
+      "en": "{n} year(s) back from {from}: {to}.",
+      "tr": "{from} tarihinden geriye doğru {n} yıl: {to}."
+    },
+    "count.business_day": {
+      "en": "Counted {n} working day(s) from {from}, skipping non-working days: {to}.",
+      "tr": "{from} tarihinden itibaren, çalışılmayan günler atlanarak {n} iş günü sayıldı: {to}."
+    },
+    "count.business_day.before": {
+      "en": "Counted {n} working day(s) back from {from}, skipping non-working days: {to}.",
+      "tr": "{from} tarihinden geriye doğru, çalışılmayan günler atlanarak {n} iş günü sayıldı: {to}."
+    },
+    "recess.extend": {
+      "en": "{from} falls within the {recess} ({start} – {end}); the period is extended by {days} day(s) counted from the end of the recess: {to}.",
+      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre tatilin bittiği günden itibaren {days} gün uzar: {to}."
+    },
+    "recess.extend.next_day": {
+      "en": "{from} falls within the {recess} ({start} – {end}); the period is extended by {days} day(s) counted from {next}, the day after the recess ends: {to}.",
+      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre, tatilin bitimini izleyen {next} tarihinden itibaren {days} gün uzar: {to}."
+    },
+    "recess.outside": {
+      "en": "{from} is outside the {recess}; no extension applies.",
+      "tr": "{from}, {recess} dışında; uzatma uygulanmaz."
+    },
+    "recess.suspend": {
+      "en": "{days} day(s) of the {recess} fall inside the period and are not counted: {from} → {to}.",
+      "tr": "Süre içine düşen {days} günlük {recess} sayılmaz: {from} → {to}."
+    },
+    "roll.forward": {
+      "en": "{from} is not a working day ({reason}); the period ends on the next working day: {to}.",
+      "tr": "{from} iş günü değil ({reason}); süre izleyen ilk iş günü biter: {to}."
+    },
+    "roll.backward": {
+      "en": "{from} is not a working day ({reason}); the deadline moves back to the previous working day: {to}.",
+      "tr": "{from} iş günü değil ({reason}); süre önceki ilk iş gününe çekilir: {to}."
+    },
+    "roll.none": {
+      "en": "{from} is a working day; no adjustment needed.",
+      "tr": "{from} iş günü; düzeltme gerekmez."
+    },
+    "add_days": {
+      "en": "{days} day(s) added: {from} → {to}.",
+      "tr": "{days} gün eklendi: {from} → {to}."
+    },
+    "ends_at": {
+      "en": "On the last day the period ends at {time}.",
+      "tr": "Süre son günün {time} saatinde sona erer."
+    },
+    "holiday.observed": {
+      "en": "{name} (observed)",
+      "tr": "{name} (telafi günü)"
+    },
+    "reason.weekend": {
+      "en": "weekend",
+      "tr": "hafta sonu"
+    },
+    "reason.half_day": {
+      "en": "{holiday}, non-working from {time}",
+      "tr": "{holiday}, saat {time} itibarıyla tatil"
+    },
+    "explain.deadline": {
+      "en": "Deadline: {date}",
+      "tr": "Son gün: {date}"
+    },
+    "explain.ends_at": {
+      "en": "Ends at: {time}",
+      "tr": "Bitiş saati: {time}"
+    },
+    "explain.warning": {
+      "en": "Note: {text}",
+      "tr": "Not: {text}"
+    }
+  }
+}

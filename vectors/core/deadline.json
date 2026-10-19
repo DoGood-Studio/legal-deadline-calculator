@@ -1,0 +1,1075 @@
+{
+  "description": "Engine conformance vectors for rule packs. Uses the fixture calendar from calendar.json. Expected deadlines were derived by hand.",
+  "uses_calendars_from": "calendar.json",
+  "rulepacks": {
+    "fx/civil": {
+      "id": "fx/civil",
+      "name": {
+        "en": "Fixture civil procedure",
+        "tr": "Test hukuk usulü"
+      },
+      "calendar": "fx",
+      "options": {
+        "service": {
+          "values": [
+            "personal",
+            "electronic"
+          ],
+          "default": "personal"
+        },
+        "eve_rule": {
+          "values": [
+            "working",
+            "non_working"
+          ],
+          "default": "working"
+        },
+        "filing": {
+          "values": [
+            "paper",
+            "electronic"
+          ],
+          "default": "paper"
+        }
+      },
+      "non_working": {
+        "half_days": {
+          "$option": "eve_rule"
+        }
+      },
+      "citations": {
+        "count": {
+          "label": {
+            "en": "Art. 1",
+            "tr": "m.1"
+          }
+        },
+        "recess": {
+          "label": {
+            "en": "Art. 2",
+            "tr": "m.2"
+          }
+        },
+        "roll": {
+          "label": {
+            "en": "Art. 3",
+            "tr": "m.3"
+          }
+        },
+        "service": {
+          "label": {
+            "en": "Art. 4",
+            "tr": "m.4"
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": "shift_trigger",
+          "days": 5,
+          "when": {
+            "option": "service",
+            "equals": "electronic"
+          },
+          "cite": "service"
+        },
+        {
+          "type": "count",
+          "cite": "count"
+        },
+        {
+          "type": "recess",
+          "name": {
+            "en": "summer recess",
+            "tr": "yaz tatili"
+          },
+          "periods": [
+            {
+              "start": "07-20",
+              "end": "08-31"
+            }
+          ],
+          "mode": "extend",
+          "extension_days": 7,
+          "cite": "recess"
+        },
+        {
+          "type": "roll",
+          "cite": "roll"
+        },
+        {
+          "type": "ends_at",
+          "time": "23:59",
+          "when": {
+            "option": "filing",
+            "equals": "electronic"
+          }
+        },
+        {
+          "type": "notice",
+          "code": "eve-disputed",
+          "text": {
+            "en": "Eve rule is disputed.",
+            "tr": "Arife kuralı tartışmalı."
+          },
+          "when": {
+            "option": "eve_rule",
+            "equals": "non_working"
+          }
+        }
+      ]
+    },
+    "fx/clear": {
+      "id": "fx/clear",
+      "name": {
+        "en": "Fixture clear-days rules"
+      },
+      "calendar": "fx",
+      "steps": [
+        {
+          "type": "count",
+          "business_days": true,
+          "when": {
+            "unit": "day",
+            "max_amount": 5
+          }
+        },
+        {
+          "type": "count",
+          "clear_days": true,
+          "when": {
+            "not": {
+              "unit": "day",
+              "max_amount": 5
+            }
+          }
+        },
+        {
+          "type": "roll"
+        }
+      ]
+    },
+    "fx/inclusive": {
+      "id": "fx/inclusive",
+      "name": {
+        "en": "Fixture inclusive counting"
+      },
+      "calendar": "fx",
+      "steps": [
+        {
+          "type": "count",
+          "exclude_start_day": false
+        },
+        {
+          "type": "roll"
+        }
+      ]
+    },
+    "fx/suspend": {
+      "id": "fx/suspend",
+      "name": {
+        "en": "Fixture suspension"
+      },
+      "calendar": "fx",
+      "steps": [
+        {
+          "type": "count"
+        },
+        {
+          "type": "recess",
+          "name": {
+            "en": "August suspension"
+          },
+          "periods": [
+            {
+              "start": "08-01",
+              "end": "08-31"
+            }
+          ],
+          "mode": "suspend"
+        },
+        {
+          "type": "roll"
+        }
+      ]
+    },
+    "fx/winter": {
+      "id": "fx/winter",
+      "name": {
+        "en": "Fixture winter recess"
+      },
+      "calendar": "fx",
+      "steps": [
+        {
+          "type": "count"
+        },
+        {
+          "type": "recess",
+          "name": {
+            "en": "winter recess"
+          },
+          "periods": [
+            {
+              "start": "12-20",
+              "end": "01-10"
+            }
+          ],
+          "mode": "extend",
+          "extension_days": 3
+        },
+        {
+          "type": "roll"
+        }
+      ]
+    },
+    "fx/mail": {
+      "id": "fx/mail",
+      "name": {
+        "en": "Fixture add-on days"
+      },
+      "calendar": "fx",
+      "options": {
+        "service": {
+          "values": [
+            "electronic",
+            "mail"
+          ],
+          "default": "electronic"
+        }
+      },
+      "steps": [
+        {
+          "type": "count"
+        },
+        {
+          "type": "roll"
+        },
+        {
+          "type": "add_days",
+          "days": 3,
+          "when": {
+            "option": "service",
+            "equals": "mail"
+          }
+        },
+        {
+          "type": "roll",
+          "when": {
+            "option": "service",
+            "equals": "mail"
+          }
+        }
+      ]
+    },
+    "fx/versioned": {
+      "id": "fx/versioned",
+      "name": {
+        "en": "Fixture versioned rules"
+      },
+      "calendar": "fx",
+      "steps": [
+        {
+          "type": "count",
+          "when": {
+            "trigger_before": "2026-06-01"
+          }
+        },
+        {
+          "type": "count",
+          "business_days": true,
+          "when": {
+            "trigger_from": "2026-06-01"
+          }
+        },
+        {
+          "type": "recess",
+          "name": {
+            "en": "summer recess",
+            "tr": "yaz tatili"
+          },
+          "periods": [
+            {
+              "start": "07-20",
+              "end": "08-31"
+            }
+          ],
+          "extension_days": 7,
+          "count_from": "day_after_end"
+        },
+        {
+          "type": "roll"
+        },
+        {
+          "type": "notice",
+          "code": "rolled-into-recess",
+          "text": {
+            "en": "The last day was moved into the recess.",
+            "tr": "Son gün tatil dönemine kaydı."
+          },
+          "when": {
+            "date_within": [
+              {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "plain-7-days",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-03-17",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "ends-on-half-day-eve-working",
+      "pack": "fx/civil",
+      "trigger": "2026-03-12",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-03-19",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "ends-on-half-day-eve-non-working",
+      "pack": "fx/civil",
+      "trigger": "2026-03-12",
+      "period": "P7D",
+      "options": {
+        "eve_rule": "non_working"
+      },
+      "expect": {
+        "deadline": "2026-03-23",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "notices": [
+          "eve-disputed"
+        ]
+      }
+    },
+    {
+      "id": "one-week-lands-on-feast",
+      "pack": "fx/civil",
+      "trigger": "2026-03-13",
+      "period": "P1W",
+      "expect": {
+        "deadline": "2026-03-23",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "before-recess",
+      "pack": "fx/civil",
+      "trigger": "2026-07-01",
+      "period": "P2W",
+      "expect": {
+        "deadline": "2026-07-15",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "ends-inside-recess-extended",
+      "pack": "fx/civil",
+      "trigger": "2026-07-10",
+      "period": "P2W",
+      "expect": {
+        "deadline": "2026-09-07",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "ends-day-after-recess",
+      "pack": "fx/civil",
+      "trigger": "2026-08-25",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-09-01",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "month-end-clamp-then-weekend",
+      "pack": "fx/civil",
+      "trigger": "2026-01-31",
+      "period": "P1M",
+      "expect": {
+        "deadline": "2026-03-02",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "leap-day-plus-one-year",
+      "pack": "fx/civil",
+      "trigger": "2024-02-29",
+      "period": "P1Y",
+      "expect": {
+        "deadline": "2025-02-28",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "electronic-service-shift",
+      "pack": "fx/civil",
+      "trigger": "2026-03-02",
+      "period": "P7D",
+      "options": {
+        "service": "electronic"
+      },
+      "expect": {
+        "deadline": "2026-03-16",
+        "steps": [
+          "shift_trigger",
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          false,
+          true
+        ]
+      }
+    },
+    {
+      "id": "electronic-filing-end-time",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "P7D",
+      "options": {
+        "filing": "electronic"
+      },
+      "expect": {
+        "deadline": "2026-03-17",
+        "ends_at": "23:59",
+        "steps": [
+          "count",
+          "recess",
+          "roll",
+          "ends_at"
+        ]
+      }
+    },
+    {
+      "id": "backwards-rolls-back",
+      "pack": "fx/civil",
+      "trigger": "2026-03-24",
+      "period": "P2D",
+      "direction": "before",
+      "expect": {
+        "deadline": "2026-03-19",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "business-day-period",
+      "pack": "fx/civil",
+      "trigger": "2026-03-18",
+      "period": "2bd",
+      "expect": {
+        "deadline": "2026-03-23",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "year-end-observed-holiday",
+      "pack": "fx/civil",
+      "trigger": "2026-12-18",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-12-29",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "string-period-words",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "7 days",
+      "expect": {
+        "deadline": "2026-03-17"
+      }
+    },
+    {
+      "id": "string-period-turkish",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "7 gün",
+      "expect": {
+        "deadline": "2026-03-17"
+      }
+    },
+    {
+      "id": "short-period-counts-business-days",
+      "pack": "fx/clear",
+      "trigger": "2026-03-18",
+      "period": "P3D",
+      "expect": {
+        "deadline": "2026-03-24",
+        "steps": [
+          "count",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "clear-days-forward",
+      "pack": "fx/clear",
+      "trigger": "2026-03-02",
+      "period": "P6D",
+      "expect": {
+        "deadline": "2026-03-09",
+        "steps": [
+          "count",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "clear-days-backward",
+      "pack": "fx/clear",
+      "trigger": "2026-03-13",
+      "period": "P6D",
+      "direction": "before",
+      "expect": {
+        "deadline": "2026-03-06",
+        "steps": [
+          "count",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "inclusive-counting",
+      "pack": "fx/inclusive",
+      "trigger": "2026-03-02",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-03-09",
+        "steps": [
+          "count",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "suspend-period-crossing-august",
+      "pack": "fx/suspend",
+      "trigger": "2026-07-20",
+      "period": "P30D",
+      "expect": {
+        "deadline": "2026-09-21",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "suspend-period-starting-in-august",
+      "pack": "fx/suspend",
+      "trigger": "2026-08-10",
+      "period": "P10D",
+      "expect": {
+        "deadline": "2026-09-10",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "recess-spanning-new-year",
+      "pack": "fx/winter",
+      "trigger": "2026-12-01",
+      "period": "P30D",
+      "expect": {
+        "deadline": "2027-01-13",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "after-winter-recess",
+      "pack": "fx/winter",
+      "trigger": "2026-12-15",
+      "period": "P30D",
+      "expect": {
+        "deadline": "2027-01-14",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "mail-add-on-then-roll",
+      "pack": "fx/mail",
+      "trigger": "2026-03-04",
+      "period": "P10D",
+      "options": {
+        "service": "mail"
+      },
+      "expect": {
+        "deadline": "2026-03-19",
+        "steps": [
+          "count",
+          "roll",
+          "add_days",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "mail-not-selected",
+      "pack": "fx/mail",
+      "trigger": "2026-03-04",
+      "period": "P10D",
+      "expect": {
+        "deadline": "2026-03-16",
+        "steps": [
+          "count",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "versioned-old-rule-calendar-days",
+      "pack": "fx/versioned",
+      "trigger": "2026-05-20",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-05-27",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "versioned-new-rule-business-days",
+      "pack": "fx/versioned",
+      "trigger": "2026-06-02",
+      "period": "P3D",
+      "expect": {
+        "deadline": "2026-06-05",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ]
+      }
+    },
+    {
+      "id": "recess-extension-counted-from-next-day",
+      "pack": "fx/versioned",
+      "trigger": "2026-05-28",
+      "period": "P2M",
+      "expect": {
+        "deadline": "2026-09-08",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "roll-into-recess-raises-notice",
+      "pack": "fx/versioned",
+      "trigger": "2026-05-19",
+      "period": "P2M",
+      "expect": {
+        "deadline": "2026-07-20",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          false,
+          true
+        ],
+        "notices": [
+          "rolled-into-recess"
+        ]
+      }
+    },
+    {
+      "id": "pack-bad-trigger-date",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "trigger_from": "2026-13-01"
+            }
+          }
+        ]
+      },
+      "error": "ValueError"
+    },
+    {
+      "id": "pack-bad-count-from",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [
+              {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            ],
+            "extension_days": 7,
+            "count_from": "tomorrow"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "unknown-option",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "P7D",
+      "options": {
+        "servise": "electronic"
+      },
+      "error": "OptionError"
+    },
+    {
+      "id": "invalid-option-value",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "P7D",
+      "options": {
+        "service": "fax"
+      },
+      "error": "OptionError"
+    },
+    {
+      "id": "zero-period",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "P0D",
+      "error": "ValueError"
+    },
+    {
+      "id": "garbage-period",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "10x",
+      "error": "ValueError"
+    },
+    {
+      "id": "bad-direction",
+      "pack": "fx/civil",
+      "trigger": "2026-03-10",
+      "period": "P7D",
+      "direction": "sideways",
+      "error": "ValueError"
+    },
+    {
+      "id": "beyond-calendar-coverage",
+      "pack": "fx/civil",
+      "trigger": "2030-12-20",
+      "period": "P30D",
+      "error": "CoverageError"
+    },
+    {
+      "id": "pack-unknown-step",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "teleport"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-without-count",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "roll"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-unknown-citation",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "cite": "nope"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-impossible-condition",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "options": {
+          "a": {
+            "values": [
+              "x",
+              "y"
+            ],
+            "default": "x"
+          }
+        },
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "option": "a",
+              "equals": "z"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-shift-after-count",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "shift_trigger",
+            "days": 5
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-bad-recess-date",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [
+              {
+                "start": "02-30",
+                "end": "03-10"
+              }
+            ],
+            "extension_days": 1
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-unknown-field",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "stpes": []
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-two-counts-match",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "trigger": "2026-03-10",
+      "period": "P7D",
+      "error": "DataError"
+    }
+  ]
+}

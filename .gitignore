@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+.coverage
+coverage.xml
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# JavaScript
+node_modules/
+js/dist/
+js/coverage/
+js/src/data.generated.ts
+site/assets/lexdays.js
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
