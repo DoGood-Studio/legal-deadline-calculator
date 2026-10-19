@@ -1,0 +1,59 @@
+name: Source watch
+
+# Reads every official source the rule packs and calendars cite, looks for a new Court of Justice
+# holiday list on EUR-Lex and for relevant items in the Resmî Gazete, and opens (or comments on)
+# one issue labelled source-watch when something needs a person to look at it.
+# It never changes data: see scripts/watch_sources.py.
+
+on:
+  schedule:
+    - cron: "41 6 * * 1" # weekly, Monday morning (UTC)
+  workflow_dispatch:
+    inputs:
+      always_report:
+        description: Post the report to the source-watch issue even when nothing needs review
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: source-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    name: Official sources
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@1c37ad07a6a961277cf70c0d37d6f313000f5884 # v10.3.0
+        with:
+          python-version: "3.13"
+      - name: Read the sources, EUR-Lex and the Resmî Gazete
+        id: watch
+        run: uv run --project python --with pypdf==6.19.0 python scripts/watch_sources.py --report "$RUNNER_TEMP/report.md"
+      - name: Show the report on the run page
+        run: cat "$RUNNER_TEMP/report.md" >> "$GITHUB_STEP_SUMMARY"
+      - name: Open or comment on the source-watch issue
+        if: steps.watch.outputs.has_findings == 'true' || inputs.always_report
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          gh label create source-watch --color D93F0B --force \
+            --description "The weekly source watch found something to review"
+          number=$(gh issue list --label source-watch --state open --limit 1 --json number --jq '.[0].number // empty')
+          if [ -n "$number" ]; then
+            gh issue comment "$number" --body-file "$RUNNER_TEMP/report.md"
+          else
+            gh issue create --label source-watch --body-file "$RUNNER_TEMP/report.md" \
+              --title "Source watch: official sources to review / Kontrol edilecek resmî kaynaklar"
+          fi

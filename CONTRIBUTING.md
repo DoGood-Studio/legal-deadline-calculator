@@ -45,6 +45,14 @@ curl -fsSL https://www.gov.uk/bank-holidays.json -o /tmp/bank-holidays.json
 uv run --project python --with holidays python scripts/crosscheck_calendars.py --govuk /tmp/bank-holidays.json
 ```
 
+To check the official sources behind the data (the weekly `Source watch` workflow does this and opens an issue labelled `source-watch` when it finds something):
+
+```bash
+uv run --project python --with pypdf==6.19.0 python scripts/watch_sources.py
+```
+
+The watcher never changes data. After reviewing its report and fixing the data where a source really changed, run it again with `--accept` and commit `scripts/source-fingerprints.json`, so the same change is not reported again. Accepting also records that the sources it cannot read by itself were checked by hand.
+
 ## Adding a jurisdiction
 
 1. Add or reuse a calendar in `data/calendars/<id>.json` (schema: `spec/calendar.schema.json`).

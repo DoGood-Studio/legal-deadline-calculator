@@ -1,0 +1,150 @@
+{
+  "sources": {
+    "http://data.europa.eu/eli/C/2024/2123/oj": {
+      "fingerprint": "a706dff996969fb5"
+    },
+    "http://data.europa.eu/eli/C/2025/1569/oj": {
+      "fingerprint": "192b9ec1d7dfe5da"
+    },
+    "http://data.europa.eu/eli/C/2026/1114/oj": {
+      "fingerprint": "f0451029a2a66011"
+    },
+    "http://data.europa.eu/eli/dec/2024/2490/oj": {
+      "fingerprint": "cb9988769c21351d"
+    },
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)": {
+      "fingerprint": "acfe68460c26054f"
+    },
+    "https://github.com/vacanza/holidays/blob/main/holidays/countries/germany.py": {
+      "fingerprint": "9ddb9c87a33b652f"
+    },
+    "https://revosax.sachsen.de/vorschrift/3997-SaechsSFG": {
+      "fingerprint": "255d4d21313d1f37"
+    },
+    "https://revosax.sachsen.de/vorschrift/4142": {
+      "fingerprint": "50847d143d7f66f7"
+    },
+    "https://vakithesaplama.diyanet.gov.tr/dinigunler.php": {
+      "fingerprint": "abcff937b8f36c0d"
+    },
+    "https://www.archives.gov/federal-register/codification/executive-order/11582.html": {
+      "fingerprint": "e0ac3f98ba00d0f5"
+    },
+    "https://www.berlin.de/aktuelles/9188766-958090-einmaliger-feiertag-am-8-mai-2025.html": {
+      "fingerprint": "9e0d2e40ffaccc0f"
+    },
+    "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2011/VI_ZA__27-11.pdf?__blob=publicationFile&v=1": {
+      "fingerprint": "a564edfdcfeaec87"
+    },
+    "https://www.gesetzblatt.bremen.de/fastmedia/218/2018_06_28_GBl_Nr_0063_signed.pdf": {
+      "fingerprint": "34c346ee4cf9a353"
+    },
+    "https://www.gesetze-bayern.de/Content/Document/BayFTG-1": {
+      "fingerprint": "86560171a87e96f2"
+    },
+    "https://www.gov.uk/bank-holidays": {
+      "fingerprint": "fbef0671928869ff"
+    },
+    "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02": {
+      "fingerprint": "dec2964eb7777870"
+    },
+    "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part02/pd_part02a": {
+      "fingerprint": "b67142e325b49fc8"
+    },
+    "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part05/pd_part05b": {
+      "fingerprint": "572b4fe71b65aa6a"
+    },
+    "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part06": {
+      "fingerprint": "901fa6a3455e8b5a"
+    },
+    "https://www.law.cornell.edu/rules/frcp/rule_6": {
+      "fingerprint": "3d2b4d7fd02c96e6"
+    },
+    "https://www.law.cornell.edu/uscode/text/5/6103": {
+      "fingerprint": "0c20d07a06e95c15"
+    },
+    "https://www.legislation.gov.uk/ukpga/1971/80": {
+      "fingerprint": "df09710ac4e219f6"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf": {
+      "fingerprint": "17c40b8c23ed0aaa"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.7201.pdf": {
+      "fingerprint": "7253360a9568e624"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf": {
+      "fingerprint": "76589c51179a9431"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2429.pdf": {
+      "fingerprint": "f791fed3503bfe9e"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf": {
+      "fingerprint": "0261b00d88118b40"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf": {
+      "fingerprint": "f964f5e52fe24be9"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf": {
+      "fingerprint": "064a211de99e5c31"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6216.pdf": {
+      "fingerprint": "faa8da8ed406bcec"
+    },
+    "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.657.pdf": {
+      "fingerprint": "cfac0cbf2dece4a3"
+    },
+    "https://www.resmigazete.gov.tr/eskiler/2020/03/20200326M1-1.htm": {
+      "fingerprint": "6d71c52862f13090"
+    },
+    "https://www.statistik.bayern.de/statistik/gebiet_bevoelkerung/zensus/himmelfahrt/index.php": {
+      "fingerprint": "d224bf2885e53423"
+    }
+  },
+  "quotes": {
+    "de/zpo bgh_vi_za_27_11 [de]": 1.0,
+    "eu/cj ecuria_7 [en]": 1.0,
+    "eu/cj rp_49 [en]": 1.0,
+    "eu/cj rp_49_2 [en]": 1.0,
+    "eu/cj rp_50 [en]": 1.0,
+    "eu/cj rp_51 [en]": 1.0,
+    "gb-eaw/cpr cpr_2_10 [en]": 1.0,
+    "gb-eaw/cpr cpr_2_8_1 [en]": 1.0,
+    "gb-eaw/cpr cpr_2_8_3 [en]": 1.0,
+    "gb-eaw/cpr cpr_2_8_4 [en]": 1.0,
+    "gb-eaw/cpr cpr_2_8_5 [en]": 1.0,
+    "gb-eaw/cpr cpr_6_14 [en]": 1.0,
+    "gb-eaw/cpr cpr_6_26 [en]": 1.0,
+    "gb-eaw/cpr pd_2a [en]": 0.823,
+    "gb-eaw/cpr pd_5b_4_2 [en]": 1.0,
+    "tr/aym law_6216_47 [tr]": 1.0,
+    "tr/cmk cmk_331 [tr]": 1.0,
+    "tr/cmk cmk_38a [tr]": 1.0,
+    "tr/cmk cmk_39 [tr]": 1.0,
+    "tr/cmk cmk_39_4 [tr]": 1.0,
+    "tr/cmk tk_7a [tr]": 1.0,
+    "tr/hmk hmk_104 [tr]": 1.0,
+    "tr/hmk hmk_445 [tr]": 1.0,
+    "tr/hmk hmk_92 [tr]": 1.0,
+    "tr/hmk hmk_93 [tr]": 1.0,
+    "tr/hmk tk_7a [tr]": 1.0,
+    "tr/iik iik_19 [tr]": 0.945,
+    "tr/iik iik_8a [tr]": 1.0,
+    "tr/iik tk_7a [tr]": 1.0,
+    "tr/iyuk hmk_445 [tr]": 1.0,
+    "tr/iyuk iyuk_8_1 [tr]": 1.0,
+    "tr/iyuk iyuk_8_2 [tr]": 1.0,
+    "tr/iyuk iyuk_8_3 [tr]": 1.0,
+    "tr/iyuk tk_7a [tr]": 1.0,
+    "tr/vuk vuk_107a [tr]": 1.0,
+    "tr/vuk vuk_18 [tr]": 1.0,
+    "tr/vuk vuk_18_4 [tr]": 1.0,
+    "tr/vuk vuk_mukerrer_28 [tr]": 1.0,
+    "us/frcp frcp_6a1 [en]": 1.0,
+    "us/frcp frcp_6a4 [en]": 1.0,
+    "us/frcp frcp_6a5 [en]": 1.0,
+    "us/frcp frcp_6d [en]": 1.0,
+    "us/frcp note_2005 [en]": 1.0
+  },
+  "cj_latest_list": "2026-02-18",
+  "manual_review": "2026-10-20"
+}
