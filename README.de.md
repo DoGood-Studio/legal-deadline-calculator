@@ -40,6 +40,8 @@
 
 Feiertagsbibliotheken sagen, welche Tage Feiertage sind. lexdays sagt **den letzten Tag, um einzureichen, zuzustellen oder zu zahlen, und warum**. Jedes Ergebnis listet seine Schritte auf, etwa Gerichtsferien, die Verschiebung wegen eines Feiertags oder eine Zustellungsfiktion, und die Vorschrift hinter jedem Schritt.
 
+In der Demo tragen Sie den letzten Tag mit einem Klick in Ihren Kalender ein; die Kalenderdatei erinnert drei Tage und einen Tag vorher.
+
 ## Schnellstart
 
 ```bash

@@ -40,6 +40,8 @@
 
 Las bibliotecas de festivos dicen qué días son festivos. lexdays dice **el último día para presentar, notificar o pagar, y por qué**. Cada resultado enumera los pasos seguidos, como las vacaciones judiciales, el traslado por un festivo o una notificación presunta, y la norma en que se basa cada uno.
 
+En la demo, un clic añade el último día a su calendario, y el archivo de calendario le avisa tres días y un día antes.
+
 ## Inicio rápido
 
 ```bash

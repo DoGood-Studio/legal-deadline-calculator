@@ -40,6 +40,8 @@
 
 Feestdagenbibliotheken vertellen welke dagen feestdagen zijn. lexdays vertelt **de laatste dag om in te dienen, te betekenen of te betalen, en waarom**. Elk resultaat somt de genomen stappen op, zoals een gerechtelijk reces, een verschuiving wegens een feestdag of een fictieve betekening, met de regel achter elke stap.
 
+In de demo zet u de laatste dag met één klik in uw agenda; het agendabestand herinnert u drie dagen en één dag van tevoren.
+
 ## Snel aan de slag
 
 ```bash

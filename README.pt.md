@@ -40,6 +40,8 @@
 
 As bibliotecas de feriados dizem que dias são feriados. O lexdays diz **o último dia para apresentar, notificar ou pagar, e porquê**. Cada resultado lista os passos seguidos, como as férias judiciais, o adiamento por um feriado ou uma notificação presumida, e a norma em que cada um se baseia.
 
+Na demo, um clique adiciona o último dia ao seu calendário, e o ficheiro de calendário avisa três dias e um dia antes.
+
 ## Início rápido
 
 ```bash

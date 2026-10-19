@@ -40,6 +40,8 @@
 
 Le librerie di festività dicono quali giorni sono festivi. lexdays dice **l'ultimo giorno per depositare, notificare o pagare, e perché**. Ogni risultato elenca i passaggi seguiti, come le ferie giudiziarie, lo spostamento per una festività o una notifica presunta, e la norma alla base di ciascuno.
 
+Nella demo, un clic aggiunge l'ultimo giorno al tuo calendario, e il file del calendario ti avvisa tre giorni e un giorno prima.
+
 ## Avvio rapido
 
 ```bash

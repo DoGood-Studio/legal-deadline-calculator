@@ -40,6 +40,8 @@
 
 Les bibliothèques de jours fériés indiquent quels jours sont fériés. lexdays indique **le dernier jour pour déposer, signifier ou payer, et pourquoi**. Chaque résultat énumère les étapes suivies, par exemple les vacances judiciaires, le report dû à un jour férié ou une signification réputée faite, et la règle qui fonde chacune.
 
+Dans la démo, un clic ajoute le dernier jour à votre calendrier, et le fichier de calendrier vous le rappelle trois jours puis un jour avant.
+
 ## Démarrage rapide
 
 ```bash

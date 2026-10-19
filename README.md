@@ -40,6 +40,8 @@
 
 Holiday libraries tell you which days are holidays. lexdays tells you **the last day to file, serve or pay, and why**. Each result lists the steps it took, such as a judicial recess, a holiday roll or deemed service, and the rule behind each one.
 
+In the demo, one click adds the last day to your calendar, and the calendar file reminds you three days and one day before.
+
 ## Quick start
 
 ```bash

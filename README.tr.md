@@ -40,6 +40,8 @@
 
 Tatil kütüphaneleri hangi günün tatil olduğunu söyler. lexdays ise **dilekçe vermek, tebliğ etmek veya ödemek için son günü ve nedenini** söyler. Her sonuç, attığı adımları (adli tatil, tatile rastlayan son gün, e-tebligat…) ve her birinin dayandığı kuralı listeler.
 
+Demo sitesinde son günü tek tıkla takviminize ekleyebilirsiniz; takvim dosyası son günden 3 gün ve 1 gün önce hatırlatır.
+
 ## Hızlı başlangıç
 
 ```bash
