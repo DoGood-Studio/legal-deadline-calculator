@@ -24,13 +24,13 @@
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=nl"><strong>Live demo</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/nl/"><strong>Live demo</strong></a> ·
   <a href="../usage.md">Documentatie (Engels)</a> ·
   <a href="../verification.md">Verificatierapport (Engels)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=nl">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/nl/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-nl-dark.png">
       <img alt="De lexdays-demo in het Nederlands: termijn voor een beroep bij het Hof van Justitie van de EU vanaf een bekendmaking in het Publicatieblad, met de kalender en de onderbouwing van elke stap." src="../images/hero-nl-light.png" width="860">

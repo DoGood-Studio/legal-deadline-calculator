@@ -1,6 +1,7 @@
 export default {
   ui: {
-    "doc.title": "lexdays — hukuki süre ve iş günü hesaplama",
+    "doc.title": "Hukuki süre hesaplama: HMK, İİK, CMK, adli tatil | lexdays",
+    "doc.description": "Ücretsiz ve açık kaynak hukuki süre hesaplama. Adli tatil, e-tebligat, resmî tatil ve arifeyi hesaba katarak son günü bulur; her adımın dayandığı kanun maddesini gösterir.",
     skip: "İçeriğe geç", "nav.tool": "Hesapla", "nav.dev": "Geliştiriciler", "nav.lang": "Dil",
     "hero.title": "Son günü bulun, gerekçesini görün.",
     "hero.lead": "Süre türünü ve tebliğ tarihini seçin. Adli tatil, bayramlar, arife ve e-tebligat kuralları hesaba katılır; her adımın dayandığı kanun maddesi yanında yazar.",

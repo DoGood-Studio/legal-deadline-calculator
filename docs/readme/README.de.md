@@ -24,13 +24,13 @@
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=de"><strong>Live-Demo</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/de/"><strong>Live-Demo</strong></a> ·
   <a href="../usage.md">Dokumentation (englisch)</a> ·
   <a href="../verification.md">Prüfbericht (englisch)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=de">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/de/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-de-dark.png">
       <img alt="Die lexdays-Demo auf Deutsch: Berufungsfrist nach der ZPO an einem Münchner Gericht, mit Kalender und Begründung jedes Schritts." src="../images/hero-de-light.png" width="860">

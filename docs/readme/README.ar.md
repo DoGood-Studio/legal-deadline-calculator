@@ -24,13 +24,13 @@
 </p>
 
 <p align="center" dir="rtl">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ar"><strong>العرض المباشر</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/ar/"><strong>العرض المباشر</strong></a> ·
   <a href="../usage.md">التوثيق (بالإنجليزية)</a> ·
   <a href="../verification.md">تقرير التحقق (بالإنجليزية)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ar">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/ar/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-ar-dark.png">
       <img alt="العرض التجريبي لـ lexdays بالعربية: ميعاد فدرالي أمريكي مع ثلاثة أيام إضافية للتبليغ بالبريد، مع التقويم وتبرير كل خطوة." src="../images/hero-ar-light.png" width="860">

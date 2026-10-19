@@ -24,13 +24,13 @@
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=tr"><strong>Canlı demo</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/tr/"><strong>Canlı demo</strong></a> ·
   <a href="../jurisdictions/tr.md">Türkiye kuralları</a> ·
   <a href="../verification.md">Doğrulama raporu</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=tr">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/tr/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-tr-dark.png">
       <img alt="lexdays demosu: HMK, 29 Temmuz 2027 tebliğinden itibaren iki hafta. Adli tatil süreyi 8 Eylül 2027 Çarşamba'ya uzatır; takvimde adli tatil işaretlidir." src="../images/hero-tr-light.png" width="860">

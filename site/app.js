@@ -15,8 +15,11 @@ const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 const SUPPORTED = new Set(LANGUAGES.map((l) => l.code));
 
-// ?lang= wins, then the browser's preferred languages, then English.
+// Each language has its own page (/tr/, /de/, ...; see scripts/build-site-pages.mjs) that fixes
+// the language. On the root page ?lang= wins, then the browser's preferred languages, then English.
+const PAGE_LANG = SUPPORTED.has(document.documentElement.dataset.pageLang) ? document.documentElement.dataset.pageLang : null;
 function detectLang() {
+  if (PAGE_LANG) return PAGE_LANG;
   if (SUPPORTED.has(params.get("lang"))) return params.get("lang");
   for (const tag of navigator.languages ?? [navigator.language]) {
     const base = String(tag ?? "").toLowerCase().split("-")[0];
@@ -382,6 +385,7 @@ function renderCode(result) {
 
 function saveUrl() {
   const q = new URLSearchParams({ lang: state.lang, pack: state.pack, date: $("trigger").value, period: periodString(), dir: direction() });
+  if (PAGE_LANG) q.delete("lang");
   const pack = rulepack(state.pack);
   if (pack.calendarFamily && state.calendar !== pack.calendar.id) q.set("cal", state.calendar);
   for (const [k, v] of Object.entries(state.options)) if (pack.options[k].default !== v) q.set(`o.${k}`, String(v));
@@ -509,9 +513,12 @@ function downloadIcs() {
 
 $("lang").replaceChildren(...LANGUAGES.map((l) => el("option", { value: l.code, lang: l.code }, l.name)));
 $("lang").value = state.lang;
+// Switching language opens that language's page and keeps the inputs, which saveUrl() keeps in the query.
 $("lang").addEventListener("change", () => {
-  state.lang = $("lang").value;
-  applyLanguage().catch((err) => console.error(err));
+  const q = new URLSearchParams(location.search);
+  q.delete("lang");
+  const query = q.toString();
+  location.href = `${PAGE_LANG ? "../" : "./"}${$("lang").value}/${query ? `?${query}` : ""}`;
 });
 $("today").addEventListener("click", () => {
   $("trigger").value = todayIso();

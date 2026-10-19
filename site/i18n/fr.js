@@ -1,6 +1,7 @@
 export default {
   ui: {
-    "doc.title": "lexdays — calcul des délais de procédure et des jours ouvrables",
+    "doc.title": "Calcul des délais devant la Cour de justice de l'UE | lexdays",
+    "doc.description": "Calculateur de délais gratuit et open source : recours devant la CJUE (publication au JO, délai de distance), mais aussi États-Unis, Angleterre, Allemagne et Turquie. Chaque étape cite sa source.",
     skip: "Aller au contenu", "nav.tool": "Calculer", "nav.dev": "Développeurs", "nav.lang": "Langue",
     "hero.title": "Trouvez le dernier jour et comprenez pourquoi.",
     "hero.lead": "Choisissez le type de délai et la date de notification. Vacances judiciaires, jours fériés, demi-journées et notifications réputées faites sont pris en compte ; chaque étape cite la règle dont elle découle.",

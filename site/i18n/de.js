@@ -1,6 +1,7 @@
 export default {
   ui: {
-    "doc.title": "lexdays — Fristen- und Arbeitstagerechner",
+    "doc.title": "Fristenrechner: ZPO-Fristen mit Feiertagen aller Länder | lexdays",
+    "doc.description": "Kostenloser Open-Source-Fristenrechner: berechnet das Fristende nach § 222 ZPO und §§ 187–188 BGB mit den Feiertagen jedes Bundeslandes und belegt jeden Schritt. Auch EuGH, USA, England und Türkei.",
     skip: "Zum Inhalt", "nav.tool": "Rechner", "nav.dev": "Entwickler", "nav.lang": "Sprache",
     "hero.title": "Den letzten Tag finden und verstehen.",
     "hero.lead": "Wählen Sie die Fristart und das Zustellungsdatum. Gerichtsferien, Feiertage, halbe Tage und Zustellungsfiktionen werden berücksichtigt; jeder Schritt nennt die Vorschrift, auf der er beruht.",

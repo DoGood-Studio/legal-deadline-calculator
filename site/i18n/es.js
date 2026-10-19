@@ -1,6 +1,7 @@
 export default {
   ui: {
-    "doc.title": "lexdays — cálculo de plazos procesales y días hábiles",
+    "doc.title": "Cálculo de plazos ante el Tribunal de Justicia de la UE | lexdays",
+    "doc.description": "Calculadora de plazos gratuita y de código abierto: recursos ante el TJUE (publicación en el DO, plazo por razón de la distancia), además de EE. UU., Inglaterra, Alemania y Turquía. Cada paso cita su fuente.",
     skip: "Ir al contenido", "nav.tool": "Calcular", "nav.dev": "Desarrolladores", "nav.lang": "Idioma",
     "hero.title": "Encuentre el último día y su porqué.",
     "hero.lead": "Elija el tipo de plazo y la fecha de notificación. Se tienen en cuenta las vacaciones judiciales, los festivos, los medios días y las notificaciones presuntas; cada paso cita la norma en que se basa.",

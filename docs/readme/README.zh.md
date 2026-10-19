@@ -24,13 +24,13 @@
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=zh"><strong>在线演示</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/zh/"><strong>在线演示</strong></a> ·
   <a href="../usage.md">文档（英文）</a> ·
   <a href="../verification.md">验证报告（英文）</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=zh">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/zh/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-zh-dark.png">
       <img alt="lexdays 中文演示：美国联邦期限，因邮寄送达增加三天，附日历和每一步的依据。" src="../images/hero-zh-light.png" width="860">

@@ -24,13 +24,13 @@
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ru"><strong>Онлайн-демо</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/ru/"><strong>Онлайн-демо</strong></a> ·
   <a href="../usage.md">Документация (на английском)</a> ·
   <a href="../verification.md">Отчёт о проверке (на английском)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ru">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/ru/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-ru-dark.png">
       <img alt="Демо lexdays на русском: федеральный срок в США с тремя дополнительными днями за вручение по почте, с календарём и обоснованием каждого шага." src="../images/hero-ru-light.png" width="860">

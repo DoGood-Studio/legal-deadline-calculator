@@ -24,13 +24,13 @@
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ja"><strong>ライブデモ</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/ja/"><strong>ライブデモ</strong></a> ·
   <a href="../usage.md">ドキュメント（英語）</a> ·
   <a href="../verification.md">検証レポート（英語）</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ja">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/ja/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-ja-dark.png">
       <img alt="日本語の lexdays デモ：郵便送達で 3 日が加算される米国連邦の期限。カレンダーと各ステップの根拠を表示。" src="../images/hero-ja-light.png" width="860">

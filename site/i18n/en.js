@@ -1,6 +1,7 @@
 export default {
   ui: {
-    "doc.title": "lexdays — legal deadline and business day calculator",
+    "doc.title": "Legal deadline calculator: US, UK, EU, Germany, Türkiye | lexdays",
+    "doc.description": "Free, open-source court deadline calculator. Finds the last day to file, serve or pay and explains every step with its rule: FRCP, CPR, EU Court of Justice, ZPO, HMK.",
     skip: "Skip to content", "nav.tool": "Calculator", "nav.dev": "Developers", "nav.lang": "Language",
     "hero.title": "Find the last day, see why.",
     "hero.lead": "Choose the type of deadline and the date of service. Judicial recesses, public holidays, half days and deemed service are taken into account, and every step shows the rule it comes from.",

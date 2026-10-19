@@ -24,13 +24,13 @@
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=it"><strong>Demo online</strong></a> ·
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/it/"><strong>Demo online</strong></a> ·
   <a href="../usage.md">Documentazione (in inglese)</a> ·
   <a href="../verification.md">Rapporto di verifica (in inglese)</a>
 </p>
 
 <p align="center">
-  <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=it">
+  <a href="https://dogood-studio.github.io/legal-deadline-calculator/it/">
     <picture>
       <source media="(prefers-color-scheme: dark)" srcset="../images/hero-it-dark.png">
       <img alt="La demo di lexdays in italiano: termine per un ricorso alla Corte di giustizia dell'UE dalla pubblicazione nella Gazzetta ufficiale, con il calendario e la motivazione di ogni passaggio." src="../images/hero-it-light.png" width="860">

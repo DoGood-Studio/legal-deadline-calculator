@@ -1,6 +1,7 @@
 export default {
   ui: {
-    "doc.title": "lexdays — calcolo dei termini processuali e dei giorni lavorativi",
+    "doc.title": "Calcolo dei termini davanti alla Corte di giustizia UE | lexdays",
+    "doc.description": "Calcolatore di termini gratuito e open source: ricorsi alla Corte di giustizia dell'UE (pubblicazione in GU, termine per la distanza), oltre a USA, Inghilterra, Germania e Turchia. Ogni passaggio cita la sua fonte.",
     skip: "Vai al contenuto", "nav.tool": "Calcola", "nav.dev": "Sviluppatori", "nav.lang": "Lingua",
     "hero.title": "Trova l'ultimo giorno e il perché.",
     "hero.lead": "Scegli il tipo di termine e la data di notifica. Ferie giudiziarie, festività, mezze giornate e notifiche presunte sono considerate; ogni passaggio indica la norma su cui si basa.",
