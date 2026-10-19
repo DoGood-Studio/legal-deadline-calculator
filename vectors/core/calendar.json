@@ -208,6 +208,67 @@
           }
         }
       ]
+    },
+    "fxu": {
+      "id": "fxu",
+      "name": {
+        "en": "Fixture calendar with a mid-year end"
+      },
+      "weekend": [
+        6,
+        7
+      ],
+      "coverage": {
+        "from": 2020,
+        "to": 2021,
+        "until": "2021-06-30"
+      },
+      "holidays": [
+        {
+          "id": "new_year",
+          "name": {
+            "en": "New Year"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 1,
+            "day": 1
+          }
+        },
+        {
+          "id": "june_day",
+          "name": {
+            "en": "June Day"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 6,
+            "day": 1
+          }
+        },
+        {
+          "id": "july_day",
+          "name": {
+            "en": "July Day"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 7,
+            "day": 1
+          }
+        },
+        {
+          "id": "christmas",
+          "name": {
+            "en": "Christmas"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 12,
+            "day": 25
+          }
+        }
+      ]
     }
   },
   "cases": [
@@ -1385,6 +1446,104 @@
             "kind": "9"
           }
         ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "coverage-until-full-year-before",
+      "calendar": "fxu",
+      "fn": "holidays",
+      "args": {
+        "year": 2020
+      },
+      "expect": [
+        [
+          "2020-01-01",
+          "new_year"
+        ],
+        [
+          "2020-06-01",
+          "june_day"
+        ],
+        [
+          "2020-07-01",
+          "july_day"
+        ],
+        [
+          "2020-12-25",
+          "christmas"
+        ]
+      ]
+    },
+    {
+      "id": "coverage-until-last-year-cut",
+      "calendar": "fxu",
+      "fn": "holidays",
+      "args": {
+        "year": 2021
+      },
+      "expect": [
+        [
+          "2021-01-01",
+          "new_year"
+        ],
+        [
+          "2021-06-01",
+          "june_day"
+        ]
+      ]
+    },
+    {
+      "id": "coverage-until-last-day-ok",
+      "calendar": "fxu",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2021-06-30"
+      },
+      "expect": true
+    },
+    {
+      "id": "coverage-until-day-after",
+      "calendar": "fxu",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2021-07-01"
+      },
+      "error": "CoverageError"
+    },
+    {
+      "id": "coverage-until-crossing-in-arithmetic",
+      "calendar": "fxu",
+      "fn": "add_business_days",
+      "args": {
+        "date": "2021-06-29",
+        "n": 3
+      },
+      "error": "CoverageError"
+    },
+    {
+      "id": "cal-coverage-until-wrong-year",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "coverage": {
+          "from": 2020,
+          "to": 2021,
+          "until": "2020-12-31"
+        }
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-coverage-until-invalid-date",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "coverage": {
+          "from": 2020,
+          "to": 2021,
+          "until": "2021-02-30"
+        }
       },
       "error": "DataError"
     }

@@ -20,7 +20,7 @@ No software can guarantee that it is free of errors. The goal here is that error
 
 | Measure | Protects against | Evidence |
 |---|---|---|
-| Explicit coverage years | silently wrong results for years without verified data | `CoverageError` outside `tr` 2000–2035, `gb-eaw` 2019–2028, `eu-cj` 2025–2026, … |
+| Explicit coverage years | silently wrong results for years without verified data | `CoverageError` outside `tr` 2000–2035, `gb-eaw` 2019–2028, `eu-cj` 1 January 2025 – 31 October 2027 (the Court's latest published list), … |
 | Primary sources | data copied from unreliable lists | Turkish feast dates queried from Diyanet (82 lookups, 1995–2035); GOV.UK bank holidays feed; 5 U.S.C. § 6103; CJEU decision C/2025/1569 |
 | Independent cross-check, weekly in CI | data drift and typos | `scripts/crosscheck_calendars.py`: **0 differences** for 22 calendars against python-holidays (TR 2000–2035, US 1986–2099, DE and all 16 Länder 1995–2035, GB) and the GOV.UK feed |
 | Strict validation and JSON Schemas | malformed definitions | unknown fields, impossible dates, duplicate ids and contradictory conditions are rejected at load time; all 34 calendar and rule pack files validate against the schemas |

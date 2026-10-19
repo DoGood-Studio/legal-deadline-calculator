@@ -5,7 +5,7 @@
     "en": "European Union — official holidays of the Court of Justice and the General Court"
   },
   "description": {
-    "en": "Official holidays observed by the Court of Justice (Rules of Procedure Art. 24(4) and (6)) and applied by the General Court (Art. 58(3)). Judicial vacations do not suspend time limits and are not listed. The list is published annually in the Official Journal; coverage is limited to the years verified."
+    "en": "Official holidays observed by the Court of Justice (Rules of Procedure Art. 24(4) and (6)) and applied by the General Court (Art. 58(3)). Judicial vacations do not suspend time limits and are not listed. The Court draws up the list each year for the period from 1 November to 31 October and publishes it in the Official Journal; coverage ends with the latest published list (C/2026/1114: 1 November 2026 to 31 October 2027)."
   },
   "timezone": "Europe/Luxembourg",
   "weekend": [
@@ -14,7 +14,8 @@
   ],
   "coverage": {
     "from": 2025,
-    "to": 2026
+    "to": 2027,
+    "until": "2027-10-31"
   },
   "sources": [
     {
@@ -26,7 +27,7 @@
       "url": "http://data.europa.eu/eli/C/2025/1569/oj"
     },
     {
-      "title": "CJEU list of official holidays and judicial vacations C/2026/1114 (OJ C, 18.2.2026)",
+      "title": "CJEU list of official holidays and judicial vacations for 1.11.2026–31.10.2027, C/2026/1114 (OJ C, 18.2.2026)",
       "url": "http://data.europa.eu/eli/C/2026/1114/oj"
     }
   ],

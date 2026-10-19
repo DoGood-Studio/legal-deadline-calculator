@@ -31,7 +31,7 @@ def canonical_hash(document: Any) -> str:
 
 def random_date(rng: random.Random, cal: lexdays.Calendar) -> date:
     lo, hi = cal.coverage or (2000, 2030)
-    first, last = date(lo, 1, 1), date(hi, 12, 31)
+    first, last = date(lo, 1, 1), cal.coverage_until or date(hi, 12, 31)
     return first + timedelta(days=rng.randrange((last - first).days + 1))
 
 

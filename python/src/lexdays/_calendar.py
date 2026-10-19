@@ -152,6 +152,7 @@ class Calendar:
         self.weekend: frozenset[int] = frozenset(_int(d, f"{where}.weekend", 1, 7) for d in weekend)
         self.timezone: str | None = spec.get("timezone", parent.timezone if parent else None)
         self.coverage: tuple[int, int] | None = self._coverage(spec, parent, where)
+        self.coverage_until: date | None = self._coverage_until(spec, parent, where)
         self.sources: tuple[Any, ...] = tuple(spec.get("sources", ()))
 
         own = [self._check_holiday(h, where) for h in spec.get("holidays", ())]
@@ -179,10 +180,28 @@ class Calendar:
     def _coverage(spec: Mapping[str, Any], parent: Calendar | None, where: str) -> tuple[int, int] | None:
         if "coverage" not in spec:
             return parent.coverage if parent else None
-        cov = _check_keys(spec["coverage"], {"from", "to"}, f"{where}.coverage")
+        cov = _check_keys(spec["coverage"], {"from", "to", "until"}, f"{where}.coverage")
         lo = _int(cov.get("from"), f"{where}.coverage.from", _dates.MIN_YEAR + 1, _dates.MAX_YEAR - 1)
         hi = _int(cov.get("to"), f"{where}.coverage.to", lo, _dates.MAX_YEAR - 1)
         return (lo, hi)
+
+    @staticmethod
+    def _coverage_until(spec: Mapping[str, Any], parent: Calendar | None, where: str) -> date | None:
+        # Verified data can end inside the last year, e.g. a court list that runs to 31 October.
+        if "coverage" not in spec:
+            return parent.coverage_until if parent else None
+        until = spec["coverage"].get("until")
+        if until is None:
+            return None
+        if not isinstance(until, str):
+            raise DataError(f"{where}.coverage.until: expected YYYY-MM-DD, got {until!r}")
+        try:
+            day = _dates.parse_date(until, field=f"{where}.coverage.until")
+        except ValueError as exc:
+            raise DataError(str(exc)) from None
+        if day.year != spec["coverage"]["to"]:
+            raise DataError(f"{where}.coverage.until must fall in the year 'to' ({spec['coverage']['to']})")
+        return day
 
     @staticmethod
     def _check_holiday(spec: Any, where: str) -> Mapping[str, Any]:
@@ -279,6 +298,14 @@ class Calendar:
             raise CoverageError(
                 f"calendar {self.id!r} has verified holiday data for {lo}–{hi} only; "
                 f"{year} is outside that range"
+            )
+
+    def _check_day(self, day: date) -> None:
+        self._check_coverage(day.year)
+        if self.coverage_until is not None and day > self.coverage_until:
+            raise CoverageError(
+                f"calendar {self.id!r} has verified holiday data up to "
+                f"{self.coverage_until.isoformat()} only; {day.isoformat()} is after that"
             )
 
     @staticmethod
@@ -386,6 +413,8 @@ class Calendar:
         year = _int(year, "year", _dates.MIN_YEAR + 1, _dates.MAX_YEAR - 1)
         self._check_coverage(year)
         items = self._year(year)
+        if self.coverage_until is not None and year == self.coverage_until.year:
+            items = tuple(h for h in items if h.date <= self.coverage_until)
         if kinds == "all":
             return list(items)
         wanted = _kinds(kinds)
@@ -393,7 +422,7 @@ class Calendar:
 
     def holidays_on(self, day: date | str, *, kinds: Kinds = "all") -> list[Holiday]:
         day = _dates.parse_date(day)
-        self._check_coverage(day.year)
+        self._check_day(day)
         self._year(day.year)
         items = self._index[day.year].get(day, ())
         if kinds == "all":

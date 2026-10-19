@@ -55,6 +55,7 @@ A `when` object holds if **all** of its keys hold:
 | `trigger_from`, `trigger_before` | the trigger date is on/after, or before, an ISO date (for law changes) |
 | `trigger_within` | the date counting starts from (e.g. the deemed date of service) falls in one of the month-day windows |
 | `date_within` | the current date falls in one of the windows |
+| `date_from`, `date_before` | the current date (in a notice, the deadline) is on/after, or before, an ISO date (for dated events such as an extraordinary suspension of periods) |
 | `day_has` | the current date has a half-day holiday (`"half_day"`) or a holiday of the given kind (e.g. `"administrative"`) |
 | `non_working_day` | the current date is (`true`) or is not (`false`) a non-working day |
 | `applied` | an earlier step of this type (e.g. `"recess"`) changed the date |

@@ -55,8 +55,8 @@ _STEP_KEYS = {
 }
 _CONDITION_KEYS = {
     "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
-    "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
-    "non_working_day", "applied", "all", "any", "not",
+    "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "date_from",
+    "date_before", "day_has", "non_working_day", "applied", "all", "any", "not",
 }
 
 
@@ -368,7 +368,7 @@ class RulePack:
                 raise DataError(f"{where}: {key} must be an integer")
         if "direction" in cond and cond["direction"] not in DIRECTIONS:
             raise DataError(f"{where}: direction must be one of {DIRECTIONS}")
-        for key in ("trigger_from", "trigger_before"):
+        for key in ("trigger_from", "trigger_before", "date_from", "date_before"):
             if key in cond:
                 _dates.parse_date(cond[key], field=f"{where}.{key}")
         for key in ("trigger_within", "date_within"):
@@ -572,6 +572,11 @@ class RulePack:
         if "date_within" in cond and not any(
             self._in_window(window, current) for window in cond["date_within"]
         ):
+            return False
+        # "date_from"/"date_before": absolute dates for the date reached so far (in a notice, the deadline).
+        if "date_from" in cond and current < _dates.parse_date(cond["date_from"]):
+            return False
+        if "date_before" in cond and current >= _dates.parse_date(cond["date_before"]):
             return False
         if "day_has" in cond and not self._day_has(current, cond["day_has"], ctx):
             return False

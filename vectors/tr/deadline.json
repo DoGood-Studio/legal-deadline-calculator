@@ -42,7 +42,9 @@
       "period": "P3M",
       "expect": {
         "deadline": "2023-07-03",
-        "notices": []
+        "notices": [
+          "suspension-2023-earthquake"
+        ]
       },
       "source": "Yargıtay 7. HD E.2024/985 K.2024/1858"
     },
@@ -1042,6 +1044,67 @@
         "deadline": "2025-02-28"
       },
       "source": "VUK m.18/2, second sentence"
+    },
+    {
+      "id": "hmk-2020-suspension-notice",
+      "pack": "tr/hmk",
+      "trigger": "2020-03-02",
+      "period": "P2W",
+      "expect": {
+        "deadline": "2020-03-16",
+        "notices": [
+          "suspension-2020-covid"
+        ]
+      },
+      "source": "7226 s.K. geçici m.1; 2480 s. CB Kararı (the period runs into 13.03.2020; the calculation does not apply the suspension)"
+    },
+    {
+      "id": "hmk-2025-no-suspension-notice",
+      "pack": "tr/hmk",
+      "trigger": "2025-03-03",
+      "period": "P2W",
+      "expect": {
+        "deadline": "2025-03-17",
+        "notices": []
+      },
+      "source": "HMK m.92"
+    },
+    {
+      "id": "hmk-2023-earthquake-notice",
+      "pack": "tr/hmk",
+      "trigger": "2023-01-30",
+      "period": "P2W",
+      "expect": {
+        "deadline": "2023-02-13",
+        "notices": [
+          "suspension-2023-earthquake"
+        ]
+      },
+      "source": "120 s. CBK (6.2.2023–6.4.2023, state-of-emergency provinces)"
+    },
+    {
+      "id": "iik-2020-ends-before-enforcement-suspension",
+      "pack": "tr/iik",
+      "trigger": "2020-03-10",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2020-03-17",
+        "notices": []
+      },
+      "source": "7226 s.K. geçici m.1/1-b (enforcement periods stopped from 22.03.2020)"
+    },
+    {
+      "id": "iik-2020-suspension-notice",
+      "pack": "tr/iik",
+      "trigger": "2020-03-20",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2020-03-27",
+        "notices": [
+          "suspension-2020-covid"
+        ]
+      },
+      "source": "7226 s.K. geçici m.1/1-b"
     }
   ]
 }

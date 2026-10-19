@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Fixed
+
+- `eu/cj`: deadlines reaching 2027 no longer fail. The `eu-cj` calendar now covers the Court's list C/2026/1114 up to 31 October 2027; later dates still raise `CoverageError`.
+- `tr/*`: periods that touch the 2020 suspension (Law No. 7226 and Presidential Decision No. 2480) or the 2023 earthquake suspension (Presidential Decree No. 120) now carry a notice; the calculation itself does not apply the suspension.
+
+### Added
+
+- Calendars: `coverage.until` ends verified data on a given day.
+- Rule packs: the notice and step conditions `date_from` and `date_before` compare the computed date with absolute dates.
+- CI: `scripts/check_coverage.py` fails when a calendar's verified data ends within six months.
+
 ## [0.1.0] - 2026-10-19
 
 First public release.

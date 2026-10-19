@@ -225,6 +225,8 @@ export class Calendar {
   readonly weekend: ReadonlySet<number>;
   readonly timezone: string | null;
   readonly coverage: readonly [number, number] | null;
+  /** Last verified day when the data ends inside the last year (a day number), else null. */
+  readonly coverageUntil: number | null;
   readonly sources: readonly unknown[];
   /** @internal */ readonly specs: readonly HolidaySpec[];
   /** @internal */ readonly oneOff: readonly Occurrence[];
@@ -244,12 +246,28 @@ export class Calendar {
     this.weekend = new Set(weekend.map((d) => checkInt(d, `${where}.weekend`, 1, 7)));
     this.timezone = (spec.timezone as string | undefined) ?? parent?.timezone ?? null;
     if (spec.coverage !== undefined) {
-      const cov = checkKeys(spec.coverage, new Set(["from", "to"]), `${where}.coverage`);
+      const cov = checkKeys(spec.coverage, new Set(["from", "to", "until"]), `${where}.coverage`);
       const lo = checkInt(cov.from, `${where}.coverage.from`, D.MIN_YEAR + 1, D.MAX_YEAR - 1);
       const hi = checkInt(cov.to, `${where}.coverage.to`, lo, D.MAX_YEAR - 1);
       this.coverage = [lo, hi];
+      // Verified data can end inside the last year, e.g. a court list that runs to 31 October.
+      this.coverageUntil = null;
+      if (cov.until !== undefined) {
+        if (typeof cov.until !== "string") {
+          throw new DataError(`${where}.coverage.until: expected YYYY-MM-DD, got ${JSON.stringify(cov.until)}`);
+        }
+        let until: number;
+        try {
+          until = D.parseDate(cov.until, `${where}.coverage.until`);
+        } catch (err) {
+          throw new DataError((err as Error).message);
+        }
+        if (D.yearOf(until) !== hi) throw new DataError(`${where}.coverage.until must fall in the year 'to' (${hi})`);
+        this.coverageUntil = until;
+      }
     } else {
       this.coverage = parent?.coverage ?? null;
+      this.coverageUntil = parent?.coverageUntil ?? null;
     }
     this.sources = (spec.sources as unknown[] | undefined) ?? [];
     const own = ((spec.holidays as unknown[] | undefined) ?? []).map((h) => checkHolidaySpec(h, where));
@@ -272,6 +290,15 @@ export class Calendar {
     if (this.coverage && (year < this.coverage[0] || year > this.coverage[1])) {
       throw new CoverageError(
         `calendar '${this.id}' has verified holiday data for ${this.coverage[0]}–${this.coverage[1]} only; ${year} is outside that range`,
+      );
+    }
+  }
+
+  private checkDay(day: number): void {
+    this.checkCoverage(D.yearOf(day));
+    if (this.coverageUntil !== null && day > this.coverageUntil) {
+      throw new CoverageError(
+        `calendar '${this.id}' has verified holiday data up to ${D.formatISO(this.coverageUntil)} only; ${D.formatISO(day)} is after that`,
       );
     }
   }
@@ -380,7 +407,8 @@ export class Calendar {
   holidays(year: number, options: { kinds?: Kinds | "all" } = {}): Holiday[] {
     const y = Calendar.checkYear(year);
     this.checkCoverage(y);
-    const items = this.year(y);
+    const until = this.coverageUntil !== null && D.yearOf(this.coverageUntil) === y ? this.coverageUntil : null;
+    const items = this.year(y).filter((h) => until === null || h.day <= until);
     const kinds = options.kinds ?? "all";
     const wanted = kinds === "all" ? null : kindsSet(kinds);
     return items.filter((h) => !wanted || wanted.has(h.kind)).map(publicHoliday);
@@ -388,7 +416,7 @@ export class Calendar {
 
   private occurrencesOn(day: number, wanted: ReadonlySet<string> | null): readonly Occurrence[] {
     const year = D.yearOf(day);
-    this.checkCoverage(year);
+    this.checkDay(day);
     this.year(year);
     const items = this.index.get(year)!.get(day) ?? [];
     return wanted ? items.filter((h) => wanted.has(h.kind)) : items;

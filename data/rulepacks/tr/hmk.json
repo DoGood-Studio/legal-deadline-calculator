@@ -163,6 +163,20 @@
       "quote": {
         "tr": "Devlet memurlarının Bakanlar Kurulu Kararı ile idari izinli sayıldığı günler hakkında 93. madde hükmü uygulanmaz."
       }
+    },
+    "law_7226_tmp1": {
+      "label": {
+        "en": "Law No. 7226, provisional Art. 1 (RG 26.03.2020, 31080 bis), extended by Presidential Decision No. 2480 (RG 30.04.2020, 31114)",
+        "tr": "7226 s.K. geçici m.1 (RG 26.03.2020, 31080 mük.); 2480 s. Cumhurbaşkanı Kararı ile uzatıldı (RG 30.04.2020, 31114)"
+      },
+      "url": "https://www.resmigazete.gov.tr/eskiler/2020/03/20200326M1-1.htm"
+    },
+    "cbk_120": {
+      "label": {
+        "en": "Presidential Decree No. 120 on judicial measures under the state of emergency (RG 11.02.2023, 32101 bis)",
+        "tr": "120 s. Olağanüstü Hal Kapsamında Yargı Alanında Alınan Tedbirlere İlişkin CBK (RG 11.02.2023, 32101 mük.)"
+      },
+      "url": "https://www.resmigazete.gov.tr/eskiler/2023/02/20230211M1-1.pdf"
     }
   },
   "steps": [
@@ -434,6 +448,84 @@
       "text": {
         "en": "Judicial recess dates before 2012 are not verified; this pack applies 20 July – 31 August from 2012 only.",
         "tr": "2012 öncesi adli tatil tarihleri doğrulanmadı; bu paket 20 Temmuz – 31 Ağustos dönemini yalnızca 2012'den itibaren uygular."
+      }
+    },
+    {
+      "type": "notice",
+      "code": "suspension-2020-covid",
+      "cite": "law_7226_tmp1",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "direction": "after"
+              },
+              {
+                "trigger_before": "2020-06-16"
+              },
+              {
+                "date_from": "2020-03-13"
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "direction": "before"
+              },
+              {
+                "date_before": "2020-06-16"
+              },
+              {
+                "trigger_from": "2020-03-13"
+              }
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Periods running between 13 March and 15 June 2020 were suspended by Law No. 7226 provisional Art. 1 (extended by Presidential Decision No. 2480); periods with 15 days or less left on 13 March were extended by 15 days from 16 June. This calculation does not include the suspension: check whether it applies and recompute.",
+        "tr": "13 Mart – 15 Haziran 2020 arasında işleyen süreler 7226 s.K. geçici m.1 ile durdu (2480 s. Cumhurbaşkanı Kararı ile uzatıldı); 13 Mart'ta bitimine 15 gün veya daha az kalan süreler 16 Haziran'dan itibaren 15 gün uzamış sayıldı. Bu hesap durmayı içermez: uygulanıp uygulanmadığını kontrol edip yeniden hesaplayın."
+      }
+    },
+    {
+      "type": "notice",
+      "code": "suspension-2023-earthquake",
+      "cite": "cbk_120",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "direction": "after"
+              },
+              {
+                "trigger_before": "2023-05-02"
+              },
+              {
+                "date_from": "2023-02-06"
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "direction": "before"
+              },
+              {
+                "date_before": "2023-05-02"
+              },
+              {
+                "trigger_from": "2023-02-06"
+              }
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "After the 6 February 2023 earthquakes, Presidential Decree No. 120 suspended party and court-set periods under the HMK, CMK, İYUK and İİK, and mediation and conciliation periods, from 6 February to 6 April 2023, in principle for persons residing in, or present on 6 February in, the provinces under the state of emergency; the suspension was later extended in some places. This calculation does not include the suspension: check whether it applies and recompute.",
+        "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK, HMK, CMK, İYUK ve İİK'daki taraf ve hâkim süreleri ile arabuluculuk ve uzlaştırma sürelerini 6 Şubat – 6 Nisan 2023 arasında, kural olarak olağanüstü hal ilan edilen illerde yerleşik veya 6 Şubat'ta orada bulunan kişiler için durdurdu; durma bazı yerlerde sonradan uzatıldı. Bu hesap durmayı içermez: uygulanıp uygulanmadığını kontrol edip yeniden hesaplayın."
       }
     }
   ]

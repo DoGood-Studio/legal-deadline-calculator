@@ -46,7 +46,7 @@ const STEP_KEYS: Record<string, ReadonlySet<string>> = Object.fromEntries(
 );
 const CONDITION_KEYS = new Set([
   "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
-  "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
+  "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "date_from", "date_before", "day_has",
   "non_working_day", "applied", "all", "any", "not",
 ]);
 
@@ -348,7 +348,7 @@ export class RulePack {
     if ("direction" in cond && !DIRECTIONS.includes(cond.direction as Direction)) {
       throw new DataError(`${where}: direction must be one of ${DIRECTIONS.join(", ")}`);
     }
-    for (const key of ["trigger_from", "trigger_before"]) if (key in cond) D.parseDate(cond[key], `${where}.${key}`);
+    for (const key of ["trigger_from", "trigger_before", "date_from", "date_before"]) if (key in cond) D.parseDate(cond[key], `${where}.${key}`);
     for (const key of ["trigger_within", "date_within"]) {
       if (!(key in cond)) continue;
       const windows = cond[key];
@@ -540,6 +540,9 @@ export class RulePack {
     const served = ctx.countStart ?? current;
     if ("trigger_within" in cond && !(cond.trigger_within as Obj[]).some((w) => this.inWindow(w, served))) return false;
     if ("date_within" in cond && !(cond.date_within as Obj[]).some((w) => this.inWindow(w, current))) return false;
+    // "date_from"/"date_before": absolute dates for the date reached so far (in a notice, the deadline).
+    if ("date_from" in cond && current < D.parseDate(cond.date_from)) return false;
+    if ("date_before" in cond && current >= D.parseDate(cond.date_before)) return false;
     if ("day_has" in cond && !this.dayHas(current, cond.day_has as string, ctx)) return false;
     if ("applied" in cond && !ctx.trace.some((s) => s.step === cond.applied && s.changed)) return false;
     if ("non_working_day" in cond) {

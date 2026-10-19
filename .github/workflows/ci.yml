@@ -106,6 +106,8 @@ jobs:
         run: |
           uv run --project python python scripts/gen_differential.py
           git diff --exit-code vectors/generated/
+      - name: Every calendar has verified data for at least six more months
+        run: uv run --project python python scripts/check_coverage.py --months 6
       - name: Demo language pages and sitemap are up to date
         run: |
           node scripts/build-site-pages.mjs

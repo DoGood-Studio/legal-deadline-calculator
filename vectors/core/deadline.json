@@ -418,6 +418,43 @@
           }
         }
       ]
+    },
+    "fx/dated": {
+      "id": "fx/dated",
+      "name": {
+        "en": "Fixture notices on absolute dates"
+      },
+      "calendar": "fx",
+      "steps": [
+        {
+          "type": "count"
+        },
+        {
+          "type": "roll"
+        },
+        {
+          "type": "notice",
+          "code": "deadline-from-september",
+          "text": {
+            "en": "From 1 September 2026.",
+            "tr": "1 Eylül 2026'dan itibaren."
+          },
+          "when": {
+            "date_from": "2026-09-01"
+          }
+        },
+        {
+          "type": "notice",
+          "code": "deadline-before-april",
+          "text": {
+            "en": "Before 1 April 2026.",
+            "tr": "1 Nisan 2026'dan önce."
+          },
+          "when": {
+            "date_before": "2026-04-01"
+          }
+        }
+      ]
     }
   },
   "cases": [
@@ -2303,6 +2340,73 @@
           }
         ]
       }
+    },
+    {
+      "id": "date-from-includes-the-day",
+      "pack": "fx/dated",
+      "trigger": "2026-08-25",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-09-01",
+        "notices": [
+          "deadline-from-september"
+        ]
+      }
+    },
+    {
+      "id": "date-from-day-before-is-out",
+      "pack": "fx/dated",
+      "trigger": "2026-08-24",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-08-31",
+        "notices": []
+      }
+    },
+    {
+      "id": "date-before-day-before-is-in",
+      "pack": "fx/dated",
+      "trigger": "2026-03-24",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-03-31",
+        "notices": [
+          "deadline-before-april"
+        ]
+      }
+    },
+    {
+      "id": "date-before-excludes-the-day",
+      "pack": "fx/dated",
+      "trigger": "2026-03-25",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-04-01",
+        "notices": []
+      }
+    },
+    {
+      "id": "pack-bad-date-from",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "notice",
+            "code": "x",
+            "text": {
+              "en": "x"
+            },
+            "when": {
+              "date_from": "2026-02-30"
+            }
+          }
+        ]
+      },
+      "error": "ValueError"
     }
   ]
 }

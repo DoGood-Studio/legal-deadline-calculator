@@ -18,8 +18,12 @@
       "type": "object",
       "additionalProperties": false,
       "required": ["from", "to"],
-      "properties": { "from": { "type": "integer" }, "to": { "type": "integer" } },
-      "description": "Years with verified data. Queries outside raise CoverageError instead of guessing."
+      "properties": {
+        "from": { "type": "integer" },
+        "to": { "type": "integer" },
+        "until": { "type": "string", "format": "date", "description": "Last verified day, in the year 'to', when the data ends before 31 December." }
+      },
+      "description": "Years with verified data, optionally ending on the day 'until'. Queries outside raise CoverageError instead of guessing."
     },
     "sources": { "type": "array", "items": { "type": "object" } },
     "notes": {},

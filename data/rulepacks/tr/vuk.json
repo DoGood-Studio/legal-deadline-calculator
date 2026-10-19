@@ -54,6 +54,20 @@
       "label": { "en": "VUK repeated Art. 28", "tr": "VUK mükerrer m.28" },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf",
       "quote": { "tr": "Maliye Bakanlığı Gelir İdaresi Başkanlığı, beyannamelerin verilme ve ödeme sürelerinin son gününü, kanunî süresinden itibaren bir ayı geçmeyecek şekilde yeniden belirlemeye yetkilidir." }
+    },
+    "law_7226_tmp1": {
+      "label": {
+        "en": "Law No. 7226, provisional Art. 1 (RG 26.03.2020, 31080 bis), extended by Presidential Decision No. 2480 (RG 30.04.2020, 31114)",
+        "tr": "7226 s.K. geçici m.1 (RG 26.03.2020, 31080 mük.); 2480 s. Cumhurbaşkanı Kararı ile uzatıldı (RG 30.04.2020, 31114)"
+      },
+      "url": "https://www.resmigazete.gov.tr/eskiler/2020/03/20200326M1-1.htm"
+    },
+    "cbk_120": {
+      "label": {
+        "en": "Presidential Decree No. 120 on judicial measures under the state of emergency (RG 11.02.2023, 32101 bis)",
+        "tr": "120 s. Olağanüstü Hal Kapsamında Yargı Alanında Alınan Tedbirlere İlişkin CBK (RG 11.02.2023, 32101 mük.)"
+      },
+      "url": "https://www.resmigazete.gov.tr/eskiler/2023/02/20230211M1-1.pdf"
     }
   },
   "steps": [
@@ -97,6 +111,84 @@
       "text": {
         "en": "The last day is an administrative leave day for civil servants. It does not move the deadline unless GİB extends it.",
         "tr": "Son gün kamu personeli için idari izin günüdür. GİB uzatmadıkça son günü kaydırmaz."
+      }
+    },
+    {
+      "type": "notice",
+      "code": "suspension-2020-covid",
+      "cite": "law_7226_tmp1",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "direction": "after"
+              },
+              {
+                "trigger_before": "2020-06-16"
+              },
+              {
+                "date_from": "2020-03-13"
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "direction": "before"
+              },
+              {
+                "date_before": "2020-06-16"
+              },
+              {
+                "trigger_from": "2020-03-13"
+              }
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "Law No. 7226 provisional Art. 1 suspended periods for the birth, exercise or end of a right, including mandatory administrative applications, between 13 March and 15 June 2020 (extended by Presidential Decision No. 2480). This calculation does not include that suspension; check whether it applies to this tax period.",
+        "tr": "7226 s.K. geçici m.1, zorunlu idari başvurular dahil bir hakkın doğumu, kullanımı veya sona ermesine ilişkin süreleri 13 Mart – 15 Haziran 2020 arasında durdurdu (2480 s. Cumhurbaşkanı Kararı ile uzatıldı). Bu hesap bu durmayı içermez; bu vergi süresine uygulanıp uygulanmadığını kontrol edin."
+      }
+    },
+    {
+      "type": "notice",
+      "code": "suspension-2023-earthquake",
+      "cite": "cbk_120",
+      "when": {
+        "any": [
+          {
+            "all": [
+              {
+                "direction": "after"
+              },
+              {
+                "trigger_before": "2023-05-02"
+              },
+              {
+                "date_from": "2023-02-06"
+              }
+            ]
+          },
+          {
+            "all": [
+              {
+                "direction": "before"
+              },
+              {
+                "date_before": "2023-05-02"
+              },
+              {
+                "trigger_from": "2023-02-06"
+              }
+            ]
+          }
+        ]
+      },
+      "text": {
+        "en": "After the 6 February 2023 earthquakes, Presidential Decree No. 120 and related decisions suspended certain periods for persons in the provinces under the state of emergency (6 February – 6 April 2023, extended in some places). This calculation does not include that; check whether it applies to this period.",
+        "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK ve ilgili kararlarla olağanüstü hal ilan edilen illerdeki kişiler için bazı süreler durduruldu (6 Şubat – 6 Nisan 2023, bazı yerlerde uzatıldı). Bu hesap bunu içermez; bu süreye uygulanıp uygulanmadığını kontrol edin."
       }
     }
   ]

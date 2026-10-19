@@ -75,6 +75,19 @@ This is not legal advice and not a substitute for review by a practitioner in ea
   - The one-off Berlin holiday on 17 June 2028.
   - Official sources added to the calendars.
 
+### Defects found after release (fixed on 20 October 2026)
+
+- **`eu/cj`: every Court of Justice deadline that reached 2027 failed with `CoverageError`.** The `eu-cj` calendar stopped at 2026, so two-month time limits from about 22 October 2026 could not be computed.
+  - The Court's list C/2026/1114 (OJ C, 18.2.2026), already among the sources, sets the official holidays for **1 November 2026 to 31 October 2027**.
+  - Calendars can now end their verified data on a given day (`coverage.until`). `eu-cj` now runs to 31 October 2027; later dates still raise `CoverageError` until the next list is added.
+  - Example: 25 October 2026 + 2 months = 25 December 2026, + 10 days for distance = Monday 4 January 2027.
+  - A new CI check (`scripts/check_coverage.py`) fails when any calendar's verified data ends within six months, so the next list is added in time.
+- **`tr/*`: periods running through the 2020 and 2023 extraordinary suspensions were computed without any warning.**
+  - Law No. 7226 provisional Art. 1 (RG 26.03.2020, 31080 bis), read in the Official Gazette, stopped periods from 13 March 2020 (enforcement and bankruptcy periods from 22 March 2020) to 30 April 2020. Presidential Decision No. 2480 (RG 30.04.2020, 31114) extended this to 15 June 2020. Periods with 15 days or less left were extended by 15 days.
+  - Presidential Decree No. 120 (RG 11.02.2023, 32101 bis) stopped periods from 6 February to 6 April 2023 for the state-of-emergency provinces, and was later extended in some places. The decree's text in the Gazette is an image, so the dates and scope were taken from the Ankara Bar Association bulletin of 20 February 2023 that quotes it.
+  - The packs do not apply these suspensions, because who is covered depends on the person, the place and the type of period. They now add a notice (`suspension-2020-covid`, `suspension-2023-earthquake`) whenever the period touches those dates. Notices can now test the computed date against absolute dates (`date_from`, `date_before`).
+  - Vector `hmk-v04-three-months-sacrifice-feast` (trigger 28 March 2023) now expects the earthquake notice.
+
 ### Findings not changed
 
 - `de/zpo`: the shared German roll message keeps "Arbeitstag"; overriding it with the statute's "Werktag" would have left the other ten languages in English. The statute text stays in the § 222(2) citation.
