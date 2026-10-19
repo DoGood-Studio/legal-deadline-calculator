@@ -25,3 +25,4 @@ site/assets/lexdays.js
 Thumbs.db
 .idea/
 .vscode/
+.pkgtest/

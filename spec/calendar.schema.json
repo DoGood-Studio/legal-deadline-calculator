@@ -1,0 +1,104 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DoGood-Studio/lexdays/blob/main/spec/calendar.schema.json",
+  "title": "lexdays holiday calendar",
+  "description": "A holiday calendar: weekend days plus holiday rules. The engine performs the same checks at load time and rejects unknown fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:[-_][a-z0-9]+)*$", "description": "e.g. 'tr', 'us-ma', 'de-by-catholic'" },
+    "name": { "$ref": "#/$defs/localized" },
+    "description": { "$ref": "#/$defs/localized" },
+    "extends": { "type": "string", "description": "Id of a parent calendar whose holidays are inherited." },
+    "weekend": { "type": "array", "items": { "$ref": "#/$defs/isoWeekday" }, "maxItems": 6 },
+    "timezone": { "type": ["string", "null"], "description": "IANA time zone of the place, informational." },
+    "coverage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to"],
+      "properties": { "from": { "type": "integer" }, "to": { "type": "integer" } },
+      "description": "Years with verified data. Queries outside raise CoverageError instead of guessing."
+    },
+    "sources": { "type": "array", "items": { "type": "object" } },
+    "notes": {},
+    "remove": { "type": "array", "items": { "type": "string" }, "description": "Inherited holiday ids to drop." },
+    "holidays": { "type": "array", "items": { "$ref": "#/$defs/holiday" } },
+    "one_off": { "type": "array", "items": { "$ref": "#/$defs/oneOff" } }
+  },
+  "$defs": {
+    "localized": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "type": "string", "minLength": 1 },
+      "description": "Text per language code, e.g. {\"en\": \"...\", \"tr\": \"...\"}."
+    },
+    "isoWeekday": { "type": "integer", "minimum": 1, "maximum": 7, "description": "1 = Monday ... 7 = Sunday" },
+    "kind": { "type": "string", "pattern": "^[a-z][a-z_]*$", "description": "'public' by default; other kinds (e.g. 'administrative', 'state', 'observed_friday') only count when a rule pack asks for them." },
+    "halfDay": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from"],
+      "properties": { "from": { "type": "string", "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$" } }
+    },
+    "rule": {
+      "oneOf": [
+        { "type": "object", "additionalProperties": false, "required": ["type", "month", "day"],
+          "properties": { "type": { "const": "fixed" }, "month": { "type": "integer", "minimum": 1, "maximum": 12 }, "day": { "type": "integer", "minimum": 1, "maximum": 31 } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "month", "weekday", "n"],
+          "properties": { "type": { "const": "nth_weekday" }, "month": { "type": "integer", "minimum": 1, "maximum": 12 }, "weekday": { "$ref": "#/$defs/isoWeekday" },
+                          "n": { "type": "integer", "minimum": -5, "maximum": 5, "not": { "const": 0 }, "description": "Negative counts from the end of the month (-1 = last)." } } },
+        { "type": "object", "additionalProperties": false, "required": ["type"],
+          "properties": { "type": { "const": "easter" }, "offset": { "type": "integer", "minimum": -200, "maximum": 200 }, "method": { "enum": ["western", "orthodox"] } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "dates"],
+          "properties": { "type": { "const": "dates" }, "dates": { "type": "array", "minItems": 1, "uniqueItems": true, "items": { "type": "string", "format": "date" } } } },
+        { "type": "object", "additionalProperties": false, "required": ["type", "month", "day", "weekday", "direction"],
+          "properties": { "type": { "const": "weekday_relative" }, "month": { "type": "integer", "minimum": 1, "maximum": 12 }, "day": { "type": "integer", "minimum": 1, "maximum": 31 },
+                          "weekday": { "$ref": "#/$defs/isoWeekday" }, "direction": { "enum": ["on_or_after", "after", "on_or_before", "before"] } } }
+      ]
+    },
+    "holiday": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "rule"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "$ref": "#/$defs/localized" },
+        "kind": { "$ref": "#/$defs/kind" },
+        "rule": { "$ref": "#/$defs/rule" },
+        "since": { "type": ["integer", "null"] },
+        "until": { "type": ["integer", "null"] },
+        "except_years": { "type": "array", "items": { "type": "integer" } },
+        "half_day": { "$ref": "#/$defs/halfDay" },
+        "observed": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["shift"],
+          "properties": {
+            "shift": { "type": "object", "propertyNames": { "pattern": "^[1-7]$" }, "additionalProperties": { "type": "integer", "minimum": -6, "maximum": 6 },
+                       "description": "Days to move a holiday falling on the given ISO weekday, e.g. {\"6\": -1, \"7\": 1}." },
+            "avoid_collision": { "type": "boolean", "description": "Keep moving past weekends and other holidays (UK substitute days)." },
+            "kind": { "oneOf": [ { "$ref": "#/$defs/kind" }, { "type": "object", "propertyNames": { "pattern": "^[1-7]$" }, "additionalProperties": { "$ref": "#/$defs/kind" } } ] }
+          }
+        },
+        "source": { "type": "string" },
+        "note": {}
+      }
+    },
+    "oneOff": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "name", "date"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "name": { "$ref": "#/$defs/localized" },
+        "date": { "type": "string", "format": "date" },
+        "kind": { "$ref": "#/$defs/kind" },
+        "half_day": { "$ref": "#/$defs/halfDay" },
+        "source": { "type": "string" },
+        "note": {}
+      }
+    }
+  }
+}

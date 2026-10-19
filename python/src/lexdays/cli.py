@@ -140,9 +140,13 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def main(argv: Sequence[str] | None = None) -> int:
-    # Never crash on a console that cannot print a character.
+    # Write UTF-8 when piped or redirected (Windows would otherwise use the
+    # legacy code page) and never crash on a console that cannot print a character.
     with contextlib.suppress(AttributeError, ValueError):
-        sys.stdout.reconfigure(errors="replace")  # type: ignore[union-attr]
+        if sys.stdout.isatty():
+            sys.stdout.reconfigure(errors="replace")  # type: ignore[union-attr]
+        else:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # type: ignore[union-attr]
     args = build_parser().parse_args(argv)
     try:
         args.func(args)

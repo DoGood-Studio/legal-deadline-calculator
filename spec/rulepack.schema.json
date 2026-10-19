@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/DoGood-Studio/lexdays/blob/main/spec/rulepack.schema.json",
+  "title": "lexdays rule pack",
+  "description": "A jurisdiction's deadline rules as an ordered list of steps. Each executed step is recorded in the explanation trace together with its citation.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "name", "calendar", "steps"],
+  "properties": {
+    "$schema": { "type": "string" },
+    "id": { "type": "string", "pattern": "^[a-z0-9]+(?:[-_/][a-z0-9]+)*$", "description": "e.g. 'tr/hmk', 'us/frcp'" },
+    "name": { "$ref": "#/$defs/localized" },
+    "description": { "$ref": "#/$defs/localized" },
+    "disclaimer": { "$ref": "#/$defs/localized" },
+    "jurisdiction": { "type": "string" },
+    "status": { "enum": ["experimental", "beta", "stable"] },
+    "calendar": { "type": "string", "description": "Default holiday calendar id." },
+    "calendar_family": { "type": "string", "description": "When set, compute(..., calendar=...) may pick this calendar or any '<family>-*' calendar (e.g. the court's seat)." },
+    "sources": { "type": "array" },
+    "notes": {},
+    "non_working": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "weekend": { "$ref": "#/$defs/boolOrOption" },
+        "kinds": { "oneOf": [ { "type": "array", "items": { "type": "string" } }, { "$ref": "#/$defs/optionRef" } ] },
+        "half_days": { "oneOf": [ { "enum": ["working", "non_working"] }, { "$ref": "#/$defs/optionRef" } ] }
+      }
+    },
+    "options": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["values", "default"],
+        "properties": { "values": { "type": "array", "minItems": 1 }, "default": {}, "description": { "$ref": "#/$defs/localized" } }
+      }
+    },
+    "citations": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label"],
+        "properties": { "label": { "$ref": "#/$defs/localized" }, "url": { "type": "string" }, "quote": { "$ref": "#/$defs/localized" } }
+      }
+    },
+    "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/step" } }
+  },
+  "$defs": {
+    "localized": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } },
+    "optionRef": { "type": "object", "additionalProperties": false, "required": ["$option"], "properties": { "$option": { "type": "string" } } },
+    "boolOrOption": { "oneOf": [ { "type": "boolean" }, { "$ref": "#/$defs/optionRef" } ] },
+    "monthDay": { "type": "string", "pattern": "^\\d{2}-\\d{2}$" },
+    "window": { "type": "object", "additionalProperties": false, "required": ["start", "end"], "properties": { "start": { "$ref": "#/$defs/monthDay" }, "end": { "$ref": "#/$defs/monthDay" } } },
+    "condition": {
+      "type": "object",
+      "additionalProperties": false,
+      "minProperties": 1,
+      "description": "All keys present must hold. 'trigger_within' tests the date counting starts from (e.g. the deemed date of service); 'date_within', 'day_has' and 'non_working_day' test the current date.",
+      "properties": {
+        "option": { "type": "string" }, "equals": {}, "in": { "type": "array" },
+        "unit": { "enum": ["day", "week", "month", "year", "business_day"] },
+        "unit_in": { "type": "array", "items": { "enum": ["day", "week", "month", "year", "business_day"] } },
+        "min_amount": { "type": "integer" }, "max_amount": { "type": "integer" },
+        "direction": { "enum": ["after", "before"] },
+        "trigger_from": { "type": "string", "format": "date" },
+        "trigger_before": { "type": "string", "format": "date" },
+        "trigger_within": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/window" } },
+        "date_within": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/window" } },
+        "day_has": { "type": "string", "description": "'half_day' or a holiday kind such as 'administrative'." },
+        "non_working_day": { "type": "boolean" },
+        "all": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condition" } },
+        "any": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/condition" } },
+        "not": { "$ref": "#/$defs/condition" }
+      }
+    },
+    "common": {
+      "type": "object",
+      "properties": {
+        "when": { "$ref": "#/$defs/condition" },
+        "cite": { "type": "string" },
+        "message": { "$ref": "#/$defs/localized", "description": "Replaces the default explanation template ({from}, {to} and step-specific placeholders)." },
+        "messages": { "type": "object", "additionalProperties": { "$ref": "#/$defs/localized" }, "description": "Replacement templates per message key, e.g. {\"roll.forward\": {...}}." },
+        "note": {}
+      }
+    },
+    "step": {
+      "allOf": [ { "$ref": "#/$defs/common" } ],
+      "oneOf": [
+        { "type": "object", "required": ["type", "days"], "properties": { "type": { "const": "shift_trigger" }, "days": { "type": "integer" } },
+          "description": "Move the start date before counting (e.g. deemed service of an electronic notification)." },
+        { "type": "object", "required": ["type"], "properties": { "type": { "const": "count" }, "exclude_start_day": { "$ref": "#/$defs/boolOrOption" }, "clear_days": { "$ref": "#/$defs/boolOrOption" }, "business_days": { "$ref": "#/$defs/boolOrOption" } },
+          "description": "Count the period. Exactly one count step must apply to any computation." },
+        { "type": "object", "required": ["type", "name", "periods"], "properties": {
+            "type": { "const": "recess" }, "name": { "$ref": "#/$defs/localized" },
+            "periods": { "type": "array", "minItems": 1, "items": { "type": "object", "additionalProperties": false, "required": ["start", "end"],
+              "properties": { "start": { "$ref": "#/$defs/monthDay" }, "end": { "$ref": "#/$defs/monthDay" }, "since": { "type": "integer" }, "until": { "type": "integer" } } } },
+            "mode": { "enum": ["extend", "suspend", "defer_start"] },
+            "extension_days": { "type": "integer", "minimum": 0 },
+            "count_from": { "oneOf": [ { "enum": ["end", "day_after_end"] }, { "$ref": "#/$defs/optionRef" } ] } },
+          "description": "Judicial recess: extend periods ending inside it, suspend the days inside it, or defer the start until after it." },
+        { "type": "object", "required": ["type"], "properties": { "type": { "const": "roll" }, "direction": { "enum": ["auto", "forward", "backward"] },
+            "kinds": { "oneOf": [ { "type": "array", "items": { "type": "string" } }, { "$ref": "#/$defs/optionRef" } ] },
+            "half_days": { "oneOf": [ { "enum": ["working", "non_working"] }, { "$ref": "#/$defs/optionRef" } ] }, "weekend": { "$ref": "#/$defs/boolOrOption" } },
+          "description": "Move a non-working day to the next (or, counting backwards, previous) working day." },
+        { "type": "object", "required": ["type", "days"], "properties": { "type": { "const": "add_days" }, "days": { "type": "integer" } }, "description": "Add calendar days after counting (e.g. FRCP 6(d))." },
+        { "type": "object", "required": ["type", "time"], "properties": { "type": { "const": "ends_at" }, "time": { "type": "string", "pattern": "^(?:[01]\\d|2[0-3]):[0-5]\\d$" } } },
+        { "type": "object", "required": ["type", "code", "text"], "properties": { "type": { "const": "notice" }, "code": { "type": "string" }, "text": { "$ref": "#/$defs/localized" } },
+          "description": "Attach a caveat to the result (e.g. a point on which case law is divided)." }
+      ]
+    }
+  }
+}
