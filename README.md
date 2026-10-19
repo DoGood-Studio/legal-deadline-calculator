@@ -31,12 +31,13 @@ Holiday libraries tell you **which days are holidays**. Lawyers, legal-tech team
 >>> r.deadline
 datetime.date(2026, 9, 8)
 >>> print(r.explain("en"))
-1. 2 week(s) from 2026-07-30 (Thursday) end on the same weekday of the last week: 2026-08-13 (Thursday). [HMK Art. 92]
+1. A period of 2 week(s) from 2026-07-30 (Thursday) ends on the same weekday of the last week: 2026-08-13 (Thursday). [HMK Art. 92]
 2. 2026-08-13 (Thursday) falls within the judicial recess (2026-07-20 (Monday) – 2026-08-31 (Monday)); the period is extended by 7 day(s) counted from 2026-09-01 (Tuesday), the day after the recess ends: 2026-09-08 (Tuesday). [HMK Arts. 102 and 104]
 3. 2026-09-08 (Tuesday) is a working day; no adjustment needed. [HMK Art. 93]
 4. On the last day the period ends at 23:59. [HMK Art. 445/4]
 Deadline: 2026-09-08 (Tuesday)
 Ends at: 23:59 (Europe/Istanbul)
+Note: The judicial recess extension was counted as the Court of Cassation General Assembly does: one week from 1 September. Some practitioners count from 31 August (7 September); if in doubt, act by the earlier date (recess_extension_from='end').
 ```
 
 ## Why lexdays

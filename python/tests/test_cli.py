@@ -63,6 +63,21 @@ def test_add_between_check(capsys: pytest.CaptureFixture[str]) -> None:
     assert run(capsys, "check", "tr", "2026-05-22", "--lang", "tr")[1].strip() == "iş günü"
 
 
+def test_check_answers_in_every_language(capsys: pytest.CaptureFixture[str]) -> None:
+    assert run(capsys, "check", "de", "2026-05-22", "--lang", "de")[1].strip() == "Arbeitstag"
+    assert run(capsys, "check", "de", "2026-05-23", "--lang", "fr")[1].strip() == "week-end"
+    assert run(capsys, "check", "tr", "2026-05-22", "--lang", "ja")[1].strip() == "営業日"
+
+
+def test_deadline_uses_the_court_seat_calendar(capsys: pytest.CaptureFixture[str]) -> None:
+    # 8 August (Friedensfest) is a holiday only in the city of Augsburg.
+    def deadline(cal: str) -> str:
+        out = run(capsys, "deadline", "de/zpo", "2025-07-25", "P2W", "--calendar", cal, "--json")[1]
+        return str(json.loads(out)["deadline"])
+
+    assert (deadline("de-by-catholic"), deadline("de-by-augsburg")) == ("2025-08-08", "2025-08-11")
+
+
 def test_list(capsys: pytest.CaptureFixture[str]) -> None:
     code, out, _ = run(capsys, "list")
     assert code == 0

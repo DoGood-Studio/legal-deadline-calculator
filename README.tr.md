@@ -29,6 +29,7 @@ datetime.date(2026, 9, 8)
 4. Süre son günün 23:59 saatinde sona erer. [HMK m.445/4]
 Son gün: 08.09.2026 Salı
 Bitiş saati: 23:59 (Europe/Istanbul)
+Not: Adli tatil uzaması Yargıtay Hukuk Genel Kurulu'nun yöntemiyle hesaplandı: 1 Eylül'den itibaren bir hafta. Bazı uygulamacılar 31 Ağustos'tan sayar (7 Eylül); şüphede daha erken tarihte işlem yapın (recess_extension_from='end').
 ```
 
 ## Neler yapar?

@@ -11,7 +11,7 @@ from typing import Any
 
 from . import __version__
 from ._calendar import calendar, list_calendars
-from ._i18n import format_date, languages
+from ._i18n import format_date, languages, render
 from ._rules import compute, list_rulepacks, rulepack
 from .errors import LexdaysError
 
@@ -42,6 +42,7 @@ def _cmd_deadline(args: argparse.Namespace) -> None:
         args.period,
         direction="before" if args.before else "after",
         options=dict(args.option or []),
+        calendar=args.calendar,
     )
     _print(result.to_dict(), args.json, result.explain(args.lang))
 
@@ -72,9 +73,9 @@ def _cmd_check(args: argparse.Namespace) -> None:
     cal = calendar(args.calendar)
     why = cal.non_working_reason(args.date)
     if why is None:
-        label = "business day" if args.lang == "en" else "iş günü"
+        label = render("reason.business_day", {})[args.lang]
     elif why == "weekend":
-        label = "weekend" if args.lang == "en" else "hafta sonu"
+        label = render("reason.weekend", {})[args.lang]
     else:
         label = why.label(args.lang)  # type: ignore[union-attr]
     _print({"business_day": why is None, "reason": label}, args.json, label)
@@ -108,6 +109,7 @@ def build_parser() -> argparse.ArgumentParser:
     p.add_argument("trigger", help="trigger date YYYY-MM-DD (e.g. date of service)")
     p.add_argument("period", help="period: P10D, 2w, 1m, 5bd ...")
     p.add_argument("--before", action="store_true", help="count backwards from the trigger")
+    p.add_argument("--calendar", metavar="ID", help="calendar of the court's seat, e.g. de-by-catholic")
     p.add_argument("-o", "--option", type=_option, action="append", metavar="KEY=VALUE")
     p.set_defaults(func=_cmd_deadline)
 

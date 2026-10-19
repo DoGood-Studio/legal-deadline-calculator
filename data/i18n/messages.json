@@ -435,6 +435,20 @@
       "zh": "{name}（补休日）",
       "ja": "{name}（振替休日）"
     },
+    "reason.business_day": {
+      "en": "business day",
+      "tr": "iş günü",
+      "de": "Arbeitstag",
+      "fr": "jour ouvrable",
+      "es": "día hábil",
+      "it": "giorno lavorativo",
+      "pt": "dia útil",
+      "nl": "werkdag",
+      "ru": "рабочий день",
+      "ar": "يوم عمل",
+      "zh": "工作日",
+      "ja": "営業日"
+    },
     "reason.weekend": {
       "en": "weekend",
       "tr": "hafta sonu",
