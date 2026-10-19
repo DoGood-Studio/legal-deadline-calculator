@@ -70,4 +70,13 @@ jobs:
       - uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
         with:
           name: npm-dist
-      - run: npm publish lexdays-*.tgz --access public
+      # The first version is published by hand (trusted publishing needs an existing package),
+      # so a version that is already on npm is skipped instead of failing the release.
+      - name: Publish unless this version is already on npm
+        run: |
+          version=$(tar -xOzf lexdays-*.tgz package/package.json | node -p "JSON.parse(require('fs').readFileSync(0, 'utf8')).version")
+          if npm view "lexdays@$version" version >/dev/null 2>&1; then
+            echo "lexdays@$version is already on npm; nothing to publish."
+          else
+            npm publish lexdays-*.tgz --access public
+          fi

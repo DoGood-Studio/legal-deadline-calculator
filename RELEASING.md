@@ -12,7 +12,9 @@ Releases are published to PyPI and npm by `.github/workflows/release.yml` using 
    ```bash
    cd js && npm ci && npm run build && npm publish --access public
    ```
+   The release workflow skips a version that is already on npm, so the GitHub Release for this first version only publishes to PyPI.
    Then, in the package settings on npmjs.com, add a trusted publisher: GitHub Actions, repository `DoGood-Studio/legal-deadline-calculator`, workflow `release.yml`, environment `npm`. Finally, disallow token-based publishing.
+   An npm trusted publisher that has not published anything expires 48 hours after it is created, so add it shortly before the first automated release (or recreate it then).
 4. **Repository settings.** Enable private vulnerability reporting (*Security → Settings*), GitHub Pages from GitHub Actions, and a ruleset on `main` that blocks force pushes and deletion and requires pull requests and passing CI.
 
 ## Every release
