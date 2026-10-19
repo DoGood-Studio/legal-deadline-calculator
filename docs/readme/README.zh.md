@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <strong>中文</strong> · <a href="README.ja.md">日本語</a>
+  <a href="../../README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <strong>中文</strong> · <a href="README.ja.md">日本語</a>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
-    <img alt="" src="docs/images/logo.svg" width="72" height="72">
+    <source media="(prefers-color-scheme: dark)" srcset="../images/logo-dark.svg">
+    <img alt="" src="../images/logo.svg" width="72" height="72">
   </picture>
 </p>
 
@@ -20,20 +20,20 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=zh"><strong>在线演示</strong></a> ·
-  <a href="docs/usage.md">文档（英文）</a> ·
-  <a href="docs/verification.md">验证报告（英文）</a>
+  <a href="../usage.md">文档（英文）</a> ·
+  <a href="../verification.md">验证报告（英文）</a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=zh">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-zh-dark.png">
-      <img alt="lexdays 中文演示：美国联邦期限，因邮寄送达增加三天，附日历和每一步的依据。" src="docs/images/hero-zh-light.png" width="860">
+      <source media="(prefers-color-scheme: dark)" srcset="../images/hero-zh-dark.png">
+      <img alt="lexdays 中文演示：美国联邦期限，因邮寄送达增加三天，附日历和每一步的依据。" src="../images/hero-zh-light.png" width="860">
     </picture>
   </a>
 </p>
@@ -79,7 +79,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang zh
 
 </details>
 
-更多示例、全部选项和 API：[docs/usage.md](docs/usage.md)（英文）。
+更多示例、全部选项和 API：[docs/usage.md](../usage.md)（英文）。
 
 ## 覆盖范围
 
@@ -102,20 +102,20 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang zh
   - 331 个手写测试用例，其中许多来自法院判决和官方示例。
   - Python 与 TypeScript 必须在 1,800 个随机案例中结果一致。
   - 日历与独立数据进行比对。
-  - 发布前已逐条对照来源核查每条规则（[报告](docs/verification.md)）。
+  - 发布前已逐条对照来源核查每条规则（[报告](../verification.md)）。
 
 ## 12 种语言，适配任何屏幕
 
 <p align="center">
-  <img width="30%" alt="手机上的英文结果：因邮寄送达增加三天的美国联邦期限。" src="docs/images/phone-en.png">
-  <img width="30%" alt="手机上的阿拉伯文结果，从右到左排版。" src="docs/images/phone-ar.png">
-  <img width="30%" alt="手机上的日文深色主题结果：按慕尼黑日历计算的德国上诉期限。" src="docs/images/phone-ja.png">
+  <img width="30%" alt="手机上的英文结果：因邮寄送达增加三天的美国联邦期限。" src="../images/phone-en.png">
+  <img width="30%" alt="手机上的阿拉伯文结果，从右到左排版。" src="../images/phone-ar.png">
+  <img width="30%" alt="手机上的日文深色主题结果：按慕尼黑日历计算的德国上诉期限。" src="../images/phone-ja.png">
 </p>
 
 ## 参与贡献
 
-最有价值的贡献是法律专业人士的更正和审阅。如果某个结果有误，请附上出处提交[规则更正](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml)。新增法域只需一个 JSON 规则包和测试用例；参见 [CONTRIBUTING.md](CONTRIBUTING.md) 和 [docs/rulepacks.md](docs/rulepacks.md)。
+最有价值的贡献是法律专业人士的更正和审阅。如果某个结果有误，请附上出处提交[规则更正](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml)。新增法域只需一个 JSON 规则包和测试用例；参见 [CONTRIBUTING.md](../../CONTRIBUTING.md) 和 [docs/rulepacks.md](../rulepacks.md)。
 
 ---
 
-<sub>lexdays 仅供参考，不构成法律意见。以法律、判例、法院裁定和当地惯例为准；重要期限请务必核实。 [MIT 许可](LICENSE).</sub>
+<sub>lexdays 仅供参考，不构成法律意见。以法律、判例、法院裁定和当地惯例为准；重要期限请务必核实。 [MIT 许可](../../LICENSE).</sub>

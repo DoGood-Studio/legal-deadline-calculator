@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <strong>Nederlands</strong> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
+  <a href="../../README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <strong>Nederlands</strong> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
-    <img alt="" src="docs/images/logo.svg" width="72" height="72">
+    <source media="(prefers-color-scheme: dark)" srcset="../images/logo-dark.svg">
+    <img alt="" src="../images/logo.svg" width="72" height="72">
   </picture>
 </p>
 
@@ -20,20 +20,20 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=nl"><strong>Live demo</strong></a> ·
-  <a href="docs/usage.md">Documentatie (Engels)</a> ·
-  <a href="docs/verification.md">Verificatierapport (Engels)</a>
+  <a href="../usage.md">Documentatie (Engels)</a> ·
+  <a href="../verification.md">Verificatierapport (Engels)</a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=nl">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-nl-dark.png">
-      <img alt="De lexdays-demo in het Nederlands: termijn voor een beroep bij het Hof van Justitie van de EU vanaf een bekendmaking in het Publicatieblad, met de kalender en de onderbouwing van elke stap." src="docs/images/hero-nl-light.png" width="860">
+      <source media="(prefers-color-scheme: dark)" srcset="../images/hero-nl-dark.png">
+      <img alt="De lexdays-demo in het Nederlands: termijn voor een beroep bij het Hof van Justitie van de EU vanaf een bekendmaking in het Publicatieblad, met de kalender en de onderbouwing van elke stap." src="../images/hero-nl-light.png" width="860">
     </picture>
   </a>
 </p>
@@ -79,7 +79,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang nl
 
 </details>
 
-Meer voorbeelden, alle opties en de API: [docs/usage.md](docs/usage.md) (Engels).
+Meer voorbeelden, alle opties en de API: [docs/usage.md](../usage.md) (Engels).
 
 ## Wat het dekt
 
@@ -102,20 +102,20 @@ Meer voorbeelden, alle opties en de API: [docs/usage.md](docs/usage.md) (Engels)
   - 331 met de hand geschreven testgevallen, veel uit rechterlijke uitspraken en officiële voorbeelden.
   - Python en TypeScript moeten in 1.800 willekeurige gevallen overeenstemmen.
   - De kalenders worden vergeleken met onafhankelijke gegevens.
-  - Vóór de publicatie is elke regel aan zijn bronnen getoetst ([rapport](docs/verification.md)).
+  - Vóór de publicatie is elke regel aan zijn bronnen getoetst ([rapport](../verification.md)).
 
 ## In 12 talen, op elk scherm
 
 <p align="center">
-  <img width="30%" alt="Resultaat op een telefoon in het Engels: een Amerikaanse federale termijn met drie extra dagen voor betekening per post." src="docs/images/phone-en.png">
-  <img width="30%" alt="Resultaat op een telefoon in het Arabisch, van rechts naar links." src="docs/images/phone-ar.png">
-  <img width="30%" alt="Resultaat op een telefoon in het Japans met het donkere thema: een Duitse appeltermijn met de kalender van München." src="docs/images/phone-ja.png">
+  <img width="30%" alt="Resultaat op een telefoon in het Engels: een Amerikaanse federale termijn met drie extra dagen voor betekening per post." src="../images/phone-en.png">
+  <img width="30%" alt="Resultaat op een telefoon in het Arabisch, van rechts naar links." src="../images/phone-ar.png">
+  <img width="30%" alt="Resultaat op een telefoon in het Japans met het donkere thema: een Duitse appeltermijn met de kalender van München." src="../images/phone-ja.png">
 </p>
 
 ## Bijdragen
 
-Correcties en beoordelingen door juristen zijn het waardevolst. Is een resultaat onjuist, open dan een [regelcorrectie](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) met de bron. Een nieuw rechtsstelsel is een JSON-regelpakket met testgevallen; zie [CONTRIBUTING.md](CONTRIBUTING.md) en [docs/rulepacks.md](docs/rulepacks.md).
+Correcties en beoordelingen door juristen zijn het waardevolst. Is een resultaat onjuist, open dan een [regelcorrectie](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) met de bron. Een nieuw rechtsstelsel is een JSON-regelpakket met testgevallen; zie [CONTRIBUTING.md](../../CONTRIBUTING.md) en [docs/rulepacks.md](../rulepacks.md).
 
 ---
 
-<sub>lexdays is een informatief hulpmiddel, geen juridisch advies. Wetgeving, rechtspraak, rechterlijke beslissingen en lokale praktijk gaan voor; controleer altijd een belangrijke termijn. [MIT-licentie](LICENSE).</sub>
+<sub>lexdays is een informatief hulpmiddel, geen juridisch advies. Wetgeving, rechtspraak, rechterlijke beslissingen en lokale praktijk gaan voor; controleer altijd een belangrijke termijn. [MIT-licentie](../../LICENSE).</sub>

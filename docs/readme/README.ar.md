@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <strong>العربية</strong> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
+  <a href="../../README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <strong>العربية</strong> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
-    <img alt="" src="docs/images/logo.svg" width="72" height="72">
+    <source media="(prefers-color-scheme: dark)" srcset="../images/logo-dark.svg">
+    <img alt="" src="../images/logo.svg" width="72" height="72">
   </picture>
 </p>
 
@@ -20,20 +20,20 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center" dir="rtl">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ar"><strong>العرض المباشر</strong></a> ·
-  <a href="docs/usage.md">التوثيق (بالإنجليزية)</a> ·
-  <a href="docs/verification.md">تقرير التحقق (بالإنجليزية)</a>
+  <a href="../usage.md">التوثيق (بالإنجليزية)</a> ·
+  <a href="../verification.md">تقرير التحقق (بالإنجليزية)</a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=ar">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-ar-dark.png">
-      <img alt="العرض التجريبي لـ lexdays بالعربية: ميعاد فدرالي أمريكي مع ثلاثة أيام إضافية للتبليغ بالبريد، مع التقويم وتبرير كل خطوة." src="docs/images/hero-ar-light.png" width="860">
+      <source media="(prefers-color-scheme: dark)" srcset="../images/hero-ar-dark.png">
+      <img alt="العرض التجريبي لـ lexdays بالعربية: ميعاد فدرالي أمريكي مع ثلاثة أيام إضافية للتبليغ بالبريد، مع التقويم وتبرير كل خطوة." src="../images/hero-ar-light.png" width="860">
     </picture>
   </a>
 </p>
@@ -90,7 +90,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang ar
 
 <div dir="rtl">
 
-مزيد من الأمثلة وجميع الخيارات والواجهة البرمجية: [docs/usage.md](docs/usage.md) (بالإنجليزية).
+مزيد من الأمثلة وجميع الخيارات والواجهة البرمجية: [docs/usage.md](../usage.md) (بالإنجليزية).
 
 </div>
 
@@ -121,7 +121,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang ar
   - 331 حالة اختبار مكتوبة يدويًا، كثير منها مأخوذ من أحكام قضائية وأمثلة رسمية.
   - يجب أن تتطابق Python وTypeScript في 1800 حالة عشوائية.
   - تُقارَن التقاويم ببيانات مستقلة.
-  - قبل النشر، رُوجعت كل قاعدة على مصادرها ([التقرير](docs/verification.md)).
+  - قبل النشر، رُوجعت كل قاعدة على مصادرها ([التقرير](../verification.md)).
 
 </div>
 
@@ -132,16 +132,16 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang ar
 </div>
 
 <p align="center">
-  <img width="30%" alt="النتيجة على الهاتف بالإنجليزية: ميعاد فدرالي أمريكي مع ثلاثة أيام إضافية للتبليغ بالبريد." src="docs/images/phone-en.png">
-  <img width="30%" alt="النتيجة على الهاتف بالعربية، من اليمين إلى اليسار." src="docs/images/phone-ar.png">
-  <img width="30%" alt="النتيجة على الهاتف باليابانية بالمظهر الداكن: ميعاد استئناف ألماني وفق تقويم ميونخ." src="docs/images/phone-ja.png">
+  <img width="30%" alt="النتيجة على الهاتف بالإنجليزية: ميعاد فدرالي أمريكي مع ثلاثة أيام إضافية للتبليغ بالبريد." src="../images/phone-en.png">
+  <img width="30%" alt="النتيجة على الهاتف بالعربية، من اليمين إلى اليسار." src="../images/phone-ar.png">
+  <img width="30%" alt="النتيجة على الهاتف باليابانية بالمظهر الداكن: ميعاد استئناف ألماني وفق تقويم ميونخ." src="../images/phone-ja.png">
 </p>
 
 <div dir="rtl">
 
 ## المساهمة
 
-أثمن المساهمات هي التصويبات ومراجعات القانونيين. إذا كانت نتيجة ما خاطئة، فافتح [تصويب قاعدة](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) مع المصدر. الولاية القضائية الجديدة هي حزمة قواعد JSON مع حالات اختبار؛ راجع [CONTRIBUTING.md](CONTRIBUTING.md) و[docs/rulepacks.md](docs/rulepacks.md).
+أثمن المساهمات هي التصويبات ومراجعات القانونيين. إذا كانت نتيجة ما خاطئة، فافتح [تصويب قاعدة](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) مع المصدر. الولاية القضائية الجديدة هي حزمة قواعد JSON مع حالات اختبار؛ راجع [CONTRIBUTING.md](../../CONTRIBUTING.md) و[docs/rulepacks.md](../rulepacks.md).
 
 </div>
 
@@ -149,6 +149,6 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang ar
 
 <div dir="rtl">
 
-<sub>lexdays أداة معلوماتية وليست استشارة قانونية. تكون الأولوية للقانون والاجتهاد القضائي وقرارات المحكمة وما جرى عليه العمل محليًا؛ تحقّق دائمًا من أي ميعاد مهم. [رخصة MIT](LICENSE).</sub>
+<sub>lexdays أداة معلوماتية وليست استشارة قانونية. تكون الأولوية للقانون والاجتهاد القضائي وقرارات المحكمة وما جرى عليه العمل محليًا؛ تحقّق دائمًا من أي ميعاد مهم. [رخصة MIT](../../LICENSE).</sub>
 
 </div>

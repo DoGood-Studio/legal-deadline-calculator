@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="README.md">English</a> · <strong>Türkçe</strong> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
+  <a href="../../README.md">English</a> · <strong>Türkçe</strong> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
-    <img alt="" src="docs/images/logo.svg" width="72" height="72">
+    <source media="(prefers-color-scheme: dark)" srcset="../images/logo-dark.svg">
+    <img alt="" src="../images/logo.svg" width="72" height="72">
   </picture>
 </p>
 
@@ -20,20 +20,20 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="LICENSE"><img alt="MIT lisansı" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="MIT lisansı" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=tr"><strong>Canlı demo</strong></a> ·
-  <a href="docs/jurisdictions/tr.md">Türkiye kuralları</a> ·
-  <a href="docs/verification.md">Doğrulama raporu</a>
+  <a href="../jurisdictions/tr.md">Türkiye kuralları</a> ·
+  <a href="../verification.md">Doğrulama raporu</a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=tr">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-tr-dark.png">
-      <img alt="lexdays demosu: HMK, 29 Temmuz 2027 tebliğinden itibaren iki hafta. Adli tatil süreyi 8 Eylül 2027 Çarşamba'ya uzatır; takvimde adli tatil işaretlidir." src="docs/images/hero-tr-light.png" width="860">
+      <source media="(prefers-color-scheme: dark)" srcset="../images/hero-tr-dark.png">
+      <img alt="lexdays demosu: HMK, 29 Temmuz 2027 tebliğinden itibaren iki hafta. Adli tatil süreyi 8 Eylül 2027 Çarşamba'ya uzatır; takvimde adli tatil işaretlidir." src="../images/hero-tr-light.png" width="860">
     </picture>
   </a>
 </p>
@@ -94,7 +94,7 @@ lexdays holidays tr 2027 --lang tr
 
 </details>
 
-TypeScript örnekleri, tüm seçenekler ve API: [docs/usage.md](docs/usage.md) (İngilizce).
+TypeScript örnekleri, tüm seçenekler ve API: [docs/usage.md](../usage.md) (İngilizce).
 
 ## Kapsam
 
@@ -117,20 +117,20 @@ Aynı motor ABD federal mahkemeleri (FRCP 6), İngiltere ve Galler (CPR), AB Ada
 - **Birçok yönden denetlenir.**
   - Elle yazılmış 331 test vakası var; Türkiye vakalarının önemli bir kısmı gerçek Yargıtay, Danıştay ve Anayasa Mahkemesi kararlarındaki tarihlerden oluşur.
   - Python ve TypeScript sürümleri 1.800 rastgele hesapta aynı sonucu vermek zorundadır.
-  - Yayından önce kaynak kaynak denetim yapıldı ([rapor](docs/verification.md)).
+  - Yayından önce kaynak kaynak denetim yapıldı ([rapor](../verification.md)).
 
 ## 12 dilde, her ekranda
 
 <p align="center">
-  <img width="30%" alt="Telefonda İngilizce sonuç: posta ile tebliğde üç gün eklenen bir ABD federal süresi." src="docs/images/phone-en.png">
-  <img width="30%" alt="Telefonda Arapça sonuç, sağdan sola düzen." src="docs/images/phone-ar.png">
-  <img width="30%" alt="Telefonda Japonca ve koyu temada sonuç: Münih takvimiyle bir Alman istinaf süresi." src="docs/images/phone-ja.png">
+  <img width="30%" alt="Telefonda İngilizce sonuç: posta ile tebliğde üç gün eklenen bir ABD federal süresi." src="../images/phone-en.png">
+  <img width="30%" alt="Telefonda Arapça sonuç, sağdan sola düzen." src="../images/phone-ar.png">
+  <img width="30%" alt="Telefonda Japonca ve koyu temada sonuç: Münih takvimiyle bir Alman istinaf süresi." src="../images/phone-ja.png">
 </p>
 
 ## Katkı
 
-En değerli katkı, avukatların kural incelemesi ve hata bildirimidir. Yanlış bulduğunuz bir sonucu dayanağıyla birlikte ["Kural düzeltmesi" formuyla](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) bildirin. Ayrıntılar [CONTRIBUTING.md](CONTRIBUTING.md) dosyasındadır.
+En değerli katkı, avukatların kural incelemesi ve hata bildirimidir. Yanlış bulduğunuz bir sonucu dayanağıyla birlikte ["Kural düzeltmesi" formuyla](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) bildirin. Ayrıntılar [CONTRIBUTING.md](../../CONTRIBUTING.md) dosyasındadır.
 
 ---
 
-<sub>lexdays bilgilendirme amaçlı bir araçtır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir; önemli bir süreyi mutlaka kontrol edin. [MIT lisansı](LICENSE).</sub>
+<sub>lexdays bilgilendirme amaçlı bir araçtır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir; önemli bir süreyi mutlaka kontrol edin. [MIT lisansı](../../LICENSE).</sub>

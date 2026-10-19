@@ -1,11 +1,11 @@
 <p align="center">
-  <a href="README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <strong>Français</strong> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
+  <a href="../../README.md">English</a> · <a href="README.tr.md">Türkçe</a> · <a href="README.de.md">Deutsch</a> · <strong>Français</strong> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
 </p>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
-    <img alt="" src="docs/images/logo.svg" width="72" height="72">
+    <source media="(prefers-color-scheme: dark)" srcset="../images/logo-dark.svg">
+    <img alt="" src="../images/logo.svg" width="72" height="72">
   </picture>
 </p>
 
@@ -20,20 +20,20 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=fr"><strong>Démo en ligne</strong></a> ·
-  <a href="docs/usage.md">Documentation (en anglais)</a> ·
-  <a href="docs/verification.md">Rapport de vérification (en anglais)</a>
+  <a href="../usage.md">Documentation (en anglais)</a> ·
+  <a href="../verification.md">Rapport de vérification (en anglais)</a>
 </p>
 
 <p align="center">
   <a href="https://dogood-studio.github.io/legal-deadline-calculator/?lang=fr">
     <picture>
-      <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-fr-dark.png">
-      <img alt="La démo de lexdays en français : délai de recours devant la Cour de justice de l'UE à compter d'une publication au Journal officiel, avec le calendrier et la justification de chaque étape." src="docs/images/hero-fr-light.png" width="860">
+      <source media="(prefers-color-scheme: dark)" srcset="../images/hero-fr-dark.png">
+      <img alt="La démo de lexdays en français : délai de recours devant la Cour de justice de l'UE à compter d'une publication au Journal officiel, avec le calendrier et la justification de chaque étape." src="../images/hero-fr-light.png" width="860">
     </picture>
   </a>
 </p>
@@ -79,7 +79,7 @@ lexdays deadline us/frcp 2025-07-31 P30D --lang fr
 
 </details>
 
-Plus d'exemples, toutes les options et l'API : [docs/usage.md](docs/usage.md) (en anglais).
+Plus d'exemples, toutes les options et l'API : [docs/usage.md](../usage.md) (en anglais).
 
 ## Ce qui est couvert
 
@@ -102,20 +102,20 @@ Plus d'exemples, toutes les options et l'API : [docs/usage.md](docs/usage.md) (e
   - 331 cas de test écrits à la main, dont beaucoup tirés de décisions de justice et d'exemples officiels.
   - Python et TypeScript doivent concorder sur 1 800 cas aléatoires.
   - Les calendriers sont comparés à des données indépendantes.
-  - Chaque règle a été contrôlée sur ses sources avant la publication ([rapport](docs/verification.md)).
+  - Chaque règle a été contrôlée sur ses sources avant la publication ([rapport](../verification.md)).
 
 ## En 12 langues, sur tous les écrans
 
 <p align="center">
-  <img width="30%" alt="Résultat sur téléphone en anglais : un délai fédéral américain avec trois jours ajoutés pour une signification par courrier." src="docs/images/phone-en.png">
-  <img width="30%" alt="Résultat sur téléphone en arabe, de droite à gauche." src="docs/images/phone-ar.png">
-  <img width="30%" alt="Résultat sur téléphone en japonais avec le thème sombre : un délai d'appel allemand selon le calendrier de Munich." src="docs/images/phone-ja.png">
+  <img width="30%" alt="Résultat sur téléphone en anglais : un délai fédéral américain avec trois jours ajoutés pour une signification par courrier." src="../images/phone-en.png">
+  <img width="30%" alt="Résultat sur téléphone en arabe, de droite à gauche." src="../images/phone-ar.png">
+  <img width="30%" alt="Résultat sur téléphone en japonais avec le thème sombre : un délai d'appel allemand selon le calendrier de Munich." src="../images/phone-ja.png">
 </p>
 
 ## Contribuer
 
-Les corrections et les relectures par des juristes sont les contributions les plus précieuses. Si un résultat est faux, ouvrez une [correction de règle](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) avec la source. Une nouvelle juridiction est un paquet de règles JSON accompagné de cas de test ; voir [CONTRIBUTING.md](CONTRIBUTING.md) et [docs/rulepacks.md](docs/rulepacks.md).
+Les corrections et les relectures par des juristes sont les contributions les plus précieuses. Si un résultat est faux, ouvrez une [correction de règle](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) avec la source. Une nouvelle juridiction est un paquet de règles JSON accompagné de cas de test ; voir [CONTRIBUTING.md](../../CONTRIBUTING.md) et [docs/rulepacks.md](../rulepacks.md).
 
 ---
 
-<sub>lexdays est un outil d'information, pas un conseil juridique. La loi, la jurisprudence, les décisions de justice et la pratique locale priment ; vérifiez toujours un délai important. [Licence MIT](LICENSE).</sub>
+<sub>lexdays est un outil d'information, pas un conseil juridique. La loi, la jurisprudence, les décisions de justice et la pratique locale priment ; vérifiez toujours un délai important. [Licence MIT](../../LICENSE).</sub>
