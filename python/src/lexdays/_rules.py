@@ -54,7 +54,8 @@ _STEP_KEYS = {
 }
 _CONDITION_KEYS = {
     "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
-    "direction", "trigger_from", "trigger_before", "date_within", "all", "any", "not",
+    "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
+    "all", "any", "not",
 }
 
 
@@ -359,14 +360,18 @@ class RulePack:
         for key in ("trigger_from", "trigger_before"):
             if key in cond:
                 _dates.parse_date(cond[key], field=f"{where}.{key}")
-        if "date_within" in cond:
-            windows = cond["date_within"]
+        for key in ("trigger_within", "date_within"):
+            if key not in cond:
+                continue
+            windows = cond[key]
             if not isinstance(windows, list) or not windows:
-                raise DataError(f"{where}.date_within must be a non-empty list of windows")
+                raise DataError(f"{where}.{key} must be a non-empty list of windows")
             for i, window in enumerate(windows):
-                _check_keys(window, {"start", "end"}, f"{where}.date_within[{i}]")
-                for key in ("start", "end"):
-                    _month_day(window.get(key), f"{where}.date_within[{i}].{key}")
+                _check_keys(window, {"start", "end"}, f"{where}.{key}[{i}]")
+                for part in ("start", "end"):
+                    _month_day(window.get(part), f"{where}.{key}[{i}].{part}")
+        if "day_has" in cond and not isinstance(cond["day_has"], str):
+            raise DataError(f"{where}.day_has must be 'half_day' or a holiday kind")
         for key in ("all", "any"):
             if key in cond:
                 if not isinstance(cond[key], list) or not cond[key]:
@@ -405,6 +410,8 @@ class RulePack:
                 _int_param(self._resolve(step.get("days"), None, here), f"{here}.days", -366, 366)
             elif stype == "recess":
                 self._check_recess(step, here)
+                if step.get("mode") == "defer_start" and seen_count:
+                    raise DataError(f"{here}: a 'defer_start' recess must come before the count step")
             elif stype == "roll":
                 direction = step.get("direction", "auto")
                 if direction not in ("auto", "forward", "backward"):
@@ -424,8 +431,8 @@ class RulePack:
 
     def _check_recess(self, step: Mapping[str, Any], here: str) -> None:
         _check_name(step.get("name"), f"{here}.name")
-        if step.get("mode", "extend") not in ("extend", "suspend"):
-            raise DataError(f"{here}.mode must be 'extend' or 'suspend'")
+        if step.get("mode", "extend") not in ("extend", "suspend", "defer_start"):
+            raise DataError(f"{here}.mode must be 'extend', 'suspend' or 'defer_start'")
         if step.get("mode", "extend") == "extend":
             _int_param(step.get("extension_days"), f"{here}.extension_days", 0, 366)
             count_from = self._resolve(step.get("count_from", "end"), None, here)
@@ -522,15 +529,29 @@ class RulePack:
             return False
         if "trigger_before" in cond and ctx.trigger >= _dates.parse_date(cond["trigger_before"]):
             return False
+        # "trigger_within" tests the date counting starts from (e.g. the deemed date of service).
+        served = ctx.count_start if ctx.count_start is not None else current
+        if "trigger_within" in cond and not any(
+            self._in_window(window, served) for window in cond["trigger_within"]
+        ):
+            return False
         if "date_within" in cond and not any(
             self._in_window(window, current) for window in cond["date_within"]
         ):
+            return False
+        if "day_has" in cond and not self._day_has(current, cond["day_has"], ctx):
             return False
         if "all" in cond and not all(self._eval(c, ctx, current) for c in cond["all"]):
             return False
         if "any" in cond and not any(self._eval(c, ctx, current) for c in cond["any"]):
             return False
         return not ("not" in cond and self._eval(cond["not"], ctx, current))
+
+    def _day_has(self, day: date, what: str, ctx: _Context) -> bool:
+        if what == "half_day":
+            kinds = self._resolve(self.non_working["kinds"], ctx, self._where)
+            return any(h.is_half_day for h in self.calendar.holidays_on(day, kinds=kinds))
+        return any(h.kind == what for h in self.calendar.holidays_on(day))
 
     def _in_window(self, window: Mapping[str, Any], day: date) -> bool:
         for year in (day.year - 1, day.year):
@@ -610,6 +631,14 @@ class RulePack:
 
     def _do_recess(self, step: Mapping[str, Any], current: date, ctx: _Context) -> date:
         name = step["name"]
+        if step.get("mode") == "defer_start":
+            for start, end in self._windows(step, current, current):
+                if start <= current <= end:
+                    params = {"recess": name, "start": start, "end": end}
+                    self._record(ctx, step, "recess.defer_start", current, end, params=params)
+                    return end
+            self._record(ctx, step, "recess.outside", current, current, params={"recess": name})
+            return current
         if step.get("mode", "extend") == "extend":
             for start, end in self._windows(step, current, current):
                 if start <= current <= end:

@@ -1,0 +1,116 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "tr/iik",
+  "name": {
+    "en": "Türkiye — enforcement and bankruptcy (İİK, Law No. 2004)",
+    "tr": "Türkiye — İcra ve İflas Kanunu (2004)"
+  },
+  "jurisdiction": "TR",
+  "calendar": "tr",
+  "status": "beta",
+  "description": {
+    "en": "Deadlines under the Enforcement and Bankruptcy Law (Art. 19), e.g. objection to a payment order. The judicial recess does not apply: enforcement offices and enforcement courts keep working (Court of Cassation General Assembly 2021/1529).",
+    "tr": "İcra ve İflas Kanunu'na göre süreler (m.19), ör. ödeme emrine itiraz. Adli tatil uygulanmaz: icra daireleri ve icra mahkemeleri çalışmaya devam eder (Yargıtay HGK 2021/1529)."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal advice. Check the statute, case law and the office's practice before relying on a result; disputed points are reported as notices.",
+    "tr": "Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Sonuca güvenmeden önce kanunu, içtihadı ve dairenin uygulamasını kontrol edin; tartışmalı noktalar uyarı olarak bildirilir."
+  },
+  "non_working": { "half_days": { "$option": "half_day_last_day" } },
+  "options": {
+    "service": {
+      "values": ["date_of_service", "e_notification_delivery"],
+      "default": "date_of_service",
+      "description": {
+        "en": "Which date you entered: the date of service, or the date an electronic notification reached the recipient's e-address.",
+        "tr": "Girdiğiniz tarih: tebliğ tarihi mi, yoksa elektronik tebligatın muhatabın adresine ulaştığı tarih mi."
+      }
+    },
+    "filing": {
+      "values": ["electronic", "physical"],
+      "default": "electronic",
+      "description": {
+        "en": "Electronic filing is possible until 23:59 on the last day (İİK Art. 8/a); physical filing until the end of office hours.",
+        "tr": "Elektronik işlem son gün 23.59'a kadar (İİK m.8/a), fizikî işlem mesai saati sonuna kadar yapılabilir."
+      }
+    },
+    "half_day_last_day": {
+      "values": ["working", "non_working"],
+      "default": "working",
+      "description": {
+        "en": "How a half-day holiday is treated when it is the last day. The Court of Cassation does not extend a period ending on a feast eve (12th Civil Chamber 2016/29555).",
+        "tr": "Son gün yarım günlük tatilse nasıl sayılacağı. Yargıtay arifede biten süreyi uzatmaz (12. HD 2016/29555)."
+      }
+    }
+  },
+  "citations": {
+    "tk_7a": {
+      "label": { "en": "Notification Law No. 7201, Art. 7/a", "tr": "7201 s. Tebligat K. m.7/a" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.7201.pdf",
+      "quote": { "tr": "Elektronik yolla tebligat, muhatabın elektronik adresine ulaştığı tarihi izleyen beşinci günün sonunda yapılmış sayılır." }
+    },
+    "iik_19": {
+      "label": { "en": "İİK Art. 19", "tr": "İİK m.19" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf",
+      "quote": { "tr": "Gün olarak tayin olunan müddetlerde ilk gün hesaba katılmaz. Ay veya sene olarak tayin olunan müddetler ayın veya senenin kaçıncı günü işlemeye başlamış ise biteceği ay veya senenin aynı gününde ve müddetin biteceği ayın sonunda böyle bir gün yoksa ayın son gününde biter. Müddet, hafta olarak belirlenmiş ise başladığı güne son hafta içindeki karşılık gelen günde biter. Bir müddetin sonuncu günü resmi bir tatil gününe rastlarsa, müddet tatili takibeden günde biter. Müddet, son günün tatil saatinde bitmiş sayılır." }
+    },
+    "iik_8a": {
+      "label": { "en": "İİK Art. 8/a", "tr": "İİK m.8/a" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf",
+      "quote": { "tr": "Elektronik ortamda yapılan işlemlerde süre gün sonunda biter." }
+    },
+    "hgk_2021": {
+      "label": { "en": "Court of Cassation General Assembly, E.2017/(6)8-1853 K.2021/1529", "tr": "Yargıtay HGK E.2017/(6)8-1853 K.2021/1529" },
+      "quote": { "tr": "icra (ve iflâs) daireleri ile icra mahkemeleri, adlî tatilde de normal olarak iş başındadır. Bu nedenle, HMK'nın 104. madde hükmü İİK'daki süreler hakkında uygulanmaz." }
+    },
+    "yargitay_arife": {
+      "label": { "en": "Court of Cassation 12th Civil Chamber, E.2016/29555 K.2018/2478", "tr": "Yargıtay 12. HD E.2016/29555 K.2018/2478" },
+      "quote": { "tr": "bayram öncesi resmi tatil yarım gün olmakla bu tarihte icra müdürlüğüne itiraz edilmesi gerekirken süre geçtikten sonra 28/09/2015 tarihinde yapılan itiraz geçersizdir." }
+    }
+  },
+  "steps": [
+    {
+      "type": "shift_trigger", "days": 5, "cite": "tk_7a",
+      "when": { "option": "service", "equals": "e_notification_delivery" },
+      "message": {
+        "en": "An electronic notification is deemed served at the end of the fifth day after it reached the e-address: {from} + {days} days = {to}.",
+        "tr": "Elektronik tebligat, adrese ulaştığı tarihi izleyen beşinci günün sonunda yapılmış sayılır: {from} + {days} gün = {to}."
+      }
+    },
+    { "type": "count", "cite": "iik_19" },
+    { "type": "roll", "cite": "iik_19" },
+    { "type": "ends_at", "time": "23:59", "cite": "iik_8a", "when": { "option": "filing", "equals": "electronic" } },
+    {
+      "type": "notice", "code": "no-judicial-recess", "cite": "hgk_2021",
+      "when": { "date_within": [ { "start": "07-20", "end": "08-31" } ] },
+      "text": {
+        "en": "The last day falls in the judicial recess, but İİK periods are not extended by it (HMK Art. 104 does not apply).",
+        "tr": "Son gün adli tatile denk geliyor, ancak İİK süreleri adli tatil nedeniyle uzamaz (HMK m.104 uygulanmaz)."
+      }
+    },
+    {
+      "type": "notice", "code": "week-rule-from-2024",
+      "when": { "all": [ { "unit": "week" }, { "trigger_before": "2024-06-01" } ] },
+      "text": {
+        "en": "The week rule in İİK Art. 19 applies from 1 June 2024 (Law No. 7499). Before that, most of these periods were set in days (e.g. 'ten days').",
+        "tr": "İİK m.19'daki hafta kuralı 1 Haziran 2024'ten itibaren uygulanır (7499 s.K.). Bu tarihten önce bu sürelerin çoğu gün olarak belirlenmişti (ör. 'on gün')."
+      }
+    },
+    {
+      "type": "notice", "code": "half-day-last-day", "cite": "yargitay_arife",
+      "when": { "all": [ { "day_has": "half_day" }, { "option": "half_day_last_day", "equals": "working" } ] },
+      "text": {
+        "en": "The last day is a half-day holiday (from 13:00). The period still ends that day (Court of Cassation 12th Civil Chamber).",
+        "tr": "Son gün yarım günlük tatildir (13.00'ten itibaren). Süre yine o gün biter (Yargıtay 12. HD)."
+      }
+    },
+    {
+      "type": "notice", "code": "administrative-leave",
+      "when": { "day_has": "administrative" },
+      "text": {
+        "en": "The last day is an administrative leave day for civil servants. It is not an official holiday and does not extend the period.",
+        "tr": "Son gün kamu personeli için idari izin günüdür. Resmî tatil değildir ve süreyi uzatmaz."
+      }
+    }
+  ]
+}

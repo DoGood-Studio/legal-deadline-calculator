@@ -1,0 +1,23 @@
+{
+  "description": "Türkiye calendar vectors, run against the bundled tr calendar. The vuk-* cases check fixed-date tax deadlines against the GİB tax calendar.",
+  "cases": [
+    { "id": "tr-holidays-2026", "calendar": "tr", "fn": "holiday_ids", "args": { "year": 2026 },
+      "expect": ["new_year", "ramadan_feast_eve", "ramadan_feast", "ramadan_feast", "ramadan_feast", "national_sovereignty_children", "labour_day",
+                 "youth_sports", "sacrifice_feast_eve", "sacrifice_feast", "sacrifice_feast", "sacrifice_feast", "sacrifice_feast",
+                 "democracy_national_unity", "victory_day", "republic_day_eve", "republic_day"] },
+    { "id": "tr-two-ramadan-feasts-in-2000", "calendar": "tr", "fn": "holidays", "args": { "year": 2000 },
+      "expect_contains": [["2000-01-08", "ramadan_feast"], ["2000-12-27", "ramadan_feast"]] },
+    { "id": "tr-sacrifice-feast-across-new-year", "calendar": "tr", "fn": "holidays", "args": { "year": 2007 },
+      "expect_contains": [["2007-01-01", "sacrifice_feast"], ["2007-01-03", "sacrifice_feast"]] },
+    { "id": "tr-no-labour-day-before-2009", "calendar": "tr", "fn": "holiday_ids", "args": { "year": 2008 }, "expect_absent": ["labour_day"] },
+    { "id": "tr-no-15-july-before-2017", "calendar": "tr", "fn": "holiday_ids", "args": { "year": 2016 }, "expect_absent": ["democracy_national_unity"] },
+    { "id": "vuk-saturday-deadline", "calendar": "tr", "fn": "next_business_day", "args": { "date": "2026-09-26", "inclusive": true }, "expect": "2026-09-28", "source": "GİB vergi takvimi" },
+    { "id": "vuk-28-october-not-moved", "calendar": "tr", "fn": "next_business_day", "args": { "date": "2026-10-28", "inclusive": true }, "expect": "2026-10-28", "source": "GİB vergi takvimi" },
+    { "id": "vuk-month-end-saturday", "calendar": "tr", "fn": "next_business_day", "args": { "date": "2026-10-31", "inclusive": true }, "expect": "2026-11-02", "source": "GİB vergi takvimi" },
+    { "id": "vuk-feast-day", "calendar": "tr", "fn": "next_business_day", "args": { "date": "2026-05-28", "inclusive": true }, "expect": "2026-06-01", "source": "VUK Sirküleri/199" },
+    { "id": "vuk-administrative-leave-not-moved", "calendar": "tr", "fn": "next_business_day", "args": { "date": "2026-05-25", "inclusive": true }, "expect": "2026-05-25", "source": "VUK Sirküleri/199" },
+    { "id": "vuk-feast-eve-not-moved", "calendar": "tr", "fn": "next_business_day", "args": { "date": "2026-05-26", "inclusive": true }, "expect": "2026-05-26", "source": "VUK Sirküleri/199" },
+    { "id": "tr-coverage-ends-2035", "calendar": "tr", "fn": "holidays", "args": { "year": 2036 }, "error": "CoverageError" },
+    { "id": "tr-coverage-starts-2000", "calendar": "tr", "fn": "is_business_day", "args": { "date": "1999-12-31" }, "error": "CoverageError" }
+  ]
+}

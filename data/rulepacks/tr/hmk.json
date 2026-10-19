@@ -1,0 +1,193 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "tr/hmk",
+  "name": {
+    "en": "Türkiye — civil procedure (HMK, Law No. 6100)",
+    "tr": "Türkiye — Hukuk Muhakemeleri Kanunu (6100)"
+  },
+  "jurisdiction": "TR",
+  "calendar": "tr",
+  "status": "beta",
+  "description": {
+    "en": "Deadlines under the Code of Civil Procedure: counting (Art. 92), a last day on an official holiday (Art. 93), the judicial recess of 20 July – 31 August (Arts. 102–104) and electronic filing until the end of the day (Art. 445/4).",
+    "tr": "Hukuk Muhakemeleri Kanunu'na göre süreler: hesaplama (m.92), son günün resmî tatile rastlaması (m.93), 20 Temmuz – 31 Ağustos adli tatili (m.102–104) ve elektronik işlemlerde gün sonu (m.445/4)."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal advice. Check the statute, case law and the court's practice before relying on a result; disputed points are reported as notices.",
+    "tr": "Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Sonuca güvenmeden önce kanunu, içtihadı ve mahkeme uygulamasını kontrol edin; tartışmalı noktalar uyarı olarak bildirilir."
+  },
+  "non_working": { "half_days": { "$option": "half_day_last_day" } },
+  "options": {
+    "service": {
+      "values": ["date_of_service", "e_notification_delivery"],
+      "default": "date_of_service",
+      "description": {
+        "en": "Which date you entered: the date of service, or the date an electronic notification (UETS) reached the recipient's e-address (service is then deemed at the end of the fifth day after it).",
+        "tr": "Girdiğiniz tarih: tebliğ tarihi mi, yoksa elektronik tebligatın (UETS) muhatabın adresine ulaştığı tarih mi (bu durumda tebliğ, izleyen beşinci günün sonunda yapılmış sayılır)."
+      }
+    },
+    "filing": {
+      "values": ["electronic", "physical"],
+      "default": "electronic",
+      "description": {
+        "en": "Electronic filing (UYAP) is possible until 23:59 on the last day; physical filing until the end of office hours.",
+        "tr": "Elektronik işlem (UYAP) son gün 23.59'a kadar, fizikî işlem mesai saati sonuna kadar yapılabilir."
+      }
+    },
+    "judicial_recess": {
+      "values": ["applies", "exempt"],
+      "default": "applies",
+      "description": {
+        "en": "Choose 'exempt' for matters heard during the judicial recess (HMK Art. 103: e.g. maintenance, parentage, employees' employment claims, non-contentious matters, bankruptcy, enforcement courts, expropriation, cadastre) or declared urgent by the court.",
+        "tr": "Adli tatilde görülen işler için 'exempt' seçin (HMK m.103: ör. nafaka, soybağı, işçinin iş sözleşmesine dayanan davaları, çekişmesiz yargı, iflas, icra mahkemesi, kamulaştırma, kadastro) veya mahkemece ivedi sayılan işler."
+      }
+    },
+    "recess_extension_from": {
+      "values": ["day_after_end", "end"],
+      "default": "day_after_end",
+      "description": {
+        "en": "'day_after_end' follows the Court of Cassation General Assembly (HGK 2017/20-2873): one week from 1 September, so 8 September. 'end' counts from 31 August, so 7 September, as many practitioners do.",
+        "tr": "'day_after_end' Yargıtay Hukuk Genel Kurulu'nu izler (HGK 2017/20-2873): 1 Eylül'den itibaren bir hafta, yani 8 Eylül. 'end' 31 Ağustos'tan sayar, yani 7 Eylül; uygulamada yaygın hesap budur."
+      }
+    },
+    "recess_after_holiday_shift": {
+      "values": ["no", "yes"],
+      "default": "no",
+      "description": {
+        "en": "If the last day falls just before the recess and Art. 93 moves it into the recess (e.g. Sunday 19 July → Monday 20 July), 'yes' also applies the Art. 104 extension. No decision settles this; 'no' gives the earlier, safer date.",
+        "tr": "Son gün tatilden hemen önceye düşüp m.93 ile adli tatile kayarsa (ör. 19 Temmuz Pazar → 20 Temmuz Pazartesi), 'yes' m.104 uzamasını da uygular. Bunu çözen bir karar yoktur; 'no' daha erken ve güvenli tarihi verir."
+      }
+    },
+    "half_day_last_day": {
+      "values": ["working", "non_working"],
+      "default": "working",
+      "description": {
+        "en": "How a half-day holiday (feast eve or 28 October, from 13:00) is treated when it is the last day. Court of Cassation practice: the period still ends that day ('working'). 'non_working' is a minority reading with no decision behind it.",
+        "tr": "Son gün yarım günlük tatilse (arife veya 28 Ekim, 13.00'ten itibaren) nasıl sayılacağı. Yargıtay uygulaması: süre o gün biter ('working'). 'non_working' arkasında karar bulunmayan azınlık görüşüdür."
+      }
+    }
+  },
+  "citations": {
+    "tk_7a": {
+      "label": { "en": "Notification Law No. 7201, Art. 7/a", "tr": "7201 s. Tebligat K. m.7/a" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.7201.pdf",
+      "quote": { "tr": "Elektronik yolla tebligat, muhatabın elektronik adresine ulaştığı tarihi izleyen beşinci günün sonunda yapılmış sayılır." }
+    },
+    "hmk_92": {
+      "label": { "en": "HMK Art. 92", "tr": "HMK m.92" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf",
+      "quote": { "tr": "(1) Süreler gün olarak belirlenmiş ise tebliğ veya tefhim edildiği gün hesaba katılmaz ve süre son günün tatil saatinde biter. (2) Süre; hafta, ay veya yıl olarak belirlenmiş ise başladığı güne son hafta, ay veya yıl içindeki karşılık gelen günün tatil saatinde biter. Sürenin bittiği ayda, başladığı güne karşılık gelen bir gün yoksa, süre bu ayın son günü tatil saatinde biter." }
+    },
+    "hmk_93": {
+      "label": { "en": "HMK Art. 93", "tr": "HMK m.93" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf",
+      "quote": { "tr": "(1) Resmî tatil günleri, süreye dâhildir. Sürenin son gününün resmî tatil gününe rastlaması hâlinde, süre tatili takip eden ilk iş günü çalışma saati sonunda biter." }
+    },
+    "hmk_104": {
+      "label": { "en": "HMK Arts. 102 and 104", "tr": "HMK m.102 ve m.104" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf",
+      "quote": { "tr": "m.102: Adli tatil, her yıl yirmi temmuzda başlar, otuz bir ağustosta sona erer. m.104: Adli tatile tabi olan dava ve işlerde, bu Kanunun tayin ettiği sürelerin bitmesi tatil zamanına rastlarsa, bu süreler ayrıca bir karara gerek olmaksızın adli tatilin bittiği günden itibaren bir hafta uzatılmış sayılır." }
+    },
+    "hmk_445": {
+      "label": { "en": "HMK Art. 445/4", "tr": "HMK m.445/4" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf",
+      "quote": { "tr": "Elektronik ortamda yapılan işlemlerde süre gün sonunda biter." }
+    },
+    "hgk_2017": {
+      "label": { "en": "Court of Cassation General Assembly, E.2017/20-2873 K.2017/1449", "tr": "Yargıtay HGK E.2017/20-2873 K.2017/1449" },
+      "quote": { "tr": "uzatılması gereken bir haftalık sürenin adli tatilin sona erdiği 31 Ağustos tarihini takip eden 1 Eylül tarihinden itibaren başlatılması gerekmektedir." }
+    },
+    "yargitay_arife": {
+      "label": { "en": "Court of Cassation 12th Civil Chamber, E.2016/29555 K.2018/2478", "tr": "Yargıtay 12. HD E.2016/29555 K.2018/2478" }
+    },
+    "yargitay_idari_izin": {
+      "label": { "en": "Court of Cassation 16th Civil Chamber, E.2016/14817 K.2017/1983", "tr": "Yargıtay 16. HD E.2016/14817 K.2017/1983" },
+      "quote": { "tr": "Devlet memurlarının Bakanlar Kurulu Kararı ile idari izinli sayıldığı günler hakkında 93. madde hükmü uygulanmaz." }
+    }
+  },
+  "steps": [
+    {
+      "type": "shift_trigger", "days": 5, "cite": "tk_7a",
+      "when": { "option": "service", "equals": "e_notification_delivery" },
+      "message": {
+        "en": "An electronic notification is deemed served at the end of the fifth day after it reached the e-address: {from} + {days} days = {to}.",
+        "tr": "Elektronik tebligat, adrese ulaştığı tarihi izleyen beşinci günün sonunda yapılmış sayılır: {from} + {days} gün = {to}."
+      }
+    },
+    { "type": "count", "cite": "hmk_92" },
+    {
+      "type": "roll", "cite": "hmk_93",
+      "when": { "all": [ { "option": "judicial_recess", "equals": "applies" }, { "option": "recess_after_holiday_shift", "equals": "yes" } ] }
+    },
+    {
+      "type": "recess", "cite": "hmk_104",
+      "when": { "option": "judicial_recess", "equals": "applies" },
+      "name": { "en": "judicial recess", "tr": "adli tatil" },
+      "periods": [ { "start": "07-20", "end": "08-31", "since": 2012 } ],
+      "mode": "extend", "extension_days": 7,
+      "count_from": { "$option": "recess_extension_from" }
+    },
+    { "type": "roll", "cite": "hmk_93" },
+    { "type": "ends_at", "time": "23:59", "cite": "hmk_445", "when": { "option": "filing", "equals": "electronic" } },
+    {
+      "type": "notice", "code": "physical-filing-office-hours",
+      "when": { "option": "filing", "equals": "physical" },
+      "text": {
+        "en": "Physical filing ends at the close of office hours on the last day; the hour is set locally (Law No. 657 Art. 100), not by the HMK.",
+        "tr": "Fizikî işlemde süre son günün mesai saati sonunda biter; saat HMK'da değil, yerel olarak belirlenir (657 s.K. m.100)."
+      }
+    },
+    {
+      "type": "notice", "code": "recess-7-september-method", "cite": "hgk_2017",
+      "when": { "all": [ { "option": "judicial_recess", "equals": "applies" }, { "option": "recess_extension_from", "equals": "end" } ] },
+      "text": {
+        "en": "You chose to count the recess extension from 31 August (7 September). The Court of Cassation General Assembly counts it from 1 September (8 September).",
+        "tr": "Adli tatil uzamasını 31 Ağustos'tan saymayı seçtiniz (7 Eylül). Yargıtay Hukuk Genel Kurulu 1 Eylül'den sayar (8 Eylül)."
+      }
+    },
+    {
+      "type": "notice", "code": "holiday-shift-into-recess",
+      "when": { "all": [
+        { "option": "judicial_recess", "equals": "applies" },
+        { "option": "recess_after_holiday_shift", "equals": "no" },
+        { "date_within": [ { "start": "07-20", "end": "08-31" } ] }
+      ] },
+      "text": {
+        "en": "The holiday rule (Art. 93) moved the last day into the judicial recess. Whether Art. 104 then extends it is unsettled; this is the earlier, safer date. Set recess_after_holiday_shift to 'yes' for the extended reading.",
+        "tr": "Tatil kuralı (m.93) son günü adli tatile kaydırdı. Bu durumda m.104 uzamasının uygulanıp uygulanmayacağı belirsizdir; bu sonuç daha erken ve güvenli tarihtir. Uzamalı okuma için recess_after_holiday_shift seçeneğini 'yes' yapın."
+      }
+    },
+    {
+      "type": "notice", "code": "half-day-last-day", "cite": "yargitay_arife",
+      "when": { "all": [ { "day_has": "half_day" }, { "option": "half_day_last_day", "equals": "working" } ] },
+      "text": {
+        "en": "The last day is a half-day holiday (from 13:00). The period still ends that day (Court of Cassation practice). For physical filing, offices close at 13:00; this is widely assumed but not confirmed by a decision.",
+        "tr": "Son gün yarım günlük tatildir (13.00'ten itibaren). Süre yine o gün biter (Yargıtay uygulaması). Fizikî işlemde daireler 13.00'te kapanır; bu yaygın kabul görür ancak bir kararla teyit edilmemiştir."
+      }
+    },
+    {
+      "type": "notice", "code": "half-day-minority-reading",
+      "when": { "option": "half_day_last_day", "equals": "non_working" },
+      "text": {
+        "en": "You chose to treat half-day holidays as non-working. Court of Cassation practice does not extend a period that ends on a feast eve.",
+        "tr": "Yarım günlük tatilleri çalışılmayan gün saymayı seçtiniz. Yargıtay uygulaması arifede biten süreyi uzatmaz."
+      }
+    },
+    {
+      "type": "notice", "code": "administrative-leave", "cite": "yargitay_idari_izin",
+      "when": { "day_has": "administrative" },
+      "text": {
+        "en": "The last day is an administrative leave day for civil servants. It is not an official holiday: courts work and the period is not extended.",
+        "tr": "Son gün kamu personeli için idari izin günüdür. Resmî tatil değildir: mahkemeler çalışır ve süre uzamaz."
+      }
+    },
+    {
+      "type": "notice", "code": "recess-dates-unverified",
+      "when": { "trigger_before": "2012-01-01" },
+      "text": {
+        "en": "Judicial recess dates before 2012 are not verified; this pack applies 20 July – 31 August from 2012 only.",
+        "tr": "2012 öncesi adli tatil tarihleri doğrulanmadı; bu paket 20 Temmuz – 31 Ağustos dönemini yalnızca 2012'den itibaren uygular."
+      }
+    }
+  ]
+}

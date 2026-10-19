@@ -1,0 +1,74 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "tr/aym",
+  "name": {
+    "en": "Türkiye — individual application to the Constitutional Court (Law No. 6216)",
+    "tr": "Türkiye — Anayasa Mahkemesine bireysel başvuru (6216)"
+  },
+  "jurisdiction": "TR",
+  "calendar": "tr",
+  "status": "beta",
+  "description": {
+    "en": "The 30-day period for an individual application, counted from the date the final decision was learned (Law No. 6216 Art. 47/5). The judicial recess does not apply; a last day on a weekend or holiday moves to the next working day.",
+    "tr": "Bireysel başvuru için 30 günlük süre; nihai kararın öğrenildiği tarihten itibaren işler (6216 s.K. m.47/5). Adli tatil uygulanmaz; hafta sonu veya tatile rastlayan son gün ilk iş gününe kayar."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal advice. Check the Constitutional Court's admissibility case law before relying on a result.",
+    "tr": "Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Sonuca güvenmeden önce Anayasa Mahkemesinin kabul edilebilirlik içtihadını kontrol edin."
+  },
+  "citations": {
+    "law_6216_47": {
+      "label": { "en": "Law No. 6216, Art. 47/5", "tr": "6216 s.K. m.47/5" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6216.pdf",
+      "quote": { "tr": "Bireysel başvurunun, başvuru yollarının tüketildiği tarihten; başvuru yolu öngörülmemişse ihlalin öğrenildiği tarihten itibaren otuz gün içinde yapılması gerekir." }
+    },
+    "tayyar": {
+      "label": { "en": "Constitutional Court, Turgut Tayyar, App. No. 2013/7168", "tr": "AYM, Turgut Tayyar, B.No 2013/7168" },
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/",
+      "quote": { "tr": "6216 sayılı Kanun ve İçtüzük'te Anayasa Mahkemesinin adli tatile tabi olduğu yönünde bir hüküm bulunmadığından … bireysel başvuru açısından adli tatil hükümlerinin süre hesabında dikkate alınmasına hukuken olanak yoktur." }
+    },
+    "onen": {
+      "label": { "en": "Constitutional Court, Abdulkadir Önen, App. No. 2014/16212", "tr": "AYM, Abdulkadir Önen, B.No 2014/16212" },
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/"
+    },
+    "ozcan": {
+      "label": { "en": "Constitutional Court, Mehmet Özcan, App. No. 2019/6266", "tr": "AYM, Mehmet Özcan, B.No 2019/6266" },
+      "url": "https://kararlarbilgibankasi.anayasa.gov.tr/"
+    }
+  },
+  "steps": [
+    { "type": "count", "cite": "law_6216_47" },
+    { "type": "roll", "cite": "tayyar" },
+    {
+      "type": "notice", "code": "starts-when-learned", "cite": "ozcan",
+      "text": {
+        "en": "Enter the date the final decision was learned. Opening an electronic notification or reading the decision on UYAP starts the period, even before the notification is deemed served.",
+        "tr": "Nihai kararın öğrenildiği tarihi girin. Elektronik tebligatın açılması veya kararın UYAP'ta okunması, tebligat yapılmış sayılmadan önce bile süreyi başlatır."
+      }
+    },
+    {
+      "type": "notice", "code": "no-judicial-recess", "cite": "tayyar",
+      "when": { "date_within": [ { "start": "07-20", "end": "08-31" } ] },
+      "text": {
+        "en": "The last day falls in the judicial recess, which does not apply to individual applications.",
+        "tr": "Son gün adli tatile denk geliyor; adli tatil bireysel başvuruya uygulanmaz."
+      }
+    },
+    {
+      "type": "notice", "code": "half-day-last-day", "cite": "onen",
+      "when": { "day_has": "half_day" },
+      "text": {
+        "en": "The last day is a half-day holiday (from 13:00). It does not extend the period (Abdulkadir Önen).",
+        "tr": "Son gün yarım günlük tatildir (13.00'ten itibaren). Süreyi uzatmaz (Abdulkadir Önen)."
+      }
+    },
+    {
+      "type": "notice", "code": "administrative-leave", "cite": "onen",
+      "when": { "day_has": "administrative" },
+      "text": {
+        "en": "The last day is an administrative leave day. It does not extend the period (Abdulkadir Önen).",
+        "tr": "Son gün idari izin günüdür. Süreyi uzatmaz (Abdulkadir Önen)."
+      }
+    }
+  ]
+}

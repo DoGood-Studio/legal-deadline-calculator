@@ -1,0 +1,95 @@
+{
+  "$schema": "../../../spec/rulepack.schema.json",
+  "id": "tr/vuk",
+  "name": {
+    "en": "Türkiye — tax procedure (VUK, Law No. 213)",
+    "tr": "Türkiye — Vergi Usul Kanunu (213)"
+  },
+  "jurisdiction": "TR",
+  "calendar": "tr",
+  "status": "beta",
+  "description": {
+    "en": "Periods under the Tax Procedure Law (Art. 18), e.g. periods given in a tax notice. A last day on Saturday, Sunday or a feast day moves to the next working day; feast eves and administrative leave days do not move it. The judicial recess does not affect VUK periods (it does affect the 30-day period to sue before a tax court: use tr/iyuk).",
+    "tr": "Vergi Usul Kanunu'na göre süreler (m.18), ör. tebliğ edilen bir ihbarnamedeki süreler. Cumartesi, Pazar veya bayrama rastlayan son gün ilk iş gününe kayar; arife ve idari izin kaydırmaz. Adli tatil VUK sürelerini etkilemez (vergi mahkemesinde 30 günlük dava açma süresini etkiler: tr/iyuk kullanın)."
+  },
+  "disclaimer": {
+    "en": "Informational tool, not legal or tax advice. The Revenue Administration may move filing and payment deadlines administratively; always check the current GİB tax calendar.",
+    "tr": "Bilgilendirme amaçlıdır, hukuki veya vergi danışmanlığı değildir. Gelir İdaresi beyan ve ödeme sürelerini idari olarak değiştirebilir; her zaman güncel GİB vergi takvimini kontrol edin."
+  },
+  "options": {
+    "service": {
+      "values": ["date_of_service", "e_notification_delivery"],
+      "default": "date_of_service",
+      "description": {
+        "en": "Which date you entered: the date of service, or the date a GİB electronic notification was delivered (service is deemed at the end of the fifth day after it, VUK Art. 107/A).",
+        "tr": "Girdiğiniz tarih: tebliğ tarihi mi, yoksa GİB elektronik tebligatının iletildiği tarih mi (tebliğ izleyen beşinci günün sonunda yapılmış sayılır, VUK m.107/A)."
+      }
+    },
+    "filing": {
+      "values": ["electronic", "physical"],
+      "default": "electronic",
+      "description": {
+        "en": "GİB accepts electronic returns until 23:59; physical filing ends at the end of office hours.",
+        "tr": "GİB elektronik beyannameyi 23.59'a kadar kabul eder; fizikî işlem mesai saati sonunda biter."
+      }
+    }
+  },
+  "citations": {
+    "vuk_107a": {
+      "label": { "en": "VUK Art. 107/A", "tr": "VUK m.107/A" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf",
+      "quote": { "tr": "Elektronik ortamda tebligat, tebliğin bu sistem ile muhatabına iletildiği tarihi izleyen beşinci günün sonunda yapılmış sayılır." }
+    },
+    "vuk_18": {
+      "label": { "en": "VUK Art. 18", "tr": "VUK m.18" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf",
+      "quote": { "tr": "1. Süre gün olarak belli edilmişse başladığı gün hesaba katılmaz ve son günün tatil saatinde biter; 2. Süre hafta veya ay olarak belli edilmişse başladığı güne son hafta veya ayda tekabül eden günün tatil saatinde biter. Sürenin bittiği ayda, başladığı güne tekabül eden bir gün yoksa süre o ayın son gününün tatil saatinde biter;" }
+    },
+    "vuk_18_4": {
+      "label": { "en": "VUK Art. 18/4", "tr": "VUK m.18/4" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf",
+      "quote": { "tr": "Resmi tatil günleri süreye dahildir. Şu kadar ki, sürenin son günü resmi tatile rastlarsa tatili takibeden ilk iş gününün tatil saatinde biter." }
+    },
+    "vuk_mukerrer_28": {
+      "label": { "en": "VUK repeated Art. 28", "tr": "VUK mükerrer m.28" },
+      "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf",
+      "quote": { "tr": "Maliye Bakanlığı Gelir İdaresi Başkanlığı, beyannamelerin verilme ve ödeme sürelerinin son gününü, kanunî süresinden itibaren bir ayı geçmeyecek şekilde yeniden belirlemeye yetkilidir." }
+    }
+  },
+  "steps": [
+    {
+      "type": "shift_trigger", "days": 5, "cite": "vuk_107a",
+      "when": { "option": "service", "equals": "e_notification_delivery" },
+      "message": {
+        "en": "A GİB electronic notification is deemed served at the end of the fifth day after delivery: {from} + {days} days = {to}.",
+        "tr": "GİB elektronik tebligatı, iletildiği tarihi izleyen beşinci günün sonunda yapılmış sayılır: {from} + {days} gün = {to}."
+      }
+    },
+    { "type": "count", "cite": "vuk_18" },
+    { "type": "roll", "cite": "vuk_18_4" },
+    { "type": "ends_at", "time": "23:59", "when": { "option": "filing", "equals": "electronic" } },
+    {
+      "type": "notice", "code": "administrative-extensions", "cite": "vuk_mukerrer_28",
+      "text": {
+        "en": "GİB can move filing and payment deadlines by up to one month (repeated Art. 28) and grant extra time (Art. 17); force majeure suspends periods (Art. 15). These are not in this calculation.",
+        "tr": "GİB beyan ve ödeme sürelerini bir aya kadar değiştirebilir (mükerrer m.28) ve mühlet verebilir (m.17); mücbir sebep süreleri durdurur (m.15). Bunlar bu hesaba dahil değildir."
+      }
+    },
+    {
+      "type": "notice", "code": "half-day-last-day",
+      "when": { "day_has": "half_day" },
+      "text": {
+        "en": "The last day is a half-day holiday (from 13:00). It does not move the deadline (GİB tax calendar practice).",
+        "tr": "Son gün yarım günlük tatildir (13.00'ten itibaren). Son günü kaydırmaz (GİB vergi takvimi uygulaması)."
+      }
+    },
+    {
+      "type": "notice", "code": "administrative-leave",
+      "when": { "day_has": "administrative" },
+      "text": {
+        "en": "The last day is an administrative leave day for civil servants. It does not move the deadline unless GİB extends it.",
+        "tr": "Son gün kamu personeli için idari izin günüdür. GİB uzatmadıkça son günü kaydırmaz."
+      }
+    }
+  ]
+}

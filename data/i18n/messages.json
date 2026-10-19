@@ -81,6 +81,10 @@
       "en": "{from} falls within the {recess} ({start} – {end}); the period is extended by {days} day(s) counted from {next}, the day after the recess ends: {to}.",
       "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre, tatilin bitimini izleyen {next} tarihinden itibaren {days} gün uzar: {to}."
     },
+    "recess.defer_start": {
+      "en": "{from} falls within the {recess} ({start} – {end}); the period only starts running after the recess, as if served on {to}.",
+      "tr": "{from}, {recess} ({start} – {end}) içine düşüyor; süre tatilden sonra işlemeye başlar, {to} tarihinde tebliğ edilmiş gibi sayılır."
+    },
     "recess.outside": {
       "en": "{from} is outside the {recess}; no extension applies.",
       "tr": "{from}, {recess} dışında; uzatma uygulanmaz."

@@ -316,6 +316,108 @@
           }
         }
       ]
+    },
+    "fx/criminal": {
+      "id": "fx/criminal",
+      "name": {
+        "en": "Fixture criminal procedure"
+      },
+      "calendar": "fx",
+      "options": {
+        "served_in_recess": {
+          "values": [
+            "extend",
+            "defer_start"
+          ],
+          "default": "extend"
+        }
+      },
+      "steps": [
+        {
+          "type": "recess",
+          "name": {
+            "en": "judicial recess",
+            "tr": "adli tatil"
+          },
+          "periods": [
+            {
+              "start": "07-20",
+              "end": "08-31"
+            }
+          ],
+          "mode": "defer_start",
+          "when": {
+            "option": "served_in_recess",
+            "equals": "defer_start"
+          }
+        },
+        {
+          "type": "count"
+        },
+        {
+          "type": "recess",
+          "name": {
+            "en": "judicial recess",
+            "tr": "adli tatil"
+          },
+          "periods": [
+            {
+              "start": "07-20",
+              "end": "08-31"
+            }
+          ],
+          "extension_days": 3
+        },
+        {
+          "type": "roll"
+        },
+        {
+          "type": "notice",
+          "code": "served-in-recess",
+          "text": {
+            "en": "Served during the recess; case law is divided.",
+            "tr": "Tatil içinde tebliğ; içtihat bölünmüş."
+          },
+          "when": {
+            "all": [
+              {
+                "trigger_within": [
+                  {
+                    "start": "07-20",
+                    "end": "08-31"
+                  }
+                ]
+              },
+              {
+                "option": "served_in_recess",
+                "equals": "extend"
+              }
+            ]
+          }
+        },
+        {
+          "type": "notice",
+          "code": "half-day-last-day",
+          "text": {
+            "en": "Last day is a half day.",
+            "tr": "Son gün yarım gün."
+          },
+          "when": {
+            "day_has": "half_day"
+          }
+        },
+        {
+          "type": "notice",
+          "code": "administrative-leave",
+          "text": {
+            "en": "Last day is an administrative leave day.",
+            "tr": "Son gün idari izin günü."
+          },
+          "when": {
+            "day_has": "administrative"
+          }
+        }
+      ]
     }
   },
   "cases": [
@@ -854,6 +956,119 @@
             ],
             "extension_days": 7,
             "count_from": "tomorrow"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "criminal-extend-3-days",
+      "pack": "fx/criminal",
+      "trigger": "2026-07-15",
+      "period": "P15D",
+      "expect": {
+        "deadline": "2026-09-03",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          false
+        ]
+      }
+    },
+    {
+      "id": "criminal-served-in-recess-extend-model",
+      "pack": "fx/criminal",
+      "trigger": "2026-07-21",
+      "period": "P15D",
+      "expect": {
+        "deadline": "2026-09-03",
+        "steps": [
+          "count",
+          "recess",
+          "roll"
+        ],
+        "notices": [
+          "served-in-recess"
+        ]
+      }
+    },
+    {
+      "id": "criminal-served-in-recess-defer-model",
+      "pack": "fx/criminal",
+      "trigger": "2026-07-21",
+      "period": "P15D",
+      "options": {
+        "served_in_recess": "defer_start"
+      },
+      "expect": {
+        "deadline": "2026-09-15",
+        "steps": [
+          "recess",
+          "count",
+          "recess",
+          "roll"
+        ],
+        "changed": [
+          true,
+          true,
+          false,
+          false
+        ]
+      }
+    },
+    {
+      "id": "criminal-last-day-half-day-notice",
+      "pack": "fx/criminal",
+      "trigger": "2026-03-12",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-03-19",
+        "notices": [
+          "half-day-last-day"
+        ]
+      }
+    },
+    {
+      "id": "criminal-last-day-admin-leave-notice",
+      "pack": "fx/criminal",
+      "trigger": "2026-03-16",
+      "period": "P7D",
+      "expect": {
+        "deadline": "2026-03-23",
+        "notices": [
+          "administrative-leave"
+        ]
+      }
+    },
+    {
+      "id": "pack-defer-start-after-count",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [
+              {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            ],
+            "mode": "defer_start"
           }
         ]
       },

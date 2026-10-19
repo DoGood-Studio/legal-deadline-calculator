@@ -46,7 +46,8 @@ const STEP_KEYS: Record<string, ReadonlySet<string>> = Object.fromEntries(
 );
 const CONDITION_KEYS = new Set([
   "option", "equals", "in", "unit", "unit_in", "min_amount", "max_amount",
-  "direction", "trigger_from", "trigger_before", "date_within", "all", "any", "not",
+  "direction", "trigger_from", "trigger_before", "trigger_within", "date_within", "day_has",
+  "all", "any", "not",
 ]);
 
 // ------------------------------------------------------------------- results
@@ -340,14 +341,18 @@ export class RulePack {
       throw new DataError(`${where}: direction must be one of ${DIRECTIONS.join(", ")}`);
     }
     for (const key of ["trigger_from", "trigger_before"]) if (key in cond) D.parseDate(cond[key], `${where}.${key}`);
-    if ("date_within" in cond) {
-      const windows = cond.date_within;
-      if (!Array.isArray(windows) || windows.length === 0) throw new DataError(`${where}.date_within must be a non-empty list of windows`);
+    for (const key of ["trigger_within", "date_within"]) {
+      if (!(key in cond)) continue;
+      const windows = cond[key];
+      if (!Array.isArray(windows) || windows.length === 0) throw new DataError(`${where}.${key} must be a non-empty list of windows`);
       windows.forEach((w, i) => {
-        const window = checkKeys(w, new Set(["start", "end"]), `${where}.date_within[${i}]`);
-        monthDay(window.start, `${where}.date_within[${i}].start`);
-        monthDay(window.end, `${where}.date_within[${i}].end`);
+        const window = checkKeys(w, new Set(["start", "end"]), `${where}.${key}[${i}]`);
+        monthDay(window.start, `${where}.${key}[${i}].start`);
+        monthDay(window.end, `${where}.${key}[${i}].end`);
       });
+    }
+    if ("day_has" in cond && typeof cond.day_has !== "string") {
+      throw new DataError(`${where}.day_has must be 'half_day' or a holiday kind`);
     }
     for (const key of ["all", "any"]) {
       if (key in cond) {
@@ -386,6 +391,7 @@ export class RulePack {
         intParam(this.resolve(s.days, null, here), `${here}.days`, -366, 366);
       } else if (type === "recess") {
         this.checkRecess(s, here);
+        if (s.mode === "defer_start" && seenCount) throw new DataError(`${here}: a 'defer_start' recess must come before the count step`);
       } else if (type === "roll") {
         if (!["auto", "forward", "backward"].includes((s.direction ?? "auto") as string)) {
           throw new DataError(`${here}.direction must be auto, forward or backward`);
@@ -406,7 +412,9 @@ export class RulePack {
   private checkRecess(step: Obj, here: string): void {
     checkName(step.name, `${here}.name`);
     const mode = step.mode ?? "extend";
-    if (mode !== "extend" && mode !== "suspend") throw new DataError(`${here}.mode must be 'extend' or 'suspend'`);
+    if (mode !== "extend" && mode !== "suspend" && mode !== "defer_start") {
+      throw new DataError(`${here}.mode must be 'extend', 'suspend' or 'defer_start'`);
+    }
     if (mode === "extend") {
       intParam(step.extension_days, `${here}.extension_days`, 0, 366);
       const from = this.resolve(step.count_from ?? "end", null, here);
@@ -496,10 +504,23 @@ export class RulePack {
     if ("direction" in cond && ctx.direction !== cond.direction) return false;
     if ("trigger_from" in cond && ctx.trigger < D.parseDate(cond.trigger_from)) return false;
     if ("trigger_before" in cond && ctx.trigger >= D.parseDate(cond.trigger_before)) return false;
+    // "trigger_within" tests the date counting starts from (e.g. the deemed date of service).
+    const served = ctx.countStart ?? current;
+    if ("trigger_within" in cond && !(cond.trigger_within as Obj[]).some((w) => this.inWindow(w, served))) return false;
     if ("date_within" in cond && !(cond.date_within as Obj[]).some((w) => this.inWindow(w, current))) return false;
+    if ("day_has" in cond && !this.dayHas(current, cond.day_has as string, ctx)) return false;
     if ("all" in cond && !(cond.all as Obj[]).every((c) => this.evaluate(c, ctx, current))) return false;
     if ("any" in cond && !(cond.any as Obj[]).some((c) => this.evaluate(c, ctx, current))) return false;
     return !("not" in cond && this.evaluate(cond.not as Obj, ctx, current));
+  }
+
+  private dayHas(day: number, what: string, ctx: Context): boolean {
+    const iso = D.formatISO(day);
+    if (what === "half_day") {
+      const kinds = this.resolve(this.nonWorking.kinds, ctx, this.where) as string[];
+      return this.calendar.holidaysOn(iso, { kinds }).some((h) => h.halfDayFrom !== null);
+    }
+    return this.calendar.holidaysOn(iso).some((h) => h.kind === what);
   }
 
   private inWindow(window: Obj, day: number): boolean {
@@ -621,6 +642,16 @@ export class RulePack {
 
   private recess(step: Step, current: number, ctx: Context): number {
     const name = step.name as LocalizedText;
+    if (step.mode === "defer_start") {
+      for (const [start, end] of this.windows(step, current, current)) {
+        if (start <= current && current <= end) {
+          this.record(ctx, step, "recess.defer_start", current, end, { recess: name, start: new DateParam(start), end: new DateParam(end) });
+          return end;
+        }
+      }
+      this.record(ctx, step, "recess.outside", current, current, { recess: name });
+      return current;
+    }
     if ((step.mode ?? "extend") === "extend") {
       for (const [start, end] of this.windows(step, current, current)) {
         if (start <= current && current <= end) {
