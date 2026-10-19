@@ -487,23 +487,22 @@ class Calendar:
         self, start: date | str, end: date | str, *, kinds: Kinds = None,
         half_days: str = "working", weekend: bool = True,
     ) -> int:
-        """Number of working days ``d`` with ``start < d <= end``.
+        """Signed number of working days from ``start`` to ``end``.
 
-        Negative when ``end`` is before ``start``, so that
-        ``add_business_days(start, business_days_between(start, end))`` lands on
-        ``end`` whenever ``end`` is itself a working day.
+        Counts working days ``d`` with ``start < d <= end`` when ``end`` is
+        after ``start``, and minus the working days with ``end <= d < start``
+        when it is before. This makes it the inverse of
+        :meth:`add_business_days`: ``add_business_days(start,
+        business_days_between(start, end)) == end`` whenever ``end`` is a
+        working day, in both directions.
         """
         a, b = _dates.parse_date(start, field="start"), _dates.parse_date(end, field="end")
-        sign = 1
-        if b < a:
-            a, b, sign = b, a, -1
-        count = 0
-        current = a + timedelta(days=1)
-        while current <= b:
-            if self.is_business_day(current, kinds=kinds, half_days=half_days, weekend=weekend):
-                count += 1
-            current += timedelta(days=1)
-        return sign * count
+        opts: dict[str, Any] = {"kinds": kinds, "half_days": half_days, "weekend": weekend}
+        if b >= a:
+            days = (a + timedelta(days=i) for i in range(1, (b - a).days + 1))
+            return sum(1 for d in days if self.is_business_day(d, **opts))
+        days = (b + timedelta(days=i) for i in range((a - b).days))
+        return -sum(1 for d in days if self.is_business_day(d, **opts))
 
 
 # --------------------------------------------------------------------- registry

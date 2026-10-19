@@ -457,15 +457,21 @@ export class Calendar {
     return D.formatISO(this.addBusinessDaysRaw(D.parseDate(date), n, options));
   }
 
-  /** Number of working days `d` with `start < d <= end` (negative when `end < start`). */
+  /**
+   * Signed number of working days from `start` to `end`: working days `d` with
+   * `start < d <= end` when `end` is later, minus those with `end <= d < start`
+   * when it is earlier. The inverse of {@link addBusinessDays} in both directions.
+   */
   businessDaysBetween(start: ISODate, end: ISODate, options: BusinessDayOptions = {}): number {
-    let a = D.parseDate(start, "start");
-    let b = D.parseDate(end, "end");
-    let sign = 1;
-    if (b < a) [a, b, sign] = [b, a, -1];
+    const a = D.parseDate(start, "start");
+    const b = D.parseDate(end, "end");
     let count = 0;
-    for (let day = a + 1; day <= b; day++) if (this.reasonOn(day, options) === null) count++;
-    return sign * count;
+    if (b >= a) {
+      for (let day = a + 1; day <= b; day++) if (this.reasonOn(day, options) === null) count++;
+      return count;
+    }
+    for (let day = b; day < a; day++) if (this.reasonOn(day, options) === null) count++;
+    return -count;
   }
 }
 
