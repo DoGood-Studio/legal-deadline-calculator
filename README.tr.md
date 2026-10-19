@@ -1,71 +1,66 @@
+<p align="center">
+  <a href="README.md">English</a> · <strong>Türkçe</strong> · <a href="README.de.md">Deutsch</a> · <a href="README.fr.md">Français</a> · <a href="README.es.md">Español</a> · <a href="README.it.md">Italiano</a> · <a href="README.pt.md">Português</a> · <a href="README.nl.md">Nederlands</a> · <a href="README.ru.md">Русский</a> · <a href="README.ar.md">العربية</a> · <a href="README.zh.md">中文</a> · <a href="README.ja.md">日本語</a>
+</p>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/images/logo-dark.svg">
+    <img alt="" src="docs/images/logo.svg" width="72" height="72">
+  </picture>
+</p>
+
 <h1 align="center">lexdays</h1>
 
 <p align="center">
-  <b>Açıklamalı hukuki süre ve iş günü hesaplama.</b><br>
-  Her sonuç <i>neden</i> o tarih olduğunu söyler ve uyguladığı kanun maddesini gösterir.
+  <strong>Denetlenebilir hukuki süreler.</strong><br>
+  İşlem için son gün; her adım, dayandığı kanun maddesi veya mahkeme kararıyla birlikte.
 </p>
 
 <p align="center">
-  Python · TypeScript · Komut satırı · bağımlılıksız · MIT lisansı<br>
-  <a href="README.md">English</a> ·
-  <a href="https://dogood-studio.github.io/lexdays/">Canlı demo</a> ·
-  <a href="docs/jurisdictions/tr.md">Türkiye kuralları ve tartışmalı noktalar</a> ·
-  <a href="docs/RELIABILITY.md">Güvenilirlik raporu</a> ·
+  <a href="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/lexdays/actions/workflows/ci.yml/badge.svg"></a>
+  <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
+  <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
+  <a href="LICENSE"><img alt="MIT lisansı" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+</p>
+
+<p align="center">
+  <a href="https://dogood-studio.github.io/lexdays/?lang=tr"><strong>Canlı demo</strong></a> ·
+  <a href="docs/jurisdictions/tr.md">Türkiye kuralları</a> ·
   <a href="docs/verification.md">Doğrulama raporu</a>
 </p>
 
----
+<p align="center">
+  <a href="https://dogood-studio.github.io/lexdays/?lang=tr">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="docs/images/hero-tr-dark.png">
+      <img alt="lexdays demosu: HMK, 29 Temmuz 2027 tebliğinden itibaren iki hafta. Adli tatil süreyi 8 Eylül 2027 Çarşamba'ya uzatır; takvimde adli tatil işaretlidir." src="docs/images/hero-tr-light.png" width="860">
+    </picture>
+  </a>
+</p>
 
-Tatil kütüphaneleri hangi günün tatil olduğunu söyler. Avukatların, hukuk yazılımı geliştirenlerin, muhasebecilerin ve İK ekiplerinin ihtiyacı ise başka: **işlemin yapılabileceği son gün ve bunun gerekçesi.**
+Tatil kütüphaneleri hangi günün tatil olduğunu söyler. lexdays ise **dilekçe vermek, tebliğ etmek veya ödemek için son günü ve nedenini** söyler. Her sonuç, attığı adımları (adli tatil, tatile rastlayan son gün, e-tebligat…) ve her birinin dayandığı kuralı listeler.
 
-```python
->>> import lexdays
->>> r = lexdays.compute("tr/hmk", "2026-07-30", "P2W")   # HMK: tebliğden itibaren 2 hafta
->>> r.deadline
-datetime.date(2026, 9, 8)
->>> print(r.explain("tr"))
-1. 30.07.2026 Perşembe tarihinden itibaren 2 hafta, son haftada aynı adı taşıyan günde biter: 13.08.2026 Perşembe. [HMK m.92]
-2. 13.08.2026 Perşembe, adli tatil (20.07.2026 Pazartesi – 31.08.2026 Pazartesi) içine düşüyor; süre, tatilin bitimini izleyen 01.09.2026 Salı tarihinden itibaren 7 gün uzar: 08.09.2026 Salı. [HMK m.102 ve m.104]
-3. 08.09.2026 Salı iş günü; düzeltme gerekmez. [HMK m.93]
-4. Süre son günün 23:59 saatinde sona erer. [HMK m.445/4]
-Son gün: 08.09.2026 Salı
-Bitiş saati: 23:59 (Europe/Istanbul)
-Not: Adli tatil uzaması Yargıtay Hukuk Genel Kurulu'nun yöntemiyle hesaplandı: 1 Eylül'den itibaren bir hafta. Bazı uygulamacılar 31 Ağustos'tan sayar (7 Eylül); şüphede daha erken tarihte işlem yapın (recess_extension_from='end').
-```
-
-## Neler yapar?
-
-- **Hukuki süre hesaplama.** HMK, İİK, CMK, İYUK, VUK ve Anayasa Mahkemesi bireysel başvurusu için ayrı kural paketleri vardır. Hepsi şunları hesaba katar:
-  - adli tatil (uzama veya erteleme)
-  - arife ve 28 Ekim yarım günleri
-  - e-tebligatta 5. gün kuralı
-  - son günün resmî tatile, Cumartesiye veya bayrama rastlaması
-  - ay sonu kuralı (31 Ocak + 1 ay = 28/29 Şubat)
-- **Kaynak gösterir.** Her adımda dayandığı kanun maddesi veya karar yazar. Sonuç denetlenebilir ve dilekçeye ya da iç kayda eklenebilir. Açıklama 12 dilde alınabilir: Türkçe, İngilizce, Almanca, Fransızca, İspanyolca, İtalyanca, Portekizce, Felemenkçe, Rusça, Arapça, Çince ve Japonca. Kural notları ve atıf etiketleri İngilizce ve gerektiğinde mahkemenin dilindedir.
-- **Tartışmalı noktaları gizlemez.** İçtihadın veya uygulamanın bölündüğü yerler seçenek olarak sunulur ve sonuca açıklayıcı bir not eklenir. Varsayılan, yerleşik yüksek mahkeme içtihadı varsa onu izler; yoksa daha erken, yani güvenli tarihtir. Örnekler:
-  - adli tatil sonrası 7 Eylül mü, 8 Eylül mü
-  - süre arifede biterse ne olur
-  - tatil kuralıyla adli tatile kayan son gün
-  - CMK'da adli tatil içinde yapılan tebliğ
-- **Tahmin yapmaz.** Takvimin doğrulanmış yılları dışında hesap istenirse yanlış tarih vermek yerine hata verir.
-- **İş günü hesabı:** iş günü mü, n iş günü sonrası, iki tarih arası iş günü sayısı, resmî tatil listesi. Bayram tarihleri 2000–2035 için Diyanet takviminden alınmıştır; idari izin ayrı bir tür olarak ele alınır.
-
-## Kurulum
+## Hızlı başlangıç
 
 ```bash
-pip install lexdays          # Python 3.10+
-npm install lexdays          # Node 18+, tarayıcı, Deno, Bun
+pip install lexdays        # Python 3.10+
+npm install lexdays        # Node 18+, tarayıcı, Deno, Bun
 ```
-
-## Örnekler
 
 ```python
 import lexdays
 
+r = lexdays.compute("tr/hmk", "2026-07-30", "P2W")   # HMK: tebliğden itibaren 2 hafta
+r.deadline              # datetime.date(2026, 9, 8): adli tatil nedeniyle uzadı
+print(r.explain("tr"))  # her adım, dayanağıyla
+```
+
+<details>
+<summary><strong>Daha fazla Türkiye örneği</strong></summary>
+
+```python
 # İcra: ödeme emrine itiraz, 7 gün. Son gün arife: süre o gün biter (Yargıtay 12. HD)
-r = lexdays.compute("tr/iik", "2015-09-16", "P7D")
-r.deadline                      # 2015-09-23
-[n.code for n in r.notices]     # ['half-day-last-day']
+lexdays.compute("tr/iik", "2015-09-16", "P7D").deadline          # 2015-09-23
 
 # E-tebligat: ulaşma tarihini girin; tebliğ 5. günün sonunda yapılmış sayılır
 lexdays.compute("tr/hmk", "2026-10-13", "P2W", options={"service": "e_notification_delivery"}).deadline
@@ -77,50 +72,63 @@ lexdays.compute("tr/iyuk", "2026-06-10", "P60D").deadline        # 2026-09-07
 # Ceza: adli tatile rastlayan süre 3 gün uzar
 lexdays.compute("tr/cmk", "2024-07-13", "P2W").deadline          # 2024-09-03
 
-# Adli tatilde görülen işler (nafaka, işçi alacağı, icra mahkemesi ...): uzama yok
+# Adli tatilde görülen işler (nafaka, işçi alacağı, icra mahkemesi …): uzama yok
 lexdays.compute("tr/hmk", "2019-07-26", "P2W", options={"judicial_recess": "exempt"}).deadline   # 2019-08-09
 
-# İş günü
-tr = lexdays.calendar("tr")
-tr.add_business_days("2026-05-22", 3)           # 2026-06-01: Kurban Bayramı atlanır
-tr.business_days_between("2026-01-01", "2026-12-31")
-[h.label("tr") for h in tr.holidays(2026)]
+# İş günü: Kurban Bayramı atlanır
+lexdays.calendar("tr").add_business_days("2026-05-22", 3)        # 2026-06-01
 ```
 
-Komut satırından:
+</details>
+
+<details>
+<summary><strong>Komut satırı</strong></summary>
 
 ```bash
 lexdays deadline tr/hmk 2026-07-30 2w --lang tr
 lexdays deadline tr/iik 2026-05-22 "7 gün" --lang tr --json
 lexdays holidays tr 2027 --lang tr
-lexdays add tr 2026-05-22 3
 ```
 
-## Türkiye kural paketleri
+</details>
 
-| Paket | Kapsam | Önemli seçenekler |
+TypeScript örnekleri, tüm seçenekler ve API: [docs/usage.md](docs/usage.md) (İngilizce).
+
+## Kapsam
+
+| Paket | Kapsam | Tartışmalı noktalar için seçenekler |
 |---|---|---|
-| `tr/hmk` | HMK m.92–93, 102–104, 445/4 | `service`, `filing`, `judicial_recess`, `recess_extension_from` (8 / 7 Eylül), `recess_after_holiday_shift`, `half_day_last_day` |
-| `tr/iik` | İİK m.19, 8/a (adli tatil yok) | `service`, `filing`, `half_day_last_day` |
-| `tr/cmk` | CMK m.39, 331 (3 gün uzama) | `service`, `filing`, `served_in_recess`, `half_day_last_day` |
-| `tr/iyuk` | İYUK m.8, 61 (7 Eylül) | `service`, `filing`, `court_break`, `half_day_last_day` |
-| `tr/vuk` | VUK m.18, 107/A | `service`, `filing` |
+| `tr/hmk` | HMK m.92–93, 102–104, 445/4 | adli tatil sonrası 8 / 7 Eylül, tatile kayan son gün, arife |
+| `tr/iik` | İİK m.19, 8/a (adli tatil yok) | arife |
+| `tr/cmk` | CMK m.39, 331 (3 gün uzama) | adli tatilde tebliğ, arife |
+| `tr/iyuk` | İYUK m.8, 61 (ara verme, 7 gün) | tek mahkemeli yerler, ara vermeye kayan son gün |
+| `tr/vuk` | VUK m.18, 107/A | – |
 | `tr/aym` | 6216 s.K. m.47/5 (öğrenmeden itibaren 30 gün) | – |
 
-Kuralların dayanakları, kararlar ve tartışmalı noktalar [docs/jurisdictions/tr.md](docs/jurisdictions/tr.md) dosyasındadır. Test vektörlerinin önemli bir bölümü gerçek Yargıtay, Danıştay ve Anayasa Mahkemesi kararlarındaki tarihlerden oluşur. Paket bu kararların hepsinde aynı sonucu verir.
+Aynı motor ABD federal mahkemeleri (FRCP 6), İngiltere ve Galler (CPR), AB Adalet Divanı ve Almanya (ZPO, bütün eyaletlerin takvimleriyle) için de çalışır. Toplam 24 tatil takvimi bulunur; hesaplama adımlarının açıklaması 12 dilde alınabilir.
 
-## Global
+## Sonuca neden güvenebilirsiniz?
 
-Aynı motor ABD federal mahkemeleri (FRCP 6), İngiltere ve Galler (CPR 2.8), AB Adalet Divanı ve Almanya (ZPO, 16 eyalet takvimiyle) için de çalışır. Ayrıntılar [README.md](README.md) dosyasındadır.
+- **Her adım kaynağını gösterir:** kanun maddesi veya mahkeme kararı, bağlantısıyla.
+- **Tartışmalı noktalar seçenektir** ve sonuca bir not eklenir. Varsayılan, yerleşik yüksek mahkeme içtihadını, o yoksa daha erken tarihi izler.
+- **Tahmin yapmaz.** Takvimin doğrulanmış yılları dışında hesap istenirse yanlış tarih yerine hata verir.
+- **Birçok yönden denetlenir.**
+  - Elle yazılmış 331 test vakası var; Türkiye vakalarının önemli bir kısmı gerçek Yargıtay, Danıştay ve Anayasa Mahkemesi kararlarındaki tarihlerden oluşur.
+  - Python ve TypeScript sürümleri 1.800 rastgele hesapta aynı sonucu vermek zorundadır.
+  - Yayından önce kaynak kaynak denetim yapıldı ([rapor](docs/verification.md)).
+
+## 12 dilde, her ekranda
+
+<p align="center">
+  <img width="30%" alt="Telefonda İngilizce sonuç: posta ile tebliğde üç gün eklenen bir ABD federal süresi." src="docs/images/phone-en.png">
+  <img width="30%" alt="Telefonda Arapça sonuç, sağdan sola düzen." src="docs/images/phone-ar.png">
+  <img width="30%" alt="Telefonda Japonca ve koyu temada sonuç: Münih takvimiyle bir Alman istinaf süresi." src="docs/images/phone-ja.png">
+</p>
 
 ## Katkı
 
-Özellikle avukatların kural incelemesine ve hata bildirimine ihtiyaç var. Yanlış bulduğunuz bir sonucu dayanağıyla birlikte ["Kural düzeltmesi" issue şablonuyla](https://github.com/DoGood-Studio/lexdays/issues/new/choose) bildirin. Ayrıntılar [CONTRIBUTING.md](CONTRIBUTING.md) dosyasındadır.
+En değerli katkı, avukatların kural incelemesi ve hata bildirimidir. Yanlış bulduğunuz bir sonucu dayanağıyla birlikte ["Kural düzeltmesi" formuyla](https://github.com/DoGood-Studio/lexdays/issues/new?template=rule-correction.yml) bildirin. Ayrıntılar [CONTRIBUTING.md](CONTRIBUTING.md) dosyasındadır.
 
-## Sorumluluk reddi
+---
 
-lexdays bilgilendirme amaçlı bir araçtır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama her zaman önceliklidir. Önemli bir süreyi mutlaka kontrol edin.
-
-## Lisans
-
-[MIT](LICENSE)
+<sub>lexdays bilgilendirme amaçlı bir araçtır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir; önemli bir süreyi mutlaka kontrol edin. [MIT lisansı](LICENSE).</sub>

@@ -4,7 +4,7 @@
 
 - Türkiye (HMK, İİK, CMK, İYUK, VUK, Constitutional Court), US federal courts (FRCP 6), England and Wales (CPR 2.8), the EU Court of Justice and Germany (ZPO)
 - Judicial recesses, half-day holidays, deemed service, add-on days for mail, counting back from a hearing, clear days, month ends
-- Explanations in 12 languages
+- Calculation steps explained in 12 languages
 - Disputed points are options with a notice; dates outside the verified holiday data throw instead of guessing
 - No dependencies, MIT licensed, typed, ESM and CommonJS; the Python package (`pip install lexdays`) gives identical results
 

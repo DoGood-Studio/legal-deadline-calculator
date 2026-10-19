@@ -67,7 +67,8 @@ a { color: var(--court); text-underline-offset: 2px; }
 .brand__mark { width: 30px; height: 30px; }
 .m-sheet { fill: var(--surface); stroke: var(--court); stroke-width: 2; }
 .m-band { fill: var(--court); }
-.m-day { fill: var(--red); font: 700 12px var(--font-ui); text-anchor: middle; }
+.m-ring { fill: var(--court); stroke: var(--surface); stroke-width: 1; }
+.m-day { fill: var(--red); font: 700 15px Georgia, "Times New Roman", serif; text-anchor: middle; }
 .bar__nav { display: flex; align-items: center; gap: 18px; font-size: 0.95rem; }
 .bar__nav a { color: var(--muted); text-decoration: none; }
 .bar__nav a:hover { color: var(--ink); }
