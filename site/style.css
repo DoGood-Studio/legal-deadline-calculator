@@ -71,7 +71,7 @@ a { color: var(--court); text-underline-offset: 2px; }
 .bar__nav { display: flex; align-items: center; gap: 18px; font-size: 0.95rem; }
 .bar__nav a { color: var(--muted); text-decoration: none; }
 .bar__nav a:hover { color: var(--ink); }
-.lang select { font: inherit; font-size: 0.9rem; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 5px 8px; }
+.lang select { font: inherit; font-size: 0.9rem; color: var(--ink); background-color: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding-block: 5px; padding-inline: 8px 28px; }
 @media (max-width: 560px) { .bar__nav a:not(:last-of-type) { display: none; } }
 
 /* intro */
@@ -109,6 +109,17 @@ input[type="date"], input[type="number"], select {
   font: 500 1rem var(--font-ui); color: var(--ink); background: var(--paper);
   border: 1px solid var(--line); border-radius: var(--r-md); padding: 9px 11px; min-width: 0;
 }
+/* WebKit sizes a native select by its longest option (long calendar names pushed phone layouts
+   sideways), so selects draw their own arrow and cut long text with an ellipsis. */
+select {
+  -webkit-appearance: none; appearance: none;
+  overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  padding-inline-end: 32px;
+  background-image: linear-gradient(45deg, transparent 50%, var(--muted) 50%), linear-gradient(135deg, var(--muted) 50%, transparent 50%);
+  background-position: calc(100% - 17px) 55%, calc(100% - 12px) 55%;
+  background-size: 5px 5px; background-repeat: no-repeat;
+}
+[dir="rtl"] select { background-position: 12px 55%, 17px 55%; }
 input[type="date"] { flex: 1 1 180px; }
 .ghost { border: 1px solid var(--line); background: transparent; color: var(--court); font: 600 0.92rem var(--font-ui); border-radius: var(--r-md); padding: 8px 14px; cursor: pointer; }
 .field { display: grid; gap: 6px; font-size: 0.9rem; color: var(--muted); font-weight: 500; }

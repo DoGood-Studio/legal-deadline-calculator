@@ -50,6 +50,8 @@ function txt(obj, area) {
 }
 const updateLangNote = () => ($("r-langnote").hidden = fellBack.size === 0);
 const engineLang = () => state.lang;
+// Label-value separator: full-width in Chinese and Japanese, spaced in French.
+const colon = () => (["zh", "ja"].includes(state.lang) ? "：" : state.lang === "fr" ? " : " : ": ");
 // Arabic keeps Latin digits so dates match the explanation text the library produces.
 const locale = () => (state.lang === "ar" ? "ar-u-nu-latn" : state.lang);
 const num = (n) => new Intl.NumberFormat(locale(), { useGrouping: false }).format(n);
@@ -232,7 +234,7 @@ function run() {
     });
     lastResult = result;
     renderVerdict(result.deadline, "leaf", "r-date");
-    $("r-time").textContent = result.endsAt ? `${t("r.ends")}: ${result.endsAt}${result.timezone ? ` (${result.timezone})` : ""}` : "";
+    $("r-time").textContent = result.endsAt ? `${t("r.ends")}${colon()}${result.endsAt}${result.timezone ? ` (${result.timezone})` : ""}` : "";
     const diff = dayDiff(todayIso(), result.deadline);
     const cd = $("r-countdown");
     cd.textContent = diff > 0 ? t("cd.left", { d: quantity(diff, "day") }) : diff === 0 ? t("cd.today") : t("cd.past", { d: quantity(-diff, "day") });
@@ -416,7 +418,7 @@ function renderBusiness() {
     renderVerdict(out, "b-leaf", "b-date-out");
     const why = cal.nonWorkingReason(date, { halfDays });
     const label = why === null ? t("b.business") : why === "weekend" ? t("b.weekend") : txt(why.name);
-    $("b-start").textContent = `${fmt(date, { day: "numeric", month: "long", year: "numeric" })}: ${label}`;
+    $("b-start").textContent = `${fmt(date, { day: "numeric", month: "long", year: "numeric" })}${colon()}${label}`;
     const year = Number(out.slice(0, 4));
     $("b-year").textContent = num(year);
     $("b-holidays").replaceChildren(
@@ -494,7 +496,7 @@ $("calendar").addEventListener("change", () => {
 });
 $("copy-result").addEventListener("click", () => {
   if (!lastResult) return;
-  const head = `${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}: ${$("r-date").textContent}\n\n`;
+  const head = `${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}${colon()}${$("r-date").textContent}\n\n`;
   copy(head + lastResult.explain(engineLang()) + `\n\n${location.href}`, "copied");
 });
 $("copy-link").addEventListener("click", () => copy(location.href, "linkCopied"));

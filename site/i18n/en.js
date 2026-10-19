@@ -48,7 +48,7 @@ export default {
     "tr/vuk": ["15 days", "30 days"],
     "tr/aym": ["Individual application"],
     "us/frcp": ["Answer to the complaint", "Motion for a new trial", "Serve motion before hearing"],
-    "gb-eaw/cpr": ["Acknowledgment of service", "Defence (after acknowledgment)", "Serve application before hearing"],
+    "gb-eaw/cpr": ["Acknowledgment of service", "Defence (if acknowledgment filed)", "Serve application before hearing"],
     "eu/cj": ["Action for annulment", "Appeal to the Court of Justice"],
     "de/zpo": ["Berufung (appeal)", "Berufungsbegründung (grounds of appeal)", "Einspruch (default judgment)", "Revision"],
   },

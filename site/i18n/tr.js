@@ -48,7 +48,7 @@ export default {
     "tr/vuk": ["15 gün", "30 gün"],
     "tr/aym": ["Bireysel başvuru"],
     "us/frcp": ["Davaya cevap", "Yeniden yargılama talebi", "Duruşmadan önce talep tebliği"],
-    "gb-eaw/cpr": ["Tebliği kabul bildirimi", "Savunma (bildirimden sonra)", "Duruşmadan önce başvuru tebliği"],
+    "gb-eaw/cpr": ["Savunma niyeti bildirimi (acknowledgment)", "Cevap dilekçesi (bildirim yapıldıysa)", "Duruşmadan önce başvuru tebliği"],
     "eu/cj": ["İptal davası", "Adalet Divanı'na temyiz"],
     "de/zpo": ["Berufung (istinaf)", "Berufungsbegründung (istinaf gerekçesi)", "Einspruch (gıyabi karara itiraz)", "Revision (temyiz)"],
   },
