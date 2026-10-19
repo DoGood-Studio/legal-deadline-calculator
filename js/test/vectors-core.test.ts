@@ -87,7 +87,8 @@ describe("calendar vectors", () => {
 
 function runDeadlineCase(c: Record<string, any>) {
   const spec = c.pack_spec ?? DL.rulepacks[c.pack];
-  const pack = new RulePack(spec, calendars[spec.calendar]!);
+  const override = spec && typeof spec === "object" && "calendar" in spec ? (calendars[spec.calendar] ?? null) : null;
+  const pack = new RulePack(spec, override);
   return pack.compute(c.trigger, c.period, { direction: c.direction ?? "after", options: c.options });
 }
 

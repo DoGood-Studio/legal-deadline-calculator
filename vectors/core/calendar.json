@@ -3,100 +3,1390 @@
   "calendars": {
     "fx": {
       "id": "fx",
-      "name": { "en": "Fixture calendar", "tr": "Test takvimi" },
-      "weekend": [6, 7],
-      "coverage": { "from": 2020, "to": 2030 },
+      "name": {
+        "en": "Fixture calendar",
+        "tr": "Test takvimi"
+      },
+      "weekend": [
+        6,
+        7
+      ],
+      "coverage": {
+        "from": 2020,
+        "to": 2030
+      },
       "holidays": [
-        { "id": "new_year", "name": { "en": "New Year", "tr": "Yılbaşı" }, "rule": { "type": "fixed", "month": 1, "day": 1 },
-          "observed": { "shift": { "6": -1, "7": 1 } } },
-        { "id": "spring_day", "name": { "en": "Spring Day" }, "rule": { "type": "nth_weekday", "month": 5, "weekday": 1, "n": -1 } },
-        { "id": "good_friday", "name": { "en": "Good Friday" }, "rule": { "type": "easter", "offset": -2 } },
-        { "id": "eve_half", "name": { "en": "Eve" }, "rule": { "type": "fixed", "month": 10, "day": 28 }, "half_day": { "from": "13:00" } },
-        { "id": "harvest_eve", "name": { "en": "Harvest Eve", "tr": "Hasat Arifesi" }, "rule": { "type": "dates", "dates": ["2026-03-19"] }, "half_day": { "from": "13:00" } },
-        { "id": "harvest", "name": { "en": "Harvest Feast", "tr": "Hasat Bayramı" }, "rule": { "type": "dates", "dates": ["2026-03-20", "2026-03-21", "2026-03-22"] } },
-        { "id": "admin_leave", "name": { "en": "Administrative leave" }, "kind": "administrative", "rule": { "type": "dates", "dates": ["2026-03-23"] } },
-        { "id": "midsummer", "name": { "en": "Midsummer" }, "rule": { "type": "weekday_relative", "month": 6, "day": 20, "weekday": 6, "direction": "on_or_after" } },
-        { "id": "xmas", "name": { "en": "Christmas" }, "rule": { "type": "fixed", "month": 12, "day": 25 },
-          "observed": { "shift": { "6": 2, "7": 1 }, "avoid_collision": true } },
-        { "id": "boxing", "name": { "en": "Boxing Day" }, "rule": { "type": "fixed", "month": 12, "day": 26 },
-          "observed": { "shift": { "6": 2, "7": 1 }, "avoid_collision": true } },
-        { "id": "orthodox_easter_monday", "name": { "en": "Orthodox Easter Monday" }, "rule": { "type": "easter", "offset": 1, "method": "orthodox" }, "since": 2025, "except_years": [2027] }
+        {
+          "id": "new_year",
+          "name": {
+            "en": "New Year",
+            "tr": "Yılbaşı"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 1,
+            "day": 1
+          },
+          "observed": {
+            "shift": {
+              "6": -1,
+              "7": 1
+            }
+          }
+        },
+        {
+          "id": "spring_day",
+          "name": {
+            "en": "Spring Day"
+          },
+          "rule": {
+            "type": "nth_weekday",
+            "month": 5,
+            "weekday": 1,
+            "n": -1
+          }
+        },
+        {
+          "id": "good_friday",
+          "name": {
+            "en": "Good Friday"
+          },
+          "rule": {
+            "type": "easter",
+            "offset": -2
+          }
+        },
+        {
+          "id": "eve_half",
+          "name": {
+            "en": "Eve"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 10,
+            "day": 28
+          },
+          "half_day": {
+            "from": "13:00"
+          }
+        },
+        {
+          "id": "harvest_eve",
+          "name": {
+            "en": "Harvest Eve",
+            "tr": "Hasat Arifesi"
+          },
+          "rule": {
+            "type": "dates",
+            "dates": [
+              "2026-03-19"
+            ]
+          },
+          "half_day": {
+            "from": "13:00"
+          }
+        },
+        {
+          "id": "harvest",
+          "name": {
+            "en": "Harvest Feast",
+            "tr": "Hasat Bayramı"
+          },
+          "rule": {
+            "type": "dates",
+            "dates": [
+              "2026-03-20",
+              "2026-03-21",
+              "2026-03-22"
+            ]
+          }
+        },
+        {
+          "id": "admin_leave",
+          "name": {
+            "en": "Administrative leave"
+          },
+          "kind": "administrative",
+          "rule": {
+            "type": "dates",
+            "dates": [
+              "2026-03-23"
+            ]
+          }
+        },
+        {
+          "id": "midsummer",
+          "name": {
+            "en": "Midsummer"
+          },
+          "rule": {
+            "type": "weekday_relative",
+            "month": 6,
+            "day": 20,
+            "weekday": 6,
+            "direction": "on_or_after"
+          }
+        },
+        {
+          "id": "xmas",
+          "name": {
+            "en": "Christmas"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 12,
+            "day": 25
+          },
+          "observed": {
+            "shift": {
+              "6": 2,
+              "7": 1
+            },
+            "avoid_collision": true
+          }
+        },
+        {
+          "id": "boxing",
+          "name": {
+            "en": "Boxing Day"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 12,
+            "day": 26
+          },
+          "observed": {
+            "shift": {
+              "6": 2,
+              "7": 1
+            },
+            "avoid_collision": true
+          }
+        },
+        {
+          "id": "orthodox_easter_monday",
+          "name": {
+            "en": "Orthodox Easter Monday"
+          },
+          "rule": {
+            "type": "easter",
+            "offset": 1,
+            "method": "orthodox"
+          },
+          "since": 2025,
+          "except_years": [
+            2027
+          ]
+        }
       ],
       "one_off": [
-        { "id": "jubilee", "name": { "en": "Jubilee" }, "date": "2026-06-01" }
+        {
+          "id": "jubilee",
+          "name": {
+            "en": "Jubilee"
+          },
+          "date": "2026-06-01"
+        }
       ]
     },
     "fx-region": {
       "id": "fx-region",
       "extends": "fx",
-      "remove": ["midsummer"],
+      "remove": [
+        "midsummer"
+      ],
       "holidays": [
-        { "id": "regional", "name": { "en": "Regional Day" }, "rule": { "type": "fixed", "month": 8, "day": 15 } }
+        {
+          "id": "regional",
+          "name": {
+            "en": "Regional Day"
+          },
+          "rule": {
+            "type": "fixed",
+            "month": 8,
+            "day": 15
+          }
+        }
       ]
     }
   },
   "cases": [
-    { "id": "holidays-2026", "calendar": "fx", "fn": "holidays", "args": { "year": 2026 },
+    {
+      "id": "holidays-2026",
+      "calendar": "fx",
+      "fn": "holidays",
+      "args": {
+        "year": 2026
+      },
       "expect": [
-        ["2026-01-01", "new_year"], ["2026-03-19", "harvest_eve"], ["2026-03-20", "harvest"], ["2026-03-21", "harvest"],
-        ["2026-03-22", "harvest"], ["2026-03-23", "admin_leave"], ["2026-04-03", "good_friday"], ["2026-04-13", "orthodox_easter_monday"],
-        ["2026-05-25", "spring_day"], ["2026-06-01", "jubilee"], ["2026-06-20", "midsummer"], ["2026-10-28", "eve_half"],
-        ["2026-12-25", "xmas"], ["2026-12-26", "boxing"], ["2026-12-28", "boxing", "2026-12-26"]
-      ] },
-    { "id": "holidays-2021-observed-cross-year", "calendar": "fx", "fn": "holidays", "args": { "year": 2021 },
+        [
+          "2026-01-01",
+          "new_year"
+        ],
+        [
+          "2026-03-19",
+          "harvest_eve"
+        ],
+        [
+          "2026-03-20",
+          "harvest"
+        ],
+        [
+          "2026-03-21",
+          "harvest"
+        ],
+        [
+          "2026-03-22",
+          "harvest"
+        ],
+        [
+          "2026-03-23",
+          "admin_leave"
+        ],
+        [
+          "2026-04-03",
+          "good_friday"
+        ],
+        [
+          "2026-04-13",
+          "orthodox_easter_monday"
+        ],
+        [
+          "2026-05-25",
+          "spring_day"
+        ],
+        [
+          "2026-06-01",
+          "jubilee"
+        ],
+        [
+          "2026-06-20",
+          "midsummer"
+        ],
+        [
+          "2026-10-28",
+          "eve_half"
+        ],
+        [
+          "2026-12-25",
+          "xmas"
+        ],
+        [
+          "2026-12-26",
+          "boxing"
+        ],
+        [
+          "2026-12-28",
+          "boxing",
+          "2026-12-26"
+        ]
+      ]
+    },
+    {
+      "id": "holidays-2021-observed-cross-year",
+      "calendar": "fx",
+      "fn": "holidays",
+      "args": {
+        "year": 2021
+      },
       "expect": [
-        ["2021-01-01", "new_year"], ["2021-04-02", "good_friday"], ["2021-05-31", "spring_day"], ["2021-06-26", "midsummer"], ["2021-10-28", "eve_half"],
-        ["2021-12-25", "xmas"], ["2021-12-26", "boxing"], ["2021-12-27", "xmas", "2021-12-25"], ["2021-12-28", "boxing", "2021-12-26"],
-        ["2021-12-31", "new_year", "2022-01-01"]
-      ] },
-    { "id": "holidays-2022-substitute-collision", "calendar": "fx", "fn": "holidays", "args": { "year": 2022 },
+        [
+          "2021-01-01",
+          "new_year"
+        ],
+        [
+          "2021-04-02",
+          "good_friday"
+        ],
+        [
+          "2021-05-31",
+          "spring_day"
+        ],
+        [
+          "2021-06-26",
+          "midsummer"
+        ],
+        [
+          "2021-10-28",
+          "eve_half"
+        ],
+        [
+          "2021-12-25",
+          "xmas"
+        ],
+        [
+          "2021-12-26",
+          "boxing"
+        ],
+        [
+          "2021-12-27",
+          "xmas",
+          "2021-12-25"
+        ],
+        [
+          "2021-12-28",
+          "boxing",
+          "2021-12-26"
+        ],
+        [
+          "2021-12-31",
+          "new_year",
+          "2022-01-01"
+        ]
+      ]
+    },
+    {
+      "id": "holidays-2022-substitute-collision",
+      "calendar": "fx",
+      "fn": "holidays",
+      "args": {
+        "year": 2022
+      },
       "expect": [
-        ["2022-01-01", "new_year"], ["2022-04-15", "good_friday"], ["2022-05-30", "spring_day"], ["2022-06-25", "midsummer"], ["2022-10-28", "eve_half"],
-        ["2022-12-25", "xmas"], ["2022-12-26", "boxing"], ["2022-12-27", "xmas", "2022-12-25"]
-      ] },
-    { "id": "holidays-2027-except-year", "calendar": "fx", "fn": "holiday_ids", "args": { "year": 2027 },
-      "expect": ["new_year", "good_friday", "spring_day", "midsummer", "eve_half", "xmas", "boxing", "xmas", "boxing", "new_year"] },
-    { "id": "holidays-kind-filter", "calendar": "fx", "fn": "holidays", "args": { "year": 2026, "kinds": ["administrative"] },
-      "expect": [["2026-03-23", "admin_leave"]] },
-    { "id": "region-inherits-removes-adds", "calendar": "fx-region", "fn": "holiday_ids", "args": { "year": 2026 },
-      "expect": ["new_year", "harvest_eve", "harvest", "harvest", "harvest", "admin_leave", "good_friday", "orthodox_easter_monday",
-                 "spring_day", "jubilee", "regional", "eve_half", "xmas", "boxing", "boxing"] },
-
-    { "id": "half-day-eve-is-working-by-default", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-03-19" }, "expect": true },
-    { "id": "half-day-eve-non-working-policy", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-03-19", "half_days": "non_working" }, "expect": false },
-    { "id": "holiday-is-not-business-day", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-03-20" }, "expect": false },
-    { "id": "weekend-is-not-business-day", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-03-14" }, "expect": false },
-    { "id": "administrative-leave-ignored-by-default", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-03-23" }, "expect": true },
-    { "id": "administrative-leave-when-requested", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-03-23", "kinds": ["public", "administrative"] }, "expect": false },
-    { "id": "weekend-flag-off", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-03-14", "weekend": false }, "expect": true },
-
-    { "id": "add-1", "calendar": "fx", "fn": "add_business_days", "args": { "date": "2026-03-18", "n": 1 }, "expect": "2026-03-19" },
-    { "id": "add-2-skips-feast-and-weekend", "calendar": "fx", "fn": "add_business_days", "args": { "date": "2026-03-18", "n": 2 }, "expect": "2026-03-23" },
-    { "id": "add-2-with-admin-leave", "calendar": "fx", "fn": "add_business_days", "args": { "date": "2026-03-18", "n": 2, "kinds": ["public", "administrative"] }, "expect": "2026-03-24" },
-    { "id": "add-2-half-days-off", "calendar": "fx", "fn": "add_business_days", "args": { "date": "2026-03-18", "n": 2, "half_days": "non_working" }, "expect": "2026-03-24" },
-    { "id": "subtract-2", "calendar": "fx", "fn": "add_business_days", "args": { "date": "2026-03-24", "n": -2 }, "expect": "2026-03-19" },
-    { "id": "add-0-is-identity", "calendar": "fx", "fn": "add_business_days", "args": { "date": "2026-03-21", "n": 0 }, "expect": "2026-03-21" },
-    { "id": "between-forward", "calendar": "fx", "fn": "business_days_between", "args": { "start": "2026-03-18", "end": "2026-03-24" }, "expect": 3 },
-    { "id": "between-backward", "calendar": "fx", "fn": "business_days_between", "args": { "start": "2026-03-24", "end": "2026-03-18" }, "expect": -3 },
-    { "id": "between-christmas-week", "calendar": "fx", "fn": "business_days_between", "args": { "start": "2026-12-24", "end": "2026-12-31" }, "expect": 3 },
-    { "id": "between-same-day", "calendar": "fx", "fn": "business_days_between", "args": { "start": "2026-12-24", "end": "2026-12-24" }, "expect": 0 },
-    { "id": "next-after-christmas", "calendar": "fx", "fn": "next_business_day", "args": { "date": "2026-12-24" }, "expect": "2026-12-29" },
-    { "id": "next-inclusive", "calendar": "fx", "fn": "next_business_day", "args": { "date": "2026-12-29", "inclusive": true }, "expect": "2026-12-29" },
-    { "id": "previous-before-observed", "calendar": "fx", "fn": "previous_business_day", "args": { "date": "2026-12-29" }, "expect": "2026-12-24" },
-
-    { "id": "coverage-year-too-late", "calendar": "fx", "fn": "holidays", "args": { "year": 2031 }, "error": "CoverageError" },
-    { "id": "coverage-date-too-early", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2019-06-03" }, "error": "CoverageError" },
-    { "id": "bad-date-string", "calendar": "fx", "fn": "is_business_day", "args": { "date": "2026-02-30" }, "error": "ValueError" },
-    { "id": "bad-date-format", "calendar": "fx", "fn": "is_business_day", "args": { "date": "19.03.2026" }, "error": "ValueError" },
-
-    { "id": "spec-impossible-date", "fn": "load", "spec": { "id": "bad", "holidays": [ { "id": "x", "name": { "en": "X" }, "rule": { "type": "fixed", "month": 2, "day": 30 } } ] }, "error": "DataError" },
-    { "id": "spec-unknown-field", "fn": "load", "spec": { "id": "bad", "holidyas": [] }, "error": "DataError" },
-    { "id": "spec-unknown-rule", "fn": "load", "spec": { "id": "bad", "holidays": [ { "id": "x", "name": { "en": "X" }, "rule": { "type": "lunar" } } ] }, "error": "DataError" },
-    { "id": "spec-duplicate-ids", "fn": "load", "spec": { "id": "bad", "holidays": [
-        { "id": "x", "name": { "en": "X" }, "rule": { "type": "fixed", "month": 1, "day": 1 } },
-        { "id": "x", "name": { "en": "X" }, "rule": { "type": "fixed", "month": 1, "day": 2 } } ] }, "error": "DataError" },
-    { "id": "spec-bad-half-day", "fn": "load", "spec": { "id": "bad", "holidays": [ { "id": "x", "name": { "en": "X" }, "rule": { "type": "fixed", "month": 1, "day": 1 }, "half_day": { "from": "25:00" } } ] }, "error": "DataError" },
-    { "id": "spec-all-week-weekend", "fn": "load", "spec": { "id": "bad", "weekend": [1, 2, 3, 4, 5, 6, 7] }, "error": "DataError" },
-    { "id": "spec-nth-zero", "fn": "load", "spec": { "id": "bad", "holidays": [ { "id": "x", "name": { "en": "X" }, "rule": { "type": "nth_weekday", "month": 1, "weekday": 1, "n": 0 } } ] }, "error": "DataError" }
+        [
+          "2022-01-01",
+          "new_year"
+        ],
+        [
+          "2022-04-15",
+          "good_friday"
+        ],
+        [
+          "2022-05-30",
+          "spring_day"
+        ],
+        [
+          "2022-06-25",
+          "midsummer"
+        ],
+        [
+          "2022-10-28",
+          "eve_half"
+        ],
+        [
+          "2022-12-25",
+          "xmas"
+        ],
+        [
+          "2022-12-26",
+          "boxing"
+        ],
+        [
+          "2022-12-27",
+          "xmas",
+          "2022-12-25"
+        ]
+      ]
+    },
+    {
+      "id": "holidays-2027-except-year",
+      "calendar": "fx",
+      "fn": "holiday_ids",
+      "args": {
+        "year": 2027
+      },
+      "expect": [
+        "new_year",
+        "good_friday",
+        "spring_day",
+        "midsummer",
+        "eve_half",
+        "xmas",
+        "boxing",
+        "xmas",
+        "boxing",
+        "new_year"
+      ]
+    },
+    {
+      "id": "holidays-kind-filter",
+      "calendar": "fx",
+      "fn": "holidays",
+      "args": {
+        "year": 2026,
+        "kinds": [
+          "administrative"
+        ]
+      },
+      "expect": [
+        [
+          "2026-03-23",
+          "admin_leave"
+        ]
+      ]
+    },
+    {
+      "id": "region-inherits-removes-adds",
+      "calendar": "fx-region",
+      "fn": "holiday_ids",
+      "args": {
+        "year": 2026
+      },
+      "expect": [
+        "new_year",
+        "harvest_eve",
+        "harvest",
+        "harvest",
+        "harvest",
+        "admin_leave",
+        "good_friday",
+        "orthodox_easter_monday",
+        "spring_day",
+        "jubilee",
+        "regional",
+        "eve_half",
+        "xmas",
+        "boxing",
+        "boxing"
+      ]
+    },
+    {
+      "id": "half-day-eve-is-working-by-default",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-03-19"
+      },
+      "expect": true
+    },
+    {
+      "id": "half-day-eve-non-working-policy",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-03-19",
+        "half_days": "non_working"
+      },
+      "expect": false
+    },
+    {
+      "id": "holiday-is-not-business-day",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-03-20"
+      },
+      "expect": false
+    },
+    {
+      "id": "weekend-is-not-business-day",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-03-14"
+      },
+      "expect": false
+    },
+    {
+      "id": "administrative-leave-ignored-by-default",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-03-23"
+      },
+      "expect": true
+    },
+    {
+      "id": "administrative-leave-when-requested",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-03-23",
+        "kinds": [
+          "public",
+          "administrative"
+        ]
+      },
+      "expect": false
+    },
+    {
+      "id": "weekend-flag-off",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-03-14",
+        "weekend": false
+      },
+      "expect": true
+    },
+    {
+      "id": "add-1",
+      "calendar": "fx",
+      "fn": "add_business_days",
+      "args": {
+        "date": "2026-03-18",
+        "n": 1
+      },
+      "expect": "2026-03-19"
+    },
+    {
+      "id": "add-2-skips-feast-and-weekend",
+      "calendar": "fx",
+      "fn": "add_business_days",
+      "args": {
+        "date": "2026-03-18",
+        "n": 2
+      },
+      "expect": "2026-03-23"
+    },
+    {
+      "id": "add-2-with-admin-leave",
+      "calendar": "fx",
+      "fn": "add_business_days",
+      "args": {
+        "date": "2026-03-18",
+        "n": 2,
+        "kinds": [
+          "public",
+          "administrative"
+        ]
+      },
+      "expect": "2026-03-24"
+    },
+    {
+      "id": "add-2-half-days-off",
+      "calendar": "fx",
+      "fn": "add_business_days",
+      "args": {
+        "date": "2026-03-18",
+        "n": 2,
+        "half_days": "non_working"
+      },
+      "expect": "2026-03-24"
+    },
+    {
+      "id": "subtract-2",
+      "calendar": "fx",
+      "fn": "add_business_days",
+      "args": {
+        "date": "2026-03-24",
+        "n": -2
+      },
+      "expect": "2026-03-19"
+    },
+    {
+      "id": "add-0-is-identity",
+      "calendar": "fx",
+      "fn": "add_business_days",
+      "args": {
+        "date": "2026-03-21",
+        "n": 0
+      },
+      "expect": "2026-03-21"
+    },
+    {
+      "id": "between-forward",
+      "calendar": "fx",
+      "fn": "business_days_between",
+      "args": {
+        "start": "2026-03-18",
+        "end": "2026-03-24"
+      },
+      "expect": 3
+    },
+    {
+      "id": "between-backward",
+      "calendar": "fx",
+      "fn": "business_days_between",
+      "args": {
+        "start": "2026-03-24",
+        "end": "2026-03-18"
+      },
+      "expect": -3
+    },
+    {
+      "id": "between-christmas-week",
+      "calendar": "fx",
+      "fn": "business_days_between",
+      "args": {
+        "start": "2026-12-24",
+        "end": "2026-12-31"
+      },
+      "expect": 3
+    },
+    {
+      "id": "between-same-day",
+      "calendar": "fx",
+      "fn": "business_days_between",
+      "args": {
+        "start": "2026-12-24",
+        "end": "2026-12-24"
+      },
+      "expect": 0
+    },
+    {
+      "id": "next-after-christmas",
+      "calendar": "fx",
+      "fn": "next_business_day",
+      "args": {
+        "date": "2026-12-24"
+      },
+      "expect": "2026-12-29"
+    },
+    {
+      "id": "next-inclusive",
+      "calendar": "fx",
+      "fn": "next_business_day",
+      "args": {
+        "date": "2026-12-29",
+        "inclusive": true
+      },
+      "expect": "2026-12-29"
+    },
+    {
+      "id": "previous-before-observed",
+      "calendar": "fx",
+      "fn": "previous_business_day",
+      "args": {
+        "date": "2026-12-29"
+      },
+      "expect": "2026-12-24"
+    },
+    {
+      "id": "coverage-year-too-late",
+      "calendar": "fx",
+      "fn": "holidays",
+      "args": {
+        "year": 2031
+      },
+      "error": "CoverageError"
+    },
+    {
+      "id": "coverage-date-too-early",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2019-06-03"
+      },
+      "error": "CoverageError"
+    },
+    {
+      "id": "bad-date-string",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "2026-02-30"
+      },
+      "error": "ValueError"
+    },
+    {
+      "id": "bad-date-format",
+      "calendar": "fx",
+      "fn": "is_business_day",
+      "args": {
+        "date": "19.03.2026"
+      },
+      "error": "ValueError"
+    },
+    {
+      "id": "spec-impossible-date",
+      "fn": "load",
+      "spec": {
+        "id": "bad",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 2,
+              "day": 30
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "spec-unknown-field",
+      "fn": "load",
+      "spec": {
+        "id": "bad",
+        "holidyas": []
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "spec-unknown-rule",
+      "fn": "load",
+      "spec": {
+        "id": "bad",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "lunar"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "spec-duplicate-ids",
+      "fn": "load",
+      "spec": {
+        "id": "bad",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            }
+          },
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 2
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "spec-bad-half-day",
+      "fn": "load",
+      "spec": {
+        "id": "bad",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "half_day": {
+              "from": "25:00"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "spec-all-week-weekend",
+      "fn": "load",
+      "spec": {
+        "id": "bad",
+        "weekend": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "spec-nth-zero",
+      "fn": "load",
+      "spec": {
+        "id": "bad",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "nth_weekday",
+              "month": 1,
+              "weekday": 1,
+              "n": 0
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-not-an-object",
+      "fn": "load",
+      "spec": "not a calendar",
+      "error": "DataError"
+    },
+    {
+      "id": "cal-missing-id",
+      "fn": "load",
+      "spec": {},
+      "error": "DataError"
+    },
+    {
+      "id": "cal-empty-name",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "name": {}
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-weekend-not-a-list",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "weekend": "6,7"
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-weekend-out-of-range",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "weekend": [
+          8
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-coverage-reversed",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "coverage": {
+          "from": 2030,
+          "to": 2020
+        }
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-coverage-missing-key",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "coverage": {
+          "from": 2030
+        }
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-holiday-missing-id",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-holiday-bad-kind",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "kind": "Public"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-holiday-missing-name",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-extra-key",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1,
+              "extra": 1
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-month-13",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 13,
+              "day": 1
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-weekday-8",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "nth_weekday",
+              "month": 1,
+              "weekday": 8,
+              "n": 1
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-n-6",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "nth_weekday",
+              "month": 1,
+              "weekday": 1,
+              "n": 6
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-bad-direction",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "weekday_relative",
+              "month": 1,
+              "day": 1,
+              "weekday": 1,
+              "direction": "near"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-bad-easter-method",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "easter",
+              "method": "julian"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-easter-offset-too-big",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "easter",
+              "offset": 500
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-empty-dates",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "dates",
+              "dates": []
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-duplicate-dates",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "dates",
+              "dates": [
+                "2026-01-01",
+                "2026-01-01"
+              ]
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-rule-invalid-date",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "dates",
+              "dates": [
+                "2026-02-30"
+              ]
+            }
+          }
+        ]
+      },
+      "error": "ValueError"
+    },
+    {
+      "id": "cal-since-not-a-number",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "since": "2009"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-except-years-not-numbers",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "except_years": [
+              "2020"
+            ]
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-observed-empty-shift",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "observed": {
+              "shift": {}
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-observed-bad-weekday",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "observed": {
+              "shift": {
+                "8": 1
+              }
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-observed-offset-too-big",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "observed": {
+              "shift": {
+                "6": 9
+              }
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-observed-bad-kind",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "observed": {
+              "shift": {
+                "6": -1
+              },
+              "kind": "Bad"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-observed-extra-key",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "holidays": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "rule": {
+              "type": "fixed",
+              "month": 1,
+              "day": 1
+            },
+            "observed": {
+              "shift": {
+                "6": -1
+              },
+              "when": "always"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-one-off-missing-id",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "one_off": [
+          {
+            "name": {
+              "en": "X"
+            },
+            "date": "2026-01-01"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "cal-one-off-bad-date",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "one_off": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "date": "01.01.2026"
+          }
+        ]
+      },
+      "error": "ValueError"
+    },
+    {
+      "id": "cal-one-off-bad-kind",
+      "fn": "load",
+      "spec": {
+        "id": "b",
+        "one_off": [
+          {
+            "id": "x",
+            "name": {
+              "en": "X"
+            },
+            "date": "2026-01-01",
+            "kind": "9"
+          }
+        ]
+      },
+      "error": "DataError"
+    }
   ]
 }

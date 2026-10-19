@@ -33,7 +33,9 @@ def test_calendar_matches_schema(path: Path) -> None:
     assert not errors, "\n".join(f"{list(e.absolute_path)}: {e.message}" for e in errors[:5])
 
 
-@pytest.mark.parametrize("path", _files("rulepacks"), ids=lambda p: p.relative_to(DATA / "rulepacks").as_posix())
+@pytest.mark.parametrize(
+    "path", _files("rulepacks"), ids=lambda p: p.relative_to(DATA / "rulepacks").as_posix()
+)
 def test_rulepack_matches_schema(path: Path) -> None:
     errors = sorted(RULEPACK.iter_errors(json.loads(path.read_text(encoding="utf-8"))), key=str)
     assert not errors, "\n".join(f"{list(e.absolute_path)}: {e.message}" for e in errors[:5])

@@ -1285,6 +1285,1024 @@
       "trigger": "2026-03-10",
       "period": "P7D",
       "error": "DataError"
+    },
+    {
+      "id": "pack-not-an-object",
+      "pack_spec": "not a pack",
+      "error": "DataError"
+    },
+    {
+      "id": "pack-missing-id",
+      "pack_spec": {
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-missing-name",
+      "pack_spec": {
+        "id": "bad",
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-calendar-family-not-string",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "calendar_family": 1,
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-citations-not-object",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "citations": [],
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-citation-missing-label",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "citations": {
+          "c": {
+            "url": "u"
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-citation-extra-key",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "citations": {
+          "c": {
+            "label": {
+              "en": "C"
+            },
+            "page": 1
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-options-not-object",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "options": [],
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-option-empty-values",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "options": {
+          "a": {
+            "values": [],
+            "default": null
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-option-default-not-allowed",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "options": {
+          "a": {
+            "values": [
+              "x"
+            ],
+            "default": "y"
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-option-extra-key",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "options": {
+          "a": {
+            "values": [
+              "x"
+            ],
+            "default": "x",
+            "label": "A"
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-non-working-extra-key",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "non_working": {
+          "holidays": true
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-non-working-weekend-not-bool",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "non_working": {
+          "weekend": "yes"
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-non-working-kinds-not-list",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "non_working": {
+          "kinds": "public"
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-non-working-bad-half-days",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "non_working": {
+          "half_days": "afternoon"
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-unknown-option-reference",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "non_working": {
+          "half_days": {
+            "$option": "nope"
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-empty-steps",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": []
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-step-not-object",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          "count"
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-empty-condition",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {}
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-unknown-condition-key",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "weekday": 1
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-equals-and-in",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "options": {
+          "a": {
+            "values": [
+              "x",
+              "y"
+            ],
+            "default": "x"
+          }
+        },
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "option": "a",
+              "equals": "x",
+              "in": [
+                "x"
+              ]
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-equals-without-option",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "equals": "x"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-unknown-option",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "option": "a",
+              "equals": "x"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-bad-unit",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "unit": "hour"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-bad-unit-in",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "unit_in": [
+                "day",
+                "hour"
+              ]
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-amount-not-int",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "min_amount": "5"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-bad-direction",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "direction": "up"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-bad-window",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "trigger_within": [
+                {
+                  "start": "07-20"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-window-not-list",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "date_within": {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-day-has-not-string",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "day_has": 1
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-non-working-not-bool",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "non_working_day": "yes"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-empty-all",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "all": []
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-bad-any-member",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "any": [
+                {
+                  "unit": "hour"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-condition-bad-not",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "not": {}
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-empty-message",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "message": {}
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-messages-not-object",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "messages": []
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-count-flag-not-bool",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "exclude_start_day": "no"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-shift-too-large",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "shift_trigger",
+            "days": 400
+          },
+          {
+            "type": "count"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-add-days-not-int",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "add_days",
+            "days": "3"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-recess-missing-name",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "periods": [
+              {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            ],
+            "extension_days": 7
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-recess-bad-mode",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [
+              {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            ],
+            "mode": "pause"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-recess-negative-extension",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [
+              {
+                "start": "07-20",
+                "end": "08-31"
+              }
+            ],
+            "extension_days": -1
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-recess-no-periods",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [],
+            "extension_days": 7
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-recess-period-extra-key",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [
+              {
+                "start": "07-20",
+                "end": "08-31",
+                "courts": "all"
+              }
+            ],
+            "extension_days": 7
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-roll-bad-direction",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll",
+            "direction": "sideways"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-ends-at-bad-time",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "ends_at",
+            "time": "25:00"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-notice-code-not-string",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "notice",
+            "code": 1,
+            "text": {
+              "en": "t"
+            }
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-notice-missing-text",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "notice",
+            "code": "c"
+          }
+        ]
+      },
+      "error": "DataError"
+    },
+    {
+      "id": "pack-suspend-backwards",
+      "error": "DataError",
+      "trigger": "2026-09-10",
+      "period": "P10D",
+      "direction": "before",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "recess",
+            "name": {
+              "en": "r"
+            },
+            "periods": [
+              {
+                "start": "08-01",
+                "end": "08-31"
+              }
+            ],
+            "mode": "suspend"
+          }
+        ]
+      }
+    },
+    {
+      "id": "pack-no-count-applies",
+      "error": "DataError",
+      "trigger": "2026-03-10",
+      "period": "P10D",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Bad"
+        },
+        "calendar": "fx",
+        "steps": [
+          {
+            "type": "count",
+            "when": {
+              "unit": "week"
+            }
+          }
+        ]
+      }
     }
   ]
 }

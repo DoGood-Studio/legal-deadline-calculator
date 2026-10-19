@@ -11,6 +11,7 @@ from typing import Any
 from .errors import NotFoundError
 
 _ID = re.compile(r"^[a-z0-9]+(?:[-_/][a-z0-9]+)*$")
+_LABEL = {"calendars": "calendar", "rulepacks": "rule pack"}
 
 
 @lru_cache(maxsize=1)
@@ -37,11 +38,12 @@ def _read(path: Path) -> Any:
 
 def load(kind: str, item_id: str) -> Any:
     """Load ``data/<kind>/<item_id>.json``; ids are validated to block path tricks."""
+    label = _LABEL.get(kind, kind)
     if not isinstance(item_id, str) or not _ID.match(item_id):
-        raise NotFoundError(f"invalid {kind[:-1]} id: {item_id!r}")
+        raise NotFoundError(f"invalid {label} id: {item_id!r}")
     path = data_root() / kind / f"{item_id}.json"
     if not path.is_file():
-        raise NotFoundError(f"unknown {kind[:-1]}: {item_id!r} (see lexdays.list_{kind}())")
+        raise NotFoundError(f"unknown {label}: {item_id!r} (see lexdays.list_{kind}())")
     return _read(path)
 
 

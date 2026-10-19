@@ -76,7 +76,8 @@ def test_calendar_vector(case: dict[str, Any]) -> None:
 
 def _pack(case: dict[str, Any]) -> RulePack:
     spec = case.get("pack_spec") or DL_VECTORS["rulepacks"][case["pack"]]
-    return RulePack(spec, calendar_override=CALENDARS[spec["calendar"]])
+    override = CALENDARS.get(spec["calendar"]) if isinstance(spec, dict) and "calendar" in spec else None
+    return RulePack(spec, calendar_override=override)
 
 
 def _run_deadline_case(case: dict[str, Any]) -> lexdays.DeadlineResult:
