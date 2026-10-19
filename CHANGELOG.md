@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-20
+
 ### Fixed
 
 - `eu/cj`: deadlines reaching 2027 no longer fail. The `eu-cj` calendar now covers the Court's list C/2026/1114 up to 31 October 2027; later dates still raise `CoverageError`.
@@ -32,5 +34,6 @@ First public release.
 - Shared conformance vectors, property-based tests, a Python/TypeScript differential test, and calendar cross-checks against python-holidays and the GOV.UK bank holidays feed.
 - A pre-release verification report (docs/verification.md): every rule pack checked against primary sources, 41 new test vectors, translations reviewed in all languages, and the demo tested in Chromium, Firefox and WebKit.
 
-[Unreleased]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.1.1...HEAD
+[0.1.1]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/DoGood-Studio/legal-deadline-calculator/releases/tag/v0.1.0
