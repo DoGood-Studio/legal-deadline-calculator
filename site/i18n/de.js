@@ -18,6 +18,8 @@ export default {
     "lg.final": "Letzter Tag", "lg.counted": "Rechnerisches Ende", "lg.recess": "Gerichtsferien", "lg.hol": "Feiertag", "lg.start": "Beginn",
     "a.copy": "Ergebnis kopieren", "a.link": "Link kopieren", "a.code": "Code für diese Berechnung",
     copied: "Ergebnis kopiert", linkCopied: "Link kopiert", copyFail: "Kopieren nicht möglich; bitte Text markieren",
+    "a.cal": "Zum Kalender hinzufügen", "cal.ics": "Apple, Outlook und andere (.ics-Datei)", "cal.google": "Google Kalender", calSaved: "Kalenderdatei heruntergeladen",
+    "cal.note": "Die Datei erinnert drei Tage und einen Tag vor dem letzten Tag jeweils um 9:00 Uhr. Google Kalender verwendet seine eigene Standarderinnerung.",
     "b.calendar": "Kalender", "b.date": "Startdatum", "b.n": "Wie viele Arbeitstage?",
     "b.unit": "Arbeitstage (negative Werte zählen zurück)", "b.half": "Halbe Tage (Vorabende) als Feiertag zählen",
     "b.result": "Ergebnis", "b.holidays": "Feiertage", "b.business": "Arbeitstag", "b.weekend": "Wochenende",

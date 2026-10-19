@@ -18,6 +18,8 @@ export default {
     "lg.final": "Laatste dag", "lg.counted": "Rekenkundig einde", "lg.recess": "Gerechtelijk reces", "lg.hol": "Feestdag", "lg.start": "Begin",
     "a.copy": "Resultaat kopiëren", "a.link": "Link kopiëren", "a.code": "Code voor deze berekening",
     copied: "Resultaat gekopieerd", linkCopied: "Link gekopieerd", copyFail: "Kopiëren mislukt; selecteer de tekst",
+    "a.cal": "Toevoegen aan agenda", "cal.ics": "Apple, Outlook en andere (.ics-bestand)", "cal.google": "Google Agenda", calSaved: "Agendabestand gedownload",
+    "cal.note": "Het bestand herinnert u om 9:00 uur, drie dagen en één dag vóór de laatste dag. Google Agenda gebruikt zijn eigen standaardherinnering.",
     "b.calendar": "Kalender", "b.date": "Begindatum", "b.n": "Hoeveel werkdagen?",
     "b.unit": "werkdagen (negatief getal telt terug)", "b.half": "Halve dagen (vooravonden) als feestdag tellen",
     "b.result": "Resultaat", "b.holidays": "Feestdagen", "b.business": "werkdag", "b.weekend": "weekend",

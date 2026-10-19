@@ -18,6 +18,8 @@ export default {
     "lg.final": "Ultimo giorno", "lg.counted": "Scadenza grezza", "lg.recess": "Ferie giudiziarie", "lg.hol": "Festività", "lg.start": "Inizio",
     "a.copy": "Copia il risultato", "a.link": "Copia il link", "a.code": "Codice di questo calcolo",
     copied: "Risultato copiato", linkCopied: "Link copiato", copyFail: "Copia non riuscita; seleziona il testo",
+    "a.cal": "Aggiungi al calendario", "cal.ics": "Apple, Outlook e altri (file .ics)", "cal.google": "Google Calendar", calSaved: "File del calendario scaricato",
+    "cal.note": "Il file ti avvisa alle 9:00 tre giorni e un giorno prima dell'ultimo giorno. Google Calendar usa il proprio promemoria predefinito.",
     "b.calendar": "Calendario", "b.date": "Data di inizio", "b.n": "Quanti giorni lavorativi?",
     "b.unit": "giorni lavorativi (un valore negativo conta a ritroso)", "b.half": "Considera festive le mezze giornate (vigilie)",
     "b.result": "Risultato", "b.holidays": "Festività", "b.business": "giorno lavorativo", "b.weekend": "fine settimana",

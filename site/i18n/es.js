@@ -18,6 +18,8 @@ export default {
     "lg.final": "Último día", "lg.counted": "Vencimiento bruto", "lg.recess": "Vacaciones judiciales", "lg.hol": "Festivo", "lg.start": "Inicio",
     "a.copy": "Copiar resultado", "a.link": "Copiar enlace", "a.code": "Código de este cálculo",
     copied: "Resultado copiado", linkCopied: "Enlace copiado", copyFail: "No se pudo copiar; seleccione el texto",
+    "a.cal": "Añadir al calendario", "cal.ics": "Apple, Outlook y otros (archivo .ics)", "cal.google": "Google Calendar", calSaved: "Archivo de calendario descargado",
+    "cal.note": "El archivo le avisa a las 9:00 tres días y un día antes del último día. Google Calendar usa su propio aviso predeterminado.",
     "b.calendar": "Calendario", "b.date": "Fecha inicial", "b.n": "¿Cuántos días hábiles?",
     "b.unit": "días hábiles (un valor negativo cuenta hacia atrás)", "b.half": "Contar los medios días (vísperas) como festivos",
     "b.result": "Resultado", "b.holidays": "Festivos", "b.business": "día hábil", "b.weekend": "fin de semana",

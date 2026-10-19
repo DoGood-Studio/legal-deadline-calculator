@@ -18,6 +18,8 @@ export default {
     "lg.final": "Último dia", "lg.counted": "Termo bruto", "lg.recess": "Férias judiciais", "lg.hol": "Feriado", "lg.start": "Início",
     "a.copy": "Copiar resultado", "a.link": "Copiar ligação", "a.code": "Código deste cálculo",
     copied: "Resultado copiado", linkCopied: "Ligação copiada", copyFail: "Não foi possível copiar; selecione o texto",
+    "a.cal": "Adicionar ao calendário", "cal.ics": "Apple, Outlook e outros (ficheiro .ics)", "cal.google": "Google Calendar", calSaved: "Ficheiro de calendário transferido",
+    "cal.note": "O ficheiro avisa às 9:00, três dias e um dia antes do último dia. O Google Calendar usa o seu próprio lembrete predefinido.",
     "b.calendar": "Calendário", "b.date": "Data inicial", "b.n": "Quantos dias úteis?",
     "b.unit": "dias úteis (valor negativo conta para trás)", "b.half": "Contar os meios dias (vésperas) como feriados",
     "b.result": "Resultado", "b.holidays": "Feriados", "b.business": "dia útil", "b.weekend": "fim de semana",

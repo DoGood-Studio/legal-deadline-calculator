@@ -136,7 +136,18 @@
         <p class="langnote" id="r-langnote" data-i18n="note.lang" hidden></p>
         <p class="error" id="r-error" role="alert" hidden></p>
         <div class="actions">
-          <button type="button" class="btn" id="copy-result" data-i18n="a.copy">Sonucu kopyala</button>
+          <details class="addcal" id="cal">
+            <summary class="btn">
+              <svg viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="1.75" y="2.75" width="12.5" height="11.5" rx="2" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M1.75 6.25h12.5M5 1v3.5M11 1v3.5M8 8.25v4M6 10.25h4" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              <span data-i18n="a.cal">Takvime ekle</span>
+            </summary>
+            <div class="addcal__menu">
+              <button type="button" id="cal-ics" data-i18n="cal.ics">Apple, Outlook ve diğerleri (.ics dosyası)</button>
+              <a id="cal-google" href="https://calendar.google.com/calendar/render" target="_blank" rel="noopener" data-i18n="cal.google">Google Takvim</a>
+              <p class="addcal__note" data-i18n="cal.note">Dosya, son günden 3 gün ve 1 gün önce saat 09.00'da hatırlatır. Google Takvim kendi varsayılan hatırlatmasını kullanır.</p>
+            </div>
+          </details>
+          <button type="button" class="btn btn--ghost" id="copy-result" data-i18n="a.copy">Sonucu kopyala</button>
           <button type="button" class="btn btn--ghost" id="copy-link" data-i18n="a.link">Bağlantıyı kopyala</button>
           <span class="toast" id="toast" role="status"></span>
         </div>

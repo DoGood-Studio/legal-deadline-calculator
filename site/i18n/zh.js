@@ -18,6 +18,8 @@ export default {
     "lg.final": "最后一天", "lg.counted": "计算终点", "lg.recess": "司法休庭期", "lg.hol": "节假日", "lg.start": "起算日",
     "a.copy": "复制结果", "a.link": "复制链接", "a.code": "本次计算的代码",
     copied: "结果已复制", linkCopied: "链接已复制", copyFail: "无法复制，请手动选择文本",
+    "a.cal": "添加到日历", "cal.ics": "Apple、Outlook 等（.ics 文件）", "cal.google": "Google 日历", calSaved: "日历文件已下载",
+    "cal.note": "该文件会在最后一天的前三天和前一天上午 9:00 提醒您。Google 日历使用其自身的默认提醒。",
     "b.calendar": "日历", "b.date": "起始日期", "b.n": "多少个工作日？",
     "b.unit": "个工作日（负数表示向前倒数）", "b.half": "将半天假（节前日）视为节假日",
     "b.result": "结果", "b.holidays": "节假日", "b.business": "工作日", "b.weekend": "周末",

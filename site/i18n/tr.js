@@ -18,6 +18,8 @@ export default {
     "lg.final": "Son gün", "lg.counted": "Ham bitiş", "lg.recess": "Adli tatil", "lg.hol": "Resmî tatil", "lg.start": "Başlangıç",
     "a.copy": "Sonucu kopyala", "a.link": "Bağlantıyı kopyala", "a.code": "Bu hesabın kodu",
     copied: "Sonuç kopyalandı", linkCopied: "Bağlantı kopyalandı", copyFail: "Kopyalanamadı; metni elle seçin",
+    "a.cal": "Takvime ekle", "cal.ics": "Apple, Outlook ve diğerleri (.ics dosyası)", "cal.google": "Google Takvim", calSaved: "Takvim dosyası indirildi",
+    "cal.note": "Dosya, son günden 3 gün ve 1 gün önce saat 09.00'da hatırlatır. Google Takvim kendi varsayılan hatırlatmasını kullanır.",
     "b.calendar": "Takvim", "b.date": "Başlangıç tarihi", "b.n": "Kaç iş günü?",
     "b.unit": "iş günü (eksi değer geriye sayar)", "b.half": "Arife gibi yarım günleri tatil say",
     "b.result": "Sonuç", "b.holidays": "Resmî tatiller", "b.business": "iş günü", "b.weekend": "hafta sonu",

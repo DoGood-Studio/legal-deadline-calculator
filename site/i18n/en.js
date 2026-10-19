@@ -18,6 +18,8 @@ export default {
     "lg.final": "Last day", "lg.counted": "Raw end", "lg.recess": "Judicial recess", "lg.hol": "Public holiday", "lg.start": "Start",
     "a.copy": "Copy result", "a.link": "Copy link", "a.code": "Code for this calculation",
     copied: "Result copied", linkCopied: "Link copied", copyFail: "Could not copy; select the text instead",
+    "a.cal": "Add to calendar", "cal.ics": "Apple, Outlook and others (.ics file)", "cal.google": "Google Calendar", calSaved: "Calendar file downloaded",
+    "cal.note": "The file reminds you at 9:00 three days before and one day before the last day. Google Calendar uses its own default reminder.",
     "b.calendar": "Calendar", "b.date": "Start date", "b.n": "How many business days?",
     "b.unit": "business days (negative counts back)", "b.half": "Treat half days (eves) as holidays",
     "b.result": "Result", "b.holidays": "Public holidays", "b.business": "business day", "b.weekend": "weekend",

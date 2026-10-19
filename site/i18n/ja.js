@@ -18,6 +18,8 @@ export default {
     "lg.final": "最終日", "lg.counted": "計算上の満了日", "lg.recess": "休廷期間", "lg.hol": "祝日", "lg.start": "基準日",
     "a.copy": "結果をコピー", "a.link": "リンクをコピー", "a.code": "この計算のコード",
     copied: "結果をコピーしました", linkCopied: "リンクをコピーしました", copyFail: "コピーできませんでした。テキストを選択してコピーしてください",
+    "a.cal": "カレンダーに追加", "cal.ics": "Apple、Outlook など（.ics ファイル）", "cal.google": "Google カレンダー", calSaved: "カレンダーファイルをダウンロードしました",
+    "cal.note": "このファイルは、最終日の 3 日前と前日の午前 9 時にお知らせします。Google カレンダーでは既定の通知が使われます。",
     "b.calendar": "カレンダー", "b.date": "開始日", "b.n": "何営業日？",
     "b.unit": "営業日（負の値はさかのぼって数えます）", "b.half": "半日休日（祝日の前日）を休日として数える",
     "b.result": "結果", "b.holidays": "祝日", "b.business": "営業日", "b.weekend": "週末",

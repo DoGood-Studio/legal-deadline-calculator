@@ -17,7 +17,7 @@ First public release.
 - Calendars: `tr` (2000–2035), `us`, `us-ma`, `gb-eaw` (2019–2028), `eu-cj` (2025–2026), `de` and all 16 Länder, `de-by-catholic`, `de-by-augsburg`.
 - Python package with a command-line interface, and a typed TypeScript package (ESM and CommonJS) with identical behaviour.
 - JSON Schemas for calendars and rule packs.
-- Demo page on GitHub Pages with a deadline calculator and a business-day tool, in the same 12 languages, including a right-to-left layout for Arabic. Shareable links keep the language and every input.
+- Demo page on GitHub Pages with a deadline calculator and a business-day tool, in the same 12 languages, including a right-to-left layout for Arabic. Shareable links keep the language and every input. An "Add to calendar" menu saves the last day as an iCalendar file with reminders three days and one day before, or opens it in Google Calendar.
 - Shared conformance vectors, property-based tests, a Python/TypeScript differential test, and calendar cross-checks against python-holidays and the GOV.UK bank holidays feed.
 - A pre-release verification report (docs/verification.md): every rule pack checked against primary sources, 41 new test vectors, translations reviewed in all languages, and the demo tested in Chromium, Firefox and WebKit.
 

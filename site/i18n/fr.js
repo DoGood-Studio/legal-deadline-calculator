@@ -18,6 +18,8 @@ export default {
     "lg.final": "Dernier jour", "lg.counted": "Échéance brute", "lg.recess": "Vacances judiciaires", "lg.hol": "Jour férié", "lg.start": "Départ",
     "a.copy": "Copier le résultat", "a.link": "Copier le lien", "a.code": "Code de ce calcul",
     copied: "Résultat copié", linkCopied: "Lien copié", copyFail: "Copie impossible ; sélectionnez le texte",
+    "a.cal": "Ajouter au calendrier", "cal.ics": "Apple, Outlook et autres (fichier .ics)", "cal.google": "Google Agenda", calSaved: "Fichier de calendrier téléchargé",
+    "cal.note": "Le fichier vous le rappelle à 9 h, trois jours puis un jour avant le dernier jour. Google Agenda utilise son propre rappel par défaut.",
     "b.calendar": "Calendrier", "b.date": "Date de départ", "b.n": "Combien de jours ouvrables ?",
     "b.unit": "jours ouvrables (une valeur négative compte à rebours)", "b.half": "Compter les demi-journées (veilles) comme fériées",
     "b.result": "Résultat", "b.holidays": "Jours fériés", "b.business": "jour ouvrable", "b.weekend": "week-end",

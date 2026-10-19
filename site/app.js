@@ -1,5 +1,6 @@
 // lexdays demo page. All calculations use the published ESM bundle (assets/lexdays.js).
 import { calendar, compute, listCalendars, rulepack } from "./assets/lexdays.js";
+import { buildIcs, googleCalendarUrl } from "./ics.js";
 import { BASIC_OPTIONS, COUNTRIES, LANGUAGES, PRESETS } from "./labels.js";
 
 // Interface text lives in i18n/<code>.js; English is always loaded as the fallback.
@@ -248,6 +249,7 @@ function run() {
     $("r-notices").replaceChildren(...result.notices.map((n) => el("li", {}, txt(n.message, "result"))));
     renderCode(result);
     saveUrl();
+    $("cal-google").href = googleCalendarUrl(calendarEvent());
     renderPresets();
     updateLangNote();
   } catch (err) {
@@ -464,14 +466,45 @@ async function applyLanguage() {
   renderBusiness();
 }
 
+function toast(key) {
+  $("toast").textContent = t(key);
+  setTimeout(() => ($("toast").textContent = ""), 2500);
+}
+
 async function copy(text, okKey) {
   try {
     await navigator.clipboard.writeText(text);
-    $("toast").textContent = t(okKey);
+    toast(okKey);
   } catch {
-    $("toast").textContent = t("copyFail");
+    toast("copyFail");
   }
-  setTimeout(() => ($("toast").textContent = ""), 2500);
+}
+
+// The result as plain text: rule pack, last day, the numbered explanation and this page's link.
+function resultText() {
+  const head = `${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}${colon()}${$("r-date").textContent}\n\n`;
+  return head + lastResult.explain(engineLang()) + `\n\n${location.href}`;
+}
+
+function calendarEvent() {
+  return {
+    date: lastResult.deadline,
+    summary: `${t("r.last")}${colon()}${label("packs", state.pack, 0)}`,
+    description: `${resultText()}\n\n${t("foot")}`,
+    url: location.href,
+  };
+}
+
+function downloadIcs() {
+  const event = calendarEvent();
+  const id = globalThis.crypto?.randomUUID?.() ?? String(Math.random()).slice(2);
+  const file = new Blob([buildIcs({ ...event, uid: `${event.date}-${id}@lexdays` })], { type: "text/calendar;charset=utf-8" });
+  const link = el("a", { href: URL.createObjectURL(file), download: `lexdays-${event.date}.ics` });
+  document.body.append(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(link.href), 10_000);
+  toast("calSaved");
 }
 
 $("lang").replaceChildren(...LANGUAGES.map((l) => el("option", { value: l.code, lang: l.code }, l.name)));
@@ -498,10 +531,23 @@ $("calendar").addEventListener("change", () => {
   run();
 });
 $("copy-result").addEventListener("click", () => {
-  if (!lastResult) return;
-  const head = `${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}${colon()}${$("r-date").textContent}\n\n`;
-  copy(head + lastResult.explain(engineLang()) + `\n\n${location.href}`, "copied");
+  if (lastResult) copy(resultText(), "copied");
 });
+// The calendar menu is a <details>: it opens with the keyboard on its own; Escape or a click
+// elsewhere closes it. run() keeps the Google Calendar link up to date.
+$("cal").addEventListener("keydown", (event) => {
+  if (event.key !== "Escape" || !$("cal").open) return;
+  $("cal").open = false;
+  $("cal").querySelector("summary").focus();
+});
+document.addEventListener("click", (event) => {
+  if (!$("cal").contains(event.target)) $("cal").open = false;
+});
+$("cal-ics").addEventListener("click", () => {
+  if (lastResult) downloadIcs();
+  $("cal").open = false;
+});
+$("cal-google").addEventListener("click", () => ($("cal").open = false));
 $("copy-link").addEventListener("click", () => copy(location.href, "linkCopied"));
 for (const id of ["b-calendar", "b-date", "b-n", "b-half"]) $(id).addEventListener("input", renderBusiness);
 $("b-today").addEventListener("click", () => {
