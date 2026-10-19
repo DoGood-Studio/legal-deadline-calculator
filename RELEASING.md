@@ -16,7 +16,7 @@ Releases are published to PyPI and npm by `.github/workflows/release.yml` using 
 
 ## Every release
 
-1. Update the version in `python/pyproject.toml`, `python/src/lexdays/__init__.py`, `js/package.json`, `js/src/index.ts` and `CITATION.cff`.
-2. Move the `Unreleased` notes in `CHANGELOG.md` under the new version.
+1. Update the version in `python/pyproject.toml`, `python/src/lexdays/__init__.py`, `js/package.json`, `js/src/index.ts` and `CITATION.cff`, and set `date-released` in `CITATION.cff` to the release date. `python/tests/test_metadata.py` fails if any of these disagree.
+2. Move the `Unreleased` notes in `CHANGELOG.md` under the new version and date. If the release fixes a publicly known vulnerability, list it under a `### Security` heading with its advisory or CVE id.
 3. Open a pull request, wait for CI, merge.
 4. Create a GitHub Release with the tag `vX.Y.Z` and the changelog notes. The workflow checks that the tag matches both package versions, runs the tests, and publishes to PyPI and npm with provenance.

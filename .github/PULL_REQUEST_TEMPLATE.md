@@ -9,7 +9,7 @@
 ## Checklist
 
 - [ ] Python and TypeScript behave identically (engine changes are in both `python/src` and `js/src`)
-- [ ] Tests added or updated; new vectors name their `source`
+- [ ] Tests cover the new behaviour or the fixed bug ([test policy](https://github.com/DoGood-Studio/lexdays/blob/main/CONTRIBUTING.md#tests-are-required)); new vectors name their `source`
 - [ ] `uv run pytest`, `npm test` and the type checks pass
 - [ ] Differential vectors regenerated (`scripts/gen_differential.py`) if the engine or data changed
 - [ ] Disputed points are options with the safer default and a notice

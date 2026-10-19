@@ -53,7 +53,32 @@ uv run --project python --with holidays python scripts/crosscheck_calendars.py -
 4. Run both test suites and regenerate the differential vectors.
 5. Mention the pack in `README.md` and `CHANGELOG.md`.
 
+## Tests are required
+
+Every new feature, rule pack, calendar change and bug fix comes with tests in the same pull request:
+
+- engine changes: tests in both `python/tests` and `js/test`, or shared vectors in `vectors/` that both suites run;
+- rule packs and calendars: vectors with a `source`;
+- bug fixes: a test that fails without the fix.
+
+A pull request without tests for new behaviour is not merged.
+
+## Coding standards
+
+- **Python:** must pass `ruff check` with the rule set in `python/pyproject.toml` and `mypy` in strict mode. All code is typed. Give new public functions a docstring.
+- **TypeScript:** must pass `tsc` with `strict` and `noImplicitOverride` (`js/tsconfig.json`). Give new public functions a TSDoc comment.
+- **Data:** calendars and rule packs must validate against the JSON Schemas in `spec/` (checked by `python/tests/test_schemas.py`).
+- **Dependencies:** the libraries have no runtime dependencies. Do not add one without opening an issue first.
+- Match the style of the surrounding code, and keep the Python and TypeScript implementations structurally parallel so they are easy to compare.
+
 ## Commits and pull requests
+
+To propose a change:
+
+1. Fork the repository and create a branch from `main`.
+2. Make the change with tests (see above) and run both test suites locally.
+3. Open a pull request against `main` and fill in the template. CI runs automatically.
+4. A maintainer reviews it; rule changes are checked against the cited source. Changes are merged after review and green CI.
 
 - Keep pull requests focused. Describe what changed and why, and link the legal source for rule changes.
 - CI must be green: tests on Linux, Windows and macOS, coverage ≥ 95%, strict type checks, and the cross-checks.
