@@ -17,6 +17,7 @@ First public release.
 - Calendars: `tr` (2000–2035), `us`, `us-ma`, `gb-eaw` (2019–2028), `eu-cj` (2025–2026), `de` and all 16 Länder, `de-by-catholic`, `de-by-augsburg`.
 - Python package with a command-line interface, and a typed TypeScript package (ESM and CommonJS) with identical behaviour.
 - JSON Schemas for calendars and rule packs.
+- Demo page on GitHub Pages (English and Turkish) with a deadline calculator and a business-day tool.
 - Shared conformance vectors, property-based tests, a Python/TypeScript differential test, and calendar cross-checks against python-holidays and the GOV.UK bank holidays feed.
 
 [Unreleased]: https://github.com/DoGood-Studio/lexdays/compare/v0.1.0...HEAD
