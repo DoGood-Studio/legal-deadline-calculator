@@ -48,6 +48,7 @@ export default {
     "dev.text": "本页所有计算均由开源库 lexdays 完成。无依赖，MIT 许可。Python 与 TypeScript 版本使用同一套测试验证，结果完全一致。",
     "dev.repo": "GitHub 上的源代码与文档",
     foot: "仅供参考，不构成法律意见。以法律、判例、法院裁定和当地惯例为准。重要期限请务必核实。",
+    "foot.license": "MIT 许可证",
     "note.lang": "法律说明和条文引用以英文显示。",
   },
   countries: { tr: "土耳其", us: "美国", gb: "英格兰和威尔士", eu: "欧盟", de: "德国" },

@@ -15,8 +15,11 @@ from __future__ import annotations
 
 import html
 import json
+import re
 import shutil
+import subprocess
 from datetime import date, timedelta
+from functools import cache
 from pathlib import Path
 
 import lexdays
@@ -60,6 +63,37 @@ MARK = (
 
 def e(text: str) -> str:
     return html.escape(text, quote=True)
+
+
+@cache
+def form_labels() -> dict[str, dict[str, object]]:
+    """The calculator's Turkish question for each setting and answer for each value, read from
+    site/i18n/tr.js so the pages and the calculator word them the same way."""
+    script = (
+        "const d = (await import(process.argv[1])).default;"
+        "console.log(JSON.stringify({ options: d.options, values: d.values }));"
+    )
+    out = subprocess.run(
+        ["node", "--input-type=module", "-e", script, (SITE / "i18n" / "tr.js").as_uri()],
+        capture_output=True, check=True, encoding="utf-8",
+    ).stdout
+    labels: dict[str, dict[str, object]] = json.loads(out)
+    return labels
+
+
+def form_words(text: str) -> str:
+    """Notes name settings the way the library does (judicial_recess='exempt'); a page shows the
+    calculator's question and answer instead, as the calculator itself does."""
+    labels = form_labels()
+
+    def swap(match: re.Match[str]) -> str:
+        name, value = match.groups()
+        question = labels["options"].get(name)
+        answers = labels["values"].get(name)
+        answer = answers.get(value) if isinstance(answers, dict) else None
+        return f"«{question}» → «{answer}»" if question and answer else match.group(0)
+
+    return re.sub(r"\b([a-z_]+)='([^']+)'", swap, text)
 
 
 def period_text(period: lexdays.Period) -> str:
@@ -225,10 +259,10 @@ def act_page(pack: str, act_id: str, related: list[tuple[str, str, str]]) -> str
     recess = recess_example(pack, act_id)
     notices: dict[str, str] = {}
     if act.notice:
-        notices["act"] = act.notice["tr"]
+        notices["act"] = form_words(act.notice["tr"])
     for result in (ordinary, recess):
         for notice in result.notices if result else ():
-            notices.setdefault(notice.code, notice.message["tr"])
+            notices.setdefault(notice.code, form_words(notice.message["tr"]))
 
     parts = [page_head(title, description, url, "../../../", crumbs), '  <main class="wrap ap">\n']
     parts.append(

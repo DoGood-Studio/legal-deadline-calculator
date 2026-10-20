@@ -48,6 +48,7 @@ export default {
     "dev.text": "Alle Berechnungen dieser Seite nutzen die Open-Source-Bibliothek lexdays. Keine Abhängigkeiten, MIT-Lizenz. Die Python- und TypeScript-Versionen werden mit derselben Testsuite geprüft und liefern dieselben Ergebnisse.",
     "dev.repo": "Quellcode und Dokumentation auf GitHub",
     foot: "Unverbindliches Hilfsmittel, keine Rechtsberatung. Gesetze, Rechtsprechung, gerichtliche Anordnungen und örtliche Praxis gehen vor. Prüfen Sie jede wichtige Frist.",
+    "foot.license": "MIT-Lizenz",
     "note.lang": "Rechtliche Hinweise und Gesetzeszitate werden auf Englisch angezeigt.",
   },
   countries: { tr: "Türkei", us: "USA", gb: "England und Wales", eu: "EU", de: "Deutschland" },

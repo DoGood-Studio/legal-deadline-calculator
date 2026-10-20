@@ -48,6 +48,7 @@ export default {
     "dev.text": "Every calculation on this page uses the open-source lexdays library. No dependencies, MIT licensed. The Python and TypeScript versions are checked by the same test-suite and give the same results.",
     "dev.repo": "Source code and documentation on GitHub",
     foot: "Informational tool, not legal advice. Statutes, case law, court orders and local practice take precedence. Always check a deadline that matters.",
+    "foot.license": "MIT license",
     "note.lang": "",
   },
   countries: { tr: "Türkiye", us: "United States", gb: "England & Wales", eu: "EU", de: "Germany" },

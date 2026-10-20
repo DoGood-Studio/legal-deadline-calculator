@@ -48,6 +48,7 @@ export default {
     "dev.text": "Tutti i calcoli di questa pagina usano la libreria open source lexdays. Senza dipendenze, licenza MIT. Le versioni Python e TypeScript sono verificate con la stessa suite di test e danno gli stessi risultati.",
     "dev.repo": "Codice sorgente e documentazione su GitHub",
     foot: "Strumento informativo, non consulenza legale. Prevalgono legge, giurisprudenza, provvedimenti giudiziari e prassi locale. Verifica sempre un termine importante.",
+    "foot.license": "licenza MIT",
     "note.lang": "Le note giuridiche e le citazioni normative sono mostrate in inglese.",
   },
   countries: { tr: "Turchia", us: "Stati Uniti", gb: "Inghilterra e Galles", eu: "UE", de: "Germania" },

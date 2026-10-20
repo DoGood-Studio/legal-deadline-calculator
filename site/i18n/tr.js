@@ -48,6 +48,7 @@ export default {
     "dev.text": "Bu sayfadaki hesapların hepsi açık kaynak lexdays kütüphanesiyle yapılıyor. Bağımlılığı yok, MIT lisanslı. Python ve TypeScript sürümleri aynı test kümesiyle doğrulanır ve aynı sonucu verir.",
     "dev.repo": "GitHub'da kaynak kodu ve dokümanlar",
     foot: "Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir. Önemli bir süreyi mutlaka kontrol edin.",
+    "foot.license": "MIT lisansı",
     "note.lang": "",
   },
   countries: { tr: "Türkiye", us: "ABD", gb: "İngiltere ve Galler", eu: "AB", de: "Almanya" },

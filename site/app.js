@@ -64,6 +64,25 @@ function txt(obj, area) {
   return obj.en ?? Object.values(obj)[0] ?? "";
 }
 const updateLangNote = () => ($("r-langnote").hidden = fellBack.size === 0);
+
+// Notes and hints in the rule data name form settings the way the library does
+// (judicial_recess='exempt', or just 'exempt' in that setting's own hint). On the page they read
+// as the form's own question and answer, in the page's language.
+const QUOTES = { de: ["„", "“"], en: ["“", "”"], nl: ["‘", "’"], ja: ["「", "」"], zh: ["“", "”"] };
+function formWords(text, option = null) {
+  const [open, close] = QUOTES[state.lang] ?? ["«", "»"];
+  const arrow = state.lang === "ar" ? "←" : "→";
+  const named = text.replace(/\b([a-z_]+)='([^']+)'/g, (whole, name, value) => {
+    const question = label("options", name);
+    const answer = label("values", name, value);
+    return question && answer ? `${open}${question}${close} ${arrow} ${open}${answer}${close}` : whole;
+  });
+  if (!option) return named;
+  return named.replace(/'([a-z][a-z_]*)'/g, (whole, value) => {
+    const answer = label("values", option, value);
+    return answer ? `${open}${answer}${close}` : whole;
+  });
+}
 const engineLang = () => state.lang;
 // Label-value separator: full-width in Chinese and Japanese, spaced in French.
 const colon = () => (["zh", "ja"].includes(state.lang) ? "：" : state.lang === "fr" ? " : " : ": ");
@@ -239,7 +258,7 @@ function renderOptions() {
       choices.append(el("label", { class: "choice" }, input, el("span", {}, text)));
     }
     box.append(choices);
-    const hint = txt(spec.description, "form");
+    const hint = formWords(txt(spec.description, "form"), name);
     if (hint) box.append(el("p", { class: "opt__hint" }, hint));
     (BASIC_OPTIONS.has(name) ? basic : advanced).push(box);
   }
@@ -277,7 +296,7 @@ function run() {
     renderChanges(result);
     renderMonths(result);
     renderTrace(result);
-    $("r-notices").replaceChildren(...result.notices.map((n) => el("li", {}, txt(n.message, "result"))));
+    $("r-notices").replaceChildren(...result.notices.map((n) => el("li", {}, formWords(txt(n.message, "result")))));
     renderCode(result);
     saveUrl();
     $("cal-google").href = googleCalendarUrl(calendarEvent());
