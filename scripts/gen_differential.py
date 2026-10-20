@@ -76,7 +76,7 @@ def main() -> None:
             case["error"] = type(exc).__name__
         else:
             case["deadline"] = result.deadline.isoformat()
-            case["sha256"] = canonical_hash(result.to_dict())
+            case["sha256"] = canonical_hash({k: v for k, v in result.to_dict().items() if k != "version"})
         deadlines.append(case)
 
     # Named acts: each one with several random triggers (before and after any change of its period)
@@ -99,7 +99,7 @@ def main() -> None:
                     case["error"] = type(exc).__name__
                 else:
                     case["deadline"] = result.deadline.isoformat()
-                    case["sha256"] = canonical_hash(result.to_dict())
+                    case["sha256"] = canonical_hash({k: v for k, v in result.to_dict().items() if k != "version"})
                 deadlines.append(case)
 
     calendar_cases = []

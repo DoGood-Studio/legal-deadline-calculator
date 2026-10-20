@@ -22,6 +22,7 @@ from ._rules import (
     list_rulepacks,
     rulepack,
 )
+from ._version import __version__
 from .errors import (
     CoverageError,
     DataError,
@@ -29,8 +30,6 @@ from .errors import (
     NotFoundError,
     OptionError,
 )
-
-__version__ = "0.1.1"
 
 __all__ = [
     "Act",

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Lets a browser search lexdays from the address bar: "<keyword> 20.10.2026 2 weeks" opens the demo with that date. -->
+<OpenSearchDescription xmlns="http://a9.com/-/spec/opensearch/1.1/">
+  <ShortName>lexdays</ShortName>
+  <Description>Legal deadline calculator: type a date and optionally a period</Description>
+  <InputEncoding>UTF-8</InputEncoding>
+  <Image width="16" height="16" type="image/png">https://dogood-studio.github.io/legal-deadline-calculator/assets/icon-192.png</Image>
+  <Url type="text/html" method="get" template="https://dogood-studio.github.io/legal-deadline-calculator/?q={searchTerms}"/>
+</OpenSearchDescription>

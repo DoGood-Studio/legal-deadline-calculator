@@ -8,7 +8,9 @@ Security fixes are released for the latest minor version of the `lexdays` packag
 
 Please **do not** open a public issue for a security vulnerability.
 
-Report it privately with GitHub's private vulnerability reporting: go to the repository's **Security** tab, choose **Report a vulnerability**, and describe the issue, the affected versions and, if possible, steps to reproduce.
+Report it privately with GitHub's private vulnerability reporting: [open a private report](https://github.com/DoGood-Studio/legal-deadline-calculator/security/advisories/new) (or go to the repository's **Security** tab and choose **Report a vulnerability**), and describe the issue, the affected versions and, if possible, steps to reproduce.
+
+If you cannot use GitHub, email **dogoodstudio.dev@gmail.com** with the same details.
 
 What to expect:
 
@@ -21,7 +23,7 @@ What to expect:
 lexdays has no runtime dependencies and makes no network calls. The most relevant risks are:
 
 - loading untrusted calendar or rule pack definitions (they are validated strictly; ids are restricted to block path traversal);
-- supply-chain issues in the release process (releases use PyPI and npm Trusted Publishing with provenance; all GitHub Actions are pinned by commit SHA).
+- supply-chain issues in the release process (releases use PyPI and npm Trusted Publishing with provenance, the built packages are signed with Sigstore and attached to the GitHub release, and all GitHub Actions are pinned by commit SHA).
 
 A **wrong deadline** is a correctness bug, not a security vulnerability. Please report it as a *Rule correction* issue.
 

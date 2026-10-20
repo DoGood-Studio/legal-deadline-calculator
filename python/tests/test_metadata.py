@@ -35,12 +35,12 @@ def _latest_release() -> tuple[str, str]:
 
 def test_version_is_the_same_everywhere() -> None:
     pyproject = (REPO / "python" / "pyproject.toml").read_text(encoding="utf-8")
-    index_ts = (REPO / "js" / "src" / "index.ts").read_text(encoding="utf-8")
+    version_ts = (REPO / "js" / "src" / "version.ts").read_text(encoding="utf-8")
     versions = {
         "lexdays.__version__": lexdays.__version__,
         "python/pyproject.toml": _field(pyproject, r'^version\s*=\s*"([^"]+)"', "pyproject.toml"),
         "js/package.json": json.loads((REPO / "js" / "package.json").read_text(encoding="utf-8"))["version"],
-        "js/src/index.ts": _field(index_ts, r'^export const VERSION = "([^"]+)";', "index.ts"),
+        "js/src/version.ts": _field(version_ts, r'^export const VERSION = "([^"]+)";', "version.ts"),
         "CITATION.cff": _citation("version"),
     }
     assert len(set(versions.values())) == 1, versions

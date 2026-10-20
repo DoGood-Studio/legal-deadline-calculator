@@ -9,6 +9,7 @@ import type { ISODate } from "./dates.js";
 import { DataError, InputError, NotFoundError, OptionError } from "./errors.js";
 import { DateParam, DEFAULT_LANG, languages, type LocalizedText, type MessageParam, pick, render } from "./i18n.js";
 import { checkKeys, checkName, isObj, type Obj } from "./validate.js";
+import { VERSION } from "./version.js";
 
 export type Unit = "day" | "week" | "month" | "year" | "business_day";
 export type Direction = "after" | "before";
@@ -240,6 +241,7 @@ export class DeadlineResult {
         this.act && this.actCitation
           ? { id: this.act.id, label: { ...this.act.label }, citation: { ...this.actCitation } }
           : null,
+      version: VERSION,
     };
   }
 }

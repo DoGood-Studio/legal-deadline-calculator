@@ -17,6 +17,7 @@ from typing import Any, TypeAlias
 from . import _data, _dates, _i18n
 from ._calendar import Calendar, Holiday, _check_keys, _check_name
 from ._calendar import calendar as _load_calendar
+from ._version import __version__
 from .errors import DataError, NotFoundError, OptionError
 
 UNITS = ("day", "week", "month", "year", "business_day")
@@ -294,6 +295,9 @@ class DeadlineResult:
                 "label": dict(self.act.label),
                 "citation": self.act_citation.to_dict(),
             },
+            # The library version that produced the result, so a saved result can be traced
+            # back to the rule data it used.
+            "version": __version__,
         }
 
 
