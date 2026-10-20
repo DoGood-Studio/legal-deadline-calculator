@@ -29,6 +29,8 @@
     }
   },
   "citations": {
+    "tfeu_263_6": { "label": { "en": "TFEU Art. 263, sixth paragraph" }, "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12016E263", "quote": { "en": "The proceedings provided for in this Article shall be instituted within two months of the publication of the measure, or of its notification to the plaintiff, or, in the absence thereof, of the day on which it came to the knowledge of the latter, as the case may be." } },
+    "statute_56": { "label": { "en": "Statute of the Court of Justice (Protocol No 3), Art. 56, first paragraph" }, "url": "http://data.europa.eu/eli/treaty/tfeu_2016/pro_3/oj", "quote": { "en": "An appeal may be brought before the Court of Justice, within two months of the notification of the decision appealed against, against final decisions of the General Court and decisions of that Court disposing of the substantive issues in part only or disposing of a procedural issue concerning a plea of lack of competence or inadmissibility." } },
     "rp_49": {
       "label": { "en": "CJ Rules of Procedure, Art. 49(1) (General Court Art. 58(1))" },
       "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)",
@@ -82,5 +84,22 @@
       "type": "ends_at", "time": "23:59",
       "message": { "en": "The time limit ends at midnight (Luxembourg time) on the last day; e-Curia lodging counts at the time of validation." }
     }
-  ]
+  ],
+  "acts": {
+    "annulment": {
+      "label": { "en": "Action for annulment", "tr": "İptal davası", "de": "Nichtigkeitsklage", "fr": "Recours en annulation", "es": "Recurso de anulación", "it": "Ricorso di annullamento", "pt": "Recurso de anulação", "nl": "Beroep tot nietigverklaring", "ru": "Иск об аннулировании", "ar": "دعوى الإلغاء", "zh": "撤销之诉", "ja": "取消訴訟" },
+      "trigger": { "en": "Date the measure was notified to the applicant, or published in the Official Journal; failing both, the day the applicant learned of it", "tr": "İşlemin başvurucuya bildirildiği ya da Resmî Gazete'de yayımlandığı tarih; ikisi de yoksa başvurucunun öğrendiği gün" },
+      "period": "P2M",
+      "cite": "tfeu_263_6",
+      "keywords": { "en": ["annulment", "article 263"], "tr": ["iptal davası"] },
+      "notice": { "en": "If the measure was published in the Official Journal, choose publication as the start: the period then runs from the end of the 14th day after publication (Rules of Procedure, Art. 50).", "tr": "İşlem Resmî Gazete'de yayımlandıysa başlangıç olarak yayımı seçin: süre yayımdan sonraki 14. günün sonundan işlemeye başlar (Usul Kuralları m.50)." }
+    },
+    "appeal": {
+      "label": { "en": "Appeal to the Court of Justice", "tr": "Adalet Divanı'na temyiz", "de": "Rechtsmittel beim Gerichtshof", "fr": "Pourvoi devant la Cour de justice", "es": "Recurso de casación ante el Tribunal de Justicia", "it": "Impugnazione dinanzi alla Corte di giustizia", "pt": "Recurso para o Tribunal de Justiça", "nl": "Hogere voorziening bij het Hof van Justitie", "ru": "Апелляционная жалоба в Суд ЕС", "ar": "الطعن أمام محكمة العدل", "zh": "向欧盟法院上诉", "ja": "司法裁判所への上訴" },
+      "trigger": { "en": "Date the General Court decision was notified", "tr": "Genel Mahkeme kararının tebliğ tarihi" },
+      "period": "P2M",
+      "cite": "statute_56",
+      "keywords": { "en": ["appeal", "general court", "article 56"], "tr": ["temyiz", "genel mahkeme"] }
+    }
+  }
 }

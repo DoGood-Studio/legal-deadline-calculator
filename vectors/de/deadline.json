@@ -19,6 +19,10 @@
     { "id": "de-13a-reformation-day-bremen", "pack": "de/zpo", "calendar": "de-hb", "trigger": "2024-10-17", "period": "P2W", "expect": { "deadline": "2024-11-01" }, "source": "§ 222 Abs. 2 ZPO; Brem. FeiertagsG idF Brem.GBl. 2018 Nr. 63 S. 302" },
     { "id": "de-13b-reformation-day-bremen-before-2018", "pack": "de/zpo", "calendar": "de-hb", "trigger": "2016-10-17", "period": "P2W", "expect": { "deadline": "2016-10-31" }, "source": "Brem.GBl. 2018 Nr. 63 S. 302 (in force 29.06.2018)" },
     { "id": "de-14a-repentance-day-saxony", "pack": "de/zpo", "calendar": "de-sn", "trigger": "2025-11-05", "period": "P2W", "expect": { "deadline": "2025-11-20" }, "source": "§ 222 Abs. 2 ZPO; § 1 Abs. 1 SächsSFG (https://revosax.sachsen.de/vorschrift/3997-SaechsSFG)" },
-    { "id": "de-14b-repentance-day-not-in-bavaria", "pack": "de/zpo", "calendar": "de-by", "trigger": "2025-11-05", "period": "P2W", "expect": { "deadline": "2025-11-19" }, "source": "Art. 1 Abs. 1 BayFTG (no Buß- und Bettag)" }
+    { "id": "de-14b-repentance-day-not-in-bavaria", "pack": "de/zpo", "calendar": "de-by", "trigger": "2025-11-05", "period": "P2W", "expect": { "deadline": "2025-11-19" }, "source": "Art. 1 Abs. 1 BayFTG (no Buß- und Bettag)" },
+    {"id": "zpo-act-berufung-one-month", "pack": "de/zpo", "trigger": "2026-03-02", "act": "berufung", "expect": {"deadline": "2026-04-02", "act_cite": "zpo_517", "notices": ["court-seat-holidays", "five-month-cap"]}, "source": "§ 517 ZPO; § 188 Abs. 2 BGB"},
+    {"id": "zpo-act-begruendung-two-months-saturday", "pack": "de/zpo", "trigger": "2026-03-02", "act": "berufungsbegruendung", "expect": {"deadline": "2026-05-04", "act_cite": "zpo_520_2", "notices": ["act-notice", "court-seat-holidays", "five-month-cap"]}, "source": "§ 520 Abs. 2 ZPO: 2 May 2026 is a Saturday, § 222 Abs. 2 ZPO moves it to Monday"},
+    {"id": "zpo-act-einspruch-two-weeks", "pack": "de/zpo", "trigger": "2026-03-02", "act": "einspruch", "expect": {"deadline": "2026-03-16", "act_cite": "zpo_339_1", "notices": ["act-notice", "court-seat-holidays"]}, "source": "§ 339 Abs. 1 ZPO"},
+    {"id": "zpo-act-revision-one-month", "pack": "de/zpo", "trigger": "2026-03-02", "act": "revision", "expect": {"deadline": "2026-04-02", "act_cite": "zpo_548", "notices": ["court-seat-holidays", "five-month-cap"]}, "source": "§ 548 ZPO"}
   ]
 }

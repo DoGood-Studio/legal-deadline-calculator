@@ -49,6 +49,9 @@
     }
   },
   "citations": {
+    "cpr_10_3": { "label": { "en": "CPR 10.3(1)" }, "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part10", "quote": { "en": "(1) The general rule is that the period for filing an acknowledgment of service is— (a) 14 days after service of the particulars of claim where the defendant is served with a claim form which states that particulars of claim are to follow; and (b) 14 days after service of the claim form in any other case." } },
+    "cpr_15_4": { "label": { "en": "CPR 15.4(1)" }, "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part15", "quote": { "en": "(1) The general rule is that the period for filing a defence is— (a) 14 days after service of the particulars of claim; or (b) if the defendant files an acknowledgment of service under Part 10, 28 days after service of the particulars of claim." } },
+    "cpr_23_7": { "label": { "en": "CPR 23.7(1)" }, "url": "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part23", "quote": { "en": "(1) A copy of the application notice must be served— (a) as soon as practicable after it is filed; and (b) at least 3 days before the court is to deal with the application unless a different time limit is stated in a rule, practice direction or court order." } },
     "cpr_2_8_3": {
       "label": {
         "en": "CPR 2.8(2)–(3)"
@@ -533,5 +536,45 @@
         "en": "An e-mail received by the court at or after 4.00pm is treated as filed on the next day the court office is open (PD 5B para 4.2). Check the cut-off of the filing route you use."
       }
     }
-  ]
+  ],
+  "acts": {
+    "acknowledgment-of-service": {
+      "label": { "en": "Acknowledgment of service", "tr": "Savunma niyeti bildirimi (acknowledgment)", "de": "Verteidigungsanzeige (Acknowledgment)", "fr": "Acte de comparution (acknowledgment)", "es": "Personación (acknowledgment)", "it": "Costituzione del convenuto (acknowledgment)", "pt": "Declaração de intenção de defesa (acknowledgment)", "nl": "Verschijning (acknowledgment)", "ru": "Заявление о намерении возражать (acknowledgment)", "ar": "إشعار نية الدفاع (acknowledgment)", "zh": "应诉通知（acknowledgment）", "ja": "応訴の意思表示（acknowledgment）" },
+      "trigger": { "en": "Date of service of the particulars of claim (or of the claim form, if it did not say they would follow)", "tr": "Dava ayrıntılarının (particulars of claim) tebliğ tarihi; dava formu bunların sonra geleceğini söylemiyorsa dava formunun tebliğ tarihi" },
+      "period": "P14D",
+      "options": { "act": "at_court_office" },
+      "cite": "cpr_10_3",
+      "group": "particulars",
+      "keywords": { "en": ["acknowledgment", "acknowledgement", "part 10"], "tr": ["savunma niyeti"] }
+    },
+    "defence-after-acknowledgment": {
+      "label": { "en": "Defence (if acknowledgment filed)", "tr": "Cevap dilekçesi (bildirim yapıldıysa)", "de": "Klageerwiderung (nach Verteidigungsanzeige)", "fr": "Mémoire en défense (après comparution)", "es": "Contestación (tras la personación)", "it": "Comparsa di risposta (dopo la costituzione)", "pt": "Contestação (após a declaração)", "nl": "Verweer (na verschijning)", "ru": "Возражения на иск (после заявления)", "ar": "مذكرة الدفاع (بعد الإشعار)", "zh": "答辩（已提交应诉通知）", "ja": "答弁書（応訴の意思表示後）" },
+      "trigger": { "en": "Date of service of the particulars of claim", "tr": "Dava ayrıntılarının (particulars of claim) tebliğ tarihi" },
+      "period": "P28D",
+      "options": { "act": "at_court_office" },
+      "cite": "cpr_15_4",
+      "group": "particulars",
+      "keywords": { "en": ["defence", "defense", "part 15"], "tr": ["cevap dilekçesi"] },
+      "notice": { "en": "The parties may agree to extend the period for filing a defence by up to 28 days (CPR 15.5).", "tr": "Taraflar cevap süresini en fazla 28 gün uzatmak üzere anlaşabilir (CPR 15.5)." }
+    },
+    "defence": {
+      "label": { "en": "Defence (no acknowledgment filed)", "tr": "Cevap dilekçesi (bildirim yapılmadıysa)", "de": "Klageerwiderung (ohne Verteidigungsanzeige)" },
+      "trigger": { "en": "Date of service of the particulars of claim", "tr": "Dava ayrıntılarının (particulars of claim) tebliğ tarihi" },
+      "period": "P14D",
+      "options": { "act": "at_court_office" },
+      "cite": "cpr_15_4",
+      "group": "particulars",
+      "keywords": { "en": ["defence", "defense", "part 15"], "tr": ["cevap dilekçesi"] },
+      "notice": { "en": "The parties may agree to extend the period for filing a defence by up to 28 days (CPR 15.5).", "tr": "Taraflar cevap süresini en fazla 28 gün uzatmak üzere anlaşabilir (CPR 15.5)." },
+      "new": true
+    },
+    "application-before-hearing": {
+      "label": { "en": "Serve application before hearing", "tr": "Duruşmadan önce başvuru tebliği", "de": "Antrag vor dem Termin zustellen", "fr": "Signifier la demande avant l'audience", "es": "Notificar la solicitud antes de la audiencia", "it": "Notificare la domanda prima dell'udienza", "pt": "Notificar o requerimento antes da audiência", "nl": "Verzoek betekenen vóór de zitting", "ru": "Вручить заявление до слушания", "ar": "تبليغ الطلب قبل الجلسة", "zh": "在听证前送达申请", "ja": "審問前に申請を送達" },
+      "trigger": { "en": "Date the court is to deal with the application", "tr": "Başvurunun görüleceği duruşma tarihi" },
+      "period": "P3D",
+      "direction": "before",
+      "cite": "cpr_23_7",
+      "keywords": { "en": ["application notice", "part 23"], "tr": ["başvuru"] }
+    }
+  }
 }

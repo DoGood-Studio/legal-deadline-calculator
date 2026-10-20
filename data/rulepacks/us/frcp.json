@@ -30,6 +30,9 @@
     }
   },
   "citations": {
+    "frcp_12a1ai": { "label": { "en": "FRCP 12(a)(1)(A)(i)" }, "url": "https://www.law.cornell.edu/rules/frcp/rule_12", "quote": { "en": "Unless another time is specified by a federal statute, the time for serving a responsive pleading is as follows: (1) In General. (A) A defendant must serve an answer: (i) within 21 days after being served with the summons and complaint" } },
+    "frcp_59b": { "label": { "en": "FRCP 59(b)" }, "url": "https://www.law.cornell.edu/rules/frcp/rule_59", "quote": { "en": "(b) Time to File a Motion for a New Trial. A motion for a new trial must be filed no later than 28 days after the entry of judgment." } },
+    "frcp_6c1": { "label": { "en": "FRCP 6(c)(1)" }, "url": "https://www.law.cornell.edu/rules/frcp/rule_6", "quote": { "en": "(1) In General. A written motion and notice of the hearing must be served at least 14 days before the time specified for the hearing, with the following exceptions: (A) when the motion may be heard ex parte; (B) when these rules set a different time; or (C) when a court order—which a party may, for good cause, apply for ex parte—sets a different time." } },
     "frcp_6a1": {
       "label": { "en": "FRCP 6(a)(1)" },
       "url": "https://www.law.cornell.edu/rules/frcp/rule_6",
@@ -117,5 +120,33 @@
       "type": "notice", "code": "check-local-rules",
       "text": { "en": "Check local rules and orders: a court-set calendar date is not adjusted by Rule 6(a), and an inaccessible clerk's office extends the time (Rule 6(a)(3))." }
     }
-  ]
+  ],
+  "acts": {
+    "answer": {
+      "label": { "en": "Answer to the complaint", "tr": "Davaya cevap", "de": "Klageerwiderung (Answer)", "fr": "Réponse à la demande (answer)", "es": "Contestación a la demanda (answer)", "it": "Comparsa di risposta (answer)", "pt": "Contestação (answer)", "nl": "Antwoord op de dagvaarding (answer)", "ru": "Ответ на иск (answer)", "ar": "الرد على الدعوى (answer)", "zh": "答辩 (answer)", "ja": "答弁 (answer)" },
+      "trigger": { "en": "Date the defendant was served with the summons and complaint", "tr": "Davalıya celpname ve dava dilekçesinin tebliğ tarihi" },
+      "period": "P21D",
+      "options": { "service": "personal" },
+      "cite": "frcp_12a1ai",
+      "keywords": { "en": ["answer", "responsive pleading", "complaint"], "tr": ["cevap", "dava dilekçesi"] },
+      "notice": { "en": "The summons and complaint are served under Rule 4, so Rule 6(d)'s 3 extra days do not apply. If service was waived under Rule 4(d), Rule 12(a)(1)(A)(ii) gives a longer period.", "tr": "Celpname ve dava dilekçesi Rule 4'e göre tebliğ edildiğinden Rule 6(d)'deki 3 ek gün uygulanmaz. Tebliğden Rule 4(d) uyarınca feragat edildiyse Rule 12(a)(1)(A)(ii) daha uzun bir süre öngörür." }
+    },
+    "new-trial-motion": {
+      "label": { "en": "Motion for a new trial", "tr": "Yeniden yargılama talebi", "de": "Antrag auf neue Verhandlung", "fr": "Requête en nouveau procès", "es": "Moción de nuevo juicio", "it": "Istanza di nuovo processo", "pt": "Pedido de novo julgamento", "nl": "Verzoek om nieuw proces", "ru": "Ходатайство о новом рассмотрении", "ar": "طلب إعادة المحاكمة", "zh": "申请重新审理", "ja": "再審理の申立て" },
+      "trigger": { "en": "Date of entry of judgment", "tr": "Hükmün kayda geçirildiği tarih (entry of judgment)" },
+      "period": "P28D",
+      "options": { "service": "electronic" },
+      "cite": "frcp_59b",
+      "keywords": { "en": ["new trial", "rule 59"], "tr": ["yeniden yargılama"] },
+      "notice": { "en": "The period runs from entry of judgment, so no days are added for the manner of service, and the court cannot extend it (Rule 6(b)(2)).", "tr": "Süre hükmün kayda geçirilmesinden başlar; tebliğ şekli için gün eklenmez ve mahkeme süreyi uzatamaz (Rule 6(b)(2))." }
+    },
+    "motion-before-hearing": {
+      "label": { "en": "Serve motion before hearing", "tr": "Duruşmadan önce talep tebliği", "de": "Antrag vor dem Termin zustellen", "fr": "Signifier la requête avant l'audience", "es": "Notificar la moción antes de la audiencia", "it": "Notificare l'istanza prima dell'udienza", "pt": "Notificar o pedido antes da audiência", "nl": "Verzoek betekenen vóór de zitting", "ru": "Вручить ходатайство до слушания", "ar": "تبليغ الطلب قبل الجلسة", "zh": "在听证前送达动议", "ja": "審問前に申立てを送達" },
+      "trigger": { "en": "Date of the hearing", "tr": "Duruşma tarihi" },
+      "period": "P14D",
+      "direction": "before",
+      "cite": "frcp_6c1",
+      "keywords": { "en": ["motion", "notice of hearing"], "tr": ["talep", "duruşma"] }
+    }
+  }
 }
