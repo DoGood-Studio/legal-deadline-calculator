@@ -5,7 +5,7 @@ import { readFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { describe, expect, it } from "vitest";
-import { calendar, compute, LexdaysError } from "../src/index.js";
+import { calendar, compute, LexdaysError, VERSION } from "../src/index.js";
 
 const file = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "vectors", "generated", "differential.json");
 const doc = JSON.parse(readFileSync(file, "utf8"));
@@ -31,7 +31,8 @@ describe("Python ↔ TypeScript differential", () => {
       let got: string;
       try {
         const result = compute(c.pack, c.trigger, c.period, { direction: c.direction, options: c.options, calendar: c.calendar });
-        got = `${result.deadline} ${sha256(canonical(result.toJSON()))}`;
+        const { version: _, ...data } = result.toJSON();
+        got = `${result.deadline} ${sha256(canonical(data))}`;
       } catch (err) {
         got = `error ${err instanceof LexdaysError ? err.name : String(err)}`;
       }
@@ -39,6 +40,12 @@ describe("Python ↔ TypeScript differential", () => {
       if (got !== want) mismatches.push(`${JSON.stringify(c)} → ${got}`);
     }
     expect(mismatches.slice(0, 5)).toEqual([]);
+  });
+
+  // Left out of the hashes above so the vectors survive a version bump; checked here instead,
+  // and python/tests/test_metadata.py checks that both packages carry the same version.
+  it("results carry the library version", () => {
+    expect(compute("tr/hmk", "2026-07-30", "P2W").toJSON().version).toBe(VERSION);
   });
 
   it(`${doc.calendar.length} random calendar operations match`, () => {

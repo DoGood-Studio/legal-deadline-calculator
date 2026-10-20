@@ -35,4 +35,4 @@ export {
   type Unit,
 } from "./rules.js";
 
-export const VERSION = "0.1.1";
+export { VERSION } from "./version.js";

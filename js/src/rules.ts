@@ -9,6 +9,7 @@ import type { ISODate } from "./dates.js";
 import { DataError, InputError, NotFoundError, OptionError } from "./errors.js";
 import { DateParam, DEFAULT_LANG, languages, type LocalizedText, type MessageParam, pick, render } from "./i18n.js";
 import { checkKeys, checkName, isObj, type Obj } from "./validate.js";
+import { VERSION } from "./version.js";
 
 export type Unit = "day" | "week" | "month" | "year" | "business_day";
 export type Direction = "after" | "before";
@@ -170,6 +171,7 @@ export class DeadlineResult {
       options: { ...this.options },
       trace: this.trace.map((s) => ({ ...s, citation: s.citation && { ...s.citation } })),
       notices: this.notices.map((n) => ({ ...n, citation: n.citation && { ...n.citation } })),
+      version: VERSION,
     };
   }
 }

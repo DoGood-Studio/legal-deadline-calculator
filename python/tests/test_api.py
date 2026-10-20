@@ -64,6 +64,7 @@ def test_result_serialisation_and_explanation() -> None:
     data = result.to_dict()
     assert data["deadline"] == "2026-09-07"
     assert data["timezone"] == "Europe/Istanbul"
+    assert data["version"] == lexdays.__version__
     assert data["trace"][1]["citation"]["label"]["tr"] == "HMK m.102 ve m.104"
     method = next(n for n in data["notices"] if n["code"] == "recess-7-september-method")
     assert method["citation"]["id"] == "hgk_2017"
