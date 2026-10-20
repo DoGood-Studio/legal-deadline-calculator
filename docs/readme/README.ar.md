@@ -21,6 +21,7 @@
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
   <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="https://scorecard.dev/viewer/?uri=github.com/DoGood-Studio/legal-deadline-calculator"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/DoGood-Studio/legal-deadline-calculator/badge"></a>
 </p>
 
 <p align="center" dir="rtl">

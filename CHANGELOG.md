@@ -12,7 +12,7 @@ All notable changes to this project are documented here. The format follows [Kee
   - United States (FRCP 12, 59 and 6(c)), England and Wales (CPR 10.3, 15.4 and 23.7), EU (TFEU 263, Statute Art. 56) and Germany (§§ 517, 520, 339 and 548 ZPO): the demo's former presets, now with citations.
 - Demo: a "What do you need to do?" search over all acts, ignoring case and accents, with `/` as a shortcut. Picking an act fills in the pack, period, direction and options; the result shows the act with the wording of its provision and the other deadlines that run from the same event. Act chips replace the presets.
 - Demo: the page opens in a lighter look, with a switch for a dark theme that the browser remembers.
-- CI: a weekly source watch (`scripts/watch_sources.py`, workflow `Source watch`). It reads every source the rule packs and calendars cite, checks that the quoted rule text is still there, lists new acts amending a cited EU act, asks EUR-Lex for a new Court of Justice holiday list and scans the Resmî Gazete for laws, decrees and holiday decisions that touch the Turkish packs. Findings open or update an issue labelled `source-watch`; the watcher never changes data.
+- CI: a weekly source watch (`scripts/watch_sources.py`, workflow `Source watch`). It reads every source the rule packs and calendars cite, checks that the quoted rule text is still there (for Constitutional Court decisions through the court's public decision search), lists new acts amending a cited EU act, asks EUR-Lex for a new Court of Justice holiday list and scans the Resmî Gazete for laws, decrees and holiday decisions that touch the Turkish packs. Findings open or update an issue labelled `source-watch`; the watcher never changes data.
 
 ### Changed
 

@@ -9,9 +9,11 @@ from __future__ import annotations
 
 import http.client
 import importlib.util
+import io
 import json
 import sys
 import urllib.error
+import urllib.request
 from datetime import date
 from types import ModuleType
 
@@ -166,6 +168,117 @@ def test_eu_acts_are_read_from_cellar_with_their_amendments(monkeypatch: pytest.
     assert ws.render([result], state, **run)[1] == 0
 
 
+AYM = "https://kararlarbilgibankasi.anayasa.gov.tr/BB/2014/16212"
+DANISTAY = ("idari izinlerin resmi tatil olarak kabul edilmesine olanak bulunmadığı gibi 2577 sayılı … "
+            "Yasası ile belirlenen dava açma süresini dahi durdurmayacağı yerleşik içtihatlar gereğidir")
+
+
+def _fake_search(answers: dict[str, list[list[str]]], asked: list[tuple[str, int]]):  # type: ignore[no-untyped-def]
+    """The court's search: for each phrase, the decision numbers on each page of 100."""
+    def aym_search(phrase: str, page: int) -> dict:
+        asked.append((phrase, page))
+        pages = answers.get(phrase, [[]])
+        total = 100 * (len(pages) - 1) + len(pages[-1])
+        rows = pages[page - 1] if page <= len(pages) else []
+        return {"total": total, "page": page, "page_size": 100, "data": [{"basvuruNo": n} for n in rows]}
+
+    return aym_search
+
+
+def test_decision_urls_give_the_application_number() -> None:
+    assert ws.aym_decision(AYM) == "2014/16212"
+    assert ws.aym_decision(AYM + "?lang=en") is None
+    assert ws.aym_decision("https://www.anayasa.gov.tr/BB/2014/16212") is None
+
+
+def test_court_search_is_asked_for_the_exact_phrase(monkeypatch: pytest.MonkeyPatch) -> None:
+    sent: list[urllib.request.Request] = []
+
+    def urlopen(request: urllib.request.Request, timeout: int = 60) -> io.BytesIO:
+        sent.append(request)
+        return io.BytesIO(json.dumps({"total": 1, "page": 1, "page_size": 100,
+                                      "data": [{"basvuruNo": "2013/7168"}]}).encode())
+
+    monkeypatch.setattr(ws.urllib.request, "urlopen", urlopen)
+    assert ws.decision_share_found("2013/7168", '… bireysel başvuru açısından "adli tatil" hükümleri') == 1.0
+    [request] = sent  # the empty text before the ellipsis is not searched
+    assert request.full_url == ws.AYM_SEARCH
+    assert request.get_method() == "POST"
+    assert request.get_header("Content-type") == "application/json"
+    assert json.loads(request.data) == {  # type: ignore[arg-type]
+        "page": 1, "size": 100, "query": '"bireysel başvuru açısından adli tatil hükümleri"',
+        "sort": "yayinTarihi", "order": "desc"}
+
+
+def test_decision_quotes_are_checked_through_the_courts_search(monkeypatch: pytest.MonkeyPatch) -> None:
+    first, second = (" ".join(part.split()) for part in DANISTAY.split("…"))
+    asked: list[tuple[str, int]] = []
+    answers = {first: [["2014/16212"]], second: [["2014/16212", "2016/1"]]}
+    monkeypatch.setattr(ws, "aym_search", _fake_search(answers, asked))
+    monkeypatch.setattr(ws, "fetch", _fake_fetch({}, []))
+    src = ws.Source(AYM, {"tr/aym (onen)", "tr/iyuk (danistay_2008)", "tr/cmk (cgk_2013_372)"},
+                    [("tr/iyuk danistay_2008 [tr]", DANISTAY)], {"tr/iyuk (danistay_2008)"})
+    result = ws.read_source(src)
+    assert (result.status, result.fingerprint) == ("ok", None)
+    assert result.quote_shares == [("tr/iyuk danistay_2008 [tr]", 1.0)]
+    assert result.by_hand == ["tr/aym (onen)", "tr/cmk (cgk_2013_372)"]
+    assert asked == [(first, 1), (second, 1)]  # each side of the ellipsis on its own
+
+    run = {"cj_lists": [], "cj_error": None, "gazette": [], "today": date(2026, 10, 20)}
+    report, findings = ws.render([result], {}, **run)
+    assert findings == 1  # the citations without a quote are due for the hand check
+    assert f"- {AYM}: page needs a browser, only its quotes were checked" in report
+    assert "check by hand: tr/aym (onen), tr/cmk (cgk_2013_372)" in report
+    assert "0 okunamayan kaynak, 0 bağlantısız yargı kararı, 2 alıntısı olmayan karar atfı" in report
+    assert "Yeni kaynaklar" not in report  # no page fingerprint to record
+    state = ws.accept([result], {}, [], date(2026, 10, 20))
+    assert state["sources"] == {}
+    assert state["quotes"] == {"tr/iyuk danistay_2008 [tr]": 1.0}
+    assert ws.render([result], state, **run)[1] == 0
+
+    # later decisions that repeat the passage push the cited one to the second page
+    answers[second] = [[f"2025/{n}" for n in range(100)], ["2014/16212"]]
+    assert ws.decision_share_found("2014/16212", DANISTAY) == 1.0
+    answers[second] = [["2016/1"]]  # the court's text no longer has the second part
+    dropped = ws.read_source(src)
+    assert dropped.quote_shares == [("tr/iyuk danistay_2008 [tr]", 0.5)]
+    report, findings = ws.render([dropped], state, **run)
+    assert findings == 1
+    assert "tr/iyuk danistay_2008 [tr]: 50% of the quote found (accepted: 100%)" in report
+
+
+def test_decision_search_failures_go_to_the_hand_check(monkeypatch: pytest.MonkeyPatch) -> None:
+    calls: list[int] = []
+
+    def failing(code: int):  # type: ignore[no-untyped-def]
+        def aym_search(phrase: str, page: int) -> dict:
+            calls.append(code)
+            raise urllib.error.HTTPError(ws.AYM_SEARCH, code, "error", None, None)  # type: ignore[arg-type]
+
+        return aym_search
+
+    src = ws.Source(AYM, {"tr/iyuk (danistay_2008)"}, [("tr/iyuk danistay_2008 [tr]", DANISTAY)],
+                    {"tr/iyuk (danistay_2008)"})
+    run = {"cj_lists": [], "cj_error": None, "gazette": [], "today": date(2026, 10, 20)}
+    state = {"quotes": {"tr/iyuk danistay_2008 [tr]": 1.0}, "manual_review": "2026-10-20"}
+    monkeypatch.setattr(ws, "aym_search", failing(503))
+    down = ws.read_source(src)
+    assert (down.status, calls) == ("HTTP 503", [503, 503])  # one retry
+    assert ws.render([down], state, **run)[1] == 0  # a passing outage is a hand check
+    monkeypatch.setattr(ws, "aym_search", failing(404))
+    gone = ws.read_source(src)
+    report, findings = ws.render([gone], state, **run)
+    assert findings == 1  # the search that checked this quote has gone away
+    assert f"- {AYM}: HTTP 404 (readable before)" in report
+
+    # a decision cited without any quote is read like any page, and lands on the hand check
+    monkeypatch.setattr(ws, "aym_search", failing(500))
+    monkeypatch.setattr(ws, "fetch", lambda url, timeout=60: (b"<app-root></app-root>", "text/html"))
+    calls.clear()
+    assert ws.read_source(ws.Source(AYM, {"tr/aym (onen)"})).status.startswith("no readable text")
+    assert calls == []
+
+
 def test_gazette_follows_extra_issues_and_reads_laws(monkeypatch: pytest.MonkeyPatch) -> None:
     base = "https://www.resmigazete.gov.tr/eskiler/2023/02/"
     index = (
@@ -199,12 +312,13 @@ def test_gazette_follows_extra_issues_and_reads_laws(monkeypatch: pytest.MonkeyP
 
 
 def test_every_cited_source_is_watched() -> None:
-    expected, quotes, unlinked = set(), 0, 0
+    expected, quotes, quoted, unlinked = set(), 0, 0, 0
     for path in (REPO / "data" / "rulepacks").rglob("*.json"):
         for cite in json.loads(path.read_text(encoding="utf-8")).get("citations", {}).values():
             if cite.get("url"):
                 expected.add(cite["url"])
                 quotes += len(cite.get("quote") or {})
+                quoted += bool(cite.get("quote"))
             else:
                 unlinked += 1
     for path in (REPO / "data" / "calendars").glob("*.json"):
@@ -212,7 +326,10 @@ def test_every_cited_source_is_watched() -> None:
     sources = ws.collect_sources(REPO)
     assert set(sources) == expected
     assert sum(len(s.quotes) for s in sources.values()) == quotes
+    assert sum(len(s.quoted_by) for s in sources.values()) == quoted
     assert len(ws.unlinked_citations(REPO)) == unlinked
+    # every Constitutional Court page is recognised, so its quotes go to the court's search
+    assert all(ws.aym_decision(url) for url in sources if "kararlarbilgibankasi" in url)
 
 
 def _result(url: str, status: str = "ok", fp: str = "abc", share: float | None = None):  # type: ignore[no-untyped-def]

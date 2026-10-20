@@ -13,6 +13,10 @@ someone, so every change goes through a human. It reports, most important first:
 5. sources whose text changed since the accepted fingerprint (content or only layout);
 6. sources that cannot be read automatically, to check by hand every three months.
 
+Constitutional Court decision pages need a browser, so a quote from one is looked up with the
+court's public decision search instead: each part of the quote must return the cited decision.
+Citations of such a page without a quote stay on the hand-check list.
+
 After reviewing a report, ``--accept`` records the current state (fingerprints, how much of
 each quote was found, the newest amending act, the latest EUR-Lex list, the date of the hand
 check) in
@@ -76,6 +80,10 @@ SELECT DISTINCT ?date ?celex WHERE {{
   ?act cdm:resource_legal_amends_resource_legal ?work ; cdm:work_date_document ?date .
   OPTIONAL {{ ?act cdm:resource_legal_id_celex ?celex }}
 }} ORDER BY DESC(?date)"""
+# The Constitutional Court's decision pages are a JavaScript app and its text download needs a
+# captcha, but its public search returns the decisions that contain an exact phrase.
+AYM_DECISION = re.compile(r"https://kararlarbilgibankasi\.anayasa\.gov\.tr/BB/(\d{4}/\d+)")
+AYM_SEARCH = "https://kararlarbilgibankasi.anayasa.gov.tr/api/core/public/search"
 RESMI_GAZETE = "https://www.resmigazete.gov.tr/eskiler/{y:04d}/{m:02d}/{y:04d}{m:02d}{d:02d}.htm"
 # Words in Official Gazette titles (and in the text of laws and decrees) that may touch the Turkish
 # packs or the Turkish calendar: the codes the packs cite, holidays, and suspensions of time limits
@@ -93,15 +101,17 @@ class Source:
     url: str
     used_by: set[str] = field(default_factory=set)
     quotes: list[tuple[str, str]] = field(default_factory=list)  # (where, quoted text)
+    quoted_by: set[str] = field(default_factory=set)  # users whose citation stores a quote
 
 
 @dataclass
 class Result:
     source: Source
     status: str  # "ok" or why the text could not be read
-    fingerprint: str | None = None
+    fingerprint: str | None = None  # None for a decision checked only through the court's search
     quote_shares: list[tuple[str, float]] = field(default_factory=list)  # (where, share found)
     amended_by: list[tuple[str, str]] = field(default_factory=list)  # EU acts: (date, CELEX), newest first
+    by_hand: list[str] = field(default_factory=list)  # users of a searched decision without a quote
 
 
 # ------------------------------------------------------------------ sources
@@ -121,7 +131,10 @@ def collect_sources(root: Path = ROOT) -> dict[str, Source]:
         for cid, cite in pack.get("citations", {}).items():
             if not cite.get("url"):
                 continue
-            src = add(cite["url"], f"{pack['id']} ({cid})")
+            user = f"{pack['id']} ({cid})"
+            src = add(cite["url"], user)
+            if cite.get("quote"):
+                src.quoted_by.add(user)
             for lang, text in (cite.get("quote") or {}).items():
                 src.quotes.append((f"{pack['id']} {cid} [{lang}]", text))
     for path in sorted((root / "data" / "calendars").glob("*.json")):
@@ -264,11 +277,49 @@ def eu_amendments(prop: str, value: str) -> list[tuple[str, str]]:
     return [(row["date"]["value"], row.get("celex", {}).get("value", "no CELEX number")) for row in rows]
 
 
+def aym_decision(url: str) -> str | None:
+    """Application number ("2013/7168") of a Constitutional Court decision page."""
+    match = AYM_DECISION.fullmatch(url)
+    return match.group(1) if match else None
+
+
+def aym_search(phrase: str, page: int) -> dict:
+    """One page of the Constitutional Court's search for an exact phrase (pages count from 1)."""
+    query = {"page": page, "size": 100, "query": f'"{phrase}"', "sort": "yayinTarihi", "order": "desc"}
+    headers = {"User-Agent": USER_AGENT, "Content-Type": "application/json"}
+    request = urllib.request.Request(AYM_SEARCH, json.dumps(query).encode(), headers)
+    with urllib.request.urlopen(request, timeout=60) as response:
+        return json.load(response)
+
+
+def aym_finds(number: str, phrase: str, pages: int = 5) -> bool:
+    """Whether the court's search finds the exact phrase in decision ``number``. Later decisions
+    that repeat a passage come first, so the cited one may be on a later page."""
+    for page in range(1, pages + 1):
+        found = aym_search(phrase, page)
+        if number in (row.get("basvuruNo") for row in found["data"]):
+            return True
+        if page * found["page_size"] >= found["total"]:
+            break
+    return False
+
+
+def decision_share_found(number: str, quote: str) -> float:
+    """Share of a quote's parts (the text between its breaks, see ``_BREAKS``) that the court's
+    search finds in the decision."""
+    parts = [" ".join(re.sub(r'["\\]', " ", part).split()) for part in _BREAKS.split(quote)]
+    parts = [part for part in parts if compact(part)]
+    return sum(aym_finds(number, part) for part in parts) / len(parts) if parts else 1.0
+
+
 def read_source(src: Source, attempts: int = 2) -> Result:
-    act = eu_act(src.url)
+    act, decision = eu_act(src.url), aym_decision(src.url)
     amended_by: list[tuple[str, str]] = []
     for attempt in range(attempts):
         try:
+            if decision and src.quotes:  # the page needs a browser, so only its quotes are checked
+                shares = [(where, decision_share_found(decision, quote)) for where, quote in src.quotes]
+                return Result(src, "ok", quote_shares=shares, by_hand=sorted(src.used_by - src.quoted_by))
             if act:
                 (data, ctype), amended_by = eu_document(*act), eu_amendments(*act)
             else:
@@ -386,17 +437,23 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
     """Markdown report (Turkish summary, bilingual headings, English details) and the number of findings."""
     known = accepted.get("sources", {})
     quotes = [(r, rows) for r in results if (rows := quotes_to_report(r, accepted))]
+    # pages read in full have a fingerprint; a decision checked through the court's search has none
     changed = [
         r for r in results
-        if r.status == "ok" and not known.get(r.source.url, {}).get("volatile")
+        if r.fingerprint and not known.get(r.source.url, {}).get("volatile")
         and known.get(r.source.url, {}).get("fingerprint") not in (None, r.fingerprint)
     ]
-    new = [r for r in results if r.status == "ok" and not known.get(r.source.url, {}).get("fingerprint")]
+    new = [r for r in results if r.fingerprint and not known.get(r.source.url, {}).get("fingerprint")]
     unreadable = [r for r in results if r.status != "ok"]
-    broken = [r for r in unreadable if known.get(r.source.url, {}).get("fingerprint") and _lasting(r.status)]
+    broken = [
+        r for r in unreadable if _lasting(r.status) and (
+            known.get(r.source.url, {}).get("fingerprint")
+            or any(where in accepted.get("quotes", {}) for where, _ in r.source.quotes))
+    ]
+    by_hand = [r for r in results if r.by_hand]
     reviewed = accepted.get("manual_review")
     unlinked = unlinked or []
-    manual_due = bool(unreadable or unlinked) and (
+    manual_due = bool(unreadable or unlinked or by_hand) and (
         not reviewed or today - date.fromisoformat(reviewed) >= MANUAL_EVERY
     )
     cj_known = accepted.get("cj_latest_list")
@@ -422,15 +479,20 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
         f"- Metni değişen kaynak: {len(changed)}",
         f"- Elle kontrol listesi: {len(unreadable)} okunamayan kaynak, "
         f"{len(unlinked)} bağlantısız yargı kararı"
+        + (f", {sum(len(r.by_hand) for r in by_hand)} alıntısı olmayan karar atfı" if by_hand else "")
         + (" (üç aylık elle kontrol zamanı geldi)" if manual_due else "")
         + (f"; {len(broken)} kaynak önceden okunabiliyordu" if broken else ""),
         "",
         "Bekçi veriyi kendisi değiştirmez; her bulguyu bir kişi kontrol eder ve gerekirse düzeltir. "
+        "Anayasa Mahkemesi karar sayfaları otomatik okunamadığı için bu kararlardan yapılan alıntılar "
+        "Mahkemenin karar arama servisinde aranır. "
         "Takvimler ayrıca her hafta CI'da python-holidays ve GOV.UK ile karşılaştırılır.",
         "",
         f"Checked {len(results)} sources cited by the rule packs and calendars on {today.isoformat()}. "
-        "The watcher never changes data; a person reviews every finding. Every calendar except eu-cj "
-        "is also compared with python-holidays (and gb-eaw with GOV.UK) by the weekly CI run.",
+        "The watcher never changes data; a person reviews every finding. Quotes from Constitutional "
+        "Court decisions, whose pages need a browser, are looked up with the court's public search. "
+        "Every calendar except eu-cj is also compared with python-holidays (and gb-eaw with GOV.UK) "
+        "by the weekly CI run.",
         "",
     ]
 
@@ -451,7 +513,9 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
             for where, share in rows
         )
         for r, rows in quotes
-    ], "The law may have been amended. Compare the article with the quote and the rule built on it.")
+    ], "The law may have been amended. Compare the article with the quote and the rule built on it. "
+       "For a Constitutional Court decision, the share is that of the quote's parts the court's search "
+       "finds in it; open the decision and look for the quote.")
     section("2. Değiştiren AB işlemleri / EU acts amending a cited act", [
         f"- {r.source.url} (used by {users(r)})\n"
         + "\n".join(f"  - {d}: CELEX {celex} (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:{celex})"
@@ -472,6 +536,10 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
     section("6. Okunamayan kaynaklar, elle kontrol / Could not be read, check by hand", [
         f"- {r.source.url}: {r.status}{' (readable before)' if r in broken else ''} (used by {users(r)})"
         for r in unreadable
+    ] + [
+        f"- {r.source.url}: page needs a browser, only its quotes were checked (through the court's "
+        f"search); check by hand: {', '.join(r.by_hand)}"
+        for r in by_hand
     ] + [f"- {row}: court decision without a link" for row in unlinked],
         "Check these by hand every three months (for decisions: look for newer case law); "
         f"last done {reviewed or 'never'}.")
@@ -497,9 +565,10 @@ def accept(results: list[Result], accepted: dict, cj_lists: list[tuple[str, str]
     quotes = {where: share for where, share in accepted.get("quotes", {}).items() if where in wheres}
     for r in results:
         if r.status == "ok":
-            sources.setdefault(r.source.url, {})["fingerprint"] = r.fingerprint
+            if r.fingerprint:  # a decision checked through the court's search has only quote shares
+                sources.setdefault(r.source.url, {})["fingerprint"] = r.fingerprint
             if r.amended_by:
-                sources[r.source.url]["amended_until"] = max(d for d, _ in r.amended_by)
+                sources.setdefault(r.source.url, {})["amended_until"] = max(d for d, _ in r.amended_by)
             quotes.update({where: math.floor(share * 1000 + 1e-6) / 1000 for where, share in r.quote_shares})
     state = {"sources": dict(sorted(sources.items())), "quotes": dict(sorted(quotes.items()))}
     state["cj_latest_list"] = max((d for d, _ in cj_lists or []), default=accepted.get("cj_latest_list"))
