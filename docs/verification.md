@@ -88,10 +88,27 @@ This is not legal advice and not a substitute for review by a practitioner in ea
   - The packs do not apply these suspensions, because who is covered depends on the person, the place and the type of period. They now add a notice (`suspension-2020-covid`, `suspension-2023-earthquake`) whenever the period touches those dates. Notices can now test the computed date against absolute dates (`date_from`, `date_before`).
   - Vector `hmk-v04-three-months-sacrifice-feast` (trigger 28 March 2023) now expects the earthquake notice.
 
+### Act catalogue (added on 20 October 2026)
+
+No lawyer reviewed the catalogue, so each act had to pass checks that do not depend on one reader:
+
+- **Two independent readings of the Turkish texts.** The official consolidated texts of HMK, İİK, CMK, İYUK, VUK and Law 6216 (mevzuat.gov.tr) were read twice by separate researchers. The second reading worked from the act names only, without the first one's results. An act was added only when both found the same article and the same period. Both readings agreed on all 92 candidates the first one listed; 90 are in. Left out:
+  - CMK 142 (compensation for protective measures) and CMK 253/4 (reply to a mediation offer). It is unsettled whether the judicial recess applies, and `tr/cmk` cannot leave its recess step out.
+  - VUK 122 and 124 (correction and complaint). VUK sets no period for them.
+- **Verbatim quotes.** Every act cites its provision with a quote, and the source watch finds each quote in full in the live PDF. For the ZPO, which refuses connections from here and from CI, the quotes match archived copies of gesetze-im-internet.de.
+- **Hand-derived vectors.** Every act has a vector for service on Monday 2 March 2026, worked out by hand from the period (1 May is a holiday, so sixty days end on 4 May). Further vectors check the options acts imply:
+  - interim relief and arbitral annulment run through the judicial recess (HMK 103);
+  - a stay objection under İYUK is not extended by the summer break;
+  - a CMK appeal in the recess ends three days after it;
+  - İİK periods ignore the recess.
+- **Transitions.** Law 7499 changed many criminal and enforcement periods for decisions given from 1 June 2024, and Law 7035 did so for decisions given from 5 August 2017. Both key on the decision date, not on the date the user enters, and for CMK appeals the old period also started from pronouncement. The acts therefore carry a notice with the old period rather than an `earlier` version.
+- **Open points take the earlier date.** Where the statute does not say whether the judicial recess (HMK 397 and 150) or the İYUK summer break (stay objection, implied rejection, expedited procedure) extends a period, the act takes the date without an extension and says so.
+- **Former presets.** Reviewing them against their sources found three that gave a wrong or incomplete answer (CPR 15.4; FRCP 12 and 59 with mail service; § 339 ZPO abroad). They are fixed as listed in the changelog.
+
 ### Findings not changed
 
 - `de/zpo`: the shared German roll message keeps "Arbeitstag"; overriding it with the statute's "Werktag" would have left the other ten languages in English. The statute text stays in the § 222(2) citation.
-- `de/zpo`: § 339(2) ZPO (one month for service abroad) is not modelled; the § 339 preset assumes service in Germany.
+- `de/zpo`: § 339(2) ZPO (one month for service abroad) is not computed; the `einspruch` act assumes service in Germany and says so in a notice.
 - `tr/aym`: the roll step still cites only the Turgut Tayyar decision, not 6216 m.49/7.
 - Explanations defined only in English inside a rule pack still show in English in the other languages; a translated fallback needs an engine change.
 
@@ -118,6 +135,7 @@ This is not legal advice and not a substitute for review by a practitioner in ea
    - A last day moved into the recess or break by the holiday rule: no decision either way.
    - Does m.104 or m.8/3 reach periods set by other laws or by the judge?
    - AYM: does an electronic application count until 23:59?
+   - Acts: does HMK m.104 extend the period to sue after an interim injunction (m.397) and the three months to renew a case (m.150)? Does İYUK m.8/3 reach the stay objection, the implied rejection (m.10, m.11) and the expedited procedure (m.20/A)? The acts use the earlier date until this is confirmed.
 2. **England and Wales.**
    - Does CPR 2.8(5) apply to CE-File and e-mail filing?
    - When does a backward period end on a non-business day?
