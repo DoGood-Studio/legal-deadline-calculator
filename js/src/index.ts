@@ -20,6 +20,8 @@ export type { ISODate } from "./dates.js";
 export { CoverageError, DataError, InputError, LexdaysError, NotFoundError, OptionError } from "./errors.js";
 export type { LocalizedText } from "./i18n.js";
 export {
+  Act,
+  type ActVersion,
   type Citation,
   compute,
   type ComputeOptions,

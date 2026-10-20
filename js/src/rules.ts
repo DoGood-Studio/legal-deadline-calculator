@@ -30,8 +30,12 @@ const MONTH_DAY = /^(\d{2})-(\d{2})$/;
 
 const PACK_KEYS = new Set([
   "$schema", "id", "name", "description", "jurisdiction", "calendar", "calendar_family", "status",
-  "non_working", "options", "steps", "citations", "sources", "disclaimer", "notes",
+  "non_working", "options", "steps", "citations", "sources", "disclaimer", "notes", "acts",
 ]);
+const ACT_KEYS = new Set([
+  "label", "trigger", "period", "direction", "options", "cite", "group", "keywords", "earlier", "new",
+]);
+const ACT_ID = /^[a-z0-9][a-z0-9-]*$/;
 const COMMON_STEP_KEYS = ["type", "when", "cite", "message", "messages", "note"];
 const STEP_KEYS: Record<string, ReadonlySet<string>> = Object.fromEntries(
   Object.entries({
@@ -123,6 +127,61 @@ function langOrDefault(lang: string): string {
   return languages().includes(lang) ? lang : DEFAULT_LANG;
 }
 
+/** An earlier wording of an act's time limit, used for triggers before `before`. */
+export interface ActVersion {
+  readonly before: ISODate;
+  readonly period: Period;
+  readonly citation: Citation;
+}
+
+/**
+ * A named procedural act with its statutory time limit, e.g. an appeal.
+ * `compute(pack, trigger, null, { act: "istinaf" })` takes the period, direction and the options
+ * the act implies from here, so the caller only gives the trigger date.
+ */
+export class Act {
+  constructor(
+    readonly id: string,
+    readonly rulepack: string,
+    readonly label: LocalizedText,
+    readonly trigger: LocalizedText,
+    readonly period: Period,
+    readonly direction: Direction,
+    readonly citation: Citation,
+    readonly options: Readonly<Record<string, unknown>> = {},
+    readonly group: string | null = null,
+    readonly keywords: Readonly<Record<string, readonly string[]>> = {},
+    readonly earlier: readonly ActVersion[] = [],
+    /** Recently added to the catalogue ("new" in the data). */
+    readonly isNew = false,
+  ) {}
+
+  /** The period and citation in force for a trigger date (laws change their periods). */
+  versionFor(trigger: ISODate): { period: Period; citation: Citation } {
+    const day = D.formatISO(D.parseDate(trigger, "trigger"));
+    const version = this.earlier.find((v) => day < v.before);
+    return version ? { period: version.period, citation: version.citation } : { period: this.period, citation: this.citation };
+  }
+
+  /** Same shape as Python's `Act.to_dict()`. */
+  toJSON(): Record<string, unknown> {
+    return {
+      id: this.id,
+      rulepack: this.rulepack,
+      label: { ...this.label },
+      trigger: { ...this.trigger },
+      period: this.period.toJSON(),
+      direction: this.direction,
+      citation: { ...this.citation },
+      options: { ...this.options },
+      group: this.group,
+      keywords: Object.fromEntries(Object.entries(this.keywords).map(([k, v]) => [k, [...v]])),
+      earlier: this.earlier.map((v) => ({ before: v.before, period: v.period.toJSON(), citation: { ...v.citation } })),
+      new: this.isNew,
+    };
+  }
+}
+
 /** The computed deadline together with the reasoning that produced it. */
 export class DeadlineResult {
   constructor(
@@ -137,6 +196,9 @@ export class DeadlineResult {
     readonly notices: readonly Notice[],
     readonly endsAt: string | null,
     readonly timezone: string | null,
+    readonly act: Act | null = null,
+    /** The act's citation in force for this trigger. */
+    readonly actCitation: Citation | null = null,
   ) {}
 
   /** Human-readable, numbered explanation in `lang` ("en" or "tr"). */
@@ -147,6 +209,7 @@ export class DeadlineResult {
       if (s.citation) line += ` [${pick(s.citation.label, lang)}]`;
       return line;
     });
+    if (this.act && this.actCitation) lines.unshift(`${pick(this.act.label, lang)} (${pick(this.actCitation.label, lang)})`);
     lines.push(render("explain.deadline", { date: new DateParam(D.parseDate(this.deadline)) })[l]!);
     if (this.endsAt) {
       const time = this.timezone ? `${this.endsAt} (${this.timezone})` : this.endsAt;
@@ -170,6 +233,10 @@ export class DeadlineResult {
       options: { ...this.options },
       trace: this.trace.map((s) => ({ ...s, citation: s.citation && { ...s.citation } })),
       notices: this.notices.map((n) => ({ ...n, citation: n.citation && { ...n.citation } })),
+      act:
+        this.act && this.actCitation
+          ? { id: this.act.id, label: { ...this.act.label }, citation: { ...this.actCitation } }
+          : null,
     };
   }
 }
@@ -209,6 +276,8 @@ function monthDay(value: unknown, where: string): [number, number] {
 }
 
 export interface ComputeOptions {
+  /** One of the pack's acts (e.g. `"istinaf"`), given instead of a period. */
+  act?: string;
   direction?: Direction;
   options?: Readonly<Record<string, unknown>>;
   /** Holiday calendar of the place that matters (e.g. the court's seat, `"de-by"`), when the pack allows it. */
@@ -230,6 +299,7 @@ export class RulePack {
   readonly options: Readonly<Record<string, { values: unknown[]; default: unknown; description?: LocalizedText }>>;
   readonly nonWorking: Readonly<Obj>;
   readonly steps: readonly Step[];
+  readonly acts: Readonly<Record<string, Act>>;
   private readonly where: string;
 
   constructor(raw: unknown, calendarOverride: Calendar | null = null) {
@@ -254,10 +324,20 @@ export class RulePack {
     this.options = this.loadOptions(spec.options ?? {});
     this.nonWorking = this.loadNonWorking(spec.non_working ?? {});
     this.steps = this.loadSteps(spec.steps);
+    this.acts = this.loadActs(spec.acts ?? {});
   }
 
   toString(): string {
     return `RulePack(${this.id})`;
+  }
+
+  /** The named act `actId` of this pack (e.g. `"istinaf"`). */
+  act(actId: string): Act {
+    if (!Object.hasOwn(this.acts, actId)) {
+      const known = Object.keys(this.acts).sort().join(", ") || "none";
+      throw new NotFoundError(`${this.where} has no act ${JSON.stringify(actId)}; acts: ${known}`);
+    }
+    return this.acts[actId]!;
   }
 
   // ----------------------------------------------------------- validation
@@ -449,6 +529,105 @@ export class RulePack {
     });
   }
 
+  private loadActs(raw: unknown): Record<string, Act> {
+    if (!isObj(raw)) throw new DataError(`${this.where}: 'acts' must be an object`);
+    const out: Record<string, Act> = {};
+    for (const [actId, rawItem] of Object.entries(raw)) {
+      const here = `${this.where}.acts[${actId}]`;
+      if (!ACT_ID.test(actId)) throw new DataError(`${here}: an act id is lowercase letters, digits and hyphens`);
+      const item = checkKeys(rawItem, ACT_KEYS, here);
+      const direction = (item.direction ?? "after") as Direction;
+      if (!DIRECTIONS.includes(direction)) throw new DataError(`${here}.direction must be one of ${DIRECTIONS.join(", ")}`);
+      const options = item.options ?? {};
+      if (!isObj(options)) throw new DataError(`${here}.options must be an object`);
+      for (const [name, value] of Object.entries(options)) {
+        if (!(name in this.options)) throw new DataError(`${here}.options: unknown option ${JSON.stringify(name)}`);
+        if (!this.options[name]!.values.includes(value)) {
+          throw new DataError(`${here}.options[${name}] must be one of ${JSON.stringify(this.options[name]!.values)}`);
+        }
+      }
+      const group = item.group ?? null;
+      if (group !== null && (typeof group !== "string" || !group)) throw new DataError(`${here}.group must be a non-empty string`);
+      const isNew = item.new ?? false;
+      if (typeof isNew !== "boolean") throw new DataError(`${here}.new must be true or false`);
+      out[actId] = new Act(
+        actId,
+        this.id,
+        checkName(item.label, `${here}.label`),
+        checkName(item.trigger, `${here}.trigger`),
+        this.actPeriod(item.period, `${here}.period`),
+        direction,
+        this.actCitation(item.cite, here),
+        { ...options },
+        group,
+        this.actKeywords(item.keywords ?? {}, `${here}.keywords`),
+        this.actEarlier(item.earlier ?? [], `${here}.earlier`),
+        isNew,
+      );
+    }
+    return out;
+  }
+
+  private actPeriod(value: unknown, where: string): Period {
+    try {
+      return Period.parse(value as PeriodLike);
+    } catch (err) {
+      throw new DataError(`${where}: ${(err as Error).message}`);
+    }
+  }
+
+  private actCitation(cite: unknown, here: string): Citation {
+    if (typeof cite !== "string" || !Object.hasOwn(this.citations, cite)) {
+      throw new DataError(`${here}: cites unknown citation ${JSON.stringify(cite)}`);
+    }
+    return this.citations[cite]!;
+  }
+
+  private actKeywords(raw: unknown, where: string): Record<string, readonly string[]> {
+    if (!isObj(raw)) throw new DataError(`${where} must map languages to lists of words`);
+    const out: Record<string, readonly string[]> = {};
+    for (const [lang, words] of Object.entries(raw)) {
+      if (!Array.isArray(words) || !words.every((w) => typeof w === "string" && w)) {
+        throw new DataError(`${where}[${lang}] must be a list of non-empty strings`);
+      }
+      out[lang] = [...(words as string[])];
+    }
+    return out;
+  }
+
+  private actEarlier(raw: unknown, where: string): ActVersion[] {
+    if (!Array.isArray(raw)) throw new DataError(`${where} must be a list`);
+    const versions: ActVersion[] = [];
+    raw.forEach((rawItem, index) => {
+      const here = `${where}[${index}]`;
+      const item = checkKeys(rawItem, new Set(["before", "period", "cite"]), here);
+      let before: ISODate;
+      try {
+        before = D.formatISO(D.parseDate(item.before, "before"));
+      } catch (err) {
+        throw new DataError(`${here}.before: ${(err as Error).message}`);
+      }
+      if (versions.length && before <= versions[versions.length - 1]!.before) {
+        throw new DataError(`${here}: versions must be in order of their 'before' dates`);
+      }
+      versions.push({ before, period: this.actPeriod(item.period, `${here}.period`), citation: this.actCitation(item.cite, here) });
+    });
+    return versions;
+  }
+
+  private actOptions(act: Act, options: Readonly<Record<string, unknown>> | undefined): Record<string, unknown> {
+    const merged: Record<string, unknown> = { ...act.options };
+    for (const [name, value] of Object.entries(options ?? {})) {
+      if (name in act.options && act.options[name] !== value) {
+        throw new OptionError(
+          `${this.where}: act '${act.id}' implies ${name}=${JSON.stringify(act.options[name])}, got ${JSON.stringify(value)}`,
+        );
+      }
+      merged[name] = value;
+    }
+    return merged;
+  }
+
   private optionValues(options: Readonly<Record<string, unknown>> | undefined): Record<string, unknown> {
     const given = { ...(options ?? {}) };
     const unknown = Object.keys(given).filter((k) => !(k in this.options)).sort();
@@ -469,18 +648,40 @@ export class RulePack {
 
   // ------------------------------------------------------------- execution
 
-  /** Computes the deadline for `period` counted from `trigger` (a `YYYY-MM-DD` string). */
-  compute(trigger: ISODate, period: PeriodLike, opts: ComputeOptions = {}): DeadlineResult {
+  /**
+   * Computes the deadline for `period` counted from `trigger` (a `YYYY-MM-DD` string). Instead of a
+   * period, `opts.act` names one of the pack's acts: its period, direction and implied options are
+   * used, in the version in force on the trigger date.
+   */
+  compute(trigger: ISODate, period: PeriodLike | null | undefined, opts: ComputeOptions = {}): DeadlineResult {
     const start = D.parseDate(trigger, "trigger");
-    const parsed = Period.parse(period);
-    const direction = opts.direction ?? "after";
+    let parsed: Period;
+    let direction: Direction;
+    let options = opts.options;
+    let chosen: Act | null = null;
+    let actCitation: Citation | null = null;
+    if (opts.act !== undefined && opts.act !== null) {
+      if (period !== undefined && period !== null) throw new InputError("give either a period or an act, not both");
+      chosen = this.act(opts.act);
+      ({ period: parsed, citation: actCitation } = chosen.versionFor(trigger));
+      if (opts.direction !== undefined && opts.direction !== chosen.direction) {
+        throw new InputError(`act '${opts.act}' counts '${chosen.direction}', got direction='${opts.direction}'`);
+      }
+      direction = chosen.direction;
+      options = this.actOptions(chosen, options);
+    } else if (period === undefined || period === null) {
+      throw new InputError("a period or an act is required");
+    } else {
+      parsed = Period.parse(period);
+      direction = opts.direction ?? "after";
+    }
     if (!DIRECTIONS.includes(direction)) throw new InputError(`direction must be one of ${DIRECTIONS.join(", ")}, got ${JSON.stringify(direction)}`);
     const ctx: Context = {
       calendar: this.calendarFor(opts.calendar),
       trigger: start,
       period: parsed,
       direction,
-      options: this.optionValues(opts.options),
+      options: this.optionValues(options),
       trace: [],
       notices: [],
       endsAt: null,
@@ -509,6 +710,8 @@ export class RulePack {
       ctx.notices,
       ctx.endsAt,
       ctx.calendar.timezone,
+      chosen,
+      actCitation,
     );
   }
 
@@ -773,8 +976,16 @@ export function rulepack(value: string | Obj | RulePack): RulePack {
   throw new InputError("expected a rule pack id, spec or RulePack");
 }
 
-/** Computes a deadline: `compute("tr/hmk", "2026-07-10", "P2W")`. */
-export function compute(pack: string | Obj | RulePack, trigger: ISODate, period: PeriodLike, opts: ComputeOptions = {}): DeadlineResult {
+/**
+ * Computes a deadline: `compute("tr/hmk", "2026-07-10", "P2W")` or, by naming one of the pack's
+ * acts, `compute("tr/hmk", "2026-07-10", null, { act: "istinaf" })`.
+ */
+export function compute(
+  pack: string | Obj | RulePack,
+  trigger: ISODate,
+  period: PeriodLike | null = null,
+  opts: ComputeOptions = {},
+): DeadlineResult {
   return rulepack(pack).compute(trigger, period, opts);
 }
 

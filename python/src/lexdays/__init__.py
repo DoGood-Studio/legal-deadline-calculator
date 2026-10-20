@@ -10,6 +10,8 @@ from __future__ import annotations
 
 from ._calendar import Calendar, Holiday, calendar, list_calendars
 from ._rules import (
+    Act,
+    ActVersion,
     Citation,
     DeadlineResult,
     Notice,
@@ -31,6 +33,8 @@ from .errors import (
 __version__ = "0.1.1"
 
 __all__ = [
+    "Act",
+    "ActVersion",
     "Calendar",
     "Citation",
     "CoverageError",

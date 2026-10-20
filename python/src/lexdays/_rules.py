@@ -17,7 +17,7 @@ from typing import Any, TypeAlias
 from . import _data, _dates, _i18n
 from ._calendar import Calendar, Holiday, _check_keys, _check_name
 from ._calendar import calendar as _load_calendar
-from .errors import DataError, OptionError
+from .errors import DataError, NotFoundError, OptionError
 
 UNITS = ("day", "week", "month", "year", "business_day")
 DIRECTIONS = ("after", "before")
@@ -41,8 +41,12 @@ _MAX_AMOUNT = 100_000
 
 _PACK_KEYS = {
     "$schema", "id", "name", "description", "jurisdiction", "calendar", "calendar_family", "status",
-    "non_working", "options", "steps", "citations", "sources", "disclaimer", "notes",
+    "non_working", "options", "steps", "citations", "sources", "disclaimer", "notes", "acts",
 }
+_ACT_KEYS = {
+    "label", "trigger", "period", "direction", "options", "cite", "group", "keywords", "earlier", "new",
+}
+_ACT_ID = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 _COMMON_STEP_KEYS = {"type", "when", "cite", "message", "messages", "note"}
 _STEP_KEYS = {
     "shift_trigger": {"days"},
@@ -173,6 +177,65 @@ class Notice:
 
 
 @dataclass(frozen=True)
+class ActVersion:
+    """An earlier wording of an act's time limit, used for triggers before ``before``."""
+
+    before: date
+    period: Period
+    citation: Citation
+
+
+@dataclass(frozen=True)
+class Act:
+    """A named procedural act with its statutory time limit, e.g. an appeal.
+
+    ``compute(pack, trigger, act="istinaf")`` takes the period, direction and the options the
+    act implies from here, so the caller only gives the trigger date.
+    """
+
+    id: str
+    rulepack: str
+    label: Mapping[str, str] = field(hash=False, compare=False)
+    trigger: Mapping[str, str] = field(hash=False, compare=False)
+    period: Period
+    direction: str
+    citation: Citation
+    options: Mapping[str, Any] = field(default_factory=dict, hash=False, compare=False)
+    group: str | None = None
+    keywords: Mapping[str, tuple[str, ...]] = field(default_factory=dict, hash=False, compare=False)
+    earlier: tuple[ActVersion, ...] = ()
+    new: bool = False
+
+    def version_for(self, trigger: date | str) -> tuple[Period, Citation]:
+        """The period and citation in force for a trigger date (laws change their periods)."""
+        day = _dates.parse_date(trigger, field="trigger")
+        for version in self.earlier:
+            if day < version.before:
+                return version.period, version.citation
+        return self.period, self.citation
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "id": self.id,
+            "rulepack": self.rulepack,
+            "label": dict(self.label),
+            "trigger": dict(self.trigger),
+            "period": self.period.to_dict(),
+            "direction": self.direction,
+            "citation": self.citation.to_dict(),
+            "options": dict(self.options),
+            "group": self.group,
+            "keywords": {lang: list(words) for lang, words in self.keywords.items()},
+            "earlier": [
+                {"before": v.before.isoformat(), "period": v.period.to_dict(),
+                 "citation": v.citation.to_dict()}
+                for v in self.earlier
+            ],
+            "new": self.new,
+        }
+
+
+@dataclass(frozen=True)
 class DeadlineResult:
     """The computed deadline together with the reasoning that produced it."""
 
@@ -187,10 +250,15 @@ class DeadlineResult:
     notices: tuple[Notice, ...] = ()
     ends_at: str | None = None
     timezone: str | None = None
+    act: Act | None = None
+    act_citation: Citation | None = None  # the act's citation in force for this trigger
 
     def explain(self, lang: str = "en") -> str:
         """Human-readable, numbered explanation in ``lang`` (``"en"`` or ``"tr"``)."""
         lines = []
+        if self.act and self.act_citation:
+            label = _i18n.pick(self.act.label, lang)
+            lines.append(f"{label} ({_i18n.pick(self.act_citation.label, lang)})")
         for number, step in enumerate(self.trace, start=1):
             line = f"{number}. {_i18n.pick(step.message, lang)}"
             if step.citation:
@@ -218,6 +286,11 @@ class DeadlineResult:
             "options": dict(self.options),
             "trace": [s.to_dict() for s in self.trace],
             "notices": [n.to_dict() for n in self.notices],
+            "act": None if self.act is None or self.act_citation is None else {
+                "id": self.act.id,
+                "label": dict(self.act.label),
+                "citation": self.act_citation.to_dict(),
+            },
         }
 
 
@@ -279,9 +352,18 @@ class RulePack:
         self.options: dict[str, Mapping[str, Any]] = self._load_options(spec.get("options", {}))
         self.non_working: Mapping[str, Any] = self._load_non_working(spec.get("non_working", {}))
         self.steps: Steps = self._load_steps(spec.get("steps"))
+        self.acts: dict[str, Act] = self._load_acts(spec.get("acts", {}))
 
     def __repr__(self) -> str:
         return f"RulePack({self.id!r})"
+
+    def act(self, act_id: str) -> Act:
+        """The named act ``act_id`` of this pack (e.g. ``"istinaf"``)."""
+        try:
+            return self.acts[act_id]
+        except KeyError:
+            known = ", ".join(sorted(self.acts)) or "none"
+            raise NotFoundError(f"{self._where} has no act {act_id!r}; acts: {known}") from None
 
     # ----------------------------------------------------------- validation
 
@@ -449,6 +531,96 @@ class RulePack:
             raise DataError(f"{self._where}: needs at least one 'count' step")
         return list(raw)
 
+    def _load_acts(self, raw: Any) -> dict[str, Act]:
+        if not isinstance(raw, Mapping):
+            raise DataError(f"{self._where}: 'acts' must be an object")
+        out = {}
+        for act_id, raw_item in raw.items():
+            here = f"{self._where}.acts[{act_id}]"
+            if not isinstance(act_id, str) or not _ACT_ID.match(act_id):
+                raise DataError(f"{here}: an act id is lowercase letters, digits and hyphens")
+            item = _check_keys(raw_item, _ACT_KEYS, here)
+            direction = item.get("direction", "after")
+            if direction not in DIRECTIONS:
+                raise DataError(f"{here}.direction must be one of {DIRECTIONS}")
+            options = item.get("options", {})
+            if not isinstance(options, Mapping):
+                raise DataError(f"{here}.options must be an object")
+            for name, value in options.items():
+                if name not in self.options:
+                    raise DataError(f"{here}.options: unknown option {name!r}")
+                if value not in self.options[name]["values"]:
+                    raise DataError(f"{here}.options[{name}] must be one of {self.options[name]['values']}")
+            group = item.get("group")
+            if group is not None and (not isinstance(group, str) or not group):
+                raise DataError(f"{here}.group must be a non-empty string")
+            new = item.get("new", False)
+            if not isinstance(new, bool):
+                raise DataError(f"{here}.new must be true or false")
+            out[act_id] = Act(
+                id=act_id,
+                rulepack=self.id,
+                label=_check_name(item.get("label"), f"{here}.label"),
+                trigger=_check_name(item.get("trigger"), f"{here}.trigger"),
+                period=self._act_period(item.get("period"), f"{here}.period"),
+                direction=direction,
+                citation=self._act_citation(item.get("cite"), here),
+                options=dict(options),
+                group=group,
+                keywords=self._act_keywords(item.get("keywords", {}), f"{here}.keywords"),
+                earlier=self._act_earlier(item.get("earlier", []), f"{here}.earlier"),
+                new=new,
+            )
+        return out
+
+    def _act_period(self, value: Any, where: str) -> Period:
+        try:
+            return Period.parse(value)
+        except (TypeError, ValueError) as exc:
+            raise DataError(f"{where}: {exc}") from None
+
+    def _act_citation(self, cite: Any, here: str) -> Citation:
+        if cite not in self.citations:
+            raise DataError(f"{here}: cites unknown citation {cite!r}")
+        return self.citations[cite]
+
+    def _act_keywords(self, raw: Any, where: str) -> dict[str, tuple[str, ...]]:
+        if not isinstance(raw, Mapping):
+            raise DataError(f"{where} must map languages to lists of words")
+        out = {}
+        for lang, words in raw.items():
+            if not isinstance(words, list) or not all(isinstance(w, str) and w for w in words):
+                raise DataError(f"{where}[{lang}] must be a list of non-empty strings")
+            out[lang] = tuple(words)
+        return out
+
+    def _act_earlier(self, raw: Any, where: str) -> tuple[ActVersion, ...]:
+        if not isinstance(raw, list):
+            raise DataError(f"{where} must be a list")
+        versions: list[ActVersion] = []
+        for index, raw_item in enumerate(raw):
+            here = f"{where}[{index}]"
+            item = _check_keys(raw_item, {"before", "period", "cite"}, here)
+            try:
+                before = _dates.parse_date(item.get("before"), field="before")
+            except (TypeError, ValueError) as exc:
+                raise DataError(f"{here}.before: {exc}") from None
+            if versions and before <= versions[-1].before:
+                raise DataError(f"{here}: versions must be in order of their 'before' dates")
+            versions.append(ActVersion(before, self._act_period(item.get("period"), f"{here}.period"),
+                                       self._act_citation(item.get("cite"), here)))
+        return tuple(versions)
+
+    def _act_options(self, act: Act, options: Mapping[str, Any] | None) -> dict[str, Any]:
+        merged = dict(act.options)
+        for name, value in (options or {}).items():
+            if name in act.options and act.options[name] != value:
+                raise OptionError(
+                    f"{self._where}: act {act.id!r} implies {name}={act.options[name]!r}, got {value!r}"
+                )
+            merged[name] = value
+        return merged
+
     def _check_recess(self, step: Mapping[str, Any], here: str) -> None:
         _check_name(step.get("name"), f"{here}.name")
         if step.get("mode", "extend") not in ("extend", "suspend", "defer_start"):
@@ -486,20 +658,38 @@ class RulePack:
     def compute(
         self,
         trigger: date | str,
-        period: Period | str | Mapping[str, Any] | tuple[int, str],
+        period: Period | str | Mapping[str, Any] | tuple[int, str] | None = None,
         *,
-        direction: str = "after",
+        act: str | None = None,
+        direction: str | None = None,
         options: Mapping[str, Any] | None = None,
         calendar: str | Mapping[str, Any] | Calendar | None = None,
     ) -> DeadlineResult:
         """Compute the deadline for ``period`` counted from ``trigger``.
 
-        ``direction="before"`` counts backwards (e.g. "at least 7 days before
-        the hearing"). ``calendar`` selects the holiday calendar of the place
-        that matters (e.g. the court's seat, ``"de-by"``) when the pack allows it.
+        Instead of a period, ``act`` names one of the pack's acts (e.g. ``"istinaf"``): its
+        period, direction and implied options are used, in the version in force on the trigger
+        date. ``direction="before"`` counts backwards (e.g. "at least 7 days before the
+        hearing"). ``calendar`` selects the holiday calendar of the place that matters (e.g. the
+        court's seat, ``"de-by"``) when the pack allows it.
         """
         start = _dates.parse_date(trigger, field="trigger")
-        parsed = Period.parse(period)
+        chosen: Act | None = None
+        act_citation: Citation | None = None
+        if act is not None:
+            if period is not None:
+                raise ValueError("give either a period or an act, not both")
+            chosen = self.act(act)
+            parsed, act_citation = chosen.version_for(start)
+            if direction is not None and direction != chosen.direction:
+                raise ValueError(f"act {act!r} counts {chosen.direction!r}, got direction={direction!r}")
+            direction = chosen.direction
+            options = self._act_options(chosen, options)
+        elif period is None:
+            raise ValueError("a period or an act is required")
+        else:
+            parsed = Period.parse(period)
+            direction = direction or "after"
         if direction not in DIRECTIONS:
             raise ValueError(f"direction must be one of {DIRECTIONS}, got {direction!r}")
         ctx = _Context(start, parsed, direction, self._option_values(options))
@@ -529,6 +719,8 @@ class RulePack:
             notices=tuple(ctx.notices),
             ends_at=ctx.ends_at,
             timezone=ctx.cal.timezone,
+            act=chosen,
+            act_citation=act_citation,
         )
 
     def _calendar_for(self, override: str | Mapping[str, Any] | Calendar | None) -> Calendar:
@@ -804,15 +996,17 @@ def rulepack(value: PackLike) -> RulePack:
 def compute(
     pack: PackLike,
     trigger: date | str,
-    period: Period | str | Mapping[str, Any] | tuple[int, str],
+    period: Period | str | Mapping[str, Any] | tuple[int, str] | None = None,
     *,
-    direction: str = "after",
+    act: str | None = None,
+    direction: str | None = None,
     options: Mapping[str, Any] | None = None,
     calendar: str | Mapping[str, Any] | Calendar | None = None,
 ) -> DeadlineResult:
-    """Compute a deadline: ``compute("tr/hmk", "2026-07-10", "P2W")``."""
+    """Compute a deadline: ``compute("tr/hmk", "2026-07-10", "P2W")`` or, by naming one of the
+    pack's acts, ``compute("tr/hmk", "2026-07-10", act="istinaf")``."""
     return rulepack(pack).compute(
-        trigger, period, direction=direction, options=options, calendar=calendar
+        trigger, period, act=act, direction=direction, options=options, calendar=calendar
     )
 
 

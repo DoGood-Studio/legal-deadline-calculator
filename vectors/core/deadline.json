@@ -455,6 +455,110 @@
           }
         }
       ]
+    },
+    "fx/acts": {
+      "id": "fx/acts",
+      "name": {
+        "en": "Fixture acts",
+        "tr": "Test işlemleri"
+      },
+      "calendar": "fx",
+      "options": {
+        "filing": {
+          "values": [
+            "electronic",
+            "physical"
+          ],
+          "default": "electronic"
+        }
+      },
+      "citations": {
+        "art_2": {
+          "label": {
+            "en": "Art. 2",
+            "tr": "m.2"
+          }
+        },
+        "art_2_old": {
+          "label": {
+            "en": "Art. 2 (before the 2024 amendment)",
+            "tr": "m.2 (2024 değişikliğinden önce)"
+          }
+        },
+        "art_5": {
+          "label": {
+            "en": "Art. 5",
+            "tr": "m.5"
+          }
+        }
+      },
+      "steps": [
+        {
+          "type": "count"
+        },
+        {
+          "type": "roll"
+        }
+      ],
+      "acts": {
+        "appeal": {
+          "label": {
+            "en": "Appeal",
+            "tr": "İstinaf"
+          },
+          "trigger": {
+            "en": "Date the judgment was served",
+            "tr": "Kararın tebliğ tarihi"
+          },
+          "period": "P2W",
+          "cite": "art_2",
+          "group": "judgment",
+          "keywords": {
+            "en": [
+              "appeal"
+            ],
+            "tr": [
+              "kanun yolu"
+            ]
+          },
+          "earlier": [
+            {
+              "before": "2024-03-12",
+              "period": "P7D",
+              "cite": "art_2_old"
+            }
+          ]
+        },
+        "reply": {
+          "label": {
+            "en": "Reply",
+            "tr": "Cevap"
+          },
+          "trigger": {
+            "en": "Date the claim was served",
+            "tr": "Dava dilekçesinin tebliğ tarihi"
+          },
+          "period": "P10D",
+          "options": {
+            "filing": "physical"
+          },
+          "cite": "art_5",
+          "new": true
+        },
+        "notice-before-hearing": {
+          "label": {
+            "en": "Notice before the hearing",
+            "tr": "Duruşmadan önce bildirim"
+          },
+          "trigger": {
+            "en": "Hearing date",
+            "tr": "Duruşma tarihi"
+          },
+          "period": "P3D",
+          "direction": "before",
+          "cite": "art_5"
+        }
+      }
     }
   },
   "cases": [
@@ -2406,6 +2510,904 @@
           }
         ]
       },
+      "error": "ValueError"
+    },
+    {
+      "id": "act-uses-its-period",
+      "pack": "fx/acts",
+      "trigger": "2026-06-01",
+      "act": "appeal",
+      "expect": {
+        "deadline": "2026-06-15",
+        "period": "P2W",
+        "act_cite": "art_2",
+        "notices": []
+      }
+    },
+    {
+      "id": "act-earlier-version-before-its-cutoff",
+      "pack": "fx/acts",
+      "trigger": "2024-03-11",
+      "act": "appeal",
+      "expect": {
+        "deadline": "2024-03-18",
+        "period": "P7D",
+        "act_cite": "art_2_old",
+        "notices": []
+      }
+    },
+    {
+      "id": "act-current-version-from-its-cutoff",
+      "pack": "fx/acts",
+      "trigger": "2024-03-12",
+      "act": "appeal",
+      "expect": {
+        "deadline": "2024-03-26",
+        "period": "P2W",
+        "act_cite": "art_2",
+        "notices": []
+      }
+    },
+    {
+      "id": "act-implies-an-option",
+      "pack": "fx/acts",
+      "trigger": "2026-06-01",
+      "act": "reply",
+      "expect": {
+        "deadline": "2026-06-11",
+        "period": "P10D",
+        "act_cite": "art_5",
+        "options": {
+          "filing": "physical"
+        },
+        "notices": []
+      }
+    },
+    {
+      "id": "act-option-given-again-with-the-same-value",
+      "pack": "fx/acts",
+      "trigger": "2026-06-01",
+      "act": "reply",
+      "options": {
+        "filing": "physical"
+      },
+      "expect": {
+        "deadline": "2026-06-11",
+        "notices": []
+      }
+    },
+    {
+      "id": "act-option-contradicting-the-act",
+      "pack": "fx/acts",
+      "trigger": "2026-06-01",
+      "act": "reply",
+      "options": {
+        "filing": "electronic"
+      },
+      "error": "OptionError"
+    },
+    {
+      "id": "act-counts-backwards",
+      "pack": "fx/acts",
+      "trigger": "2026-06-11",
+      "act": "notice-before-hearing",
+      "expect": {
+        "deadline": "2026-06-08",
+        "notices": []
+      }
+    },
+    {
+      "id": "act-direction-contradicting-the-act",
+      "pack": "fx/acts",
+      "trigger": "2026-06-11",
+      "act": "notice-before-hearing",
+      "direction": "after",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-unknown",
+      "pack": "fx/acts",
+      "trigger": "2026-06-01",
+      "act": "nope",
+      "error": "NotFoundError"
+    },
+    {
+      "id": "act-and-period-together",
+      "pack": "fx/acts",
+      "trigger": "2026-06-01",
+      "act": "appeal",
+      "period": "P2W",
+      "error": "ValueError"
+    },
+    {
+      "id": "neither-period-nor-act",
+      "pack": "fx/acts",
+      "trigger": "2026-06-01",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-unknown-citation",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "nope"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-id",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "Bad_Id": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-option-value",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "options": {
+              "filing": "fax"
+            }
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-unknown-option",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "options": {
+              "nope": "x"
+            }
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-period",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "two weeks",
+            "cite": "art_5"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-direction",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "direction": "sideways"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-unknown-key",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "colour": "red"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-missing-trigger",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": null,
+            "period": "P1D",
+            "cite": "art_5"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-earlier-out-of-order",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "earlier": [
+              {
+                "before": "2024-01-01",
+                "period": "P1D",
+                "cite": "art_5"
+              },
+              {
+                "before": "2023-01-01",
+                "period": "P1D",
+                "cite": "art_5"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-earlier-date",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "earlier": [
+              {
+                "before": "2024-02-30",
+                "period": "P1D",
+                "cite": "art_5"
+              }
+            ]
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-keywords",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "keywords": {
+              "en": "appeal"
+            }
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-new-flag",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "new": "yes"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
       "error": "ValueError"
     }
   ]
