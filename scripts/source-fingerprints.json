@@ -12,6 +12,13 @@
     "http://data.europa.eu/eli/dec/2024/2490/oj": {
       "fingerprint": "1a6b1d4ae32b36e1"
     },
+    "http://data.europa.eu/eli/treaty/tfeu_2016/pro_3/oj": {
+      "fingerprint": "d2b3b2b6f324ba67",
+      "amended_until": "2024-04-11"
+    },
+    "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:12016E263": {
+      "fingerprint": "cbbae23f7325159b"
+    },
     "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)": {
       "fingerprint": "ac623ee1f0e57949",
       "amended_until": "2026-06-02"
@@ -32,7 +39,7 @@
       "fingerprint": "e0ac3f98ba00d0f5"
     },
     "https://www.berlin.de/aktuelles/9188766-958090-einmaliger-feiertag-am-8-mai-2025.html": {
-      "fingerprint": "9e0d2e40ffaccc0f"
+      "fingerprint": "2962876334b03254"
     },
     "https://www.bundesgerichtshof.de/SharedDocs/Entscheidungen/DE/Zivilsenate/VI_ZS/2011/VI_ZA__27-11.pdf?__blob=publicationFile&v=1": {
       "fingerprint": "a564edfdcfeaec87"
@@ -57,6 +64,21 @@
     },
     "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part06": {
       "fingerprint": "901fa6a3455e8b5a"
+    },
+    "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part10": {
+      "fingerprint": "3d51d5520e8840f3"
+    },
+    "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part15": {
+      "fingerprint": "21a1bbe556b85583"
+    },
+    "https://www.justice.gov.uk/courts/procedure-rules/civil/rules/part23": {
+      "fingerprint": "d64058a8077482c5"
+    },
+    "https://www.law.cornell.edu/rules/frcp/rule_12": {
+      "fingerprint": "5074ba758711ab96"
+    },
+    "https://www.law.cornell.edu/rules/frcp/rule_59": {
+      "fingerprint": "4c1219c63468ae2f"
     },
     "https://www.law.cornell.edu/rules/frcp/rule_6": {
       "fingerprint": "3d2b4d7fd02c96e6"
@@ -86,7 +108,7 @@
       "fingerprint": "f964f5e52fe24be9"
     },
     "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf": {
-      "fingerprint": "064a211de99e5c31"
+      "fingerprint": "3197bf122c71f442"
     },
     "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6216.pdf": {
       "fingerprint": "faa8da8ed406bcec"
@@ -108,6 +130,11 @@
     "eu/cj rp_49_2 [en]": 1.0,
     "eu/cj rp_50 [en]": 1.0,
     "eu/cj rp_51 [en]": 1.0,
+    "eu/cj statute_56 [en]": 1.0,
+    "eu/cj tfeu_263_6 [en]": 1.0,
+    "gb-eaw/cpr cpr_10_3 [en]": 1.0,
+    "gb-eaw/cpr cpr_15_4 [en]": 1.0,
+    "gb-eaw/cpr cpr_23_7 [en]": 1.0,
     "gb-eaw/cpr cpr_2_10 [en]": 1.0,
     "gb-eaw/cpr cpr_2_8_1 [en]": 1.0,
     "gb-eaw/cpr cpr_2_8_3 [en]": 1.0,
@@ -118,31 +145,124 @@
     "gb-eaw/cpr pd_2a [en]": 0.823,
     "gb-eaw/cpr pd_5b_4_2 [en]": 1.0,
     "tr/aym law_6216_47 [tr]": 1.0,
+    "tr/aym law_6216_47_mazeret [tr]": 1.0,
+    "tr/aym tayyar [tr]": 1.0,
+    "tr/cmk cgk_2021_275 [tr]": 1.0,
+    "tr/cmk cmk_173 [tr]": 1.0,
+    "tr/cmk cmk_268 [tr]": 1.0,
+    "tr/cmk cmk_273 [tr]": 1.0,
+    "tr/cmk cmk_276 [tr]": 1.0,
+    "tr/cmk cmk_277 [tr]": 1.0,
+    "tr/cmk cmk_291 [tr]": 1.0,
+    "tr/cmk cmk_296 [tr]": 1.0,
+    "tr/cmk cmk_297 [tr]": 1.0,
+    "tr/cmk cmk_297_3 [tr]": 1.0,
     "tr/cmk cmk_331 [tr]": 1.0,
     "tr/cmk cmk_38a [tr]": 1.0,
     "tr/cmk cmk_39 [tr]": 1.0,
     "tr/cmk cmk_39_4 [tr]": 1.0,
+    "tr/cmk cmk_41 [tr]": 1.0,
     "tr/cmk tk_7a [tr]": 1.0,
     "tr/hmk hmk_104 [tr]": 1.0,
+    "tr/hmk hmk_127 [tr]": 1.0,
+    "tr/hmk hmk_133 [tr]": 1.0,
+    "tr/hmk hmk_136 [tr]": 1.0,
+    "tr/hmk hmk_150 [tr]": 1.0,
+    "tr/hmk hmk_20 [tr]": 1.0,
+    "tr/hmk hmk_281 [tr]": 1.0,
+    "tr/hmk hmk_337 [tr]": 1.0,
+    "tr/hmk hmk_345 [tr]": 1.0,
+    "tr/hmk hmk_346 [tr]": 1.0,
+    "tr/hmk hmk_347_2 [tr]": 1.0,
+    "tr/hmk hmk_348 [tr]": 1.0,
+    "tr/hmk hmk_361 [tr]": 1.0,
+    "tr/hmk hmk_366 [tr]": 1.0,
+    "tr/hmk hmk_377 [tr]": 1.0,
+    "tr/hmk hmk_393 [tr]": 1.0,
+    "tr/hmk hmk_394 [tr]": 1.0,
+    "tr/hmk hmk_394_3 [tr]": 1.0,
+    "tr/hmk hmk_397 [tr]": 1.0,
+    "tr/hmk hmk_439 [tr]": 1.0,
     "tr/hmk hmk_445 [tr]": 1.0,
     "tr/hmk hmk_92 [tr]": 1.0,
     "tr/hmk hmk_93 [tr]": 1.0,
+    "tr/hmk hmk_96 [tr]": 1.0,
     "tr/hmk tk_7a [tr]": 1.0,
+    "tr/iik iik_106 [tr]": 1.0,
+    "tr/iik iik_128a [tr]": 1.0,
+    "tr/iik iik_134 [tr]": 1.0,
+    "tr/iik iik_142 [tr]": 1.0,
+    "tr/iik iik_150 [tr]": 1.0,
+    "tr/iik iik_16 [tr]": 1.0,
+    "tr/iik iik_168 [tr]": 1.0,
+    "tr/iik iik_168_3 [tr]": 1.0,
+    "tr/iik iik_170 [tr]": 1.0,
     "tr/iik iik_19 [tr]": 0.945,
+    "tr/iik iik_264 [tr]": 1.0,
+    "tr/iik iik_264_2 [tr]": 1.0,
+    "tr/iik iik_264_3 [tr]": 1.0,
+    "tr/iik iik_265 [tr]": 1.0,
+    "tr/iik iik_265_2 [tr]": 1.0,
+    "tr/iik iik_269 [tr]": 1.0,
+    "tr/iik iik_33 [tr]": 1.0,
+    "tr/iik iik_363 [tr]": 1.0,
+    "tr/iik iik_364 [tr]": 1.0,
+    "tr/iik iik_60 [tr]": 1.0,
+    "tr/iik iik_62 [tr]": 1.0,
+    "tr/iik iik_65 [tr]": 1.0,
+    "tr/iik iik_67 [tr]": 1.0,
+    "tr/iik iik_68 [tr]": 1.0,
+    "tr/iik iik_72 [tr]": 1.0,
+    "tr/iik iik_75 [tr]": 1.0,
+    "tr/iik iik_78 [tr]": 1.0,
+    "tr/iik iik_89_2 [tr]": 1.0,
+    "tr/iik iik_89_3 [tr]": 1.0,
+    "tr/iik iik_89_3_menfi [tr]": 1.0,
     "tr/iik iik_8a [tr]": 1.0,
+    "tr/iik iik_96 [tr]": 1.0,
+    "tr/iik iik_97 [tr]": 1.0,
+    "tr/iik iik_99 [tr]": 1.0,
     "tr/iik tk_7a [tr]": 1.0,
+    "tr/iyuk danistay_2008 [tr]": 1.0,
     "tr/iyuk hmk_445 [tr]": 1.0,
+    "tr/iyuk iyuk_10 [tr]": 1.0,
+    "tr/iyuk iyuk_11 [tr]": 1.0,
+    "tr/iyuk iyuk_13 [tr]": 1.0,
+    "tr/iyuk iyuk_16 [tr]": 1.0,
+    "tr/iyuk iyuk_20a_cevap [tr]": 1.0,
+    "tr/iyuk iyuk_20a_dava [tr]": 1.0,
+    "tr/iyuk iyuk_20a_savunma [tr]": 1.0,
+    "tr/iyuk iyuk_20a_temyiz [tr]": 1.0,
+    "tr/iyuk iyuk_27 [tr]": 1.0,
+    "tr/iyuk iyuk_45 [tr]": 1.0,
+    "tr/iyuk iyuk_46 [tr]": 1.0,
+    "tr/iyuk iyuk_48 [tr]": 1.0,
+    "tr/iyuk iyuk_53 [tr]": 1.0,
+    "tr/iyuk iyuk_7 [tr]": 1.0,
+    "tr/iyuk iyuk_7_vergi [tr]": 1.0,
     "tr/iyuk iyuk_8_1 [tr]": 1.0,
     "tr/iyuk iyuk_8_2 [tr]": 1.0,
     "tr/iyuk iyuk_8_3 [tr]": 1.0,
     "tr/iyuk tk_7a [tr]": 1.0,
     "tr/vuk vuk_107a [tr]": 1.0,
+    "tr/vuk vuk_112 [tr]": 1.0,
+    "tr/vuk vuk_120 [tr]": 1.0,
     "tr/vuk vuk_18 [tr]": 1.0,
     "tr/vuk vuk_18_4 [tr]": 1.0,
+    "tr/vuk vuk_368_1 [tr]": 1.0,
+    "tr/vuk vuk_368_2 [tr]": 1.0,
+    "tr/vuk vuk_370 [tr]": 1.0,
+    "tr/vuk vuk_370_2 [tr]": 1.0,
+    "tr/vuk vuk_371 [tr]": 1.0,
+    "tr/vuk vuk_376 [tr]": 1.0,
+    "tr/vuk vuk_ek_1 [tr]": 1.0,
     "tr/vuk vuk_mukerrer_28 [tr]": 1.0,
+    "us/frcp frcp_12a1ai [en]": 1.0,
+    "us/frcp frcp_59b [en]": 1.0,
     "us/frcp frcp_6a1 [en]": 1.0,
     "us/frcp frcp_6a4 [en]": 1.0,
     "us/frcp frcp_6a5 [en]": 1.0,
+    "us/frcp frcp_6c1 [en]": 1.0,
     "us/frcp frcp_6d [en]": 1.0,
     "us/frcp note_2005 [en]": 1.0
   },
