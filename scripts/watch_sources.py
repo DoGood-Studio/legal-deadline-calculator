@@ -6,14 +6,16 @@ It never changes holiday or rule data; a wrong date in lexdays means a missed de
 someone, so every change goes through a human. It reports, most important first:
 
 1. quoted rule text found less than before at its source (the law may have changed);
-2. a new Court of Justice list of official holidays on EUR-Lex (``eu-cj`` needs updating);
-3. Resmî Gazete items of the last eight days whose titles mention a law or holiday the
+2. EU acts that amend a cited EU act (found through the Publications Office's SPARQL endpoint);
+3. a new Court of Justice list of official holidays on EUR-Lex (``eu-cj`` needs updating);
+4. Resmî Gazete items of the last eight days whose titles mention a law or holiday the
    Turkish packs rely on;
-4. sources whose text changed since the accepted fingerprint (content or only layout);
-5. sources that cannot be read automatically, to check by hand every three months.
+5. sources whose text changed since the accepted fingerprint (content or only layout);
+6. sources that cannot be read automatically, to check by hand every three months.
 
 After reviewing a report, ``--accept`` records the current state (fingerprints, how much of
-each quote was found, the latest EUR-Lex list, the date of the hand check) in
+each quote was found, the newest amending act, the latest EUR-Lex list, the date of the hand
+check) in
 ``scripts/source-fingerprints.json`` so the same change is not reported again. A source whose
 page changes on every visit can be marked ``"volatile": true`` there to skip its fingerprint.
 """
@@ -58,6 +60,21 @@ SELECT DISTINCT ?date ?title WHERE {
        cdm:expression_title ?title .
   FILTER(CONTAINS(LCASE(STR(?title)), "official holidays and judicial vacations"))
 } ORDER BY DESC(?date) LIMIT 5"""
+# The EUR-Lex website challenges automated visitors, so a cited EU act is read from the
+# Publications Office repository (Cellar) instead, found by its ELI or CELEX number.
+EU_FILES = """PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
+SELECT ?man ?type WHERE {{
+  ?work cdm:{prop} ?id . FILTER(STR(?id) = "{value}")
+  ?exp cdm:expression_belongs_to_work ?work ;
+       cdm:expression_uses_language <http://publications.europa.eu/resource/authority/language/ENG> .
+  ?man cdm:manifestation_manifests_expression ?exp ; cdm:manifestation_type ?type .
+}}"""
+EU_AMENDMENTS = """PREFIX cdm: <http://publications.europa.eu/ontology/cdm#>
+SELECT DISTINCT ?date ?celex WHERE {{
+  ?work cdm:{prop} ?id . FILTER(STR(?id) = "{value}")
+  ?act cdm:resource_legal_amends_resource_legal ?work ; cdm:work_date_document ?date .
+  OPTIONAL {{ ?act cdm:resource_legal_id_celex ?celex }}
+}} ORDER BY DESC(?date)"""
 RESMI_GAZETE = "https://www.resmigazete.gov.tr/eskiler/{y:04d}/{m:02d}/{y:04d}{m:02d}{d:02d}.htm"
 # Words in Official Gazette titles (and in the text of laws and decrees) that may touch the Turkish
 # packs or the Turkish calendar: the codes the packs cite, holidays, and suspensions of time limits
@@ -83,6 +100,7 @@ class Result:
     status: str  # "ok" or why the text could not be read
     fingerprint: str | None = None
     quote_shares: list[tuple[str, float]] = field(default_factory=list)  # (where, share found)
+    amended_by: list[tuple[str, str]] = field(default_factory=list)  # EU acts: (date, CELEX), newest first
 
 
 # ------------------------------------------------------------------ sources
@@ -195,8 +213,13 @@ def quote_share_found(quote: str, page: str) -> float:
     return sum(1 for gram in grams if gram in page) / len(grams)
 
 
+# Parts of a page that change with every visit rather than with the law, such as the date of
+# the visit that revosax.sachsen.de prints as "Stand vom 20.10.2026".
+_VISIT_STAMPS = re.compile(r"Stand vom\s*\d{1,2}\.\d{1,2}\.\d{4}")
+
+
 def fingerprint(text: str) -> str:
-    return hashlib.sha256(compact(text).encode("utf-8")).hexdigest()[:16]
+    return hashlib.sha256(compact(_VISIT_STAMPS.sub(" ", text)).encode("utf-8")).hexdigest()[:16]
 
 
 # ------------------------------------------------------------------ network
@@ -208,15 +231,52 @@ def fetch(url: str, timeout: int = 60) -> tuple[bytes, str]:
         return response.read(), response.headers.get("Content-Type", "")
 
 
+def sparql(query: str) -> list[dict]:
+    url = SPARQL + "?" + urllib.parse.urlencode({"query": query})
+    headers = {"User-Agent": USER_AGENT, "Accept": "application/sparql-results+json"}
+    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=120) as response:
+        return json.load(response)["results"]["bindings"]
+
+
+def eu_act(url: str) -> tuple[str, str] | None:
+    """(Cellar property, value) for an EU act cited by its ELI or by a EUR-Lex CELEX address."""
+    if match := re.fullmatch(r"https?://data\.europa\.eu/(eli/[\w/.-]+)", url):
+        return "resource_legal_eli", "http://data.europa.eu/" + match.group(1)
+    if match := re.search(r"//eur-lex\.europa\.eu/.*[?&]uri=CELEX:([0-9A-Z()]+)$", url, re.IGNORECASE):
+        return "resource_legal_id_celex", match.group(1)
+    return None
+
+
+def eu_document(prop: str, value: str) -> tuple[bytes, str]:
+    """The English text of an EU act from Cellar: XHTML if there is one, otherwise the PDF."""
+    rows = sparql(EU_FILES.format(prop=prop, value=value))
+    files = {row["type"]["value"]: row["man"]["value"] for row in rows}
+    for kind in ("xhtml", "html", "pdfa2a", "pdfa1a", "pdf"):
+        if kind in files:
+            return fetch(files[kind].replace("http://", "https://", 1) + "/DOC_1", timeout=45)
+    raise urllib.error.URLError("no English text in the Publications Office repository")
+
+
+def eu_amendments(prop: str, value: str) -> list[tuple[str, str]]:
+    """(date, CELEX) of the acts that amend an EU act, newest first."""
+    rows = sparql(EU_AMENDMENTS.format(prop=prop, value=value))
+    return [(row["date"]["value"], row.get("celex", {}).get("value", "no CELEX number")) for row in rows]
+
+
 def read_source(src: Source, attempts: int = 2) -> Result:
+    act = eu_act(src.url)
+    amended_by: list[tuple[str, str]] = []
     for attempt in range(attempts):
         try:
-            data, ctype = fetch(src.url, timeout=45)
+            if act:
+                (data, ctype), amended_by = eu_document(*act), eu_amendments(*act)
+            else:
+                data, ctype = fetch(src.url, timeout=45)
             break
         except urllib.error.HTTPError as exc:
             if exc.code < 500 or attempt + 1 == attempts:
                 return Result(src, f"HTTP {exc.code}")
-        except (urllib.error.URLError, TimeoutError, OSError) as exc:
+        except (urllib.error.URLError, TimeoutError, OSError, ValueError, KeyError) as exc:
             if attempt + 1 == attempts:
                 reason = getattr(exc, "reason", exc)
                 name = type(reason).__name__ if isinstance(reason, BaseException) else str(reason)
@@ -228,7 +288,7 @@ def read_source(src: Source, attempts: int = 2) -> Result:
     page = compact(text)
     if len(page) < 400:
         return Result(src, "no readable text (scanned document, or the site needs a browser)")
-    result = Result(src, "ok", fingerprint=fingerprint(text))
+    result = Result(src, "ok", fingerprint=fingerprint(text), amended_by=amended_by)
     result.quote_shares = [(where, quote_share_found(quote, page)) for where, quote in src.quotes]
     return result
 
@@ -248,10 +308,7 @@ def quotes_to_report(result: Result, accepted: dict) -> list[tuple[str, float]]:
 
 def latest_cj_lists() -> list[tuple[str, str]]:
     """(date, title) of the newest Court of Justice lists of official holidays on EUR-Lex."""
-    url = SPARQL + "?" + urllib.parse.urlencode({"query": CJ_LISTS})
-    headers = {"User-Agent": USER_AGENT, "Accept": "application/sparql-results+json"}
-    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=120) as response:
-        rows = json.load(response)["results"]["bindings"]
+    rows = sparql(CJ_LISTS)
     return [(r["date"]["value"], r["title"]["value"].replace(" ", " ")) for r in rows]
 
 
@@ -315,8 +372,9 @@ def act_text(link: str) -> str:
 
 
 def _lasting(status: str) -> bool:
-    """A failure that is unlikely to go away by itself (not a timeout or a server error)."""
-    return not status.startswith(("not reachable", "HTTP 5"))
+    """A failure that is unlikely to go away by itself: not a timeout, a server error, or a site
+    refusing automated visitors (403, 429), which some do only from cloud servers such as CI."""
+    return not status.startswith(("not reachable", "HTTP 5", "HTTP 403", "HTTP 429"))
 
 
 def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, str]] | None,
@@ -340,8 +398,13 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
     )
     cj_known = accepted.get("cj_latest_list")
     cj_new = [row for row in (cj_lists or []) if cj_known and row[0] > cj_known]
+    amended = [
+        (r, rows) for r in results
+        if (rows := [d for d in r.amended_by if d[0] > known.get(r.source.url, {}).get("amended_until", "")])
+    ]
     n_quotes = sum(len(rows) for _, rows in quotes)
-    findings = n_quotes + len(cj_new) + len(gazette) + len(changed) + len(broken)
+    n_amended = sum(len(rows) for _, rows in amended)
+    findings = n_quotes + n_amended + len(cj_new) + len(gazette) + len(changed) + len(broken)
     findings += bool(cj_error) + manual_due
 
     lines = [
@@ -349,6 +412,7 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
         f"{len(results)} kaynak tarandı.",
         "",
         f"- Kanun metni değişmiş olabilecek alıntı: {n_quotes}",
+        f"- Atıf yapılan AB metnini değiştiren işlem: {n_amended}",
         f"- Yeni AB Adalet Divanı tatil listesi: {len(cj_new)}"
         + (" (EUR-Lex sorgusu çalışmadı)" if cj_error else ""),
         f"- İlgili olabilecek Resmî Gazete maddesi (son 8 gün): {len(gazette)}",
@@ -385,18 +449,24 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
         )
         for r, rows in quotes
     ], "The law may have been amended. Compare the article with the quote and the rule built on it.")
+    section("2. Değiştiren AB işlemleri / EU acts amending a cited act", [
+        f"- {r.source.url} (used by {users(r)})\n"
+        + "\n".join(f"  - {d}: CELEX {celex} (https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:{celex})"
+                    for d, celex in rows)
+        for r, rows in amended
+    ], "The cited text may be out of date. Check whether the amendment touches the cited articles.")
     cj_rows = [f"- {d}: {t}" for d, t in cj_new]
     if cj_error:
         cj_rows.append(f"- The EUR-Lex query failed ({cj_error}); check the Official Journal by hand.")
-    section("2. Yeni AB Adalet Divanı tatil listesi / New Court of Justice list of official holidays",
+    section("3. Yeni AB Adalet Divanı tatil listesi / New Court of Justice list of official holidays",
             cj_rows, "Add the new list to `data/calendars/eu-cj.json` and extend `coverage.until`.")
-    section("3. Resmî Gazete (son 8 gün) / Official Gazette items of the last 8 days that may matter", [
+    section("4. Resmî Gazete (son 8 gün) / Official Gazette items of the last 8 days that may matter", [
         f"- {d}: {excerpt} ({url})" for d, url, excerpt in gazette
     ], "Titles that mention a law or a holiday the Turkish packs and calendar rely on.")
-    section("4. Metni değişen kaynaklar / Source text changed since it was last accepted", [
+    section("5. Metni değişen kaynaklar / Source text changed since it was last accepted", [
         f"- {r.source.url} (used by {users(r)})" for r in changed
     ], "The change may be content or only layout; open the page and check the cited article.")
-    section("5. Okunamayan kaynaklar, elle kontrol / Could not be read, check by hand", [
+    section("6. Okunamayan kaynaklar, elle kontrol / Could not be read, check by hand", [
         f"- {r.source.url}: {r.status}{' (readable before)' if r in broken else ''} (used by {users(r)})"
         for r in unreadable
     ] + [f"- {row}: court decision without a link" for row in unlinked],
@@ -410,7 +480,7 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
         "",
         "Fix the data if a source really changed (with a changelog entry and vectors), then run "
         "`uv run --project python --with pypdf==6.19.0 python scripts/watch_sources.py --accept` and commit "
-        "`scripts/source-fingerprints.json`. Accepting also records that section 5 was checked by hand.",
+        "`scripts/source-fingerprints.json`. Accepting also records that section 6 was checked by hand.",
     ])
     return "\n".join(lines) + "\n", findings
 
@@ -425,10 +495,12 @@ def accept(results: list[Result], accepted: dict, cj_lists: list[tuple[str, str]
     for r in results:
         if r.status == "ok":
             sources.setdefault(r.source.url, {})["fingerprint"] = r.fingerprint
+            if r.amended_by:
+                sources[r.source.url]["amended_until"] = max(d for d, _ in r.amended_by)
             quotes.update({where: math.floor(share * 1000 + 1e-6) / 1000 for where, share in r.quote_shares})
     state = {"sources": dict(sorted(sources.items())), "quotes": dict(sorted(quotes.items()))}
     state["cj_latest_list"] = max((d for d, _ in cj_lists or []), default=accepted.get("cj_latest_list"))
-    state["manual_review"] = today.isoformat()  # accepting includes the hand check of section 5
+    state["manual_review"] = today.isoformat()  # accepting includes the hand check of section 6
     return state
 
 

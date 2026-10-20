@@ -1,28 +1,29 @@
 {
   "sources": {
     "http://data.europa.eu/eli/C/2024/2123/oj": {
-      "fingerprint": "a706dff996969fb5"
+      "fingerprint": "299bfe0104380e7e"
     },
     "http://data.europa.eu/eli/C/2025/1569/oj": {
-      "fingerprint": "192b9ec1d7dfe5da"
+      "fingerprint": "4f42b3d703e370d1"
     },
     "http://data.europa.eu/eli/C/2026/1114/oj": {
-      "fingerprint": "f0451029a2a66011"
+      "fingerprint": "71aa56881f8cce29"
     },
     "http://data.europa.eu/eli/dec/2024/2490/oj": {
-      "fingerprint": "cb9988769c21351d"
+      "fingerprint": "1a6b1d4ae32b36e1"
     },
     "https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)": {
-      "fingerprint": "acfe68460c26054f"
+      "fingerprint": "ac623ee1f0e57949",
+      "amended_until": "2026-06-02"
     },
     "https://github.com/vacanza/holidays/blob/main/holidays/countries/germany.py": {
       "fingerprint": "9ddb9c87a33b652f"
     },
     "https://revosax.sachsen.de/vorschrift/3997-SaechsSFG": {
-      "fingerprint": "255d4d21313d1f37"
+      "fingerprint": "b8b244ecf65e6e0e"
     },
     "https://revosax.sachsen.de/vorschrift/4142": {
-      "fingerprint": "50847d143d7f66f7"
+      "fingerprint": "1a8d5cb0f6e54f6a"
     },
     "https://vakithesaplama.diyanet.gov.tr/dinigunler.php": {
       "fingerprint": "abcff937b8f36c0d"

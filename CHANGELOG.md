@@ -6,7 +6,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ### Added
 
-- CI: a weekly source watch (`scripts/watch_sources.py`, workflow `Source watch`). It reads every source the rule packs and calendars cite, checks that the quoted rule text is still there, asks EUR-Lex for a new Court of Justice holiday list and scans the Resmî Gazete for laws, decrees and holiday decisions that touch the Turkish packs. Findings open or update an issue labelled `source-watch`; the watcher never changes data.
+- CI: a weekly source watch (`scripts/watch_sources.py`, workflow `Source watch`). It reads every source the rule packs and calendars cite, checks that the quoted rule text is still there, lists new acts amending a cited EU act, asks EUR-Lex for a new Court of Justice holiday list and scans the Resmî Gazete for laws, decrees and holiday decisions that touch the Turkish packs. Findings open or update an issue labelled `source-watch`; the watcher never changes data.
 
 ## [0.1.1] - 2026-10-20
 

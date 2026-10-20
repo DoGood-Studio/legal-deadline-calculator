@@ -66,6 +66,12 @@ def test_one_changed_word_lowers_the_share() -> None:
     assert ws.quotes_to_report(result, {"quotes": {"tr/hmk hmk_102 [tr]": 1.0}}) == result.quote_shares
 
 
+def test_fingerprint_ignores_the_date_of_the_visit() -> None:
+    page = "Sächsisches Sonn- und Feiertagsgesetz Aktuelle Fassung Stand vom\n{}\n§ 1 Gesetzliche Feiertage"
+    assert ws.fingerprint(page.format("19.10.2026")) == ws.fingerprint(page.format("20.10.2026"))
+    assert ws.fingerprint(page.format("20.10.2026")) != ws.fingerprint(page.format("20.10.2026") + " § 2")
+
+
 def test_html_text_drops_scripts_and_tags() -> None:
     markup = "<html><script>var x = 1;</script><p>Adl&icirc; tatil</p><!-- note --></html>"
     assert ws.html_text(markup).split() == ["Adlî", "tatil"]
@@ -111,6 +117,46 @@ def test_read_source_reports_quote_shares_and_failures(monkeypatch: pytest.Monke
 
     monkeypatch.setattr(ws, "fetch", lambda url, timeout=60: (b"<p>Needs a browser.</p>", "text/html"))
     assert ws.read_source(ws.Source("https://law.test")).status.startswith("no readable text")
+
+
+def test_eu_acts_are_found_by_eli_or_celex() -> None:
+    assert ws.eu_act("http://data.europa.eu/eli/C/2026/1114/oj") == (
+        "resource_legal_eli", "http://data.europa.eu/eli/C/2026/1114/oj")
+    assert ws.eu_act("https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)") == (
+        "resource_legal_id_celex", "32012Q0929(01)")
+    assert ws.eu_act("https://www.gov.uk/bank-holidays") is None
+    assert ws.eu_act('http://data.europa.eu/eli/x"} DROP') is None  # nothing that could break the query
+
+
+def test_eu_acts_are_read_from_cellar_with_their_amendments(monkeypatch: pytest.MonkeyPatch) -> None:
+    cellar = "http://publications.europa.eu/resource/cellar/938687cb.0006"
+    queries: list[str] = []
+
+    def sparql(query: str) -> list[dict]:
+        queries.append(query)
+        if "manifestation_type" in query:
+            return [{"man": {"value": f"{cellar}.01"}, "type": {"value": "pdfa1a"}},
+                    {"man": {"value": f"{cellar}.04"}, "type": {"value": "xhtml"}}]
+        return [{"date": {"value": "2026-06-02"}, "celex": {"value": "32026Q01335"}},
+                {"date": {"value": "2024-07-02"}, "celex": {"value": "32024Q02094"}}]
+
+    page = (f"<p>{ARTICLE}</p>" * 5).encode()
+    fetched: list[str] = []
+    monkeypatch.setattr(ws, "sparql", sparql)
+    pages = {f"https{cellar[4:]}.04/DOC_1": (page, "application/xhtml+xml")}
+    monkeypatch.setattr(ws, "fetch", _fake_fetch(pages, fetched))
+    result = ws.read_source(ws.Source("https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32012Q0929(01)"))
+    assert result.status == "ok"
+    assert result.amended_by == [("2026-06-02", "32026Q01335"), ("2024-07-02", "32024Q02094")]
+    assert all('STR(?id) = "32012Q0929(01)"' in query for query in queries)
+
+    run = {"cj_lists": [], "cj_error": None, "gazette": [], "today": date(2026, 10, 20)}
+    report, findings = ws.render([result], {}, **run)
+    assert findings == 2
+    assert "  - 2026-06-02: CELEX 32026Q01335" in report
+    state = ws.accept([result], {}, [], date(2026, 10, 20))
+    assert state["sources"][result.source.url]["amended_until"] == "2026-06-02"
+    assert ws.render([result], state, **run)[1] == 0
 
 
 def test_gazette_follows_extra_issues_and_reads_laws(monkeypatch: pytest.MonkeyPatch) -> None:
@@ -201,6 +247,8 @@ def test_report_and_accepted_state_follow_each_other() -> None:
     report, findings = ws.render([lost, down], state, **run)
     assert findings == 1
     assert "(readable before)" in report
+    # some sites refuse cloud servers such as CI; that is a hand check, not a lost source
+    assert ws.render([_result("https://a.test", status="HTTP 403"), down], state, **run)[1] == 0
 
     lists = [("2027-02-10", "New list"), ("2026-02-18", "List")]
     later = {**run, "today": date(2027, 1, 20), "cj_lists": lists}
