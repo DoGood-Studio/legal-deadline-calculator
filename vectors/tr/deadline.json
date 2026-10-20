@@ -1905,6 +1905,629 @@
         ]
       },
       "source": "İİK m.62/1; İİK sürelerine adli tatil uygulanmaz"
+    },
+    {
+      "id": "hmk-act-karsi-dava",
+      "pack": "tr/hmk",
+      "trigger": "2026-03-02",
+      "act": "karsi-dava",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "hmk_133",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "HMK m.133/1 ile m.127"
+    },
+    {
+      "id": "hmk-act-ihtiyati-tedbirin-uygulanmasini-isteme",
+      "pack": "tr/hmk",
+      "trigger": "2026-03-02",
+      "act": "ihtiyati-tedbirin-uygulanmasini-isteme",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P1W",
+        "act_cite": "hmk_393",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "HMK m.393/1"
+    },
+    {
+      "id": "hmk-act-ihtiyati-tedbire-itiraz-ucuncu-kisi",
+      "pack": "tr/hmk",
+      "trigger": "2026-03-02",
+      "act": "ihtiyati-tedbire-itiraz-ucuncu-kisi",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P1W",
+        "act_cite": "hmk_394_3",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "HMK m.394/3"
+    },
+    {
+      "id": "hmk-act-istinaf-dilekcesinin-reddine-karsi-istinaf",
+      "pack": "tr/hmk",
+      "trigger": "2026-03-02",
+      "act": "istinaf-dilekcesinin-reddine-karsi-istinaf",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "hmk_346",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "HMK m.346/2"
+    },
+    {
+      "id": "hmk-act-dosyanin-gonderilmesi-talebi",
+      "pack": "tr/hmk",
+      "trigger": "2026-03-02",
+      "act": "dosyanin-gonderilmesi-talebi",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "hmk_20",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "HMK m.20/1"
+    },
+    {
+      "id": "hmk-act-adli-yardim-reddine-itiraz",
+      "pack": "tr/hmk",
+      "trigger": "2026-03-02",
+      "act": "adli-yardim-reddine-itiraz",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "hmk_337",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "HMK m.337/2"
+    },
+    {
+      "id": "iik-act-mal-beyani-itirazin-kaldirilmasindan-sonra",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "mal-beyani-itirazin-kaldirilmasindan-sonra",
+      "expect": {
+        "deadline": "2026-03-05",
+        "period": "P3D",
+        "act_cite": "iik_75",
+        "notices": []
+      },
+      "source": "İİK m.75"
+    },
+    {
+      "id": "iik-act-kambiyo-imzaya-itiraz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "kambiyo-imzaya-itiraz",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P5D",
+        "act_cite": "iik_170",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.168/1-4, m.170"
+    },
+    {
+      "id": "iik-act-kambiyo-senedi-vasfi-sikayet",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "kambiyo-senedi-vasfi-sikayet",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P5D",
+        "act_cite": "iik_168_3",
+        "notices": []
+      },
+      "source": "İİK m.168/1-3"
+    },
+    {
+      "id": "iik-act-icra-emrine-itiraz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "icra-emrine-itiraz",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_33",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.33/1"
+    },
+    {
+      "id": "iik-act-gecikmis-itiraz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "gecikmis-itiraz",
+      "expect": {
+        "deadline": "2026-03-05",
+        "period": "P3D",
+        "act_cite": "iik_65",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.65/2"
+    },
+    {
+      "id": "iik-act-temyiz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "temyiz",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "iik_364",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.364/2"
+    },
+    {
+      "id": "iik-act-ihtiyati-hacze-itiraz-ucuncu-kisi",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "ihtiyati-hacze-itiraz-ucuncu-kisi",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_265_2",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.265/2"
+    },
+    {
+      "id": "iik-act-ihtiyati-hacizli-takipte-itiraz-uzerine-dava",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "ihtiyati-hacizli-takipte-itiraz-uzerine-dava",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_264_2",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.264/2"
+    },
+    {
+      "id": "iik-act-ihtiyati-hacizden-sonra-hukum-uzerine-takip",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "ihtiyati-hacizden-sonra-hukum-uzerine-takip",
+      "expect": {
+        "deadline": "2026-04-02",
+        "period": "P1M",
+        "act_cite": "iik_264_3",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.264/3"
+    },
+    {
+      "id": "iik-act-istihkak-davasi-ucuncu-kisi",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "istihkak-davasi-ucuncu-kisi",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_97",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.97/6"
+    },
+    {
+      "id": "iik-act-istihkak-davasi-alacakli",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "istihkak-davasi-alacakli",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_99",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.99"
+    },
+    {
+      "id": "iik-act-kiymet-takdirine-sikayet",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "kiymet-takdirine-sikayet",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_128a",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.128/a-1"
+    },
+    {
+      "id": "iik-act-haciz-ihbarnamesine-itiraz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "haciz-ihbarnamesine-itiraz",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_89_2",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.89/2"
+    },
+    {
+      "id": "iik-act-ikinci-haciz-ihbarnamesine-itiraz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "ikinci-haciz-ihbarnamesine-itiraz",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_89_3",
+        "notices": []
+      },
+      "source": "İİK m.89/3"
+    },
+    {
+      "id": "iik-act-ucuncu-haciz-ihbarnamesi-menfi-tespit",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "ucuncu-haciz-ihbarnamesi-menfi-tespit",
+      "expect": {
+        "deadline": "2026-03-17",
+        "period": "P15D",
+        "act_cite": "iik_89_3_menfi",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.89/3"
+    },
+    {
+      "id": "iik-act-rehin-odeme-emrine-itiraz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "rehin-odeme-emrine-itiraz",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_150",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.150/1"
+    },
+    {
+      "id": "iik-act-kira-takibinde-itiraz",
+      "pack": "tr/iik",
+      "trigger": "2026-03-02",
+      "act": "kira-takibinde-itiraz",
+      "expect": {
+        "deadline": "2026-03-09",
+        "period": "P7D",
+        "act_cite": "iik_269",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İİK m.269/2"
+    },
+    {
+      "id": "cmk-act-temyiz-dilekcesine-cevap",
+      "pack": "tr/cmk",
+      "trigger": "2026-03-02",
+      "act": "temyiz-dilekcesine-cevap",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "cmk_297",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "CMK m.297/1"
+    },
+    {
+      "id": "cmk-act-teblignameye-cevap",
+      "pack": "tr/cmk",
+      "trigger": "2026-03-02",
+      "act": "teblignameye-cevap",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "cmk_297_3",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "CMK m.297/3"
+    },
+    {
+      "id": "cmk-act-istinaf-isteminin-reddine-karsi",
+      "pack": "tr/cmk",
+      "trigger": "2026-03-02",
+      "act": "istinaf-isteminin-reddine-karsi",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "cmk_276",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "CMK m.276/2"
+    },
+    {
+      "id": "cmk-act-temyiz-isteminin-reddine-karsi",
+      "pack": "tr/cmk",
+      "trigger": "2026-03-02",
+      "act": "temyiz-isteminin-reddine-karsi",
+      "expect": {
+        "deadline": "2026-03-16",
+        "period": "P2W",
+        "act_cite": "cmk_296",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "CMK m.296/2"
+    },
+    {
+      "id": "iyuk-act-istinaf-temyiz-dilekcesine-cevap",
+      "pack": "tr/iyuk",
+      "trigger": "2026-03-02",
+      "act": "istinaf-temyiz-dilekcesine-cevap",
+      "expect": {
+        "deadline": "2026-04-01",
+        "period": "P30D",
+        "act_cite": "iyuk_48",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İYUK m.48/3 (istinaf için m.45/2)"
+    },
+    {
+      "id": "iyuk-act-ust-makama-basvuruda-zimni-ret",
+      "pack": "tr/iyuk",
+      "trigger": "2026-03-02",
+      "act": "ust-makama-basvuruda-zimni-ret",
+      "expect": {
+        "deadline": "2026-04-01",
+        "period": "P30D",
+        "act_cite": "iyuk_11",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İYUK m.11/2"
+    },
+    {
+      "id": "iyuk-act-idari-eylem-basvurusu",
+      "pack": "tr/iyuk",
+      "trigger": "2026-03-02",
+      "act": "idari-eylem-basvurusu",
+      "expect": {
+        "deadline": "2027-03-02",
+        "period": "P1Y",
+        "act_cite": "iyuk_13",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İYUK m.13/1"
+    },
+    {
+      "id": "iyuk-act-ivedi-yargilamada-dava-acma",
+      "pack": "tr/iyuk",
+      "trigger": "2026-03-02",
+      "act": "ivedi-yargilamada-dava-acma",
+      "expect": {
+        "deadline": "2026-04-01",
+        "period": "P30D",
+        "act_cite": "iyuk_20a_dava",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İYUK m.20/A-2(a)"
+    },
+    {
+      "id": "iyuk-act-ivedi-yargilamada-savunma",
+      "pack": "tr/iyuk",
+      "trigger": "2026-03-02",
+      "act": "ivedi-yargilamada-savunma",
+      "expect": {
+        "deadline": "2026-03-17",
+        "period": "P15D",
+        "act_cite": "iyuk_20a_savunma",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İYUK m.20/A-2(d)"
+    },
+    {
+      "id": "iyuk-act-ivedi-yargilamada-temyiz",
+      "pack": "tr/iyuk",
+      "trigger": "2026-03-02",
+      "act": "ivedi-yargilamada-temyiz",
+      "expect": {
+        "deadline": "2026-03-17",
+        "period": "P15D",
+        "act_cite": "iyuk_20a_temyiz",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İYUK m.20/A-2(g)"
+    },
+    {
+      "id": "iyuk-act-ivedi-yargilamada-temyize-cevap",
+      "pack": "tr/iyuk",
+      "trigger": "2026-03-02",
+      "act": "ivedi-yargilamada-temyize-cevap",
+      "expect": {
+        "deadline": "2026-03-17",
+        "period": "P15D",
+        "act_cite": "iyuk_20a_cevap",
+        "notices": [
+          "act-notice"
+        ]
+      },
+      "source": "İYUK m.20/A-2(ı)"
+    },
+    {
+      "id": "vuk-act-izaha-davet",
+      "pack": "tr/vuk",
+      "trigger": "2026-03-02",
+      "act": "izaha-davet",
+      "expect": {
+        "deadline": "2026-04-01",
+        "period": "P30D",
+        "act_cite": "vuk_370",
+        "notices": [
+          "act-notice",
+          "electronic-end-of-day",
+          "administrative-extensions"
+        ]
+      },
+      "source": "VUK m.370/a"
+    },
+    {
+      "id": "vuk-act-izahin-yetersizligi-uzerine-beyan-ve-odeme",
+      "pack": "tr/vuk",
+      "trigger": "2026-03-02",
+      "act": "izahin-yetersizligi-uzerine-beyan-ve-odeme",
+      "expect": {
+        "deadline": "2026-04-01",
+        "period": "P30D",
+        "act_cite": "vuk_370_2",
+        "notices": [
+          "act-notice",
+          "electronic-end-of-day",
+          "administrative-extensions"
+        ]
+      },
+      "source": "VUK m.370/a-2"
+    },
+    {
+      "id": "vuk-act-ceza-indirimi",
+      "pack": "tr/vuk",
+      "trigger": "2026-03-02",
+      "act": "ceza-indirimi",
+      "expect": {
+        "deadline": "2026-04-01",
+        "period": "P30D",
+        "act_cite": "vuk_376",
+        "notices": [
+          "act-notice",
+          "electronic-end-of-day",
+          "administrative-extensions"
+        ]
+      },
+      "source": "VUK m.376/1"
+    },
+    {
+      "id": "vuk-act-vergi-cezasi-odeme",
+      "pack": "tr/vuk",
+      "trigger": "2026-03-02",
+      "act": "vergi-cezasi-odeme",
+      "expect": {
+        "deadline": "2026-04-02",
+        "period": "P1M",
+        "act_cite": "vuk_368_1",
+        "notices": [
+          "act-notice",
+          "electronic-end-of-day",
+          "administrative-extensions"
+        ]
+      },
+      "source": "VUK m.368/1"
+    },
+    {
+      "id": "vuk-act-vergi-cezasi-odeme-dava-sonrasi",
+      "pack": "tr/vuk",
+      "trigger": "2026-03-02",
+      "act": "vergi-cezasi-odeme-dava-sonrasi",
+      "expect": {
+        "deadline": "2026-04-02",
+        "period": "P1M",
+        "act_cite": "vuk_368_2",
+        "notices": [
+          "act-notice",
+          "electronic-end-of-day",
+          "administrative-extensions"
+        ]
+      },
+      "source": "VUK m.368/2"
+    },
+    {
+      "id": "vuk-act-ikmalen-tarh-edilen-verginin-odenmesi",
+      "pack": "tr/vuk",
+      "trigger": "2026-03-02",
+      "act": "ikmalen-tarh-edilen-verginin-odenmesi",
+      "expect": {
+        "deadline": "2026-04-02",
+        "period": "P1M",
+        "act_cite": "vuk_112",
+        "notices": [
+          "act-notice",
+          "electronic-end-of-day",
+          "administrative-extensions"
+        ]
+      },
+      "source": "VUK m.112/1"
+    },
+    {
+      "id": "vuk-act-reddiyat-icin-basvuru",
+      "pack": "tr/vuk",
+      "trigger": "2026-03-02",
+      "act": "reddiyat-icin-basvuru",
+      "expect": {
+        "deadline": "2027-03-02",
+        "period": "P1Y",
+        "act_cite": "vuk_120",
+        "notices": [
+          "act-notice",
+          "electronic-end-of-day",
+          "administrative-extensions"
+        ]
+      },
+      "source": "VUK m.120/1"
     }
   ]
 }

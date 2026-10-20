@@ -68,6 +68,10 @@
     }
   },
   "citations": {
+    "cmk_297": { "label": { "en": "CMK Art. 297/1", "tr": "CMK m.297/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "296 ncı maddeye göre hükmü veren bölge adliye mahkemesince reddedilmeyen temyiz istemine ilişkin dilekçesinin bir örneği karşı tarafa tebliğ olunur. Karşı taraf, tebliğ tarihinden itibaren iki hafta içinde yazılı olarak cevabını verebilir." } },
+    "cmk_297_3": { "label": { "en": "CMK Art. 297/3", "tr": "CMK m.297/3" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Yargıtay Cumhuriyet Başsavcılığınca düzenlenen tebliğname, hükmü temyiz etmeleri veya aleyhlerine sonuç doğurabilecek görüş içermesi hâlinde sanık veya müdafii ile katılan veya vekillerine ilgili dairesince tebliğ olunur. İlgili taraf tebliğden itibaren iki hafta içinde yazılı olarak cevap verebilir." } },
+    "cmk_276": { "label": { "en": "CMK Art. 276/2", "tr": "CMK m.276/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "İstinaf başvurusunda bulunan Cumhuriyet savcısı veya ilgililer, ret kararının kendilerine tebliğinden itibaren iki hafta içinde bölge adliye mahkemesinden bu hususta bir karar vermesini isteyebilirler." } },
+    "cmk_296": { "label": { "en": "CMK Art. 296/2", "tr": "CMK m.296/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Temyiz eden, ret kararının kendisine tebliğinden itibaren iki hafta içinde Yargıtaydan bu hususta bir karar vermesini isteyebilir." } },
     "cmk_273": { "label": { "en": "CMK Art. 273/1", "tr": "CMK m.273/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "İstinaf istemi, hükmün gerekçesiyle birlikte tebliğ edildiği tarihten itibaren iki hafta içinde hükmü veren mahkemeye bir dilekçe verilmesi veya zabıt kâtibine bir beyanda bulunulması suretiyle yapılır;" } },
     "cmk_291": { "label": { "en": "CMK Art. 291/1", "tr": "CMK m.291/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Temyiz istemi, hükmün gerekçesiyle birlikte tebliğ edildiği tarihten itibaren iki hafta içinde hükmü veren mahkemeye bir dilekçe verilmesi veya zabıt kâtibine bir beyanda bulunulması suretiyle yapılır;" } },
     "cmk_268": { "label": { "en": "CMK Art. 268/1", "tr": "CMK m.268/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Hâkim veya mahkeme kararına karşı itiraz, kanunun ayrıca hüküm koymadığı hâllerde 35 inci maddeye göre ilgililerin kararı öğrendiği günden itibaren iki hafta içinde kararı veren mercie verilecek bir dilekçe veya tutanağa geçirilmek koşulu ile zabıt kâtibine beyanda bulunmak suretiyle yapılır." } },
@@ -466,6 +470,42 @@
       "period": "P2W",
       "cite": "cmk_277",
       "keywords": { "tr": ["istinaf cevabı"], "en": ["answer to the appeal"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre yedi gündü.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was seven days." },
+      "new": true
+    },
+    "temyiz-dilekcesine-cevap": {
+      "label": { "tr": "Temyiz dilekçesine cevap", "en": "Answer to the appeal on points of law (temyiz)" },
+      "trigger": { "tr": "Temyiz dilekçesinin size tebliğ edildiği tarih", "en": "Date the notice of appeal on points of law was served on you" },
+      "period": "P2W",
+      "cite": "cmk_297",
+      "keywords": { "tr": ["temyiz cevabı"], "en": ["answer to the appeal"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre yedi gündü.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was seven days." },
+      "new": true
+    },
+    "teblignameye-cevap": {
+      "label": { "tr": "Tebliğnameye cevap", "en": "Answer to the Chief Public Prosecutor's opinion (tebliğname)" },
+      "trigger": { "tr": "Yargıtay Cumhuriyet Başsavcılığı tebliğnamesinin size tebliğ edildiği tarih", "en": "Date the Court of Cassation prosecutor's opinion was served on you" },
+      "period": "P2W",
+      "cite": "cmk_297_3",
+      "keywords": { "tr": ["tebliğname", "Yargıtay Cumhuriyet Başsavcılığı"], "en": ["prosecutor's opinion"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre bir haftaydı.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was one week." },
+      "new": true
+    },
+    "istinaf-isteminin-reddine-karsi": {
+      "label": { "tr": "İstinaf isteminin reddi kararına karşı bölge adliye mahkemesinden karar isteme", "en": "Request to the regional court against rejection of the appeal" },
+      "trigger": { "tr": "Ret kararının size tebliğ edildiği tarih", "en": "Date the rejection was served on you" },
+      "period": "P2W",
+      "cite": "cmk_276",
+      "keywords": { "tr": ["istinaf", "ret"], "en": ["rejection of the appeal"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre yedi gündü.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was seven days." },
+      "new": true
+    },
+    "temyiz-isteminin-reddine-karsi": {
+      "label": { "tr": "Temyiz isteminin reddi kararına karşı Yargıtay'dan karar isteme", "en": "Request to the Court of Cassation against rejection of the temyiz" },
+      "trigger": { "tr": "Ret kararının size tebliğ edildiği tarih", "en": "Date the rejection was served on you" },
+      "period": "P2W",
+      "cite": "cmk_296",
+      "keywords": { "tr": ["temyiz", "ret"], "en": ["rejection of the appeal"] },
       "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre yedi gündü.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was seven days." },
       "new": true
     }

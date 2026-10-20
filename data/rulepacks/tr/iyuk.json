@@ -79,6 +79,13 @@
     }
   },
   "citations": {
+    "iyuk_48": { "label": { "en": "İYUK Art. 48/3 (istinaf için Art. 45/2)", "tr": "İYUK m.48/3 (istinaf için m.45/2)" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "İstinaf, temyizin şekil ve usullerine tabidir. […] Karşı taraf tebliğ tarihini izleyen otuz gün içinde cevap verebilir. Cevap veren, kararı süresinde temyiz etmemiş olsa bile düzenleyeceği dilekçesinde, temyiz isteminde bulunabilir." } },
+    "iyuk_11": { "label": { "en": "İYUK Art. 11/2", "tr": "İYUK m.11/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Bu başvurma, işlemeye başlamış olan idari dava açma süresini durdurur. […] Otuz gün içinde bir cevap verilmezse istek reddedilmiş sayılır. […] İsteğin reddedilmesi veya reddedilmiş sayılması halinde dava açma süresi yeniden işlemeye başlar ve başvurma tarihine kadar geçmiş süre de hesaba katılır." } },
+    "iyuk_13": { "label": { "en": "İYUK Art. 13/1", "tr": "İYUK m.13/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "İdari eylemlerden hakları ihlal edilmiş olanların idari dava açmadan önce, bu eylemleri yazılı bildirim üzerine veya başka süretle öğrendikleri tarihten itibaren bir yıl ve her halde eylem tarihinden itibaren beş yıl içinde ilgili idareye başvurarak haklarının yerine getirilmesini istemeleri gereklidir." } },
+    "iyuk_20a_dava": { "label": { "en": "İYUK Art. 20/A-2(a)", "tr": "İYUK m.20/A-2(a)" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "İvedi yargılama usulünde: a) Dava açma süresi otuz gündür." } },
+    "iyuk_20a_savunma": { "label": { "en": "İYUK Art. 20/A-2(d)", "tr": "İYUK m.20/A-2(d)" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Savunma süresi dava dilekçesinin tebliğinden itibaren on beş gün olup, bu süre bir defaya mahsus olmak üzere en fazla on beş gün uzatılabilir." } },
+    "iyuk_20a_temyiz": { "label": { "en": "İYUK Art. 20/A-2(g)", "tr": "İYUK m.20/A-2(g)" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Verilen nihai kararlara karşı tebliğ tarihinden itibaren on beş gün içinde temyiz yoluna başvurulabilir." } },
+    "iyuk_20a_cevap": { "label": { "en": "İYUK Art. 20/A-2(ı)", "tr": "İYUK m.20/A-2(ı)" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Temyiz dilekçelerine cevap verme süresi on beş gündür." } },
     "iyuk_7": { "label": { "en": "İYUK Art. 7/1, Art. 7/2-a", "tr": "İYUK m.7/1, m.7/2-a" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Dava açma süresi, özel kanunlarında ayrı süre gösterilmeyen hallerde Danıştayda ve idare mahkemelerinde altmış ve vergi mahkemelerinde otuz gündür. […] İdari uyuşmazlıklarda; yazılı bildirimin yapıldığı," } },
     "iyuk_7_vergi": { "label": { "en": "İYUK Art. 7/1, Art. 7/2-b", "tr": "İYUK m.7/1, m.7/2-b" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Dava açma süresi, özel kanunlarında ayrı süre gösterilmeyen hallerde Danıştayda ve idare mahkemelerinde altmış ve vergi mahkemelerinde otuz gündür. […] Vergi, resim ve harçlar ile benzeri mali yükümler ve bunların zam ve cezalarından doğan uyuşmazlıklarda: Tahakkuku tahsile bağlı olan vergilerde tahsilatın; tebliğ yapılan hallerde veya tebliğ yerine geçen işlemlerde tebliğin;" } },
     "iyuk_45": { "label": { "en": "İYUK Art. 45/1", "tr": "İYUK m.45/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "İdare ve vergi mahkemelerinin kararlarına karşı, başka kanunlarda farklı bir kanun yolu öngörülmüş olsa dahi, mahkemenin bulunduğu yargı çevresindeki bölge idare mahkemesine, kararın tebliğinden itibaren otuz gün içinde istinaf yoluna başvurulabilir." } },
@@ -523,6 +530,75 @@
       "cite": "iyuk_53",
       "keywords": { "tr": ["yenileme"], "en": ["retrial"] },
       "notice": { "tr": "Altmış günlük süre m.53/1 (a)–(g) sebepleri içindir; (h) ve (ı) sebeplerinin süreleri farklıdır.", "en": "Sixty days for grounds (a)–(g) of Art. 53(1); grounds (h) and (ı) have other periods." },
+      "new": true
+    },
+    "istinaf-temyiz-dilekcesine-cevap": {
+      "label": { "tr": "İstinaf veya temyiz dilekçesine cevap", "en": "Answer to an appeal (istinaf or temyiz)" },
+      "trigger": { "tr": "İstinaf veya temyiz dilekçesinin size tebliğ edildiği tarih", "en": "Date the notice of appeal was served on you" },
+      "period": "P30D",
+      "cite": "iyuk_48",
+      "keywords": { "tr": ["cevap"], "en": ["answer to the appeal"] },
+      "notice": { "tr": "Katılma yoluyla başvuru aynı süre içinde cevapla yapılabilir (İYUK m.48/3); ivedi yargılamada süre on beş gündür.", "en": "A cross-appeal can be made in the answer within the same period (İYUK Art. 48(3)); fifteen days in the expedited procedure." },
+      "new": true
+    },
+    "ust-makama-basvuruda-zimni-ret": {
+      "label": { "tr": "Üst makama başvuruda zımni ret (İYUK 11)", "en": "Implied rejection of an administrative appeal to a higher authority (Art. 11)" },
+      "trigger": { "tr": "Üst makama (veya işlemi yapan makama) başvurduğunuz tarih", "en": "Date you applied to the higher authority (or the authority that issued the act)" },
+      "period": "P30D",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_11",
+      "keywords": { "tr": ["üst makam", "zımni ret", "başvuru"], "en": ["implied rejection"] },
+      "notice": { "tr": "Bu yalnızca zımni ret tarihini verir; dava açma süresi başvurudan önce geçen günler hesaba katılarak kaldığı yerden işler (İYUK m.11/3), kalan süreyi ayrıca hesaplayın. 14 Temmuz 2021'den önceki başvurularda süre altmış gündü. Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "This gives only the implied-rejection date; the action period then resumes counting the days used before the application (İYUK Art. 11(3)). For applications before 14 July 2021 it was sixty days. The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "idari-eylem-basvurusu": {
+      "label": { "tr": "İdari eylem nedeniyle idareye başvuru (tam yargı)", "en": "Application to the administration for damage caused by an administrative action" },
+      "trigger": { "tr": "İdari eylemi öğrendiğiniz tarih", "en": "Date you learned of the administrative action" },
+      "period": "P1Y",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_13",
+      "keywords": { "tr": ["idari eylem", "tam yargı", "tazminat"], "en": ["full remedy"] },
+      "notice": { "tr": "Eylemden itibaren beş yıllık üst sınır hesaplanmaz. İstek reddedilir veya otuz gün cevapsız kalırsa dava açma süresi içinde dava açılır. Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "The five-year outer limit from the act is not computed. After rejection or thirty days' silence, sue within the action period. The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "ivedi-yargilamada-dava-acma": {
+      "label": { "tr": "İvedi yargılama usulünde dava açma", "en": "Filing an action in expedited procedure" },
+      "trigger": { "tr": "İşlemin size yazılı olarak bildirildiği (tebliğ edildiği) tarih", "en": "Date the act was notified to you in writing" },
+      "period": "P30D",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_20a_dava",
+      "keywords": { "tr": ["ivedi", "ihale", "acele kamulaştırma"], "en": ["expedited"] },
+      "notice": { "tr": "Yalnızca İYUK m.20/A-1'de sayılan işlemler içindir (ihale, acele kamulaştırma, özelleştirme gibi). Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "Only for the acts listed in İYUK Art. 20/A(1) (tenders, urgent expropriation, privatisation and others). The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "ivedi-yargilamada-savunma": {
+      "label": { "tr": "İvedi yargılamada savunma", "en": "Defence in expedited procedure" },
+      "trigger": { "tr": "Dava dilekçesinin size tebliğ edildiği tarih", "en": "Date the statement of claim was served on you" },
+      "period": "P15D",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_20a_savunma",
+      "keywords": { "tr": ["ivedi", "savunma"], "en": ["expedited"] },
+      "notice": { "tr": "Bir defaya mahsus on beş güne kadar ek süre verilebilir. Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "One extension of up to fifteen days is possible. The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "ivedi-yargilamada-temyiz": {
+      "label": { "tr": "İvedi yargılamada temyiz", "en": "Appeal on points of law in expedited procedure" },
+      "trigger": { "tr": "Nihai kararın size tebliğ edildiği tarih", "en": "Date the final decision was served on you" },
+      "period": "P15D",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_20a_temyiz",
+      "keywords": { "tr": ["ivedi", "temyiz"], "en": ["expedited"] },
+      "notice": { "tr": "İvedi yargılamada istinaf yoktur (İYUK m.45/8). Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "There is no istinaf in the expedited procedure (İYUK Art. 45(8)). The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "ivedi-yargilamada-temyize-cevap": {
+      "label": { "tr": "İvedi yargılamada temyiz dilekçesine cevap", "en": "Answer to the temyiz in expedited procedure" },
+      "trigger": { "tr": "Temyiz dilekçesinin size tebliğ edildiği tarih", "en": "Date the notice of appeal was served on you" },
+      "period": "P15D",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_20a_cevap",
+      "keywords": { "tr": ["ivedi", "cevap"], "en": ["expedited"] },
+      "notice": { "tr": "Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
       "new": true
     }
   }
