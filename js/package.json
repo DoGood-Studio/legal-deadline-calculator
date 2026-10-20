@@ -1,6 +1,6 @@
 {
   "name": "lexdays",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Explainable legal deadline and business-day calculator. Every result cites the rule it applied. Zero dependencies.",
   "keywords": [
     "legal deadline",
