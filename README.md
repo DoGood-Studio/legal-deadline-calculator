@@ -53,6 +53,7 @@ npm install lexdays        # Node 18+, browsers, Deno, Bun
 import lexdays
 
 r = lexdays.compute("tr/hmk", "2026-07-30", "P2W")   # Turkish civil procedure: 2 weeks from service
+r = lexdays.compute("tr/hmk", "2026-07-30", act="istinaf")   # the same, by the name of the act (HMK Art. 345)
 r.deadline              # datetime.date(2026, 9, 8)
 print(r.explain("en"))  # every step, with its citation
 ```
@@ -75,6 +76,8 @@ r.explain("de");     // the steps explained in German
 
 ```bash
 lexdays deadline tr/hmk 2026-07-30 P2W --lang tr
+lexdays deadline tr/hmk 2026-07-30 --act istinaf --lang tr
+lexdays acts tr/hmk
 lexdays deadline de/zpo 2025-07-25 P2W --calendar de-by-augsburg
 lexdays holidays gb-eaw 2026
 ```

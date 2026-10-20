@@ -53,6 +53,7 @@ npm install lexdays        # Node 18+, tarayıcı, Deno, Bun
 import lexdays
 
 r = lexdays.compute("tr/hmk", "2026-07-30", "P2W")   # HMK: tebliğden itibaren 2 hafta
+r = lexdays.compute("tr/hmk", "2026-07-30", act="istinaf")   # aynısı, işlemin adıyla (HMK m.345)
 r.deadline              # datetime.date(2026, 9, 8): adli tatil nedeniyle uzadı
 print(r.explain("tr"))  # her adım, dayanağıyla
 ```
@@ -88,6 +89,8 @@ lexdays.calendar("tr").add_business_days("2026-05-22", 3)        # 2026-06-01
 
 ```bash
 lexdays deadline tr/hmk 2026-07-30 2w --lang tr
+lexdays deadline tr/hmk 2026-07-30 --act istinaf --lang tr
+lexdays acts tr/iik --lang tr
 lexdays deadline tr/iik 2026-05-22 "7 gün" --lang tr --json
 lexdays holidays tr 2027 --lang tr
 ```

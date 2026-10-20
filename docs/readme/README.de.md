@@ -53,6 +53,7 @@ npm install lexdays        # Node 18+, Browser, Deno, Bun
 import lexdays
 
 r = lexdays.compute("de/zpo", "2025-07-15", "P1M", calendar="de-by-catholic")   # Berufung (§ 517 ZPO), Gericht in München
+r = lexdays.compute("de/zpo", "2025-07-15", act="berufung", calendar="de-by-catholic")   # dasselbe, über den Namen der Prozesshandlung
 r.deadline              # datetime.date(2025, 8, 18): der 15. August ist in München Feiertag
 print(r.explain("de"))  # jeder Schritt mit Fundstelle
 ```
@@ -75,6 +76,8 @@ r.explain("de");     // Erklärung auf Deutsch
 
 ```bash
 lexdays deadline de/zpo 2025-07-15 P1M --calendar de-by-catholic --lang de
+lexdays deadline de/zpo 2025-07-15 --act berufung --calendar de-by-catholic --lang de
+lexdays acts de/zpo --lang de
 ```
 
 </details>
