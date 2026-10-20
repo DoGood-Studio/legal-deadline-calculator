@@ -8,6 +8,7 @@ All notable changes to this project are documented here. The format follows [Kee
 
 - Results carry the version of lexdays that computed them: `to_dict()["version"]` in Python, `toJSON().version` in TypeScript.
 - Demo page: works offline and can be installed as an app; single-key shortcuts (`?` lists them); an address-bar search and a bookmark button that open the calculator with a date and period taken from free text (`?q=20.10.2026 2 weeks`); copied results and calendar entries name the lexdays version.
+- Releases: the built packages are signed with Sigstore and attached, with their signatures, to the GitHub release.
 - CI: a weekly source watch (`scripts/watch_sources.py`, workflow `Source watch`). It reads every source the rule packs and calendars cite, checks that the quoted rule text is still there (for Constitutional Court decisions through the court's public decision search), lists new acts amending a cited EU act, asks EUR-Lex for a new Court of Justice holiday list and scans the Resmî Gazete for laws, decrees and holiday decisions that touch the Turkish packs. Findings open or update an issue labelled `source-watch`; the watcher never changes data.
 
 ## [0.1.1] - 2026-10-20
