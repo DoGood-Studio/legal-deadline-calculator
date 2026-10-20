@@ -72,6 +72,9 @@ a { color: var(--court); text-underline-offset: 2px; }
 .bar__nav { display: flex; align-items: center; gap: 18px; font-size: 0.95rem; }
 .bar__nav a { color: var(--muted); text-decoration: none; }
 .bar__nav a:hover { color: var(--ink); }
+.bar__link { border: 0; background: none; padding: 0; color: var(--muted); font: inherit; cursor: pointer; }
+.bar__link:hover { color: var(--ink); }
+@media (max-width: 560px) { .bar__link { display: none; } }
 .lang select { font: inherit; font-size: 0.9rem; color: var(--ink); background-color: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding-block: 5px; padding-inline: 8px 28px; }
 @media (max-width: 560px) { .bar__nav a:not(:last-of-type) { display: none; } }
 
@@ -238,3 +241,17 @@ pre { margin: 8px 0 0; background: var(--paper); border: 1px solid var(--line); 
 .foot { color: var(--muted); font-size: 0.86rem; padding-block: 28px 44px; }
 .foot__row { display: grid; gap: 4px; }
 .foot p { margin: 0; max-width: 80ch; }
+
+/* Shortcuts dialog (opened with ? or the "Shortcuts" link). */
+.keys { width: min(560px, calc(100vw - 32px)); max-height: calc(100vh - 48px); border: 1px solid var(--line); border-radius: var(--r-lg); padding: 20px 22px; background: var(--surface); color: var(--ink); }
+.keys::backdrop { background: rgb(10 18 30 / 0.45); }
+.keys__head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.keys h2 { margin: 0; font: 700 1.6rem var(--font-figure); }
+.keys h3 { margin: 18px 0 6px; font-size: 1rem; }
+.keys p { margin: 0 0 8px; color: var(--muted); line-height: 1.5; }
+.keys__table { border-collapse: collapse; margin-top: 12px; }
+.keys__table td { padding-block: 5px; padding-inline: 0 14px; vertical-align: middle; }
+.keys__table td:first-child { white-space: nowrap; }
+.keys code { font: 0.92rem var(--font-code); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 3px 8px; color: var(--ink); }
+kbd { display: inline-block; min-width: 1.6em; text-align: center; font: 600 0.85rem var(--font-code); background: var(--paper); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: var(--r-sm); padding: 1px 6px; color: var(--ink); }
+.keys a.btn { display: inline-block; text-decoration: none; cursor: grab; }

@@ -65,6 +65,9 @@ for (const lang of LANGS) {
     .replace(/<html lang="[^"]*">/, `<html lang="${lang}"${dir} data-page-lang="${lang}">`)
     .replace("<!doctype html>", "<!doctype html>\n<!-- Generated from ../index.html by scripts/build-site-pages.mjs. Edit that file and rerun the script. -->")
     .replace('href="style.css"', 'href="../style.css"')
+    .replace('href="manifest.webmanifest"', 'href="../manifest.webmanifest"')
+    .replace('href="assets/icon-180.png"', 'href="../assets/icon-180.png"')
+    .replace('href="opensearch.xml"', 'href="../opensearch.xml"')
     .replace('src="app.js"', 'src="../app.js"');
   mkdirSync(join(SITE, lang), { recursive: true });
   writeFileSync(join(SITE, lang, "index.html"), page);

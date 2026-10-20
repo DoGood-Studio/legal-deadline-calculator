@@ -1,7 +1,18 @@
 // lexdays demo page. All calculations use the published ESM bundle (assets/lexdays.js).
-import { calendar, compute, listCalendars, rulepack } from "./assets/lexdays.js";
+import { calendar, compute, listCalendars, rulepack, VERSION } from "./assets/lexdays.js";
 import { buildIcs, googleCalendarUrl } from "./ics.js";
 import { BASIC_OPTIONS, COUNTRIES, LANGUAGES, PRESETS } from "./labels.js";
+
+// Offline use and installing as an app (sw.js). Registered before anything else awaits, so the
+// browser's install offer is not missed. The browser keeps its own install prompt too; the
+// event is kept only for the "Install now" button in the shortcuts dialog.
+if ("serviceWorker" in navigator) navigator.serviceWorker.register(new URL("./sw.js", import.meta.url)).catch(() => {});
+let installPrompt = null;
+addEventListener("beforeinstallprompt", (event) => {
+  installPrompt = event;
+  document.getElementById("install-app").hidden = false;
+});
+addEventListener("appinstalled", () => (document.getElementById("install-app").hidden = true));
 
 // Interface text lives in i18n/<code>.js; English is always loaded as the fallback.
 const dicts = { en: (await import("./i18n/en.js")).default };
@@ -411,6 +422,57 @@ function loadUrl() {
     if (value !== undefined) state.options[k] = value;
   }
   $("trigger").value = /^\d{4}-\d{2}-\d{2}$/.test(params.get("date") ?? "") ? params.get("date") : todayIso();
+  if (params.has("q")) applyQuery(params.get("q"));
+}
+
+// ?q= comes from the address-bar search (opensearch.xml) and the bookmark button: free text such
+// as "20.10.2026 2 weeks", "2026-10-20 30 gün", "10/20/2026 5bd" or "2026年10月20日 2週間".
+// The first date in it becomes the start date and the first number with a unit the period;
+// anything the page cannot read is left as it was.
+const UNIT_WORDS = [
+  ["business_day", /^(bd|business ?days?|working ?days?|[iı][şs] ?g[üu]n|arbeitstag|werktag|jours? ouvr|d[ií]as? h[aá]bil|giorni lavorativi|dias? [uú]te|werkdag|раб|أيام عمل|个?工作日|営業日)/],
+  ["week", /^(w|weeks?|hafta|woche|semaine|semana|settiman|weke?n?$|нед|أسبوع|أسابيع|周|週)/],
+  ["month", /^(m|months?|ay|monat|mois|mes|m[eê]s|maand|мес|شهر|أشهر|个?月|か月|ヶ月)/],
+  ["year", /^(y|years?|yıl|yil|sene|jahr|ans?$|année|a[ñn]os?|ann[oi]|jaar|г|год|лет|سنة|سنوات|年)/],
+  ["day", /^(d|days?|gün|gun|tag|jours?|d[ií]as?|giorn|dag|дн|день|يوم|أيام|天|日)/],
+];
+
+function queryDate(text) {
+  const valid = (y, m, d) => {
+    const iso = `${y}-${String(m).padStart(2, "0")}-${String(d).padStart(2, "0")}`;
+    return m >= 1 && m <= 12 && d >= 1 && utc(iso).getUTCDate() === d ? iso : null;
+  };
+  let m = /(\d{4})[-./年](\d{1,2})[-./月](\d{1,2})日?/.exec(text);
+  if (m) return { iso: valid(+m[1], +m[2], +m[3]), match: m[0] };
+  m = /(\d{1,2})([-./])(\d{1,2})\2(\d{4})/.exec(text);
+  if (!m) return null;
+  const [a, b] = [+m[1], +m[3]];
+  // Day first, as in most of the world; month first for "/" on the English page (US style).
+  // A part above 12 settles it either way.
+  const monthFirst = a <= 12 && (b > 12 || (m[2] === "/" && state.lang === "en"));
+  return { iso: monthFirst ? valid(+m[4], a, b) : valid(+m[4], b, a), match: m[0] };
+}
+
+function applyQuery(raw) {
+  let text = String(raw ?? "").normalize("NFKC").toLocaleLowerCase(state.lang).replace(/\u0307/g, "").trim();
+  const date = queryDate(text);
+  if (date?.iso) $("trigger").value = date.iso;
+  if (date) text = text.replace(date.match, " ");
+  const iso = /\bp(\d+)([dwmy])\b/.exec(text);
+  const free = /(\d+)\s*([^\d]*)/.exec(text);
+  let n;
+  let unit;
+  if (iso) [n, unit] = [iso[1], { d: "day", w: "week", m: "month", y: "year" }[iso[2]]];
+  else if (free) {
+    const word = free[2].trim().replace(/^[.,]+/, "");
+    n = free[1];
+    unit = word ? UNIT_WORDS.find(([, re]) => re.test(word))?.[0] : "day";
+  }
+  if (!unit || !(Number(n) >= 1)) return;
+  state.preset = null;
+  $("amount").value = String(Number(n));
+  $("unit").value = unit;
+  setDirection("after");
 }
 
 // ------------------------------------------------------------ business days
@@ -484,10 +546,11 @@ async function copy(text, okKey) {
   }
 }
 
-// The result as plain text: rule pack, last day, the numbered explanation and this page's link.
+// The result as plain text: rule pack, last day, the numbered explanation, the library version
+// that computed it (so a saved result can be traced to its rules) and this page's link.
 function resultText() {
   const head = `${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}${colon()}${$("r-date").textContent}\n\n`;
-  return head + lastResult.explain(engineLang()) + `\n\n${location.href}`;
+  return head + lastResult.explain(engineLang()) + `\n\n${t("r.version", { v: VERSION })}\n${location.href}`;
 }
 
 function calendarEvent() {
@@ -576,6 +639,55 @@ for (const button of document.querySelectorAll(".codetabs button")) {
   });
 }
 document.addEventListener("submit", (event) => event.preventDefault());
+
+// Shortcuts dialog, bookmark button and install button.
+$("open-keys").addEventListener("click", () => $("keys").showModal());
+$("close-keys").addEventListener("click", () => $("keys").close());
+$("keys").addEventListener("click", (event) => {
+  // A click on the dimmed backdrop, outside the box, closes it.
+  const box = $("keys").getBoundingClientRect();
+  const outside = event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom;
+  if (event.target === $("keys") && outside) $("keys").close();
+});
+// Dragged to the bookmarks bar, this link opens the calculator with the text selected on any page
+// as ?q= (see applyQuery). Clicking it here only explains that.
+const siteRoot = new URL(PAGE_LANG ? "../" : "./", location.href).href;
+$("bookmarklet").href = `javascript:(()=>{const s=String(getSelection()).trim();window.open('${siteRoot}${state.lang}/?q='+encodeURIComponent(s),'_blank')})()`;
+$("bookmarklet").addEventListener("click", (event) => {
+  event.preventDefault();
+  $("bookmark-hint").textContent = t("keys.bookmarkDrag");
+});
+$("install-app").addEventListener("click", async () => {
+  if (!installPrompt) return;
+  installPrompt.prompt();
+  await installPrompt.userChoice.catch(() => null);
+  installPrompt = null;
+  $("install-app").hidden = true;
+});
+
+// Single-key shortcuts. They are off while typing in a field, with Ctrl/Alt/Cmd held (browser
+// shortcuts) and while the dialog is open. Letters follow the printed key, or its position on
+// non-Latin layouts.
+const typing = (node) =>
+  node.isContentEditable ||
+  ["TEXTAREA", "SELECT"].includes(node.tagName) ||
+  (node.tagName === "INPUT" && !["radio", "checkbox", "button", "submit", "reset"].includes(node.type));
+document.addEventListener("keydown", (event) => {
+  if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || $("keys").open || typing(event.target)) return;
+  const business = !$("panel-business").hidden;
+  const letter = /^[a-z]$/i.test(event.key) ? event.key.toLowerCase() : /^Key([A-Z])$/.exec(event.code)?.[1].toLowerCase();
+  const digit = /^[1-9]$/.test(event.key) ? Number(event.key) : Number(/^(?:Digit|Numpad)([1-9])$/.exec(event.code)?.[1] ?? 0);
+  if (event.key === "?") $("keys").showModal();
+  else if (event.key === "/") $(business ? "b-date" : "trigger").focus();
+  else if (letter === "t") $(business ? "b-today" : "today").click();
+  else if (letter === "c" && !business) $("copy-result").click();
+  else if (letter === "k" && !business && lastResult) {
+    $("cal").open = true;
+    $("cal-ics").focus();
+  } else if (digit && !business && $("presets").children[digit - 1]) $("presets").children[digit - 1].click();
+  else return;
+  event.preventDefault();
+});
 
 $("b-date").value = todayIso();
 loadUrl();

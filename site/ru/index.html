@@ -32,6 +32,9 @@
   <meta name="twitter:card" content="summary_large_image">
   <!-- seo:end -->
   <meta name="theme-color" content="#1e3a5c">
+  <link rel="manifest" href="../manifest.webmanifest">
+  <link rel="apple-touch-icon" href="../assets/icon-180.png">
+  <link rel="search" type="application/opensearchdescription+xml" title="lexdays" href="../opensearch.xml">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect x='3' y='5' width='26' height='24' rx='5' fill='#fff' stroke='#1e3a5c' stroke-width='2'/%3E%3Cpath d='M3 10a5 5 0 0 1 5-5h16a5 5 0 0 1 5 5v2.5H3z' fill='#1e3a5c'/%3E%3Crect x='9' y='2' width='3.2' height='6.4' rx='1.6' fill='#1e3a5c' stroke='#fff'/%3E%3Crect x='19.8' y='2' width='3.2' height='6.4' rx='1.6' fill='#1e3a5c' stroke='#fff'/%3E%3Ctext x='16' y='26.6' text-anchor='middle' font-family='Georgia,serif' font-weight='700' font-size='15' fill='#b42318'%3E%C2%A7%3C/text%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,6 +66,7 @@
       <nav class="bar__nav" aria-label="Site">
         <a href="#tool" data-i18n="nav.tool">Hesapla</a>
         <a href="#developers" data-i18n="nav.dev">Geliştiriciler</a>
+        <button type="button" class="bar__link" id="open-keys" aria-haspopup="dialog" data-i18n="nav.keys">Kısayollar</button>
         <a href="https://github.com/DoGood-Studio/legal-deadline-calculator">GitHub</a>
         <label class="lang">
           <span class="sr-only" data-i18n="nav.lang">Dil</span>
@@ -248,6 +252,30 @@ lexdays add tr 2026-05-22 3</code></pre>
       </div>
     </section>
   </main>
+
+  <dialog class="keys" id="keys" aria-labelledby="keys-title">
+    <div class="keys__head">
+      <h2 id="keys-title" data-i18n="keys.title">Kısayollar</h2>
+      <button type="button" class="btn btn--ghost" id="close-keys" data-i18n="keys.close">Kapat</button>
+    </div>
+    <table class="keys__table">
+      <tr><td><kbd>T</kbd></td><td data-i18n="keys.today">Tarihi bugün yap</td></tr>
+      <tr><td><kbd>/</kbd></td><td data-i18n="keys.date">Tarih kutusuna git</td></tr>
+      <tr><td><kbd>C</kbd></td><td data-i18n="keys.copy">Sonucu kopyala</td></tr>
+      <tr><td><kbd>K</kbd></td><td data-i18n="keys.cal">Takvime ekle</td></tr>
+      <tr><td><kbd>1</kbd>–<kbd>9</kbd></td><td data-i18n="keys.presets">Sık kullanılan sürelerden birini seç</td></tr>
+      <tr><td><kbd>?</kbd></td><td data-i18n="keys.help">Bu pencereyi aç</td></tr>
+    </table>
+    <h3 data-i18n="keys.searchTitle">Adres çubuğundan hesapla</h3>
+    <p data-i18n="keys.searchText">Tarayıcınızın arama motoru ayarlarında lexdays'i etkinleştirin ve kısayolunu «süre» yapın. Sonra adres çubuğuna şunu yazın:</p>
+    <p><code id="keys-example" data-i18n="keys.example">süre 20.10.2026 2 hafta</code></p>
+    <h3 data-i18n="keys.bookmarkTitle">Yer imi düğmesi</h3>
+    <p data-i18n="keys.bookmarkText">Aşağıdaki düğmeyi yer imleri çubuğuna sürükleyin. Herhangi bir sayfada bir tarih seçip yer imine tıklayınca lexdays o tarihle açılır.</p>
+    <p><a class="btn btn--ghost" id="bookmarklet" href="#" data-i18n="keys.bookmarkLabel">lexdays ile hesapla</a> <span id="bookmark-hint" role="status"></span></p>
+    <h3 data-i18n="keys.installTitle">Uygulama olarak kur</h3>
+    <p data-i18n="keys.installText">lexdays internet olmadan da çalışır. Telefonda tarayıcı menüsünden «Ana ekrana ekle»yi, bilgisayarda adres çubuğundaki yükle simgesini seçin.</p>
+    <p><button type="button" class="btn" id="install-app" hidden data-i18n="keys.installButton">Şimdi kur</button></p>
+  </dialog>
 
   <footer class="foot">
     <div class="wrap foot__row">
