@@ -89,6 +89,18 @@
 
     <section id="panel-deadline" role="tabpanel" aria-labelledby="tab-deadline" class="tool">
       <form id="form" class="form" novalidate>
+        <div class="finder">
+          <label class="finder__label" for="act-q">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+            <span data-i18n="find.label">Ne yapacaksınız?</span>
+          </label>
+          <div class="finder__box">
+            <input type="search" id="act-q" role="combobox" aria-expanded="false" aria-controls="act-list" aria-autocomplete="list" autocomplete="off" spellcheck="false" placeholder="istinaf, itiraz, cevap dilekçesi">
+            <ul id="act-list" class="finder__list" role="listbox" hidden></ul>
+          </div>
+          <p class="finder__hint" data-i18n="find.hint">İşlemin adını yazın; kanun, süre ve ayarlar kendiliğinden dolar. Klavyede / tuşu buraya getirir.</p>
+        </div>
+
         <fieldset class="step">
           <legend><span class="step__n">1</span><span data-i18n="s1">Süre türü</span></legend>
           <div class="seg" id="countries" role="radiogroup"></div>
@@ -139,6 +151,11 @@
       </form>
 
       <section class="result" id="result" aria-live="polite" aria-atomic="false">
+        <div class="actbox" id="r-act" hidden>
+          <p class="actbox__name"><span id="r-act-name"></span> <span class="badge" id="r-act-badge" data-i18n="act.badge" hidden>Yeni</span></p>
+          <blockquote class="actbox__quote" id="r-act-quote"></blockquote>
+          <p class="actbox__new" id="r-act-new" data-i18n="act.new" hidden>Bu işlem kataloğa yeni eklendi; kanun maddesini kontrol edin.</p>
+        </div>
         <div class="verdict">
           <div class="leaf" aria-hidden="true">
             <div class="leaf__month" id="leaf-month">EYLÜL 2026</div>
@@ -153,6 +170,10 @@
           </div>
         </div>
         <ul class="changes" id="r-changes"></ul>
+        <div class="group" id="r-group" hidden>
+          <h2 class="why" id="r-group-title" data-i18n="group.title">Aynı tarihten doğan süreler</h2>
+          <table class="group__table"><tbody id="r-group-rows"></tbody></table>
+        </div>
         <div class="months" id="r-months"></div>
         <ul class="legend" id="r-legend"></ul>
         <h2 class="why" data-i18n="r.why">Neden bu tarih?</h2>

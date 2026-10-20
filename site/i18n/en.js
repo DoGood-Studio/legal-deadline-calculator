@@ -3,6 +3,7 @@ export default {
     "doc.title": "Legal deadline calculator: US, UK, EU, Germany, Türkiye | lexdays",
     "doc.description": "Free, open-source court deadline calculator. Finds the last day to file, serve or pay and explains every step with its rule: FRCP, CPR, EU Court of Justice, ZPO, HMK.",
     skip: "Skip to content", "nav.tool": "Calculator", "nav.dev": "Developers", "nav.lang": "Language", "theme.dark": "Dark theme",
+    "find.label": "What do you need to do?", "find.placeholder": "appeal, answer, objection", "find.hint": "Type the name of the step; the rules, the period and the settings fill in by themselves. Press / to come back here.", "find.none": "No step by that name. Enter the period by hand below.", "act.badge": "New", "act.new": "Recently added to the catalogue; check the provision.", "act.source": "Text of the provision", "group.title": "Deadlines running from the same date",
     "hero.title": "Find the last day, see why.",
     "hero.lead": "Choose the type of deadline and the date of service. Judicial recesses, public holidays, half days and deemed service are taken into account, and every step shows the rule it comes from.",
     "tab.deadline": "Deadline", "tab.business": "Business days",

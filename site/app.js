@@ -1,7 +1,7 @@
 // lexdays demo page. All calculations use the published ESM bundle (assets/lexdays.js).
 import { calendar, compute, listCalendars, rulepack } from "./assets/lexdays.js";
 import { buildIcs, googleCalendarUrl } from "./ics.js";
-import { BASIC_OPTIONS, COUNTRIES, LANGUAGES, PRESETS } from "./labels.js";
+import { BASIC_OPTIONS, COUNTRIES, LANGUAGES } from "./labels.js";
 
 // Interface text lives in i18n/<code>.js; English is always loaded as the fallback.
 const dicts = { en: (await import("./i18n/en.js")).default };
@@ -28,7 +28,7 @@ function detectLang() {
   return "en";
 }
 
-const state = { lang: detectLang(), pack: null, options: {} };
+const state = { lang: detectLang(), pack: null, act: null, options: {} };
 
 // Looks up a path such as ("packs", "tr/hmk", 0) in the current language, then in English.
 function label(...path) {
@@ -97,25 +97,30 @@ function radioGroup(container, items, isChecked, onPick) {
 
 const countryOf = (packId) => COUNTRIES.find((c) => c.packs.includes(packId));
 
-function setPack(packId, applyPreset = true) {
+function setPack(packId, applyFirstAct = true) {
   const pack = rulepack(packId);
   state.pack = packId;
   state.options = Object.fromEntries(Object.entries(pack.options).map(([k, spec]) => [k, spec.default]));
   state.calendar = pack.calendar.id;
-  if (applyPreset) usePreset(PRESETS[packId]?.[0]);
+  state.act = null;
+  if (applyFirstAct) applyAct(Object.keys(pack.acts)[0] ?? null);
 }
 
-function usePreset(preset) {
-  state.preset = preset ?? null;
-  if (!preset) return;
-  // A preset is [period, direction, citation, options?]; options set what the act implies
-  // (e.g. a filing is an act at the court office).
-  const [period, direction, , options] = preset;
-  const match = /^P(\d+)([DWMY])$/.exec(period);
-  $("amount").value = match[1];
-  $("unit").value = { D: "day", W: "week", M: "month", Y: "year" }[match[2]];
-  setDirection(direction);
-  if (options) Object.assign(state.options, options);
+// A named act of the current pack (an appeal, a reply...) sets the period, the direction and the
+// options it implies. Changing any of those by hand turns the act off (a custom period).
+const currentAct = () => (state.act ? (rulepack(state.pack).acts[state.act] ?? null) : null);
+const triggerOrToday = () => (/^\d{4}-\d{2}-\d{2}$/.test($("trigger").value) ? $("trigger").value : todayIso());
+function applyAct(actId) {
+  const act = actId ? (rulepack(state.pack).acts[actId] ?? null) : null;
+  state.act = act ? act.id : null;
+  if (!act) return;
+  showPeriod(act.versionFor(triggerOrToday()).period);
+  setDirection(act.direction);
+  Object.assign(state.options, act.options);
+}
+function showPeriod(period) {
+  $("amount").value = period.amount;
+  $("unit").value = period.unit;
 }
 
 function setDirection(value) {
@@ -151,37 +156,32 @@ function renderForm() {
       run();
     },
   );
-  $("trigger-label").textContent = direction() === "before" ? t("trigger.before") : label("packs", state.pack, 2);
-  renderPresets();
+  const act = currentAct();
+  $("trigger-label").textContent = act
+    ? txt(act.trigger, "form")
+    : direction() === "before"
+      ? t("trigger.before")
+      : label("packs", state.pack, 2);
+  renderActChips();
   renderCalendarField();
   renderOptions();
 }
 
-function renderPresets() {
-  const presets = PRESETS[state.pack] ?? [];
+function renderActChips() {
+  const acts = Object.values(rulepack(state.pack).acts);
   radioGroup(
     $("presets"),
-    presets.map((p, i) => ({ p, className: "preset", content: [label("presets", state.pack, i), el("small", {}, `${periodLabel(p[0])} · ${p[2]}`)] })),
-    ({ p }) => p === activePreset(presets),
-    ({ p }) => {
-      usePreset(p);
+    acts.map((a) => ({ a, className: "preset", content: [txt(a.label, "form"), el("small", {}, `${periodText(a.period)} · ${txt(a.citation.label, "form")}`)] })),
+    ({ a }) => a.id === state.act,
+    ({ a }) => {
+      applyAct(a.id);
       renderForm();
       run();
     },
   );
 }
 
-// The preset the user picked, or else the first one matching the current period.
-function activePreset(presets) {
-  const matches = (p) => periodString() === p[0] && direction() === p[1];
-  if (state.preset && presets.includes(state.preset) && matches(state.preset)) return state.preset;
-  return presets.find(matches) ?? null;
-}
-
-function periodLabel(period) {
-  const [, n, u] = /^P(\d+)([DWMY])$/.exec(period);
-  return quantity(Number(n), { D: "day", W: "week", M: "month", Y: "year" }[u]);
-}
+const periodText = (p) => (p.unit === "business_day" ? `${num(p.amount)} ${t("u.business_day")}` : quantity(p.amount, p.unit));
 
 function renderCalendarField() {
   const pack = rulepack(state.pack);
@@ -207,7 +207,12 @@ function renderOptions() {
       const text = label("values", name, String(value)) ?? String(value);
       const input = el("input", { type: "radio", name: `opt-${name}`, value: JSON.stringify(value), checked: state.options[name] === value });
       input.addEventListener("change", () => {
+        const act = currentAct();
         state.options[name] = value;
+        if (act && name in act.options && act.options[name] !== value) {
+          state.act = null;
+          renderForm();
+        }
         run();
       });
       choices.append(el("label", { class: "choice" }, input, el("span", {}, text)));
@@ -234,12 +239,14 @@ function run() {
   fellBack.delete("result");
   try {
     const pack = rulepack(state.pack);
-    const result = compute(state.pack, trigger, periodString(), {
-      direction: direction(),
-      options: state.options,
-      calendar: pack.calendarFamily ? state.calendar : undefined,
-    });
+    const calendarId = pack.calendarFamily ? state.calendar : undefined;
+    const result = state.act
+      ? compute(state.pack, trigger, null, { act: state.act, options: state.options, calendar: calendarId })
+      : compute(state.pack, trigger, periodString(), { direction: direction(), options: state.options, calendar: calendarId });
+    if (result.act) showPeriod(result.period); // the version in force on this date
     lastResult = result;
+    renderAct(result);
+    renderGroup(result, calendarId);
     renderVerdict(result.deadline, "leaf", "r-date");
     $("r-time").textContent = result.endsAt ? `${t("r.ends")}${colon()}${result.endsAt}${result.timezone ? ` (${result.timezone})` : ""}` : "";
     const diff = dayDiff(todayIso(), result.deadline);
@@ -253,15 +260,60 @@ function run() {
     renderCode(result);
     saveUrl();
     $("cal-google").href = googleCalendarUrl(calendarEvent());
-    renderPresets();
+    renderActChips();
     updateLangNote();
   } catch (err) {
     lastResult = null;
     $("r-error").textContent = err.message;
     $("r-error").hidden = false;
     for (const id of ["r-changes", "r-months", "r-legend", "r-trace", "r-notices"]) $(id).replaceChildren();
+    $("r-act").hidden = true;
+    $("r-group").hidden = true;
     $("r-countdown").textContent = "";
   }
+}
+
+// The act used, with the wording of the provision that sets its period.
+function renderAct(result) {
+  const act = result.act;
+  $("r-act").hidden = !act;
+  if (!act) return;
+  const citation = result.actCitation;
+  $("r-act-name").textContent = `${txt(act.label, "result")} · ${txt(citation.label, "result")}`;
+  const quote = txt(citation.quote, "result");
+  const source = citation.url ? el("a", { href: citation.url, target: "_blank", rel: "noopener" }, t("act.source")) : null;
+  $("r-act-quote").replaceChildren(quote ? `“${quote}” ` : "", source ?? "");
+  $("r-act-badge").hidden = !act.isNew;
+  $("r-act-new").hidden = !act.isNew;
+}
+
+// Other acts that run from the same event (e.g. everything a served claim starts), on one date.
+function renderGroup(result, calendarId) {
+  const act = result.act;
+  const pack = rulepack(state.pack);
+  const members = act?.group ? Object.values(pack.acts).filter((a) => a.group === act.group) : [];
+  $("r-group").hidden = members.length < 2;
+  if (members.length < 2) return;
+  // Options the current act implies go back to their defaults before another act adds its own.
+  const base = { ...state.options };
+  for (const name of Object.keys(act.options)) base[name] = pack.options[name].default;
+  $("r-group-rows").replaceChildren(
+    ...members.map((a) => {
+      let deadline = "–";
+      try {
+        const r = a.id === act.id ? result : compute(state.pack, result.trigger, null, { act: a.id, options: { ...base, ...a.options }, calendar: calendarId });
+        deadline = fmt(r.deadline, { day: "numeric", month: "long", year: "numeric", weekday: "short" });
+      } catch {
+        /* e.g. outside the calendar's verified years; the row shows a dash */
+      }
+      const pick = el("button", { type: "button", class: "linkish", "aria-current": a.id === act.id ? "true" : false, onclick: () => {
+        applyAct(a.id);
+        renderForm();
+        run();
+      } }, txt(a.label, "result"));
+      return el("tr", { class: a.id === act.id ? "current" : "" }, el("td", {}, pick), el("td", {}, periodText(a.versionFor(result.trigger).period)), el("td", {}, deadline));
+    }),
+  );
 }
 
 function renderVerdict(iso, leafPrefix, dateId) {
@@ -376,42 +428,163 @@ function renderTrace(result) {
 
 function renderCode(result) {
   const pack = rulepack(state.pack);
-  const changed = Object.entries(state.options).filter(([k, v]) => pack.options[k].default !== v);
+  const implied = result.act?.options ?? {};
+  const changed = Object.entries(state.options).filter(([k, v]) => pack.options[k].default !== v && !(k in implied));
   const opts = changed.length ? `, options={${changed.map(([k, v]) => `"${k}": ${JSON.stringify(v)}`).join(", ")}}` : "";
   const cal = pack.calendarFamily && state.calendar !== pack.calendar.id ? `, calendar="${state.calendar}"` : "";
   const dir = direction() === "before" ? ', direction="before"' : "";
-  $("r-code").textContent = `import lexdays\n\nr = lexdays.compute("${state.pack}", "${result.trigger}", "${periodString()}"${dir}${opts}${cal})\nprint(r.deadline)   # ${result.deadline}\nprint(r.explain("${engineLang()}"))`;
+  const what = result.act ? `act="${result.act.id}"` : `"${periodString()}"${dir}`;
+  $("r-code").textContent = `import lexdays\n\nr = lexdays.compute("${state.pack}", "${result.trigger}", ${what}${opts}${cal})\nprint(r.deadline)   # ${result.deadline}\nprint(r.explain("${engineLang()}"))`;
 }
 
 function saveUrl() {
-  const q = new URLSearchParams({ lang: state.lang, pack: state.pack, date: $("trigger").value, period: periodString(), dir: direction() });
+  const q = new URLSearchParams({ lang: state.lang, pack: state.pack, date: $("trigger").value });
+  if (state.act) {
+    q.set("act", state.act);
+  } else {
+    q.set("period", periodString());
+    q.set("dir", direction());
+  }
   if (PAGE_LANG) q.delete("lang");
   const pack = rulepack(state.pack);
+  const implied = currentAct()?.options ?? {};
   if (pack.calendarFamily && state.calendar !== pack.calendar.id) q.set("cal", state.calendar);
-  for (const [k, v] of Object.entries(state.options)) if (pack.options[k].default !== v) q.set(`o.${k}`, String(v));
+  for (const [k, v] of Object.entries(state.options)) if (pack.options[k].default !== v && !(k in implied)) q.set(`o.${k}`, String(v));
   history.replaceState(null, "", `${location.pathname}?${q}`);
 }
 
 function loadUrl() {
   const pack = params.get("pack");
   const known = COUNTRIES.flatMap((c) => c.packs);
+  $("trigger").value = /^\d{4}-\d{2}-\d{2}$/.test(params.get("date") ?? "") ? params.get("date") : todayIso();
   setPack(known.includes(pack) ? pack : state.lang === "tr" ? "tr/hmk" : state.lang === "de" ? "de/zpo" : "us/frcp", true);
+  const spec = rulepack(state.pack);
   const period = params.get("period");
   const match = period && /^P(\d+)([DWMY])$|^(\d+)bd$/.exec(period);
-  if (match) {
+  if (Object.hasOwn(spec.acts, params.get("act") ?? "")) {
+    applyAct(params.get("act"));
+  } else if (match) {
+    state.act = null;
     $("amount").value = match[1] ?? match[3];
     $("unit").value = match[3] ? "business_day" : { D: "day", W: "week", M: "month", Y: "year" }[match[2]];
+    setDirection(params.get("dir") === "before" ? "before" : "after");
   }
-  if (params.get("dir") === "before") setDirection("before");
-  const spec = rulepack(state.pack);
   if (params.get("cal") && spec.calendarFamily) state.calendar = params.get("cal");
+  const implied = currentAct()?.options ?? {};
   for (const [k, s] of Object.entries(spec.options)) {
     const raw = params.get(`o.${k}`);
     const value = s.values.find((v) => String(v) === raw);
-    if (value !== undefined) state.options[k] = value;
+    if (value === undefined) continue;
+    state.options[k] = value;
+    if (k in implied && implied[k] !== value) state.act = null;
   }
-  $("trigger").value = /^\d{4}-\d{2}-\d{2}$/.test(params.get("date") ?? "") ? params.get("date") : todayIso();
 }
+
+// ------------------------------------------------------------ act search
+
+// "What do you need to do?": every act of every pack, matched without regard to case or accents
+// (so "itiraz" finds "İtiraz"), acts of the current country first.
+const fold = (s) => String(s).toLocaleLowerCase(state.lang).normalize("NFD").replace(/\p{M}/gu, "").replace(/ı/g, "i");
+let actEntries = null;
+const finder = { matches: [], active: -1 };
+
+function searchText(entry) {
+  const { act, packId } = entry;
+  const words = [...Object.values(act.label), ...Object.values(act.keywords).flat(), ...Object.values(act.citation.label)];
+  return fold([...words, label("packs", packId, 0), packId].join(" "));
+}
+
+function searchActs(query) {
+  actEntries ??= COUNTRIES.flatMap((c) => c.packs.flatMap((packId) => Object.values(rulepack(packId).acts).map((act) => ({ country: c.id, packId, act }))));
+  const words = fold(query).split(/\s+/).filter(Boolean);
+  const country = countryOf(state.pack).id;
+  return actEntries
+    .map((entry) => {
+      if (!words.every((w) => searchText(entry).includes(w))) return null;
+      const name = fold(txt(entry.act.label));
+      let score = entry.country === country ? 0 : 10;
+      if (entry.packId === state.pack) score -= 1;
+      if (words.length && name.startsWith(words[0])) score -= 4;
+      else if (words.length && name.includes(words[0])) score -= 2;
+      return { entry, score };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.score - b.score || txt(a.entry.act.label).localeCompare(txt(b.entry.act.label), locale()))
+    .slice(0, 8)
+    .map((s) => s.entry);
+}
+
+function openFinder() {
+  const input = $("act-q");
+  finder.matches = searchActs(input.value);
+  if (finder.active >= finder.matches.length) finder.active = finder.matches.length - 1;
+  const options = finder.matches.map((entry, i) =>
+    el(
+      "li",
+      { id: `act-opt-${i}`, role: "option", class: "finder__opt", "aria-selected": String(i === finder.active), onmousedown: (event) => {
+        event.preventDefault(); // keep the focus in the box until the choice is applied
+        pickAct(entry);
+      } },
+      el("span", { class: "finder__name" }, txt(entry.act.label), entry.act.isNew ? el("span", { class: "badge" }, t("act.badge")) : null),
+      el("span", { class: "finder__meta" }, `${label("packs", entry.packId, 0)} · ${txt(entry.act.citation.label)} · ${periodText(entry.act.period)}`),
+    ),
+  );
+  $("act-list").replaceChildren(...(options.length ? options : [el("li", { class: "finder__none", role: "presentation" }, t("find.none"))]));
+  $("act-list").hidden = false;
+  input.setAttribute("aria-expanded", "true");
+  if (finder.active >= 0) input.setAttribute("aria-activedescendant", `act-opt-${finder.active}`);
+  else input.removeAttribute("aria-activedescendant");
+  $(`act-opt-${finder.active}`)?.scrollIntoView({ block: "nearest" });
+}
+
+function closeFinder() {
+  $("act-list").hidden = true;
+  $("act-q").setAttribute("aria-expanded", "false");
+  $("act-q").removeAttribute("aria-activedescendant");
+  finder.active = -1;
+}
+
+function pickAct(entry) {
+  setPack(entry.packId, false);
+  applyAct(entry.act.id);
+  $("act-q").value = "";
+  closeFinder();
+  renderForm();
+  run();
+  $("trigger").focus();
+}
+
+$("act-q").addEventListener("input", () => {
+  finder.active = $("act-q").value.trim() ? 0 : -1;
+  openFinder();
+});
+$("act-q").addEventListener("focus", openFinder);
+$("act-q").addEventListener("blur", closeFinder);
+$("act-q").addEventListener("keydown", (event) => {
+  const n = finder.matches.length;
+  if (event.key === "ArrowDown" || event.key === "ArrowUp") {
+    event.preventDefault();
+    if (!n) return;
+    const step = event.key === "ArrowDown" ? 1 : -1;
+    finder.active = finder.active < 0 ? (step > 0 ? 0 : n - 1) : (finder.active + step + n) % n;
+    openFinder();
+  } else if (event.key === "Enter") {
+    event.preventDefault();
+    const entry = finder.matches[Math.max(finder.active, 0)];
+    if (entry) pickAct(entry);
+  } else if (event.key === "Escape") {
+    if (!$("act-list").hidden) event.preventDefault();
+    closeFinder();
+  }
+});
+// "/" jumps to the search box from anywhere on the page except a text field.
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "/" || event.ctrlKey || event.metaKey || event.altKey) return;
+  const target = event.target;
+  if (target.isContentEditable || ["INPUT", "TEXTAREA", "SELECT"].includes(target.tagName)) return;
+  event.preventDefault();
+  $("act-q").focus();
+});
 
 // ------------------------------------------------------------ business days
 
@@ -465,6 +638,8 @@ async function applyLanguage() {
   document.title = t("doc.title");
   for (const node of document.querySelectorAll("[data-i18n]")) node.textContent = t(node.dataset.i18n);
   $("theme").setAttribute("aria-label", t("theme.dark"));
+  $("act-q").placeholder = t("find.placeholder");
+  actEntries = null;
   $("theme").title = t("theme.dark");
   renderForm();
   run();
@@ -488,14 +663,15 @@ async function copy(text, okKey) {
 
 // The result as plain text: rule pack, last day, the numbered explanation and this page's link.
 function resultText() {
-  const head = `${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}${colon()}${$("r-date").textContent}\n\n`;
+  const act = lastResult.act ? `${txt(lastResult.act.label)} · ` : "";
+  const head = `${act}${label("packs", state.pack, 0)} (${state.pack})\n${t("r.last")}${colon()}${$("r-date").textContent}\n\n`;
   return head + lastResult.explain(engineLang()) + `\n\n${location.href}`;
 }
 
 function calendarEvent() {
   return {
     date: lastResult.deadline,
-    summary: `${t("r.last")}${colon()}${label("packs", state.pack, 0)}`,
+    summary: `${t("r.last")}${colon()}${lastResult.act ? `${txt(lastResult.act.label)} · ` : ""}${label("packs", state.pack, 0)}`,
     description: `${resultText()}\n\n${t("foot")}`,
     url: location.href,
   };
@@ -545,10 +721,17 @@ $("today").addEventListener("click", () => {
   run();
 });
 $("trigger").addEventListener("input", run);
-for (const id of ["amount", "unit"]) $(id).addEventListener("input", run);
+for (const id of ["amount", "unit"]) {
+  $(id).addEventListener("input", () => {
+    state.act = null;
+    renderForm();
+    run();
+  });
+}
 $("direction").addEventListener("click", (event) => {
   const button = event.target.closest("button");
   if (!button) return;
+  if (button.dataset.value !== direction()) state.act = null;
   setDirection(button.dataset.value);
   renderForm();
   run();
