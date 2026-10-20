@@ -21,6 +21,7 @@ import lexdays
 SEED = 20261019
 N_DEADLINES = 1200
 N_CALENDAR = 600
+ACT_CASES = 6  # random triggers per named act
 OUT = Path(__file__).resolve().parents[1] / "vectors" / "generated" / "differential.json"
 
 
@@ -77,6 +78,29 @@ def main() -> None:
             case["deadline"] = result.deadline.isoformat()
             case["sha256"] = canonical_hash(result.to_dict())
         deadlines.append(case)
+
+    # Named acts: each one with several random triggers (before and after any change of its period)
+    # and random values for the options it does not imply.
+    for pack in packs:
+        for act in pack.acts.values():
+            for _ in range(ACT_CASES):
+                cal_id = rng.choice(calendar_choices(pack))
+                cal = lexdays.calendar(cal_id) if cal_id else pack.calendar
+                options = {
+                    name: rng.choice(spec["values"]) for name, spec in pack.options.items()
+                    if name not in act.options and rng.random() < 0.6
+                }
+                case = {"pack": pack.id, "trigger": random_date(rng, cal).isoformat(), "act": act.id, "options": options}
+                if cal_id:
+                    case["calendar"] = cal_id
+                try:
+                    result = lexdays.compute(case["pack"], case["trigger"], act=act.id, options=options, calendar=cal_id)
+                except lexdays.LexdaysError as exc:
+                    case["error"] = type(exc).__name__
+                else:
+                    case["deadline"] = result.deadline.isoformat()
+                    case["sha256"] = canonical_hash(result.to_dict())
+                deadlines.append(case)
 
     calendar_cases = []
     calendars = lexdays.list_calendars()
