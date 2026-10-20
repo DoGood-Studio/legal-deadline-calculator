@@ -299,3 +299,36 @@ pre { margin: 8px 0 0; background: var(--paper); border: 1px solid var(--line); 
 .keys code { font: 0.92rem var(--font-code); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 3px 8px; color: var(--ink); }
 kbd { display: inline-block; min-width: 1.6em; text-align: center; font: 600 0.85rem var(--font-code); background: var(--paper); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: var(--r-sm); padding: 1px 6px; color: var(--ink); }
 .keys a.btn { display: inline-block; text-decoration: none; cursor: grab; }
+
+/* Act pages (site/tr/sureler/, written by scripts/build-act-pages.py): one column of cards, the
+   provision quoted in full, worked examples in the calculator's own step list. */
+.ap { max-width: 780px; display: grid; gap: 16px; padding-block: 24px 8px; }
+.ap h1 { margin: 0; font: 700 clamp(2rem, 1.4rem + 2.6vw, 2.9rem)/1.05 var(--font-figure); text-wrap: balance; }
+.ap h2 { margin: 0 0 10px; font-size: 1.12rem; }
+.ap-crumbs { font-size: 0.88rem; color: var(--muted); }
+.ap-crumbs a { color: var(--muted); }
+.ap-sub { margin: -6px 0 0; color: var(--muted); }
+.ap-card { padding: 16px 18px; border: 1px solid var(--line); border-radius: var(--r-lg); background: var(--surface); min-width: 0; }
+.ap-card > p { margin: 8px 0 0; }
+.ap-facts dl { margin: 0 0 14px; display: grid; gap: 10px; }
+.ap-facts dl div { display: grid; grid-template-columns: minmax(120px, 30%) 1fr; gap: 12px; }
+.ap-facts dt { color: var(--muted); }
+.ap-facts dd { margin: 0; font-weight: 600; }
+.ap-calc { display: grid; gap: 6px; padding-top: 14px; border-top: 1px solid var(--line); }
+.ap-calc label { font-weight: 600; }
+.ap-calc__row { display: flex; flex-wrap: wrap; gap: 8px; }
+.ap-calc input[type="date"] { font: inherit; color: var(--ink); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-md); padding: 8px 10px; }
+.ap-hint { margin: 0; color: var(--muted); font-size: 0.88rem; }
+.ap-quote { margin: 0; padding: 12px 14px; border-inline-start: 3px solid var(--court); background: var(--court-soft); border-radius: var(--r-sm); line-height: 1.6; }
+.ap-source { font-size: 0.88rem; color: var(--muted); }
+.ap-last { font-size: 1.02rem; }
+.ap-notes { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.ap-notes li { background: var(--notice); border: 1px solid var(--notice-line); border-radius: var(--r-md); padding: 10px 12px; font-size: 0.92rem; }
+.ap-related { margin: 0; padding-inline-start: 18px; display: grid; gap: 6px; }
+.ap-table { overflow-x: auto; }
+.ap-table table { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+.ap-table th, .ap-table td { text-align: start; padding: 8px 10px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+.ap-table th { color: var(--muted); font-weight: 600; font-size: 0.84rem; }
+.ap-table td:nth-child(2) { white-space: nowrap; }
+.ap h2 .tag { vertical-align: middle; margin-inline-start: 6px; }
+@media (max-width: 560px) { .ap-facts dl div { grid-template-columns: 1fr; gap: 2px; } }

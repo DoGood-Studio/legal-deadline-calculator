@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+
+- Demo: a page for each of the 90 Turkish acts (`/tr/sureler/<pack>-<act>/`) and a list of all of them, generated from the rule packs by `scripts/build-act-pages.py`: the period and its start, the provision quoted verbatim, two worked examples computed by the engine (one ending in a recess where the pack has one), the act's notices, related acts and a form that opens the calculator with the act and a date. The pages are in the sitemap and CI checks that they match the data.
+
 ## [0.2.0] - 2026-10-20
 
 ### Added

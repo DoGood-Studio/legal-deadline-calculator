@@ -32,10 +32,12 @@ npm ci
 npm test && npm run typecheck && npm run build
 ```
 
-After changing the engine or any data file, regenerate the differential vectors and commit them:
+After changing the engine or any data file, regenerate the differential vectors and the demo's act pages (one page per Turkish act, with worked examples computed by the engine) and commit them:
 
 ```bash
 uv run --project python python scripts/gen_differential.py
+uv run --project python python scripts/build-act-pages.py
+node scripts/build-site-pages.mjs
 ```
 
 To cross-check calendars against python-holidays and the GOV.UK feed:

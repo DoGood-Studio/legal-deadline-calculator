@@ -5,7 +5,7 @@
 //   node scripts/build-site-pages.mjs
 //
 // CI runs it and fails if the result differs from the committed files.
-import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
@@ -59,6 +59,18 @@ const indexPath = join(SITE, "index.html");
 const index = fill(readFileSync(indexPath, "utf8"), null);
 writeFileSync(indexPath, index);
 
+// The Turkish act pages (site/tr/sureler/, written by scripts/build-act-pages.py): the Turkish
+// page links their list in its footer, and every one of them goes into the sitemap.
+const ACTS_DIR = join(SITE, "tr", "sureler");
+const actPages = existsSync(ACTS_DIR)
+  ? readdirSync(ACTS_DIR, { withFileTypes: true }).filter((d) => d.isDirectory()).map((d) => d.name).sort()
+  : [];
+const ACTS_MARK = /^ *<!-- acts-link [^\n]*-->\n/m;
+if (!ACTS_MARK.test(index)) throw new Error("site/index.html has no acts-link marker in its footer");
+const actsLink = actPages.length
+  ? `      <p><a href="sureler/">Türk hukukundaki tüm süreler: ${actPages.length} işlem, kanun metni ve örnek hesapla</a></p>\n`
+  : "";
+
 for (const lang of LANGS) {
   const dir = lang === "ar" ? ' dir="rtl"' : "";
   const page = fill(index, lang)
@@ -68,7 +80,8 @@ for (const lang of LANGS) {
     .replace('href="manifest.webmanifest"', 'href="../manifest.webmanifest"')
     .replace('href="assets/icon-180.png"', 'href="../assets/icon-180.png"')
     .replace('href="opensearch.xml"', 'href="../opensearch.xml"')
-    .replace('src="app.js"', 'src="../app.js"');
+    .replace('src="app.js"', 'src="../app.js"')
+    .replace(ACTS_MARK, lang === "tr" ? actsLink : "");
   mkdirSync(join(SITE, lang), { recursive: true });
   writeFileSync(join(SITE, lang, "index.html"), page);
 }
@@ -76,11 +89,13 @@ for (const lang of LANGS) {
 const links = (indent) =>
   [...LANGS.map((l) => `${indent}<xhtml:link rel="alternate" hreflang="${l}" href="${BASE}${l}/"/>`),
     `${indent}<xhtml:link rel="alternate" hreflang="x-default" href="${BASE}"/>`].join("\n");
-const urls = [BASE, ...LANGS.map((l) => `${BASE}${l}/`)]
-  .map((loc) => `  <url>\n    <loc>${loc}</loc>\n${links("    ")}\n  </url>`)
-  .join("\n");
+const urls = [
+  ...[BASE, ...LANGS.map((l) => `${BASE}${l}/`)].map((loc) => `  <url>\n    <loc>${loc}</loc>\n${links("    ")}\n  </url>`),
+  // Turkish only, so no language alternates.
+  ...(actPages.length ? ["", ...actPages].map((name) => `  <url>\n    <loc>${BASE}tr/sureler/${name ? `${name}/` : ""}</loc>\n  </url>`) : []),
+].join("\n");
 writeFileSync(
   join(SITE, "sitemap.xml"),
   `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">\n${urls}\n</urlset>\n`,
 );
-console.log(`wrote site/index.html head, ${LANGS.length} language pages and site/sitemap.xml`);
+console.log(`wrote site/index.html head, ${LANGS.length} language pages and site/sitemap.xml (with ${actPages.length} act pages)`);

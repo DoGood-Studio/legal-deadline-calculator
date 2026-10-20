@@ -108,8 +108,9 @@ jobs:
           git diff --exit-code vectors/generated/
       - name: Every calendar has verified data for at least six more months
         run: uv run --project python python scripts/check_coverage.py --months 6
-      - name: Demo language pages and sitemap are up to date
+      - name: Demo act pages, language pages and sitemap are up to date
         run: |
+          uv run --project python python scripts/build-act-pages.py
           node scripts/build-site-pages.mjs
           git diff --exit-code site/
           test -z "$(git status --porcelain site/)"
