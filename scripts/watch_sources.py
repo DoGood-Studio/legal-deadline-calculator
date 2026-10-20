@@ -25,6 +25,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import html
+import http.client
 import json
 import math
 import os
@@ -276,7 +277,9 @@ def read_source(src: Source, attempts: int = 2) -> Result:
         except urllib.error.HTTPError as exc:
             if exc.code < 500 or attempt + 1 == attempts:
                 return Result(src, f"HTTP {exc.code}")
-        except (urllib.error.URLError, TimeoutError, OSError, ValueError, KeyError) as exc:
+        # A dropped connection (IncompleteRead) must not stop the whole watch.
+        except (urllib.error.URLError, http.client.HTTPException, TimeoutError, OSError,
+                ValueError, KeyError) as exc:
             if attempt + 1 == attempts:
                 reason = getattr(exc, "reason", exc)
                 name = type(reason).__name__ if isinstance(reason, BaseException) else str(reason)
@@ -329,7 +332,7 @@ def gazette_hits(today: date, days: int = 8) -> list[tuple[str, str, str]]:
             seen.add(index)
             try:
                 markup = decode(*fetch(index, timeout=30))
-            except (urllib.error.URLError, TimeoutError, OSError):
+            except (urllib.error.URLError, http.client.HTTPException, TimeoutError, OSError):
                 continue
             for link, title in gazette_items(index, markup):
                 if re.search(r"/\d{8}M\d+\.htm$", link):
