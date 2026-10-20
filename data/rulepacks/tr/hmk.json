@@ -90,6 +90,26 @@
     }
   },
   "citations": {
+    "hmk_133": { "label": { "en": "HMK Art. 133/1 ile Art. 127", "tr": "HMK m.133/1 ile m.127" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Karşı dava, cevap dilekçesiyle veya esasa cevap süresi içinde ayrı bir dilekçe verilmek suretiyle açılır. […] Cevap dilekçesini verme süresi, dava dilekçesinin davalıya tebliğinden itibaren iki haftadır." } },
+    "hmk_393": { "label": { "en": "HMK Art. 393/1", "tr": "HMK m.393/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "İhtiyati tedbir kararının uygulanması, bu kararın, tedbir isteyen tarafa tefhim veya tebliğinden itibaren bir hafta içinde talep edilmek zorundadır. Aksi hâlde, kanuni süre içinde dava açılmış olsa dahi, tedbir kararı kendiliğinden kalkar." } },
+    "hmk_394_3": { "label": { "en": "HMK Art. 394/3", "tr": "HMK m.394/3" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "İhtiyati tedbir kararının uygulanması sebebiyle menfaati açıkça ihlal edilen üçüncü kişiler de ihtiyati tedbiri öğrenmelerinden itibaren bir hafta içinde ihtiyati tedbirin şartlarına ve teminata itiraz edebilirler." } },
+    "hmk_346": { "label": { "en": "HMK Art. 346/2", "tr": "HMK m.346/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Bu ret kararına karşı tebliği tarihinden itibaren iki hafta içinde istinaf yoluna başvurulabilir." } },
+    "hmk_20": { "label": { "en": "HMK Art. 20/1", "tr": "HMK m.20/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Görevsizlik veya yetkisizlik kararı verilmesi hâlinde, taraflardan birinin, bu karar verildiği anda kesin ise tebliğ tarihinden, […] süresi içinde kanun yoluna başvurulmayarak kesinleşmiş ise kararın kesinleştiği tarihten; kanun yoluna başvurulmuşsa bu başvurunun reddi kararının tebliğ tarihinden itibaren iki hafta içinde kararı veren mahkemeye başvurarak, dava dosyasının görevli ya da yetkili mahkemeye gönderilmesini talep etmesi gerekir." } },
+    "hmk_337": { "label": { "en": "HMK Art. 337/2", "tr": "HMK m.337/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Adli yardım talebinin reddine ilişkin kararlara karşı, tebliğinden itibaren iki hafta içinde kararı veren mahkemeye dilekçe vermek suretiyle itiraz edilebilir." } },
+    "hmk_345": { "label": { "en": "HMK Art. 345", "tr": "HMK m.345" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "İstinaf yoluna başvuru süresi iki haftadır. Bu süre, ilamın usulen taraflardan her birine tebliğiyle işlemeye başlar. İstinaf yoluna başvuru süresine ilişkin özel kanun hükümleri saklıdır." } },
+    "hmk_361": { "label": { "en": "HMK Art. 361/1", "tr": "HMK m.361/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Bölge adliye mahkemesi hukuk dairelerinden verilen temyizi kabil nihai kararlar ile hakem kararlarının iptali talebi üzerine verilen kararlara karşı tebliğ tarihinden itibaren iki hafta içinde temyiz yoluna başvurulabilir." } },
+    "hmk_127": { "label": { "en": "HMK Art. 127", "tr": "HMK m.127" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Cevap dilekçesini verme süresi, dava dilekçesinin davalıya tebliğinden itibaren iki haftadır." } },
+    "hmk_136": { "label": { "en": "HMK Art. 136/1", "tr": "HMK m.136/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Davacı, cevap dilekçesinin kendisine tebliğinden itibaren iki hafta içinde cevaba cevap dilekçesi; davalı da davacının cevabının kendisine tebliğinden itibaren iki hafta içinde ikinci cevap dilekçesi verebilir." } },
+    "hmk_347_2": { "label": { "en": "HMK Art. 347/2", "tr": "HMK m.347/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Karşı taraf, tebliğden itibaren iki hafta içinde cevap dilekçesini kararı veren mahkemeye veya bu mahkemeye gönderilmek üzere başka bir yer mahkemesine verebilir." } },
+    "hmk_348": { "label": { "en": "HMK Art. 348/1 ile Art. 347/2", "tr": "HMK m.348/1 ile m.347/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "İstinaf dilekçesi kendisine tebliğ edilen taraf, başvurma hakkı bulunmasa veya başvuru süresini geçirmiş olsa bile, vereceği cevap dilekçesi ile istinaf yoluna başvurabilir. […] Karşı taraf, tebliğden itibaren iki hafta içinde cevap dilekçesini kararı veren mahkemeye veya bu mahkemeye gönderilmek üzere başka bir yer mahkemesine verebilir." } },
+    "hmk_366": { "label": { "en": "HMK Art. 366 ile Art. 347/2", "tr": "HMK m.366 ile m.347/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Bu Kanunun istinaf yolu ile ilgili 343 ilâ 349 ve 352 nci maddeleri hükümleri, temyizde de kıyas yoluyla uygulanır. […] Karşı taraf, tebliğden itibaren iki hafta içinde cevap dilekçesini kararı veren mahkemeye veya bu mahkemeye gönderilmek üzere başka bir yer mahkemesine verebilir." } },
+    "hmk_281": { "label": { "en": "HMK Art. 281/1", "tr": "HMK m.281/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Taraflar, bilirkişi raporunun, kendilerine tebliği tarihinden itibaren iki hafta içinde, raporda eksik gördükleri hususların, bilirkişiye tamamlattırılmasını; belirsizlik gösteren hususlar hakkında ise bilirkişinin açıklama yapmasının sağlanmasını veya yeni bilirkişi atanmasını mahkemeden talep edebilirler." } },
+    "hmk_394": { "label": { "en": "HMK Art. 394/2", "tr": "HMK m.394/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "İhtiyati tedbirin uygulanması sırasında karşı taraf hazır bulunuyorsa, tedbirin uygulanmasından itibaren; hazır bulunmuyorsa tedbirin uygulanmasına ilişkin tutanağın tebliğinden itibaren bir hafta içinde, ihtiyati tedbirin şartlarına, mahkemenin yetkisine ve teminata ilişkin olarak, kararı veren mahkemeye itiraz edebilir." } },
+    "hmk_397": { "label": { "en": "HMK Art. 397/1", "tr": "HMK m.397/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "İhtiyati tedbir kararı dava açılmasından önce verilmişse, tedbir talep eden, bu kararın uygulanmasını talep ettiği tarihten itibaren iki hafta içinde esas hakkındaki davasını açmak ve dava açtığına ilişkin evrakı, kararı uygulayan memura ibrazla dosyaya koydurtmak ve karşılığında bir belge almak zorundadır. Aksi hâlde tedbir kendiliğinden kalkar." } },
+    "hmk_150": { "label": { "en": "HMK Art. 150/4", "tr": "HMK m.150/4" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Dosyası işlemden kaldırılmış olan dava, işlemden kaldırıldığı tarihten başlayarak üç ay içinde taraflardan birinin dilekçe ile başvurusu üzerine yenilenebilir." } },
+    "hmk_377": { "label": { "en": "HMK Art. 377/1", "tr": "HMK m.377/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Yargılamanın iadesi süresi; […] c) Yeni belgenin elde edildiği veya hilenin farkına varıldığı, […] tarihten itibaren üç ay ve her hâlde iade talebine konu olan hükmün kesinleşmesinden itibaren on yıldır." } },
+    "hmk_96": { "label": { "en": "HMK Art. 96/1", "tr": "HMK m.96/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "Eski hâle getirme, işlemin süresinde yapılamamasına sebep olan engelin ortadan kalkmasından itibaren iki hafta içinde talep edilmelidir." } },
+    "hmk_439": { "label": { "en": "HMK Art. 439/4", "tr": "HMK m.439/4" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6100.pdf", "quote": { "tr": "İptal davası, bir ay içinde açılabilir. Bu süre, hakem kararının veya tavzih, düzeltme ya da tamamlama kararının taraflara bildirildiği tarihten itibaren işlemeye başlar." } },
     "tk_7a": {
       "label": {
         "en": "Notification Law No. 7201, Art. 7/a",
@@ -528,5 +548,213 @@
         "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK, HMK, CMK, İYUK ve İİK'daki taraf ve hâkim süreleri ile arabuluculuk ve uzlaştırma sürelerini 6 Şubat – 6 Nisan 2023 arasında, kural olarak olağanüstü hal ilan edilen illerde yerleşik veya 6 Şubat'ta orada bulunan kişiler için durdurdu; durma bazı yerlerde sonradan uzatıldı. Bu hesap durmayı içermez: uygulanıp uygulanmadığını kontrol edip yeniden hesaplayın."
       }
     }
-  ]
+  ],
+  "acts": {
+    "istinaf": {
+      "label": { "en": "Appeal (istinaf)", "tr": "İstinaf", "de": "Berufung (istinaf)", "fr": "Appel (istinaf)", "es": "Apelación (istinaf)", "it": "Appello (istinaf)", "pt": "Apelação (istinaf)", "nl": "Hoger beroep (istinaf)", "ru": "Апелляция (istinaf)", "ar": "الاستئناف (istinaf)", "zh": "上诉 (istinaf)", "ja": "控訴 (istinaf)" },
+      "trigger": { "tr": "Gerekçeli kararın (ilamın) size tebliğ edildiği tarih", "en": "Date the reasoned judgment was served on you" },
+      "period": "P2W",
+      "cite": "hmk_345",
+      "keywords": { "tr": ["kanun yolu", "bölge adliye", "BAM"], "en": ["appeal"] }
+    },
+    "temyiz": {
+      "label": { "en": "Appeal on points of law (temyiz)", "tr": "Temyiz", "de": "Revision (temyiz)", "fr": "Pourvoi (temyiz)", "es": "Casación (temyiz)", "it": "Ricorso per cassazione (temyiz)", "pt": "Recurso de revista (temyiz)", "nl": "Cassatie (temyiz)", "ru": "Кассация (temyiz)", "ar": "النقض (temyiz)", "zh": "法律审上诉 (temyiz)", "ja": "上告 (temyiz)" },
+      "trigger": { "tr": "Bölge adliye mahkemesi kararının size tebliğ edildiği tarih", "en": "Date the regional court of appeal's decision was served on you" },
+      "period": "P2W",
+      "cite": "hmk_361",
+      "keywords": { "tr": ["kanun yolu", "Yargıtay"], "en": ["appeal on points of law"] },
+      "notice": { "tr": "Temyizin açık olup olmadığını parasal sınır belirler (HMK m.362); hesap bunu denetlemez.", "en": "The monetary limit (HMK Art. 362) decides whether temyiz is open at all; the calculator does not check it." }
+    },
+    "cevap-dilekcesi": {
+      "label": { "en": "Statement of defence (cevap dilekçesi)", "tr": "Cevap dilekçesi", "de": "Klageerwiderung", "fr": "Mémoire en défense", "es": "Contestación a la demanda", "it": "Comparsa di risposta", "pt": "Contestação", "nl": "Conclusie van antwoord", "ru": "Отзыв на иск", "ar": "مذكرة الدفاع", "zh": "答辩状", "ja": "答弁書" },
+      "trigger": { "tr": "Dava dilekçesinin davalıya tebliğ edildiği tarih", "en": "Date the statement of claim was served on the defendant" },
+      "period": "P2W",
+      "cite": "hmk_127",
+      "group": "dava-dilekcesi",
+      "keywords": { "tr": ["savunma", "cevap süresi"], "en": ["answer", "defence"] },
+      "notice": { "tr": "Süre içinde istenirse mahkeme bir defaya mahsus en fazla bir ay ek süre verebilir (HMK m.127). Basit yargılamada da süre iki haftadır, ek süre en fazla iki hafta (m.317/2).", "en": "If asked within the period, the court may extend it once by up to one month (HMK Art. 127). In simple procedure it is also two weeks, extendable by up to two weeks (Art. 317(2))." }
+    },
+    "cevaba-cevap": {
+      "label": { "tr": "Cevaba cevap dilekçesi", "en": "Reply (cevaba cevap dilekçesi)" },
+      "trigger": { "tr": "Cevap dilekçesinin davacıya tebliğ edildiği tarih", "en": "Date the statement of defence was served on the claimant" },
+      "period": "P2W",
+      "cite": "hmk_136",
+      "keywords": { "tr": ["replik"], "en": ["reply"] },
+      "notice": { "tr": "Basit yargılamada cevaba cevap ve ikinci cevap dilekçesi verilmez (HMK m.317/3).", "en": "Not available in simple procedure (HMK Art. 317(3))." },
+      "new": true
+    },
+    "ikinci-cevap": {
+      "label": { "tr": "İkinci cevap dilekçesi", "en": "Rejoinder (ikinci cevap dilekçesi)" },
+      "trigger": { "tr": "Cevaba cevap dilekçesinin davalıya tebliğ edildiği tarih", "en": "Date the reply was served on the defendant" },
+      "period": "P2W",
+      "cite": "hmk_136",
+      "keywords": { "tr": ["düplik"], "en": ["rejoinder"] },
+      "notice": { "tr": "Basit yargılamada cevaba cevap ve ikinci cevap dilekçesi verilmez (HMK m.317/3).", "en": "Not available in simple procedure (HMK Art. 317(3))." },
+      "new": true
+    },
+    "istinaf-dilekcesine-cevap": {
+      "label": { "tr": "İstinaf dilekçesine cevap", "en": "Answer to the appeal (istinaf)" },
+      "trigger": { "tr": "İstinaf dilekçesinin size tebliğ edildiği tarih", "en": "Date the notice of appeal was served on you" },
+      "period": "P2W",
+      "cite": "hmk_347_2",
+      "group": "istinaf-dilekcesi",
+      "keywords": { "tr": ["istinaf cevabı"], "en": ["answer to the appeal"] },
+      "new": true
+    },
+    "katilma-yoluyla-istinaf": {
+      "label": { "tr": "Katılma yoluyla istinaf", "en": "Cross-appeal (katılma yoluyla istinaf)" },
+      "trigger": { "tr": "İstinaf dilekçesinin size tebliğ edildiği tarih", "en": "Date the notice of appeal was served on you" },
+      "period": "P2W",
+      "cite": "hmk_348",
+      "group": "istinaf-dilekcesi",
+      "keywords": { "tr": ["katılma"], "en": ["cross-appeal"] },
+      "notice": { "tr": "Katılma yoluyla istinaf, istinaf dilekçesine verilen cevapla yapılır; asıl istinaf geri alınır veya incelenmeden reddedilirse hükümsüz kalır (HMK m.348).", "en": "Made in the answer to the appeal; it falls if the main appeal is withdrawn or rejected without examination (HMK Art. 348)." },
+      "new": true
+    },
+    "temyiz-dilekcesine-cevap": {
+      "label": { "tr": "Temyiz dilekçesine cevap", "en": "Answer to the appeal on points of law (temyiz)" },
+      "trigger": { "tr": "Temyiz dilekçesinin size tebliğ edildiği tarih", "en": "Date the notice of appeal on points of law was served on you" },
+      "period": "P2W",
+      "cite": "hmk_366",
+      "group": "temyiz-dilekcesi",
+      "keywords": { "tr": ["temyiz cevabı"], "en": ["answer to the appeal"] },
+      "new": true
+    },
+    "katilma-yoluyla-temyiz": {
+      "label": { "tr": "Katılma yoluyla temyiz", "en": "Cross-appeal on points of law (katılma yoluyla temyiz)" },
+      "trigger": { "tr": "Temyiz dilekçesinin size tebliğ edildiği tarih", "en": "Date the notice of appeal on points of law was served on you" },
+      "period": "P2W",
+      "cite": "hmk_366",
+      "group": "temyiz-dilekcesi",
+      "keywords": { "tr": ["katılma"], "en": ["cross-appeal"] },
+      "notice": { "tr": "Temyiz dilekçesine verilen cevapla yapılır; istinafa ilişkin kurallar temyize de uygulanır (HMK m.366 ile m.348).", "en": "Made in the answer to the appeal; the istinaf rules apply to temyiz (HMK Art. 366 with Art. 348)." },
+      "new": true
+    },
+    "bilirkisi-raporuna-itiraz": {
+      "label": { "tr": "Bilirkişi raporuna itiraz", "en": "Objection to the expert report" },
+      "trigger": { "tr": "Bilirkişi raporunun size tebliğ edildiği tarih", "en": "Date the expert report was served on you" },
+      "period": "P2W",
+      "cite": "hmk_281",
+      "keywords": { "tr": ["bilirkişi", "rapor"], "en": ["expert report"] },
+      "notice": { "tr": "Süre içinde istenirse mahkeme en fazla iki hafta ek süre verebilir (HMK m.281/1).", "en": "If asked within the period, the court may grant up to two more weeks (HMK Art. 281(1))." },
+      "new": true
+    },
+    "ihtiyati-tedbire-itiraz": {
+      "label": { "tr": "İhtiyati tedbire itiraz", "en": "Objection to an interim injunction" },
+      "trigger": { "tr": "Tedbirin uygulandığı tarih (uygulamada hazır bulunduysanız) veya uygulama tutanağının size tebliğ edildiği tarih", "en": "Date the injunction was enforced (if you were present) or the enforcement record was served on you" },
+      "period": "P1W",
+      "options": { "judicial_recess": "exempt" },
+      "cite": "hmk_394",
+      "group": "tedbir",
+      "keywords": { "tr": ["tedbir", "itiraz"], "en": ["interim injunction"] },
+      "notice": { "tr": "Karşı taraf dinlenmeden verilen tedbire itiraz içindir (HMK m.394/1); geçici hukuki korumalar adli tatilde de görüldüğünden tatil süreyi uzatmaz (m.103).", "en": "Against injunctions granted without hearing the opponent (HMK Art. 394(1)); interim relief is handled during the recess, so the recess does not extend it (Art. 103)." },
+      "new": true
+    },
+    "ihtiyati-tedbirden-sonra-dava": {
+      "label": { "tr": "İhtiyati tedbirden sonra esas hakkında dava açma", "en": "Filing the main action after a pre-action injunction" },
+      "trigger": { "tr": "Tedbir kararının uygulanmasını talep ettiğiniz tarih", "en": "Date you requested enforcement of the injunction" },
+      "period": "P2W",
+      "options": { "judicial_recess": "exempt" },
+      "cite": "hmk_397",
+      "keywords": { "tr": ["tedbir", "esas dava"], "en": ["main action"] },
+      "notice": { "tr": "Süre, tedbir kararının uygulanmasının istendiği tarihten başlar. Adli tatilin bu süreyi uzatıp uzatmadığını kanun açıkça söylemiyor; hesap uzatmayan, daha erken tarihi gösterir. Arabuluculuk dava şartıysa özel kurallar uygulanır.", "en": "Runs from the request to enforce the injunction. The statute does not say whether the judicial recess extends this period; the result is the earlier date, without an extension. Special rules apply where mediation is a precondition to suing." },
+      "new": true
+    },
+    "dosyanin-yenilenmesi": {
+      "label": { "tr": "Dosyanın yenilenmesi", "en": "Reinstating a case removed from the list" },
+      "trigger": { "tr": "Dosyanın işlemden kaldırıldığı tarih", "en": "Date the case was removed from the list (işlemden kaldırma)" },
+      "period": "P3M",
+      "options": { "judicial_recess": "exempt" },
+      "cite": "hmk_150",
+      "keywords": { "tr": ["işlemden kaldırma", "yenileme"], "en": ["renewal"] },
+      "notice": { "tr": "Üç ay içinde yenilenmeyen dava açılmamış sayılır (HMK m.150/5). Adli tatilin bu süreyi uzatıp uzatmadığını kanun açıkça söylemiyor; hesap uzatmayan, daha erken tarihi gösterir.", "en": "A case not renewed within three months is deemed not filed (HMK Art. 150(5)). The statute does not say whether the judicial recess extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "yargilamanin-iadesi": {
+      "label": { "tr": "Yargılamanın iadesi", "en": "Retrial (yargılamanın iadesi)" },
+      "trigger": { "tr": "Dayanılan iade sebebine göre m.377/1'de sayılan tarih (ör. yeni belgenin elde edildiği veya hilenin farkına varıldığı tarih)", "en": "The date HMK m.377/1 sets for your ground (e.g. the date the new document was obtained or the fraud discovered)" },
+      "period": "P3M",
+      "cite": "hmk_377",
+      "keywords": { "tr": ["iade"], "en": ["retrial"] },
+      "notice": { "tr": "Süre, dayanılan iade sebebine göre HMK m.377/1'de sayılan olaydan başlar. Kesinleşmeden itibaren on yıllık üst sınır hesaplanmaz.", "en": "The period runs from the event that HMK Art. 377(1) names for the ground relied on. The ten-year outer limit from finality is not computed." },
+      "new": true
+    },
+    "eski-hale-getirme": {
+      "label": { "tr": "Eski hale getirme", "en": "Restoration of a missed period (eski hâle getirme)" },
+      "trigger": { "tr": "Süreyi kaçırmanıza neden olan engelin ortadan kalktığı tarih", "en": "Date the obstacle that caused you to miss the period ended" },
+      "period": "P2W",
+      "cite": "hmk_96",
+      "keywords": { "tr": ["eski hâle getirme", "mazeret"], "en": ["restoration"] },
+      "notice": { "tr": "Yapılamayan işlem de aynı süre içinde yapılmalıdır (HMK m.97/1).", "en": "The missed act must be done within the same period (HMK Art. 97(1))." },
+      "new": true
+    },
+    "hakem-kararina-karsi-iptal-davasi": {
+      "label": { "tr": "Hakem kararına karşı iptal davası", "en": "Action to set aside an arbitral award" },
+      "trigger": { "tr": "Hakem kararının (veya tavzih, düzeltme ya da tamamlama kararının) size bildirildiği tarih", "en": "Date the award (or its interpretation, correction or completion) was notified to you" },
+      "period": "P1M",
+      "options": { "judicial_recess": "exempt" },
+      "cite": "hmk_439",
+      "keywords": { "tr": ["tahkim", "hakem"], "en": ["arbitral award"] },
+      "notice": { "tr": "HMK'ya tabi iç tahkim içindir; milletlerarası tahkimde 4686 sayılı Kanun uygulanır. Tahkim işleri adli tatilde de görülür (HMK m.103).", "en": "Domestic arbitration under the HMK only; international arbitration falls under Law No. 4686. Arbitration matters are handled during the recess (HMK Art. 103)." },
+      "new": true
+    },
+    "karsi-dava": {
+      "label": { "tr": "Karşı dava", "en": "Counterclaim (karşı dava)" },
+      "trigger": { "tr": "Dava dilekçesinin davalıya tebliğ edildiği tarih", "en": "Date the statement of claim was served on the defendant" },
+      "period": "P2W",
+      "cite": "hmk_133",
+      "group": "dava-dilekcesi",
+      "keywords": { "tr": ["karşı dava"], "en": ["counterclaim"] },
+      "notice": { "tr": "Mahkeme cevap süresini uzattıysa karşı dava uzatılan süre içinde de açılabilir; süresinden sonra açılan karşı dava asıl davadan ayrılır (HMK m.133).", "en": "If the court extended the answer period, the counterclaim may be filed within it; a late counterclaim is severed from the main action (HMK Art. 133)." },
+      "new": true
+    },
+    "ihtiyati-tedbirin-uygulanmasini-isteme": {
+      "label": { "tr": "İhtiyati tedbirin uygulanmasını isteme", "en": "Request to enforce an interim injunction" },
+      "trigger": { "tr": "İhtiyati tedbir kararının size (tedbir isteyene) tefhim veya tebliğ edildiği tarih", "en": "Date the injunction was pronounced to or served on you (the applicant)" },
+      "period": "P1W",
+      "options": { "judicial_recess": "exempt" },
+      "cite": "hmk_393",
+      "group": "tedbir",
+      "keywords": { "tr": ["tedbir", "uygulama"], "en": ["enforce the injunction"] },
+      "notice": { "tr": "Süresinde istenmezse tedbir kendiliğinden kalkar (HMK m.393/1). Geçici hukuki korumalar adli tatilde de görüldüğünden tatil bu süreyi uzatmaz (HMK m.103).", "en": "If enforcement is not requested in time the injunction lapses (HMK Art. 393(1)). Interim relief is handled during the judicial recess, so the recess does not extend this period (HMK Art. 103)." },
+      "new": true
+    },
+    "ihtiyati-tedbire-itiraz-ucuncu-kisi": {
+      "label": { "tr": "İhtiyati tedbire üçüncü kişi itirazı", "en": "Third-party objection to an interim injunction" },
+      "trigger": { "tr": "Tedbiri öğrendiğiniz tarih", "en": "Date you learned of the injunction" },
+      "period": "P1W",
+      "options": { "judicial_recess": "exempt" },
+      "cite": "hmk_394_3",
+      "keywords": { "tr": ["tedbir", "üçüncü kişi"], "en": ["third party"] },
+      "notice": { "tr": "Süre tedbirin öğrenildiği günden başlar; ispatlanabilecek en erken öğrenme tarihini girin. Geçici hukuki korumalar adli tatilde de görüldüğünden tatil bu süreyi uzatmaz (HMK m.103).", "en": "Runs from the day you learned of the injunction; enter the earliest date that can be shown. Interim relief is handled during the judicial recess, so the recess does not extend this period (HMK Art. 103)." },
+      "new": true
+    },
+    "istinaf-dilekcesinin-reddine-karsi-istinaf": {
+      "label": { "tr": "İstinaf dilekçesinin reddi kararına karşı istinaf", "en": "Appeal against rejection of the notice of appeal" },
+      "trigger": { "tr": "İstinaf dilekçesinin reddi kararının size tebliğ edildiği tarih", "en": "Date the decision rejecting your notice of appeal was served on you" },
+      "period": "P2W",
+      "cite": "hmk_346",
+      "keywords": { "tr": ["istinaf", "ret"], "en": ["rejection of the appeal petition"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre bir haftaydı.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was one week." },
+      "new": true
+    },
+    "dosyanin-gonderilmesi-talebi": {
+      "label": { "tr": "Görevsizlik veya yetkisizlik kararından sonra dosyanın gönderilmesini isteme", "en": "Request to transfer the file after a decision declining jurisdiction" },
+      "trigger": { "tr": "Kararın kesinleştiği tarih (karar verildiğinde kesinse tebliğ tarihi; kanun yoluna başvuru reddedildiyse ret kararının tebliğ tarihi)", "en": "Date the decision became final (if final when given: date of service; if a legal remedy was rejected: date the rejection was served)" },
+      "period": "P2W",
+      "cite": "hmk_20",
+      "keywords": { "tr": ["görevsizlik", "yetkisizlik"], "en": ["lack of jurisdiction"] },
+      "notice": { "tr": "Süresinde başvurulmazsa dava açılmamış sayılır (HMK m.20/1). Kararın nasıl kesinleştiğine uyan tarihi girin.", "en": "Without an application in time the action is deemed not filed (HMK Art. 20(1)). Enter the date matching how the decision became final." },
+      "new": true
+    },
+    "adli-yardim-reddine-itiraz": {
+      "label": { "tr": "Adli yardım talebinin reddine itiraz", "en": "Objection to refusal of legal aid" },
+      "trigger": { "tr": "Adli yardım talebini reddeden kararın size tebliğ edildiği tarih", "en": "Date the decision refusing legal aid was served on you" },
+      "period": "P2W",
+      "cite": "hmk_337",
+      "keywords": { "tr": ["adli yardım"], "en": ["legal aid"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda bir hafta içinde itiraz edin.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions object within one week." },
+      "new": true
+    }
+  }
 }

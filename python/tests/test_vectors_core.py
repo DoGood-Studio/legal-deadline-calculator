@@ -19,6 +19,7 @@ DL_VECTORS = load_vectors("core/deadline.json")
 ERRORS = {
     "CoverageError": lexdays.CoverageError,
     "DataError": lexdays.DataError,
+    "NotFoundError": lexdays.NotFoundError,
     "OptionError": lexdays.OptionError,
     "ValueError": ValueError,
     "TypeError": TypeError,
@@ -85,8 +86,9 @@ def _run_deadline_case(case: dict[str, Any]) -> lexdays.DeadlineResult:
     pack = _pack(case)
     return pack.compute(
         case["trigger"],
-        case["period"],
-        direction=case.get("direction", "after"),
+        case.get("period"),
+        act=case.get("act"),
+        direction=case.get("direction"),
         options=case.get("options"),
     )
 
@@ -106,6 +108,13 @@ def test_deadline_vector(case: dict[str, Any]) -> None:
         assert [s.changed for s in result.trace] == expect["changed"]
     if "ends_at" in expect:
         assert result.ends_at == expect["ends_at"]
+    if "period" in expect:
+        assert str(result.period) == expect["period"]
+    if "act_cite" in expect:
+        assert result.act_citation is not None
+        assert result.act_citation.id == expect["act_cite"]
+    for name, value in expect.get("options", {}).items():
+        assert result.options[name] == value
     assert [n.code for n in result.notices] == expect.get("notices", [])
     # Every message must be fully rendered in every language.
     for step in result.trace:

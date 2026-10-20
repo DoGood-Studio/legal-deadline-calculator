@@ -12,6 +12,8 @@
     { "id": "cj-publication-ignores-ecuria-option", "pack": "eu/cj", "trigger": "2026-03-30", "period": "P2M", "options": { "start": "oj_publication", "service": "ecuria_not_opened" }, "expect": { "deadline": "2026-06-24", "notices": ["publication-and-service"] }, "source": "RP CJ Art. 50 (a time limit running from publication does not depend on service)" },
     { "id": "cj-distance-extension-excluded", "pack": "eu/cj", "trigger": "2026-03-02", "period": "P2M", "options": { "distance_extension": "excluded" }, "expect": { "deadline": "2026-05-04" }, "source": "RP CJ Art. 206(2) / RPGC Art. 86(1) (Art. 51 / Art. 60 do not apply); 2.5.2026 is a Saturday" },
     { "id": "cj-2027-from-latest-list", "pack": "eu/cj", "trigger": "2026-10-25", "period": "P2M", "expect": { "deadline": "2027-01-04" }, "source": "List C/2026/1114 (1.11.2026–31.10.2027); RP CJ Arts. 49–51: 25.12.2026 + 10 days = Monday 4.1.2027" },
-    { "id": "cj-after-latest-list", "pack": "eu/cj", "trigger": "2027-08-20", "period": "P2M", "error": "CoverageError" }
+    { "id": "cj-after-latest-list", "pack": "eu/cj", "trigger": "2027-08-20", "period": "P2M", "error": "CoverageError" },
+    {"id": "cj-act-annulment-two-months-plus-distance", "pack": "eu/cj", "trigger": "2026-03-02", "act": "annulment", "expect": {"deadline": "2026-05-12", "act_cite": "tfeu_263_6", "notices": ["act-notice"]}, "source": "TFEU Art. 263(6); RP Art. 49 and 51: 2 May 2026 plus 10 days"},
+    {"id": "cj-act-appeal-two-months-plus-distance", "pack": "eu/cj", "trigger": "2026-03-02", "act": "appeal", "expect": {"deadline": "2026-05-12", "act_cite": "statute_56", "notices": []}, "source": "Statute Art. 56; RP Art. 49 and 51"}
   ]
 }

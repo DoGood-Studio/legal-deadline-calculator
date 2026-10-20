@@ -28,4 +28,4 @@ class OptionError(LexdaysError, ValueError):
 
 
 class NotFoundError(LexdaysError, LookupError):
-    """No bundled calendar or rule pack has the requested id."""
+    """No bundled calendar, rule pack or act has the requested id."""

@@ -11,6 +11,7 @@ import {
   CoverageError,
   DataError,
   InputError,
+  NotFoundError,
   listCalendars,
   listRulepacks,
   OptionError,
@@ -21,6 +22,7 @@ const root = join(dirname(fileURLToPath(import.meta.url)), "..", "..", "vectors"
 const ERRORS: Record<string, readonly (new (...args: never[]) => Error)[]> = {
   CoverageError: [CoverageError],
   DataError: [DataError],
+  NotFoundError: [NotFoundError],
   OptionError: [OptionError],
   ValueError: [InputError, DataError, CoverageError, OptionError],
 };
@@ -85,7 +87,7 @@ describe("bundled deadline vectors", () => {
   for (const c of collect("deadline")) {
     it(`${c._file}:${c.id}`, () => {
       const run = () =>
-        compute(c.pack, c.trigger, c.period, { direction: c.direction ?? "after", options: c.options, calendar: c.calendar });
+        compute(c.pack, c.trigger, c.period ?? null, { act: c.act, direction: c.direction, options: c.options, calendar: c.calendar });
       if (c.error) return expectError(run, c.error);
       const result = run();
       const e = c.expect;
@@ -93,8 +95,27 @@ describe("bundled deadline vectors", () => {
       if (e.steps) expect(result.trace.map((s) => s.step)).toEqual(e.steps);
       if ("ends_at" in e) expect(result.endsAt).toBe(e.ends_at);
       if (e.notices) expect(result.notices.map((n) => n.code)).toEqual(e.notices);
+      if (e.period) expect(String(result.period)).toBe(e.period);
+      if (e.act_cite) expect(result.actCitation?.id).toBe(e.act_cite);
       for (const s of result.trace) for (const lang of languages()) expect(s.message[lang]).not.toMatch(/\{\w+\}/);
     });
+  }
+});
+
+it("every bundled act has a deadline vector", () => {
+  const covered = new Set(collect("deadline").filter((c) => c.act && !c.error).map((c) => `${c.pack}:${c.act}`));
+  const missing = listRulepacks().flatMap((id) => Object.keys(rulepack(id).acts).map((a) => `${id}:${a}`)).filter((k) => !covered.has(k));
+  expect(missing).toEqual([]);
+});
+
+it("every bundled act cites its source with a quote", () => {
+  for (const id of listRulepacks()) {
+    for (const act of Object.values(rulepack(id).acts)) {
+      for (const citation of [act.citation, ...act.earlier.map((v) => v.citation)]) {
+        expect(citation.url, `${id}:${act.id} ${citation.id}`).toBeTruthy();
+        expect(citation.quote, `${id}:${act.id} ${citation.id}`).toBeTruthy();
+      }
+    }
   }
 });
 

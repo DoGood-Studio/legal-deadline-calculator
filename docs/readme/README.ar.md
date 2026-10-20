@@ -62,6 +62,7 @@ npm install lexdays        # Node 18+، المتصفحات، Deno، Bun
 import lexdays
 
 r = lexdays.compute("us/frcp", "2025-07-31", "P30D")   # محكمة فدرالية أمريكية: 30 يومًا
+answer = lexdays.compute("us/frcp", "2025-07-31", act="answer")   # بالاسم: الرد على الدعوى خلال 21 يومًا (FRCP 12)
 # السبت 30 أغسطس ثم عيد العمال: يُرحَّل إلى الثلاثاء
 r.deadline              # datetime.date(2025, 9, 2)
 print(r.explain("ar"))  # كل خطوة مع مصدرها
@@ -85,6 +86,7 @@ r.explain("ar");     // الخطوات مشروحة بالعربية
 
 ```bash
 lexdays deadline us/frcp 2025-07-31 P30D --lang ar
+lexdays acts us/frcp --lang ar
 ```
 
 </details>

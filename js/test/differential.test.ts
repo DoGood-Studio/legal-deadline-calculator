@@ -30,7 +30,7 @@ describe("Python ↔ TypeScript differential", () => {
     for (const c of doc.deadlines) {
       let got: string;
       try {
-        const result = compute(c.pack, c.trigger, c.period, { direction: c.direction, options: c.options, calendar: c.calendar });
+        const result = compute(c.pack, c.trigger, c.period ?? null, { act: c.act, direction: c.direction, options: c.options, calendar: c.calendar });
         const { version: _, ...data } = result.toJSON();
         got = `${result.deadline} ${sha256(canonical(data))}`;
       } catch (err) {

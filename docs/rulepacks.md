@@ -93,6 +93,37 @@ Callers pass options as `compute(..., options={"filing": "physical"})`. Unknown 
 
 Statute texts are generally not protected by copyright. Quote them verbatim and keep decision quotes short.
 
+## Acts
+
+Acts are the named steps people look for: an appeal, a reply, an objection to a payment order. Each one fixes the period, the direction and the options the act implies, so a user only gives the date:
+
+```json
+"acts": {
+  "istinaf": {
+    "label": { "en": "Appeal (istinaf)", "tr": "İstinaf" },
+    "trigger": { "en": "Date the judgment was served", "tr": "Kararın tebliğ tarihi" },
+    "period": "P2W",
+    "cite": "hmk_345",
+    "group": "karar",
+    "keywords": { "tr": ["kanun yolu", "bölge adliye"] }
+  }
+}
+```
+
+```python
+lexdays.compute("tr/hmk", "2026-10-20", act="istinaf")
+```
+
+- `trigger` is the date the user enters, worded as precisely as the statute (service, pronouncement, knowledge).
+- `cite` must name a citation with a `url` and a verbatim `quote` of the provision that sets the period; the weekly source watch checks the quote, and a test fails without them.
+- `direction` (default `after`) and `options` are what the act implies. A caller who passes a different value for one of them gets an error rather than a silently different deadline.
+- `group` joins acts that run from the same event; the demo lists them together.
+- `earlier` keeps periods a later law changed, in date order: `[{"before": "2024-03-12", "period": "P7D", "cite": "law_7499_..."}]` applies to triggers before 12 March 2024.
+- `new: true` marks recently added acts; the demo shows "new, check the provision" next to them.
+- `notice` is a caveat shown with every result for the act, e.g. a transitional rule or a second reading of the start date.
+
+Only add an act whose period, start and provision the statute states itself. Every act needs at least one deadline vector (`"act": "istinaf"` instead of `"period"`); a test fails otherwise.
+
 ## Messages
 
 Default explanation templates live in [`data/i18n/messages.json`](../data/i18n/messages.json) and are shared by both implementations. Placeholders such as `{from}`, `{to}`, `{n}`, `{days}`, `{recess}`, `{reason}` and `{time}` are filled in per step. A test checks that no placeholder is left unfilled in any language.
@@ -108,4 +139,4 @@ Add cases to `vectors/<country>/deadline.json`:
   "source": "Yargıtay 2. HD E.2019/2507 K.2019/8376" }
 ```
 
-Optional fields are `direction`, `options` and `calendar`. Under `expect` you can also check `steps`, `changed`, `ends_at` and `notices`. Both test-suites pick the file up automatically.
+Optional fields are `direction`, `options`, `calendar` and `act` (instead of `period`). Under `expect` you can also check `steps`, `changed`, `ends_at`, `notices`, `period` and `act_cite` (the citation of the act's version in force). Both test-suites pick the file up automatically.

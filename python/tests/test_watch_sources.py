@@ -7,6 +7,7 @@ and the accepted state follow each other.
 
 from __future__ import annotations
 
+import http.client
 import importlib.util
 import io
 import json
@@ -116,6 +117,12 @@ def test_read_source_reports_quote_shares_and_failures(monkeypatch: pytest.Monke
 
     monkeypatch.setattr(ws, "fetch", not_found)
     assert ws.read_source(ws.Source("https://law.test")).status == "HTTP 404"
+
+    def dropped(url: str, timeout: int = 60) -> tuple[bytes, str]:
+        raise http.client.IncompleteRead(b"partial")
+
+    monkeypatch.setattr(ws, "fetch", dropped)
+    assert ws.read_source(ws.Source("https://law.test")).status == "not reachable (IncompleteRead)"
 
     monkeypatch.setattr(ws, "fetch", lambda url, timeout=60: (b"<p>Needs a browser.</p>", "text/html"))
     assert ws.read_source(ws.Source("https://law.test")).status.startswith("no readable text")

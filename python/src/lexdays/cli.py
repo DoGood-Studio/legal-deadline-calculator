@@ -1,4 +1,5 @@
-"""Command line interface: ``lexdays deadline tr/hmk 2026-07-10 P2W --lang tr``."""
+"""Command line interface: ``lexdays deadline tr/hmk 2026-07-10 P2W --lang tr`` or, naming an
+act instead of a period, ``lexdays deadline tr/hmk 2026-07-10 --act istinaf``."""
 
 from __future__ import annotations
 
@@ -11,7 +12,7 @@ from typing import Any
 
 from . import __version__
 from ._calendar import calendar, list_calendars
-from ._i18n import format_date, languages, render
+from ._i18n import format_date, languages, pick, render
 from ._rules import compute, list_rulepacks, rulepack
 from .errors import LexdaysError
 
@@ -40,7 +41,8 @@ def _cmd_deadline(args: argparse.Namespace) -> None:
         args.pack,
         args.trigger,
         args.period,
-        direction="before" if args.before else "after",
+        act=args.act,
+        direction="before" if args.before else None,
         options=dict(args.option or []),
         calendar=args.calendar,
     )
@@ -94,6 +96,22 @@ def _cmd_list(args: argparse.Namespace) -> None:
     _print(data, args.json, text)
 
 
+def _cmd_acts(args: argparse.Namespace) -> None:
+    prefix = args.prefix or ""
+    acts = [
+        act
+        for pid in list_rulepacks()
+        if pid == prefix or pid.startswith(prefix.rstrip("/") + "/") or not prefix
+        for act in rulepack(pid).acts.values()
+    ]
+    lines = [
+        f"{a.rulepack:<12} {a.id:<28} {pick(a.label, args.lang)}"
+        f" ({a.period}, {pick(a.citation.label, args.lang)})"
+        for a in acts
+    ]
+    _print([a.to_dict() for a in acts], args.json, "\n".join(lines) or "no acts")
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="lexdays", description="Explainable legal deadlines and business days."
@@ -107,7 +125,8 @@ def build_parser() -> argparse.ArgumentParser:
     p = sub.add_parser("deadline", parents=[common], help="compute a legal deadline")
     p.add_argument("pack", help="rule pack id, e.g. tr/hmk")
     p.add_argument("trigger", help="trigger date YYYY-MM-DD (e.g. date of service)")
-    p.add_argument("period", help="period: P10D, 2w, 1m, 5bd ...")
+    p.add_argument("period", nargs="?", help="period: P10D, 2w, 1m, 5bd ... (or use --act)")
+    p.add_argument("--act", metavar="NAME", help="one of the pack's acts instead of a period, e.g. istinaf")
     p.add_argument("--before", action="store_true", help="count backwards from the trigger")
     p.add_argument("--calendar", metavar="ID", help="calendar of the court's seat, e.g. de-by-catholic")
     p.add_argument("-o", "--option", type=_option, action="append", metavar="KEY=VALUE")
@@ -138,6 +157,10 @@ def build_parser() -> argparse.ArgumentParser:
 
     p = sub.add_parser("list", parents=[common], help="list bundled calendars and rule packs")
     p.set_defaults(func=_cmd_list)
+
+    p = sub.add_parser("acts", parents=[common], help="list the named acts (e.g. appeals) of the rule packs")
+    p.add_argument("prefix", nargs="?", help="a rule pack or country, e.g. tr/hmk or tr")
+    p.set_defaults(func=_cmd_acts)
     return parser
 
 

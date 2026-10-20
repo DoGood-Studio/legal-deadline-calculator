@@ -16,6 +16,7 @@ from .conftest import VECTORS, load_vectors
 ERRORS = {
     "CoverageError": lexdays.CoverageError,
     "DataError": lexdays.DataError,
+    "NotFoundError": lexdays.NotFoundError,
     "OptionError": lexdays.OptionError,
     "ValueError": ValueError,
 }
@@ -75,8 +76,9 @@ def test_bundled_deadline_vector(case: dict[str, Any]) -> None:
     run = lambda: lexdays.compute(  # noqa: E731
         case["pack"],
         case["trigger"],
-        case["period"],
-        direction=case.get("direction", "after"),
+        case.get("period"),
+        act=case.get("act"),
+        direction=case.get("direction"),
         options=case.get("options"),
         calendar=case.get("calendar"),
     )
@@ -93,9 +95,34 @@ def test_bundled_deadline_vector(case: dict[str, Any]) -> None:
         assert result.ends_at == expect["ends_at"]
     if "notices" in expect:
         assert [n.code for n in result.notices] == expect["notices"]
+    if "period" in expect:
+        assert str(result.period) == expect["period"]
+    if "act_cite" in expect:
+        assert result.act_citation is not None
+        assert result.act_citation.id == expect["act_cite"]
     for step in result.trace:
         for lang in lexdays._i18n.languages():
             assert not re.search(r"\{\w+\}", step.message[lang])
+
+
+def test_every_bundled_act_has_a_vector() -> None:
+    covered = {(c["pack"], c["act"]) for c in DL_CASES if "act" in c and "error" not in c}
+    missing = [
+        f"{pid}:{act_id}"
+        for pid in lexdays.list_rulepacks()
+        for act_id in lexdays.rulepack(pid).acts
+        if (pid, act_id) not in covered
+    ]
+    assert not missing, f"acts without a deadline vector: {missing}"
+
+
+def test_every_bundled_act_cites_its_source_with_a_quote() -> None:
+    for pid in lexdays.list_rulepacks():
+        for act in lexdays.rulepack(pid).acts.values():
+            for citation in (act.citation, *(v.citation for v in act.earlier)):
+                where = f"{pid}:{act.id} cites {citation.id}"
+                assert citation.url, f"{where} without a url"
+                assert citation.quote, f"{where} without a quote"
 
 
 def test_every_bundled_pack_and_calendar_loads() -> None:

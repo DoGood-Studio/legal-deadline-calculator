@@ -45,7 +45,39 @@
         "properties": { "label": { "$ref": "#/$defs/localized" }, "url": { "type": "string" }, "quote": { "$ref": "#/$defs/localized" } }
       }
     },
-    "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/step" } }
+    "steps": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/step" } },
+    "acts": {
+      "type": "object",
+      "description": "Named procedural acts (e.g. an appeal) with their statutory time limit. compute(pack, trigger, act=id) takes the period, direction and implied options from here.",
+      "propertyNames": { "pattern": "^[a-z0-9][a-z0-9-]*$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["label", "trigger", "period", "cite"],
+        "properties": {
+          "label": { "$ref": "#/$defs/localized" },
+          "trigger": { "$ref": "#/$defs/localized", "description": "The date the user enters, e.g. 'Date the judgment was served'." },
+          "period": { "type": "string", "description": "A period as compute() accepts it: 'P2W', 'P1M', 'P60D', '10bd'." },
+          "direction": { "enum": ["after", "before"], "default": "after" },
+          "options": { "type": "object", "description": "Option values the act implies; passing a different value is an OptionError." },
+          "cite": { "type": "string", "description": "Id of the citation (with url and quote) that fixes the period." },
+          "group": { "type": "string", "minLength": 1, "description": "Acts that run from the same event share a group." },
+          "keywords": { "type": "object", "additionalProperties": { "type": "array", "items": { "type": "string", "minLength": 1 } } },
+          "earlier": {
+            "type": "array",
+            "description": "Earlier versions of the period, in order of 'before'; used when the trigger is before that date.",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["before", "period", "cite"],
+              "properties": { "before": { "type": "string", "format": "date" }, "period": { "type": "string" }, "cite": { "type": "string" } }
+            }
+          },
+          "new": { "type": "boolean", "description": "Recently added; shown with a 'new, check the article' note." },
+          "notice": { "$ref": "#/$defs/localized", "description": "A caveat shown with every result for this act, e.g. a transitional rule." }
+        }
+      }
+    }
   },
   "$defs": {
     "localized": { "type": "object", "minProperties": 1, "additionalProperties": { "type": "string", "minLength": 1 } },

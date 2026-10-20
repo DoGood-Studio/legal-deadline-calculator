@@ -35,6 +35,15 @@
     }
   },
   "citations": {
+    "vuk_370": { "label": { "en": "VUK Art. 370/a", "tr": "VUK m.370/a" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "İzaha davet yazısının tebliğ tarihinden itibaren otuz günlük süre içerisinde izahta bulunulması durumunda, yapılan izah değerlendirilerek değerlendirme sonucunu içeren yazı mükellefe tebliğ edilir." } },
+    "vuk_370_2": { "label": { "en": "VUK Art. 370/a-2", "tr": "VUK m.370/a-2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Mükelleflerce yapılan izahın yeterli bulunmaması hâlinde, değerlendirme sonucunu içeren yazının tebliğ edildiği tarihten itibaren otuz gün içerisinde;" } },
+    "vuk_376": { "label": { "en": "VUK Art. 376/1", "tr": "VUK m.376/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "İkmalen, resen veya idarece tarh edilen vergiyi veya vergi farkını ve vergi ziyaı, usulsüzlük ve özel usulsüzlük cezalarının yarısını ihbarnamelerin tebliğ tarihinden itibaren otuz gün içinde ilgili vergi dairesine başvurarak vadesinde veya 6183 sayılı Kanunda belirtilen türden teminat göstererek vadenin bitmesinden itibaren üç ay içinde ödeyeceğini bildirirse kesilen cezanın yarısı," } },
+    "vuk_368_1": { "label": { "en": "VUK Art. 368/1", "tr": "VUK m.368/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Cezaya karşı vergi mahkemesinde dava açılmamışsa dava açma süresinin bittiği tarihten; […] Başlayarak bir ay içinde ödenir." } },
+    "vuk_368_2": { "label": { "en": "VUK Art. 368/2", "tr": "VUK m.368/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Cezaya karşı dava açılmışsa, vergi mahkemesi kararı üzerine vergi dairesince düzenlenecek ihbarnamenin ilgiliye tebliğ tarihinden: […] Başlayarak bir ay içinde ödenir." } },
+    "vuk_112": { "label": { "en": "VUK Art. 112/1", "tr": "VUK m.112/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "İkmalen, re'sen veya idarece tarh olunan vergiler taksit zamanlarından evvel tahakkuk etmişse taksit süreleri içinde; taksit süreleri kısmen veya tamamen geçtikten sonra tahakkuk etmişse; geçmiş taksitler, tahakkuk tarihinden başlayarak bir ay içinde ödenir." } },
+    "vuk_120": { "label": { "en": "VUK Art. 120/1", "tr": "VUK m.120/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Mükellef tebliğ tarihinden başlıyarak bir yıl içinde parasını geri almak üzere müracaat etmediği takdirde hakkı sakıt olur." } },
+    "vuk_371": { "label": { "en": "VUK Art. 371/1-3, 4, 5", "tr": "VUK m.371/1-3, 4, 5" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Hiç verilmemiş olan vergi beyannamelerinin mükellefin haber verme dilekçesinin verildiği tarihten başlayarak onbeş gün içinde tevdi olunması. […] Eksik veya yanlış yapılan vergi beyanının mükellefin keyfiyeti haber verme tarihinden başlayarak onbeş gün içinde tamamlanması veya düzeltilmesi. […] haber verme tarihinden başlayarak onbeş gün içinde ödenmesi." } },
+    "vuk_ek_1": { "label": { "en": "VUK add. Art. 1/1", "tr": "VUK ek m.1/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Uzlaşma talebi vergi ihbarnemesinin tebliğ tarihinden itibaren otuz gün içinde yapılır." } },
     "vuk_107a": {
       "label": { "en": "VUK Art. 107/A", "tr": "VUK m.107/A" },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf",
@@ -191,5 +200,89 @@
         "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK ve ilgili kararlarla olağanüstü hal ilan edilen illerdeki kişiler için bazı süreler durduruldu (6 Şubat – 6 Nisan 2023, bazı yerlerde uzatıldı). Bu hesap bunu içermez; bu süreye uygulanıp uygulanmadığını kontrol edin."
       }
     }
-  ]
+  ],
+  "acts": {
+    "pismanlik": {
+      "label": { "tr": "Pişmanlık ve ıslah (beyan ve ödeme)", "en": "Voluntary disclosure (pişmanlık): filing and payment" },
+      "trigger": { "tr": "Pişmanlık dilekçesini verdiğiniz (haber verme) tarih", "en": "Date you filed the voluntary-disclosure petition" },
+      "period": "P15D",
+      "cite": "vuk_371",
+      "keywords": { "tr": ["pişmanlık", "ıslah"], "en": ["voluntary disclosure"] },
+      "notice": { "tr": "Beyan ve ödeme aynı on beş gün içinde yapılır; inceleme başlamışsa veya ihbar varsa pişmanlık hükümleri uygulanmaz. 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "Filing and payment share the same fifteen days; not available once an audit has started or after an informer report. The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "uzlasma-talebi": {
+      "label": { "tr": "Uzlaşma talebi (tarhiyat sonrası)", "en": "Request for settlement after assessment (uzlaşma)" },
+      "trigger": { "tr": "Vergi/ceza ihbarnamesinin size tebliğ edildiği tarih", "en": "Date the tax or penalty notice was served on you" },
+      "period": "P30D",
+      "cite": "vuk_ek_1",
+      "keywords": { "tr": ["uzlaşma", "ihbarname"], "en": ["settlement"] },
+      "notice": { "tr": "Uzlaşma talebi ile ceza indirimi (m.376) birbirini dışlar. Uzlaşma sağlanamazsa dava süresi tutanağın tebliğinden en az on beş gündür (VUK ek m.7). 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "A settlement request and the penalty reduction (Art. 376) exclude each other. If it fails, the action period is at least fifteen days from service of the minutes (VUK add. Art. 7). The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "izaha-davet": {
+      "label": { "tr": "İzaha davete cevap (izah)", "en": "Reply to an invitation to explain (izaha davet)" },
+      "trigger": { "tr": "İzaha davet yazısının size tebliğ edildiği tarih", "en": "Date the invitation to explain was served on you" },
+      "period": "P30D",
+      "cite": "vuk_370",
+      "keywords": { "tr": ["izah"], "en": ["explanation"] },
+      "notice": { "tr": "1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "izahin-yetersizligi-uzerine-beyan-ve-odeme": {
+      "label": { "tr": "İzahın yetersiz bulunması üzerine beyan ve ödeme", "en": "Filing and payment after the explanation was found insufficient" },
+      "trigger": { "tr": "Değerlendirme sonucunu içeren yazının size tebliğ edildiği tarih", "en": "Date the evaluation letter was served on you" },
+      "period": "P30D",
+      "cite": "vuk_370_2",
+      "keywords": { "tr": ["izah"], "en": ["explanation"] },
+      "notice": { "tr": "Bu süre içinde beyanname verilip vergi gecikme faiziyle ödenirse vergi ziyaı cezası yüzde yirmiye iner. 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "If the return is filed and the tax paid with late-payment interest within this period, the tax-loss penalty is cut to 20%. The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "ceza-indirimi": {
+      "label": { "tr": "Ceza indirimi başvurusu (VUK 376)", "en": "Application for the penalty reduction (Art. 376)" },
+      "trigger": { "tr": "Vergi/ceza ihbarnamesinin size tebliğ edildiği tarih", "en": "Date the tax or penalty notice was served on you" },
+      "period": "P30D",
+      "cite": "vuk_376",
+      "group": "ihbarname-tebligi",
+      "keywords": { "tr": ["ceza indirimi", "ihbarname"], "en": ["penalty reduction"] },
+      "notice": { "tr": "Dava açılırsa veya süresinde ödenmezse indirim kaybedilir; uzlaşma talebiyle birlikte kullanılamaz. 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "Suing or not paying in time loses the reduction; it cannot be combined with a settlement request. The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "vergi-cezasi-odeme": {
+      "label": { "tr": "Vergi cezasının ödenmesi (dava açılmadıysa)", "en": "Payment of a tax penalty (no action filed)" },
+      "trigger": { "tr": "Dava açma süresinin bittiği tarih", "en": "Date the time limit for suing expired" },
+      "period": "P1M",
+      "cite": "vuk_368_1",
+      "keywords": { "tr": ["vergi cezası", "ödeme"], "en": ["penalty payment"] },
+      "notice": { "tr": "Başlangıç, dava açma süresinin bittiği gündür; o günü önce İYUK paketindeki \"Vergi davası açma\" ile hesaplayın. 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "The start is the day the action period ends; compute it first with \"Tax action\" in the İYUK pack. The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "vergi-cezasi-odeme-dava-sonrasi": {
+      "label": { "tr": "Vergi cezasının ödenmesi (dava sonrası)", "en": "Payment of a tax penalty after the court's decision" },
+      "trigger": { "tr": "Vergi mahkemesi kararı üzerine düzenlenen ihbarnamenin size tebliğ edildiği tarih", "en": "Date the notice issued after the tax court's decision was served on you" },
+      "period": "P1M",
+      "cite": "vuk_368_2",
+      "keywords": { "tr": ["vergi cezası", "ödeme"], "en": ["penalty payment"] },
+      "notice": { "tr": "1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "ikmalen-tarh-edilen-verginin-odenmesi": {
+      "label": { "tr": "İkmalen, resen veya idarece tarh edilen verginin ödenmesi", "en": "Payment of tax assessed by additional, ex officio or administrative assessment" },
+      "trigger": { "tr": "Verginin tahakkuk tarihi", "en": "Date the tax became final (tahakkuk)" },
+      "period": "P1M",
+      "cite": "vuk_112",
+      "keywords": { "tr": ["ikmalen", "resen", "tarhiyat"], "en": ["additional assessment"] },
+      "notice": { "tr": "Tahakkuk tarihi, dava açılıp açılmadığına ve ne zaman açıldığına bağlıdır; vergi mahkemesi kararından sonra yeni ihbarnamenin tebliğinden itibaren bir aydır (VUK m.112/3). 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "The tahakkuk date depends on whether and when an action was filed; after a tax-court decision it is one month from service of the new notice (VUK Art. 112(3)). The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "reddiyat-icin-basvuru": {
+      "label": { "tr": "Düzeltme sonucu iade için başvuru", "en": "Claiming a refund after correction" },
+      "trigger": { "tr": "Düzeltme fişinin size tebliğ edildiği tarih", "en": "Date the correction slip was served on you" },
+      "period": "P1Y",
+      "cite": "vuk_120",
+      "keywords": { "tr": ["düzeltme", "iade", "reddiyat"], "en": ["refund"] },
+      "notice": { "tr": "1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    }
+  }
 }

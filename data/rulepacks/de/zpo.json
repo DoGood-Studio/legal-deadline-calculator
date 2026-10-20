@@ -15,6 +15,10 @@
     "de": "Unverbindliches Hilfsmittel, keine Rechtsberatung. Vor Verwendung Gesetz, Rechtsprechung und Gerichtspraxis prüfen."
   },
   "citations": {
+    "zpo_517": { "label": { "en": "ZPO § 517", "de": "§ 517 ZPO" }, "url": "https://www.gesetze-im-internet.de/zpo/__517.html", "quote": { "de": "Die Berufungsfrist beträgt einen Monat; sie ist eine Notfrist und beginnt mit der Zustellung des in vollständiger Form abgefassten Urteils, spätestens aber mit dem Ablauf von fünf Monaten nach der Verkündung." } },
+    "zpo_520_2": { "label": { "en": "ZPO § 520(2)", "de": "§ 520 Abs. 2 ZPO" }, "url": "https://www.gesetze-im-internet.de/zpo/__520.html", "quote": { "de": "Die Frist für die Berufungsbegründung beträgt zwei Monate und beginnt mit der Zustellung des in vollständiger Form abgefassten Urteils, spätestens aber mit Ablauf von fünf Monaten nach der Verkündung." } },
+    "zpo_339_1": { "label": { "en": "ZPO § 339(1)", "de": "§ 339 Abs. 1 ZPO" }, "url": "https://www.gesetze-im-internet.de/zpo/__339.html", "quote": { "de": "Die Einspruchsfrist beträgt zwei Wochen; sie ist eine Notfrist und beginnt mit der Zustellung des Versäumnisurteils." } },
+    "zpo_548": { "label": { "en": "ZPO § 548", "de": "§ 548 ZPO" }, "url": "https://www.gesetze-im-internet.de/zpo/__548.html", "quote": { "de": "Die Frist für die Einlegung der Revision (Revisionsfrist) beträgt einen Monat; sie ist eine Notfrist und beginnt mit der Zustellung des in vollständiger Form abgefassten Berufungsurteils, spätestens aber mit dem Ablauf von fünf Monaten nach der Verkündung." } },
     "zpo_222_1": {
       "label": { "en": "ZPO § 222(1) with BGB §§ 187(1), 188", "de": "§ 222 Abs. 1 ZPO i. V. m. §§ 187 Abs. 1, 188 BGB" },
       "url": "https://www.gesetze-im-internet.de/bgb/__188.html",
@@ -60,5 +64,39 @@
         "de": "Berufungs-, Revisions- und Begründungsfristen (§§ 517, 520 Abs. 2, 548, 551 Abs. 2 ZPO) beginnen mit Zustellung des vollständigen Urteils, spätestens aber mit Ablauf von fünf Monaten nach der Verkündung. Bei späterer oder fehlender Zustellung endet die Frist früher als angezeigt."
       }
     }
-  ]
+  ],
+  "acts": {
+    "berufung": {
+      "label": { "en": "Berufung (appeal)", "tr": "Berufung (istinaf)", "de": "Berufung", "fr": "Berufung (appel)", "es": "Berufung (apelación)", "it": "Berufung (appello)", "pt": "Berufung (apelação)", "nl": "Berufung (hoger beroep)", "ru": "Berufung (апелляция)", "ar": "Berufung (الاستئناف)", "zh": "Berufung（上诉）", "ja": "Berufung（控訴）" },
+      "trigger": { "en": "Date the judgment in full form was served (at the latest five months after it was pronounced)", "de": "Zustellung des in vollständiger Form abgefassten Urteils (spätestens fünf Monate nach Verkündung)", "tr": "Gerekçeli kararın tebliğ tarihi (en geç hükmün açıklanmasından beş ay sonra)" },
+      "period": "P1M",
+      "cite": "zpo_517",
+      "group": "urteil",
+      "keywords": { "en": ["appeal"], "de": ["Berufungsfrist"], "tr": ["istinaf"] }
+    },
+    "berufungsbegruendung": {
+      "label": { "en": "Berufungsbegründung (grounds of appeal)", "tr": "Berufungsbegründung (istinaf gerekçesi)", "de": "Berufungsbegründung", "fr": "Berufungsbegründung (motifs d'appel)", "es": "Berufungsbegründung (motivos)", "it": "Berufungsbegründung (motivi d'appello)", "pt": "Berufungsbegründung (alegações)", "nl": "Berufungsbegründung (grieven)", "ru": "Berufungsbegründung (обоснование апелляции)", "ar": "Berufungsbegründung (أسباب الاستئناف)", "zh": "Berufungsbegründung（上诉理由）", "ja": "Berufungsbegründung（控訴理由書）" },
+      "trigger": { "en": "Date the judgment in full form was served (at the latest five months after it was pronounced)", "de": "Zustellung des in vollständiger Form abgefassten Urteils (spätestens fünf Monate nach Verkündung)", "tr": "Gerekçeli kararın tebliğ tarihi (en geç hükmün açıklanmasından beş ay sonra)" },
+      "period": "P2M",
+      "cite": "zpo_520_2",
+      "group": "urteil",
+      "keywords": { "en": ["grounds of appeal"], "de": ["Begründungsfrist"], "tr": ["istinaf gerekçesi"] },
+      "notice": { "en": "The presiding judge may extend this period: freely with the opponent's consent, otherwise by up to one month (§ 520(2) ZPO).", "de": "Die Frist kann vom Vorsitzenden verlängert werden: mit Einwilligung des Gegners beliebig, sonst um bis zu einen Monat (§ 520 Abs. 2 ZPO).", "tr": "Daire başkanı bu süreyi karşı tarafın rızasıyla serbestçe, rıza yoksa en fazla bir ay uzatabilir (ZPO § 520/2)." }
+    },
+    "einspruch": {
+      "label": { "en": "Einspruch (default judgment)", "tr": "Einspruch (gıyabi karara itiraz)", "de": "Einspruch gegen Versäumnisurteil", "fr": "Einspruch (jugement par défaut)", "es": "Einspruch (sentencia en rebeldía)", "it": "Einspruch (sentenza contumaciale)", "pt": "Einspruch (sentença à revelia)", "nl": "Einspruch (verstekvonnis)", "ru": "Einspruch (против заочного решения)", "ar": "Einspruch (المعارضة في الحكم الغيابي)", "zh": "Einspruch（缺席判决异议）", "ja": "Einspruch（欠席判決への異議）" },
+      "trigger": { "en": "Date the default judgment was served", "de": "Zustellung des Versäumnisurteils", "tr": "Gıyabi kararın (Versäumnisurteil) tebliğ tarihi" },
+      "period": "P2W",
+      "cite": "zpo_339_1",
+      "keywords": { "en": ["default judgment", "objection"], "de": ["Versäumnisurteil", "Einspruchsfrist"], "tr": ["gıyabi karar", "itiraz"] },
+      "notice": { "en": "Two weeks apply to service in Germany. If the judgment has to be served abroad the period is one month, and with service by public notice the court sets it (§ 339(2) and (3) ZPO).", "de": "Zwei Wochen gelten bei Zustellung im Inland. Muss im Ausland zugestellt werden, beträgt die Frist einen Monat; bei öffentlicher Zustellung bestimmt das Gericht die Frist (§ 339 Abs. 2 und 3 ZPO).", "tr": "İki hafta, kararın Almanya'da tebliğinde geçerlidir. Tebliğ yurt dışında yapılacaksa süre bir aydır; ilanen tebliğde süreyi mahkeme belirler (ZPO § 339/2 ve 3)." }
+    },
+    "revision": {
+      "label": { "en": "Revision", "tr": "Revision (temyiz)", "de": "Revision", "fr": "Revision (pourvoi)", "es": "Revision (casación)", "it": "Revision (cassazione)", "pt": "Revision (revista)", "nl": "Revision (cassatie)", "ru": "Revision (ревизия)", "ar": "Revision (النقض)", "zh": "Revision（法律审上诉）", "ja": "Revision（上告）" },
+      "trigger": { "en": "Date the appeal judgment in full form was served (at the latest five months after it was pronounced)", "de": "Zustellung des in vollständiger Form abgefassten Berufungsurteils (spätestens fünf Monate nach Verkündung)", "tr": "Gerekçeli istinaf kararının tebliğ tarihi (en geç açıklanmasından beş ay sonra)" },
+      "period": "P1M",
+      "cite": "zpo_548",
+      "keywords": { "en": ["appeal on points of law"], "de": ["Revisionsfrist"], "tr": ["temyiz"] }
+    }
+  }
 }

@@ -11,6 +11,7 @@ import {
   DataError,
   type Holiday,
   InputError,
+  NotFoundError,
   OptionError,
   RulePack,
 } from "../src/index.js";
@@ -24,6 +25,7 @@ const DL = load("deadline.json");
 const ERRORS: Record<string, readonly (new (...args: never[]) => Error)[]> = {
   CoverageError: [CoverageError],
   DataError: [DataError],
+  NotFoundError: [NotFoundError],
   OptionError: [OptionError],
   ValueError: [InputError, DataError, CoverageError, OptionError],
   TypeError: [InputError],
@@ -90,7 +92,7 @@ function runDeadlineCase(c: Record<string, any>) {
   const spec = c.pack_spec ?? DL.rulepacks[c.pack];
   const override = spec && typeof spec === "object" && "calendar" in spec ? (calendars[spec.calendar] ?? null) : null;
   const pack = new RulePack(spec, override);
-  return pack.compute(c.trigger, c.period, { direction: c.direction ?? "after", options: c.options });
+  return pack.compute(c.trigger, c.period ?? null, { act: c.act, direction: c.direction, options: c.options });
 }
 
 describe("deadline vectors", () => {
@@ -106,6 +108,9 @@ describe("deadline vectors", () => {
       if (e.steps) expect(result.trace.map((s) => s.step)).toEqual(e.steps);
       if (e.changed) expect(result.trace.map((s) => s.changed)).toEqual(e.changed);
       if (e.ends_at) expect(result.endsAt).toBe(e.ends_at);
+      if (e.period) expect(String(result.period)).toBe(e.period);
+      if (e.act_cite) expect(result.actCitation?.id).toBe(e.act_cite);
+      for (const [name, value] of Object.entries(e.options ?? {})) expect(result.options[name]).toBe(value);
       expect(result.notices.map((n) => n.code)).toEqual(e.notices ?? []);
       for (const step of result.trace) {
         for (const lang of languages()) {

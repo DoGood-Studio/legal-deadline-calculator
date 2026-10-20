@@ -54,6 +54,7 @@ npm install lexdays        # Node 18+、ブラウザ、Deno、Bun
 import lexdays
 
 r = lexdays.compute("us/frcp", "2025-07-31", "P30D")   # 米国連邦裁判所：30 日
+answer = lexdays.compute("us/frcp", "2025-07-31", act="answer")   # 手続名で指定：答弁書、21 日（FRCP 12）
 r.deadline              # datetime.date(2025, 9, 2): 8 月 30 日は土曜日、9 月 1 日はレイバー・デー：火曜日に繰り延べ
 print(r.explain("ja"))  # 各ステップと根拠
 ```
@@ -76,6 +77,7 @@ r.explain("ja");     // 各ステップを日本語で説明
 
 ```bash
 lexdays deadline us/frcp 2025-07-31 P30D --lang ja
+lexdays acts us/frcp --lang ja
 ```
 
 </details>

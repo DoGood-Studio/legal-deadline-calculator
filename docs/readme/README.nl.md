@@ -54,6 +54,7 @@ npm install lexdays        # Node 18+, browsers, Deno, Bun
 import lexdays
 
 r = lexdays.compute("us/frcp", "2025-07-31", "P30D")   # Amerikaanse federale rechter: 30 dagen
+answer = lexdays.compute("us/frcp", "2025-07-31", act="answer")   # op naam: antwoord op de dagvaarding, 21 dagen (FRCP 12)
 r.deadline              # datetime.date(2025, 9, 2): zaterdag 30 augustus en Labor Day: verschuift naar dinsdag
 print(r.explain("nl"))  # elke stap, met de bron
 ```
@@ -76,6 +77,7 @@ r.explain("nl");     // de stappen uitgelegd in het Nederlands
 
 ```bash
 lexdays deadline us/frcp 2025-07-31 P30D --lang nl
+lexdays acts us/frcp --lang nl
 ```
 
 </details>
