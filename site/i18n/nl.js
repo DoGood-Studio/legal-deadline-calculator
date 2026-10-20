@@ -2,7 +2,7 @@ export default {
   ui: {
     "doc.title": "Termijnen berekenen bij het Hof van Justitie van de EU | lexdays",
     "doc.description": "Gratis en open-source termijnberekening: beroep bij het Hof van Justitie (bekendmaking in het Publicatieblad, termijn wegens afstand), plus de VS, Engeland, Duitsland en Turkije. Elke stap noemt zijn bron.",
-    skip: "Naar de inhoud", "nav.tool": "Berekenen", "nav.dev": "Ontwikkelaars", "nav.lang": "Taal",
+    skip: "Naar de inhoud", "nav.tool": "Berekenen", "nav.dev": "Ontwikkelaars", "nav.lang": "Taal", "theme.dark": "Donker thema",
     "hero.title": "Vind de laatste dag en zie waarom.",
     "hero.lead": "Kies het soort termijn en de datum van betekening. Gerechtelijk reces, feestdagen, halve dagen en fictieve betekening worden meegenomen; elke stap noemt de regel waarop hij berust.",
     "tab.deadline": "Termijn berekenen", "tab.business": "Werkdagen berekenen",

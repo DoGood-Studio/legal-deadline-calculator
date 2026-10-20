@@ -464,6 +464,8 @@ async function applyLanguage() {
   root.dir = LANGUAGES.find((l) => l.code === state.lang)?.dir ?? "ltr";
   document.title = t("doc.title");
   for (const node of document.querySelectorAll("[data-i18n]")) node.textContent = t(node.dataset.i18n);
+  $("theme").setAttribute("aria-label", t("theme.dark"));
+  $("theme").title = t("theme.dark");
   renderForm();
   run();
   renderBusinessCalendars();
@@ -520,6 +522,24 @@ $("lang").addEventListener("change", () => {
   const query = q.toString();
   location.href = `${PAGE_LANG ? "../" : "./"}${$("lang").value}/${query ? `?${query}` : ""}`;
 });
+// Light or dark page; the choice is remembered in this browser (the head script applies it early).
+function showTheme() {
+  const dark = document.documentElement.dataset.theme === "dark";
+  $("theme").setAttribute("aria-pressed", String(dark));
+  document.querySelector('meta[name="theme-color"]').content = dark ? "#161c25" : "#f7f9fc";
+}
+$("theme").addEventListener("click", () => {
+  const dark = document.documentElement.dataset.theme !== "dark";
+  if (dark) document.documentElement.dataset.theme = "dark";
+  else delete document.documentElement.dataset.theme;
+  try {
+    localStorage.setItem("lexdays-theme", dark ? "dark" : "light");
+  } catch {
+    // private windows may refuse storage; the switch still works for this page
+  }
+  showTheme();
+});
+showTheme();
 $("today").addEventListener("click", () => {
   $("trigger").value = todayIso();
   run();

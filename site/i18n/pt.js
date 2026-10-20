@@ -2,7 +2,7 @@ export default {
   ui: {
     "doc.title": "Cálculo de prazos no Tribunal de Justiça da UE | lexdays",
     "doc.description": "Calculadora de prazos gratuita e de código aberto: recursos para o Tribunal de Justiça da UE (publicação no JO, dilação em razão da distância), além de EUA, Inglaterra, Alemanha e Turquia. Cada passo indica a sua fonte.",
-    skip: "Ir para o conteúdo", "nav.tool": "Calcular", "nav.dev": "Programadores", "nav.lang": "Idioma",
+    skip: "Ir para o conteúdo", "nav.tool": "Calcular", "nav.dev": "Programadores", "nav.lang": "Idioma", "theme.dark": "Tema escuro",
     "hero.title": "Encontre o último dia e o porquê.",
     "hero.lead": "Escolha o tipo de prazo e a data da notificação. Férias judiciais, feriados, meios dias e notificações presumidas são considerados; cada passo indica a regra em que se baseia.",
     "tab.deadline": "Calcular prazo", "tab.business": "Dias úteis",

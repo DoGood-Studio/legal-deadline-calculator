@@ -2,7 +2,7 @@ export default {
   ui: {
     "doc.title": "法律期限计算器：美国、欧盟、德国、土耳其 | lexdays",
     "doc.description": "免费开源的法律期限计算器：计算提交、送达或付款的最后一天，并为每一步注明所依据的规则。覆盖美国、英格兰、欧盟法院、德国和土耳其。",
-    skip: "跳到正文", "nav.tool": "计算", "nav.dev": "开发者", "nav.lang": "语言",
+    skip: "跳到正文", "nav.tool": "计算", "nav.dev": "开发者", "nav.lang": "语言", "theme.dark": "深色模式",
     "hero.title": "算出最后一天，并知道原因。",
     "hero.lead": "选择期限类型和送达日期。司法休庭期、法定节假日、半天假和推定送达都会考虑在内；每一步都注明所依据的规则。",
     "tab.deadline": "计算期限", "tab.business": "工作日",

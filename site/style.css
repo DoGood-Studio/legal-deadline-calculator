@@ -1,18 +1,25 @@
 /* Layout: a tool page. Form steps at the start side, the result at the end side; the result's
    signature element is a wall-calendar leaf (takvim yaprağı) showing the last day. */
+/* The page opens light; the switch in the header sets data-theme="dark" (remembered per browser).
+   Selected controls use a pale blue fill rather than a solid dark one, so the page stays light. */
 :root {
-  --paper: #f2f4f7;
+  --paper: #f7f9fc;
   --surface: #ffffff;
-  --ink: #17202c;
-  --muted: #5b6676;
-  --line: #dce1e8;
-  --court: #1e3a5c;
+  --ink: #1b2533;
+  --muted: #5d6878;
+  --line: #e2e7ee;
+  --court: #2a5389;
   --court-ink: #ffffff;
-  --court-soft: #e6ecf4;
+  --court-soft: #edf3fb;
+  --sel: #dfeafa;
+  --sel-ink: #1f467a;
+  --sel-line: #a9c4e8;
+  --leaf-band: #3d6fb3;
+  --leaf-ink: #ffffff;
   --red: #b42318;
-  --red-soft: #fbeae8;
-  --notice: #fdf5e3;
-  --notice-line: #ead7a8;
+  --red-soft: #fdeceb;
+  --notice: #fff8e6;
+  --notice-line: #f0dcaa;
   --font-ui: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-figure: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
   --font-code: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Consolas, monospace;
@@ -21,13 +28,12 @@
   --r-sm: 7px;
   color-scheme: light;
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --paper: #0e131a; --surface: #151c26; --ink: #e7ebf1; --muted: #9aa6b6; --line: #263040;
-    --court: #a8c1e6; --court-ink: #0e1724; --court-soft: #1c2837; --red: #ff8a7f; --red-soft: #3a1f1d;
-    --notice: #2a2414; --notice-line: #5c4c22;
-    color-scheme: dark;
-  }
+:root[data-theme="dark"] {
+  --paper: #161c25; --surface: #1e2632; --ink: #e9edf3; --muted: #a2adbc; --line: #2f3a4a;
+  --court: #9dbde8; --court-ink: #10192a; --court-soft: #24324a;
+  --sel: #2a3d5c; --sel-ink: #d6e4f7; --sel-line: #4f6d97; --leaf-band: #35537f; --leaf-ink: #eef3fa;
+  --red: #ff8f85; --red-soft: #3d2524; --notice: #2b2619; --notice-line: #5c4d26;
+  color-scheme: dark;
 }
 
 /* Scripts the Latin faces do not cover use the platform's own fonts. Barlow Condensed has no
@@ -74,6 +80,11 @@ a { color: var(--court); text-underline-offset: 2px; }
 .bar__nav a:hover { color: var(--ink); }
 .lang select { font: inherit; font-size: 0.9rem; color: var(--ink); background-color: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding-block: 5px; padding-inline: 8px 28px; }
 @media (max-width: 560px) { .bar__nav a:not(:last-of-type) { display: none; } }
+.theme { display: inline-grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 1px solid var(--line); border-radius: 50%; background: var(--paper); color: var(--muted); cursor: pointer; }
+.theme:hover { color: var(--ink); }
+.theme svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.theme .sun, :root[data-theme="dark"] .theme .moon { display: none; }
+:root[data-theme="dark"] .theme .sun { display: block; }
 
 /* intro */
 .intro { padding-block: 34px 18px; max-width: 760px; display: grid; gap: 10px; }
@@ -82,7 +93,7 @@ a { color: var(--court); text-underline-offset: 2px; }
 
 .modes { display: inline-flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px; margin-bottom: 18px; }
 .modes button { border: 0; background: transparent; color: var(--muted); font: 600 0.95rem var(--font-ui); padding: 8px 16px; border-radius: 999px; cursor: pointer; }
-.modes button[aria-selected="true"] { background: var(--court); color: var(--court-ink); }
+.modes button[aria-selected="true"] { background: var(--sel); color: var(--sel-ink); box-shadow: inset 0 0 0 1px var(--sel-line); }
 
 /* tool layout */
 .tool { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.08fr); gap: 22px; align-items: start; }
@@ -96,7 +107,7 @@ a { color: var(--court); text-underline-offset: 2px; }
 
 .seg { display: flex; flex-wrap: wrap; gap: 6px; }
 .seg button { border: 1px solid var(--line); background: var(--paper); color: var(--ink); font: 500 0.92rem var(--font-ui); padding: 7px 12px; border-radius: 999px; cursor: pointer; }
-.seg button[aria-checked="true"] { background: var(--court); border-color: var(--court); color: var(--court-ink); }
+.seg button[aria-checked="true"] { background: var(--sel); border-color: var(--sel-line); color: var(--sel-ink); font-weight: 600; }
 .seg--small button { font-size: 0.86rem; padding: 6px 11px; }
 
 .packs { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 8px; }
@@ -153,8 +164,8 @@ input[type="date"] { flex: 1 1 180px; }
 @media (max-width: 900px) { .result { position: static; } }
 .verdict { display: flex; gap: 18px; align-items: center; flex-wrap: wrap; }
 .leaf { width: 128px; flex: 0 0 auto; border-radius: 12px; overflow: hidden; background: var(--surface); border: 1px solid var(--line); box-shadow: 0 2px 0 var(--line), 0 10px 24px color-mix(in srgb, var(--ink) 10%, transparent); text-align: center; position: relative; }
-.leaf::before { content: ""; position: absolute; left: 0; right: 0; top: 30px; border-top: 2px dotted color-mix(in srgb, var(--court-ink) 55%, transparent); }
-.leaf__month { background: var(--court); color: var(--court-ink); font: 700 0.95rem/1 var(--font-figure); letter-spacing: 0.06em; padding: 9px 6px 12px; }
+.leaf::before { content: ""; position: absolute; left: 0; right: 0; top: 30px; border-top: 2px dotted color-mix(in srgb, var(--leaf-ink) 55%, transparent); }
+.leaf__month { background: var(--leaf-band); color: var(--leaf-ink); font: 700 0.95rem/1 var(--font-figure); letter-spacing: 0.06em; padding: 9px 6px 12px; }
 .leaf__day { font: 700 4.6rem/1 var(--font-figure); color: var(--red); padding-top: 8px; font-variant-numeric: tabular-nums; }
 .leaf__weekday { font: 600 1rem/1 var(--font-figure); color: var(--ink); padding: 4px 6px 12px; letter-spacing: 0.02em; }
 .verdict__text { display: grid; gap: 2px; min-width: 0; }
