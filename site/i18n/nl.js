@@ -30,6 +30,7 @@ export default {
     "keys.cal": "Aan agenda toevoegen",
     "keys.presets": "Een van de proceshandelingen kiezen", "keys.find": "Naar de zoekfunctie",
     "keys.help": "Dit venster openen",
+    "keys.off": "Sneltoetsen met één toets uitzetten",
     "keys.close": "Sluiten",
     "keys.searchTitle": "Berekenen vanuit de adresbalk",
     "keys.searchText": "Zet lexdays aan in de zoekmachine-instellingen van uw browser en geef het de snelkoppeling ‘termijn’. Typ daarna in de adresbalk:",

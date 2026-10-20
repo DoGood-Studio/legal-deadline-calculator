@@ -30,6 +30,7 @@ export default {
     "keys.cal": "Takvime ekle",
     "keys.presets": "Seçili kanunun işlemlerinden birini seç", "keys.find": "İşlem aramasına git",
     "keys.help": "Bu pencereyi aç",
+    "keys.off": "Tek tuş kısayollarını kapat",
     "keys.close": "Kapat",
     "keys.searchTitle": "Adres çubuğundan hesapla",
     "keys.searchText": "Tarayıcınızın arama motoru ayarlarında lexdays'i etkinleştirin ve kısayolunu «süre» yapın. Sonra adres çubuğuna şunu yazın:",

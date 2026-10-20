@@ -30,6 +30,7 @@ export default {
     "keys.cal": "Ajouter au calendrier",
     "keys.presets": "Choisir un acte de la liste", "keys.find": "Aller à la recherche",
     "keys.help": "Ouvrir cette fenêtre",
+    "keys.off": "Désactiver les raccourcis à une touche",
     "keys.close": "Fermer",
     "keys.searchTitle": "Calculer depuis la barre d'adresse",
     "keys.searchText": "Dans les paramètres des moteurs de recherche de votre navigateur, activez lexdays et donnez-lui le raccourci « délai ». Tapez ensuite dans la barre d'adresse :",

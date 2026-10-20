@@ -30,6 +30,7 @@ export default {
     "keys.cal": "Aggiungi al calendario",
     "keys.presets": "Scegliere uno degli atti dell'elenco", "keys.find": "Vai alla ricerca",
     "keys.help": "Apri questa finestra",
+    "keys.off": "Disattiva le scorciatoie a tasto singolo",
     "keys.close": "Chiudi",
     "keys.searchTitle": "Calcola dalla barra degli indirizzi",
     "keys.searchText": "Nelle impostazioni dei motori di ricerca del browser attiva lexdays e assegnagli la scorciatoia «termine». Poi scrivi nella barra degli indirizzi:",

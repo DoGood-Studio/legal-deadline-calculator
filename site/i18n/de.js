@@ -30,6 +30,7 @@ export default {
     "keys.cal": "Zum Kalender hinzufügen",
     "keys.presets": "Eine Prozesshandlung der Liste wählen", "keys.find": "Zur Suche springen",
     "keys.help": "Dieses Fenster öffnen",
+    "keys.off": "Einzeltasten-Kürzel ausschalten",
     "keys.close": "Schließen",
     "keys.searchTitle": "Aus der Adressleiste berechnen",
     "keys.searchText": "Aktivieren Sie lexdays in den Suchmaschinen-Einstellungen Ihres Browsers und geben Sie ihm das Kürzel „frist“. Dann tippen Sie in die Adressleiste:",

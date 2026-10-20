@@ -30,6 +30,7 @@ export default {
     "keys.cal": "Añadir al calendario",
     "keys.presets": "Elegir uno de los actos de la lista", "keys.find": "Ir a la búsqueda",
     "keys.help": "Abrir esta ventana",
+    "keys.off": "Desactivar los atajos de una sola tecla",
     "keys.close": "Cerrar",
     "keys.searchTitle": "Calcular desde la barra de direcciones",
     "keys.searchText": "En la configuración de buscadores de su navegador, active lexdays y asígnele el atajo «plazo». Después escriba en la barra de direcciones:",

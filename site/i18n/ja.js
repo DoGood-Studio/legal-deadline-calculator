@@ -30,6 +30,7 @@ export default {
     "keys.cal": "カレンダーに追加",
     "keys.presets": "一覧の手続を選ぶ", "keys.find": "検索欄へ移動",
     "keys.help": "このウィンドウを開く",
+    "keys.off": "単一キーのショートカットをオフにする",
     "keys.close": "閉じる",
     "keys.searchTitle": "アドレスバーから計算",
     "keys.searchText": "ブラウザの検索エンジン設定で lexdays を有効にし、ショートカットを「期限」にします。あとはアドレスバーに次のように入力します：",

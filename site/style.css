@@ -299,6 +299,7 @@ pre { margin: 8px 0 0; background: var(--paper); border: 1px solid var(--line); 
 .keys code { font: 0.92rem var(--font-code); background: var(--paper); border: 1px solid var(--line); border-radius: var(--r-sm); padding: 3px 8px; color: var(--ink); }
 kbd { display: inline-block; min-width: 1.6em; text-align: center; font: 600 0.85rem var(--font-code); background: var(--paper); border: 1px solid var(--line); border-bottom-width: 2px; border-radius: var(--r-sm); padding: 1px 6px; color: var(--ink); }
 .keys a.btn { display: inline-block; text-decoration: none; cursor: grab; }
+.keys__off { display: flex; align-items: center; gap: 8px; margin-top: 12px; font-size: 0.95rem; }
 
 /* Act pages (site/tr/sureler/, written by scripts/build-act-pages.py): one column of cards, the
    provision quoted in full, worked examples in the calculator's own step list. */

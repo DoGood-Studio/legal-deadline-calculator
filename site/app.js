@@ -522,16 +522,54 @@ function loadUrl() {
 }
 
 // ?q= comes from the address-bar search (opensearch.xml) and the bookmark button: free text such
-// as "20.10.2026 2 weeks", "2026-10-20 30 gün", "10/20/2026 5bd" or "2026年10月20日 2週間".
+// as "20.10.2026 2 weeks", "20 Mayıs 2026 30 gün", "March 20, 2026 5bd" or "2026年10月20日 2週間".
 // The first date in it becomes the start date and the first number with a unit the period;
-// anything the page cannot read is left as it was.
+// anything the page cannot read is left as it was. The text is lower-cased and stripped of
+// accents first ("İŞ GÜNÜ" -> "is gunu"), so the words below are written that way. A one-letter
+// unit counts only on its own, so "20 Mayıs" is not "20 m(onths)".
 const UNIT_WORDS = [
-  ["business_day", /^(bd|business ?days?|working ?days?|[iı][şs] ?g[üu]n|arbeitstag|werktag|jours? ouvr|d[ií]as? h[aá]bil|giorni lavorativi|dias? [uú]te|werkdag|раб|أيام عمل|个?工作日|営業日)/],
-  ["week", /^(w|weeks?|hafta|woche|semaine|semana|settiman|weke?n?$|нед|أسبوع|أسابيع|周|週)/],
-  ["month", /^(m|months?|ay|monat|mois|mes|m[eê]s|maand|мес|شهر|أشهر|个?月|か月|ヶ月)/],
-  ["year", /^(y|years?|yıl|yil|sene|jahr|ans?$|année|a[ñn]os?|ann[oi]|jaar|г|год|лет|سنة|سنوات|年)/],
-  ["day", /^(d|days?|gün|gun|tag|jours?|d[ií]as?|giorn|dag|дн|день|يوم|أيام|天|日)/],
+  ["business_day", /^(bd(?!\p{L})|business ?days?|working ?days?|is ?gun|arbeitstag|werktag|jours? ouvr|dias? habil|giorni lavorativi|dias? ute|werkdag|раб|أيام عمل|个?工作日|営業日)/u],
+  ["week", /^(w(?!\p{L})|weeks?(?!\p{L})|hafta|woche|semaine|semana|settiman|weken?(?!\p{L})|нед|أسبوع|أسابيع|周|週)/u],
+  ["month", /^(m(?!\p{L})|months?(?!\p{L})|ay(?!\p{L})|aylik|monat|mois(?!\p{L})|mes(es)?(?!\p{L})|mese|mesi|maand|мес|شهر|أشهر|个?月|か月|ヶ月)/u],
+  ["year", /^(y(?!\p{L})|years?(?!\p{L})|yil|sene|jahr|ans?(?!\p{L})|annee|anos?(?!\p{L})|ann[oi](?!\p{L})|jaar|г(?!\p{L})|год|лет|سنة|سنوات|年)/u],
+  ["day", /^(d(?!\p{L})|days?(?!\p{L})|gun|tag|jours?(?!\p{L})|dias?(?!\p{L})|giorn|dag|дн|день|يوم|أيام|天|日)/u],
 ];
+const plainQuery = (s) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").normalize("NFC").replace(/ı/g, "i");
+
+// Month names of the 12 languages, long and short and (for Russian) in the genitive, as the
+// browser spells them: "mayis" -> 5, "march" -> 3, "marta" -> 3, "janv" -> 1.
+let monthNames = null;
+function monthNumber(word) {
+  if (!monthNames) {
+    monthNames = new Map();
+    for (const { code } of LANGUAGES) {
+      for (let m = 0; m < 12; m++) {
+        const day = new Date(Date.UTC(2026, m, 15));
+        for (const opts of [{ month: "long" }, { month: "short" }, { day: "numeric", month: "long" }, { day: "numeric", month: "short" }]) {
+          try {
+            for (const part of new Intl.DateTimeFormat(code, { timeZone: "UTC", ...opts }).formatToParts(day)) {
+              if (part.type === "month") monthNames.set(plainQuery(part.value.toLocaleLowerCase(code)).replace(/\.$/, ""), m + 1);
+            }
+          } catch {
+            /* a browser without this locale */
+          }
+        }
+      }
+    }
+  }
+  return monthNames.get(word.replace(/\.$/, "")) ?? null;
+}
+
+// For "05/06/2026" on the English page: month first only if the browser's own locale writes dates
+// that way (en-US); day first for en-GB and the rest of the world.
+function browserMonthFirst() {
+  try {
+    const parts = new Intl.DateTimeFormat(navigator.languages?.[0] ?? navigator.language).formatToParts(new Date(Date.UTC(2026, 10, 22)));
+    return parts.findIndex((p) => p.type === "month") < parts.findIndex((p) => p.type === "day");
+  } catch {
+    return false;
+  }
+}
 
 function queryDate(text) {
   const valid = (y, m, d) => {
@@ -540,17 +578,28 @@ function queryDate(text) {
   };
   let m = /(\d{4})[-./年](\d{1,2})[-./月](\d{1,2})日?/.exec(text);
   if (m) return { iso: valid(+m[1], +m[2], +m[3]), match: m[0] };
-  m = /(\d{1,2})([-./])(\d{1,2})\2(\d{4})/.exec(text);
-  if (!m) return null;
-  const [a, b] = [+m[1], +m[3]];
-  // Day first, as in most of the world; month first for "/" on the English page (US style).
-  // A part above 12 settles it either way.
-  const monthFirst = a <= 12 && (b > 12 || (m[2] === "/" && state.lang === "en"));
-  return { iso: monthFirst ? valid(+m[4], a, b) : valid(+m[4], b, a), match: m[0] };
+  m = /(\d{1,2})([-./])(\d{1,2})\2(\d{4}|\d{2})(?!\d)/.exec(text);
+  if (m) {
+    const [a, b] = [+m[1], +m[3]];
+    const year = m[4].length === 2 ? 2000 + +m[4] : +m[4];
+    // Day first, as in most of the world; a part above 12 settles it either way.
+    const monthFirst = a <= 12 && (b > 12 || (m[2] === "/" && state.lang === "en" && browserMonthFirst()));
+    return { iso: monthFirst ? valid(year, a, b) : valid(year, b, a), match: m[0] };
+  }
+  // "20 mayis 2026", "20. marz 2026", "20 de marzo de 2026", "march 20, 2026".
+  for (const d of text.matchAll(/(\d{1,2})\.?\s+(?:de\s+)?(\p{L}+)\.?,?\s+(?:de\s+)?(\d{4})/gu)) {
+    const month = monthNumber(d[2]);
+    if (month) return { iso: valid(+d[3], month, +d[1]), match: d[0] };
+  }
+  for (const d of text.matchAll(/(\p{L}+)\.?\s+(\d{1,2})(?:st|nd|rd|th)?,?\s+(\d{4})/gu)) {
+    const month = monthNumber(d[1]);
+    if (month) return { iso: valid(+d[3], month, +d[2]), match: d[0] };
+  }
+  return null;
 }
 
 function applyQuery(raw) {
-  let text = String(raw ?? "").normalize("NFKC").toLocaleLowerCase(state.lang).replace(/\u0307/g, "").trim();
+  let text = plainQuery(String(raw ?? "").normalize("NFKC").toLocaleLowerCase(state.lang)).trim();
   const date = queryDate(text);
   if (date?.iso) $("trigger").value = date.iso;
   if (date) text = text.replace(date.match, " ");
@@ -560,9 +609,11 @@ function applyQuery(raw) {
   let unit;
   if (iso) [n, unit] = [iso[1], { d: "day", w: "week", m: "month", y: "year" }[iso[2]]];
   else if (free) {
-    const word = free[2].trim().replace(/^[.,]+/, "");
+    const word = free[2].trim().replace(/^[.,]+/, "").trim();
+    const rest = text.slice(free.index + free[0].length).trim();
     n = free[1];
-    unit = word ? UNIT_WORDS.find(([, re]) => re.test(word))?.[0] : "day";
+    // A bare number counts as days only at the end of the text, not before another number.
+    unit = word ? UNIT_WORDS.find(([, re]) => re.test(word))?.[0] : rest ? null : "day";
   }
   if (!unit || !(Number(n) >= 1)) return;
   state.act = null;
@@ -898,8 +949,25 @@ const typing = (node) =>
   node.isContentEditable ||
   ["TEXTAREA", "SELECT"].includes(node.tagName) ||
   (node.tagName === "INPUT" && !["radio", "checkbox", "button", "submit", "reset"].includes(node.type));
+// The switch in the dialog turns all single-key shortcuts off (WCAG 2.1.4), for speech input
+// and anyone who triggers them by accident; the choice is remembered in this browser.
+let keysOff = false;
+try {
+  keysOff = localStorage.getItem("lexdays-keys-off") === "1";
+} catch {
+  /* storage blocked: shortcuts stay on */
+}
+$("keys-off").checked = keysOff;
+$("keys-off").addEventListener("change", () => {
+  keysOff = $("keys-off").checked;
+  try {
+    localStorage.setItem("lexdays-keys-off", keysOff ? "1" : "0");
+  } catch {
+    /* not remembered, but off for this visit */
+  }
+});
 document.addEventListener("keydown", (event) => {
-  if (event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || $("keys").open || typing(event.target)) return;
+  if (keysOff || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey || $("keys").open || typing(event.target)) return;
   const business = !$("panel-business").hidden;
   const letter = /^[a-z]$/i.test(event.key) ? event.key.toLowerCase() : /^Key([A-Z])$/.exec(event.code)?.[1].toLowerCase();
   const digit = /^[1-9]$/.test(event.key) ? Number(event.key) : Number(/^(?:Digit|Numpad)([1-9])$/.exec(event.code)?.[1] ?? 0);

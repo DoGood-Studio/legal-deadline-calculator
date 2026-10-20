@@ -30,6 +30,7 @@ export default {
     "keys.cal": "添加到日历",
     "keys.presets": "选择列表中的一项诉讼行为", "keys.find": "跳到搜索框",
     "keys.help": "打开此窗口",
+    "keys.off": "关闭单键快捷键",
     "keys.close": "关闭",
     "keys.searchTitle": "在地址栏中计算",
     "keys.searchText": "在浏览器的搜索引擎设置中启用 lexdays，并把它的快捷字词设为“期限”。然后在地址栏输入：",

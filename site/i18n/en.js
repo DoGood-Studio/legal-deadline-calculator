@@ -30,6 +30,7 @@ export default {
     "keys.cal": "Add to calendar",
     "keys.presets": "Pick one of the pack's acts", "keys.find": "Go to the act search",
     "keys.help": "Open this window",
+    "keys.off": "Turn off single-key shortcuts",
     "keys.close": "Close",
     "keys.searchTitle": "Calculate from the address bar",
     "keys.searchText": "In your browser's search engine settings, turn on lexdays and give it the shortcut “due”. Then type in the address bar:",

@@ -12,6 +12,9 @@ All notable changes to this project are documented here. The format follows [Kee
 
 - Demo and act pages: notes and setting hints no longer show the library's setting names (`judicial_recess='exempt'`, `'day_after_end'`); they quote the form's own question and answer in the page's language. The library's explanations keep the exact names for developers.
 - Demo: the footer's "MIT license" was in Turkish on every language page; it is now translated into all 12 languages.
+- Demo, address-bar search and bookmark button: dates written with a month name ("20 Mayıs 2026", "March 20, 2026", "20. März 2026", in all 12 languages) were not read, and the number was taken as a period ("20 m…" became 20 months). They are now read as dates; a one-letter unit counts only on its own, a bare number is a period only at the end of the text, and "20.10.26" is read with a two-digit year. "05/06/2026" on the English page follows the browser's locale: 5 June for en-GB, May 6 for en-US.
+- Demo, offline use: the service worker kept every address with its query, and offline it served the oldest copy of a page, which could pair an old page with newer scripts and stop the calculator; pages are now stored once, without the query, and always revalidated with the server. A page never opened on the device shows a short offline notice instead of a broken page, and only lexdays' own caches are cleared on update.
+- Demo, accessibility: single-key shortcuts can be turned off in the shortcuts dialog (WCAG 2.1.4), and the start date, the business-day calendar and its start date now have accessible names.
 
 ## [0.2.0] - 2026-10-20
 
