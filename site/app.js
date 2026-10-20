@@ -514,6 +514,7 @@ function searchActs(query) {
       const name = fold(txt(entry.act.label));
       let score = entry.country === country ? 0 : 10;
       if (entry.packId === state.pack) score -= 1;
+      if (!entry.act.isNew) score -= 3; // the long-established acts (the old presets) are the common ones
       if (words.length && name.startsWith(words[0])) score -= 4;
       else if (words.length && name.includes(words[0])) score -= 2;
       return { entry, score };
