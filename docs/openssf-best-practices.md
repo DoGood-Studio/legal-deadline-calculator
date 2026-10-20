@@ -77,7 +77,7 @@ Every MUST criterion is met or does not apply, except the two statements only th
 | `test_most` | SUGGESTED | Met | CI requires at least 95% line and branch coverage for Python; both implementations run the same vectors. |
 | `test_continuous_integration` | SUGGESTED | Met | [ci.yml](../.github/workflows/ci.yml): every push and pull request, on Linux, Windows and macOS. |
 | `test_policy` | MUST | Met | [CONTRIBUTING.md, *Tests are required*](../CONTRIBUTING.md#tests-are-required). |
-| `tests_are_added` | MUST | Met | Feature commits include tests, e.g. `23193f1` (act catalogue: `test_acts.py` and a hand-derived vector per act), `eb49b01` (version field, both languages) and `a4d8d6e` (property and differential tests). |
+| `tests_are_added` | MUST | Met | Feature commits include tests, e.g. `23193f1` (act catalogue: `test_acts.py` and a hand-derived vector per act), `eb49b01` (version field, both languages) and `35f6fc8` (property and differential tests). |
 | `tests_documented_added` | SUGGESTED | Met | CONTRIBUTING.md and the checklist in [PULL_REQUEST_TEMPLATE.md](../.github/PULL_REQUEST_TEMPLATE.md). |
 | `warnings` | MUST | Met | ruff, mypy in strict mode, TypeScript in strict mode. |
 | `warnings_fixed` | MUST | Met | CI fails on any ruff, mypy or tsc finding; all are clean today. |
@@ -115,7 +115,7 @@ Every MUST criterion is met or does not apply, except the two statements only th
 | `dynamic_analysis` | SUGGESTED | Met | Property-based testing with Hypothesis and fast-check, and a 1,800-case Python/TypeScript differential test. |
 | `dynamic_analysis_unsafe` | SUGGESTED | N/A | Python and TypeScript are memory-safe. |
 | `dynamic_analysis_enable_assertions` | SUGGESTED | Met | Tests run with assertions enabled; property tests assert invariants on every generated case. |
-| `dynamic_analysis_fixed` | MUST | Met | Problems found by property tests are fixed, e.g. backward counting in `business_days_between` (`a4d8d6e`). |
+| `dynamic_analysis_fixed` | MUST | Met | Problems found by property tests are fixed, e.g. backward counting in `business_days_between` (`35f6fc8`). |
 
 ## Applying for the badge
 
