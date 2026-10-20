@@ -73,7 +73,8 @@
               "properties": { "before": { "type": "string", "format": "date" }, "period": { "type": "string" }, "cite": { "type": "string" } }
             }
           },
-          "new": { "type": "boolean", "description": "Recently added; shown with a 'new, check the article' note." }
+          "new": { "type": "boolean", "description": "Recently added; shown with a 'new, check the article' note." },
+          "notice": { "$ref": "#/$defs/localized", "description": "A caveat shown with every result for this act, e.g. a transitional rule." }
         }
       }
     }

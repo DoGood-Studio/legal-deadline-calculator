@@ -527,7 +527,11 @@
               "period": "P7D",
               "cite": "art_2_old"
             }
-          ]
+          ],
+          "notice": {
+            "en": "Decisions given before 12 March 2024 keep the old period.",
+            "tr": "12 Mart 2024'ten önce verilen kararlarda eski süre uygulanır."
+          }
         },
         "reply": {
           "label": {
@@ -2521,7 +2525,9 @@
         "deadline": "2026-06-15",
         "period": "P2W",
         "act_cite": "art_2",
-        "notices": []
+        "notices": [
+          "act-notice"
+        ]
       }
     },
     {
@@ -2533,7 +2539,9 @@
         "deadline": "2024-03-18",
         "period": "P7D",
         "act_cite": "art_2_old",
-        "notices": []
+        "notices": [
+          "act-notice"
+        ]
       }
     },
     {
@@ -2545,7 +2553,9 @@
         "deadline": "2024-03-26",
         "period": "P2W",
         "act_cite": "art_2",
-        "notices": []
+        "notices": [
+          "act-notice"
+        ]
       }
     },
     {
@@ -3403,6 +3413,70 @@
             "period": "P1D",
             "cite": "art_5",
             "new": "yes"
+          }
+        }
+      },
+      "trigger": "2026-06-01",
+      "period": "P1D",
+      "error": "ValueError"
+    },
+    {
+      "id": "act-bad-notice",
+      "pack_spec": {
+        "id": "bad",
+        "name": {
+          "en": "Fixture acts",
+          "tr": "Test işlemleri"
+        },
+        "calendar": "fx",
+        "options": {
+          "filing": {
+            "values": [
+              "electronic",
+              "physical"
+            ],
+            "default": "electronic"
+          }
+        },
+        "citations": {
+          "art_2": {
+            "label": {
+              "en": "Art. 2",
+              "tr": "m.2"
+            }
+          },
+          "art_2_old": {
+            "label": {
+              "en": "Art. 2 (before the 2024 amendment)",
+              "tr": "m.2 (2024 değişikliğinden önce)"
+            }
+          },
+          "art_5": {
+            "label": {
+              "en": "Art. 5",
+              "tr": "m.5"
+            }
+          }
+        },
+        "steps": [
+          {
+            "type": "count"
+          },
+          {
+            "type": "roll"
+          }
+        ],
+        "acts": {
+          "x": {
+            "label": {
+              "en": "X"
+            },
+            "trigger": {
+              "en": "X"
+            },
+            "period": "P1D",
+            "cite": "art_5",
+            "notice": "plain text"
           }
         }
       },

@@ -45,6 +45,7 @@ _PACK_KEYS = {
 }
 _ACT_KEYS = {
     "label", "trigger", "period", "direction", "options", "cite", "group", "keywords", "earlier", "new",
+    "notice",
 }
 _ACT_ID = re.compile(r"^[a-z0-9][a-z0-9-]*$")
 _COMMON_STEP_KEYS = {"type", "when", "cite", "message", "messages", "note"}
@@ -205,6 +206,7 @@ class Act:
     keywords: Mapping[str, tuple[str, ...]] = field(default_factory=dict, hash=False, compare=False)
     earlier: tuple[ActVersion, ...] = ()
     new: bool = False
+    notice: Mapping[str, str] | None = field(default=None, hash=False, compare=False)
 
     def version_for(self, trigger: date | str) -> tuple[Period, Citation]:
         """The period and citation in force for a trigger date (laws change their periods)."""
@@ -232,6 +234,7 @@ class Act:
                 for v in self.earlier
             ],
             "new": self.new,
+            "notice": dict(self.notice) if self.notice else None,
         }
 
 
@@ -570,6 +573,7 @@ class RulePack:
                 keywords=self._act_keywords(item.get("keywords", {}), f"{here}.keywords"),
                 earlier=self._act_earlier(item.get("earlier", []), f"{here}.earlier"),
                 new=new,
+                notice=_check_name(item["notice"], f"{here}.notice") if "notice" in item else None,
             )
         return out
 
@@ -694,6 +698,8 @@ class RulePack:
             raise ValueError(f"direction must be one of {DIRECTIONS}, got {direction!r}")
         ctx = _Context(start, parsed, direction, self._option_values(options))
         ctx.calendar = self._calendar_for(calendar)
+        if chosen is not None and chosen.notice:
+            ctx.notices.append(Notice("act-notice", chosen.notice, act_citation))
         current = start
         counted = False
         for step in self.steps:

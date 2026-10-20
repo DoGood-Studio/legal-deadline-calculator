@@ -33,7 +33,7 @@ const PACK_KEYS = new Set([
   "non_working", "options", "steps", "citations", "sources", "disclaimer", "notes", "acts",
 ]);
 const ACT_KEYS = new Set([
-  "label", "trigger", "period", "direction", "options", "cite", "group", "keywords", "earlier", "new",
+  "label", "trigger", "period", "direction", "options", "cite", "group", "keywords", "earlier", "new", "notice",
 ]);
 const ACT_ID = /^[a-z0-9][a-z0-9-]*$/;
 const COMMON_STEP_KEYS = ["type", "when", "cite", "message", "messages", "note"];
@@ -154,6 +154,8 @@ export class Act {
     readonly earlier: readonly ActVersion[] = [],
     /** Recently added to the catalogue ("new" in the data). */
     readonly isNew = false,
+    /** A caveat shown with every result for this act (e.g. a transitional rule). */
+    readonly notice: LocalizedText | null = null,
   ) {}
 
   /** The period and citation in force for a trigger date (laws change their periods). */
@@ -178,6 +180,7 @@ export class Act {
       keywords: Object.fromEntries(Object.entries(this.keywords).map(([k, v]) => [k, [...v]])),
       earlier: this.earlier.map((v) => ({ before: v.before, period: v.period.toJSON(), citation: { ...v.citation } })),
       new: this.isNew,
+      notice: this.notice ? { ...this.notice } : null,
     };
   }
 }
@@ -563,6 +566,7 @@ export class RulePack {
         this.actKeywords(item.keywords ?? {}, `${here}.keywords`),
         this.actEarlier(item.earlier ?? [], `${here}.earlier`),
         isNew,
+        item.notice === undefined ? null : checkName(item.notice, `${here}.notice`),
       );
     }
     return out;
@@ -687,6 +691,7 @@ export class RulePack {
       endsAt: null,
       countStart: null,
     };
+    if (chosen?.notice) ctx.notices.push({ code: "act-notice", message: chosen.notice, citation: actCitation });
     let current = start;
     let counted = false;
     for (const step of this.steps) {

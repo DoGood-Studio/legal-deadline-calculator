@@ -120,6 +120,7 @@ lexdays.compute("tr/hmk", "2026-10-20", act="istinaf")
 - `group` joins acts that run from the same event; the demo lists them together.
 - `earlier` keeps periods a later law changed, in date order: `[{"before": "2024-03-12", "period": "P7D", "cite": "law_7499_..."}]` applies to triggers before 12 March 2024.
 - `new: true` marks recently added acts; the demo shows "new, check the provision" next to them.
+- `notice` is a caveat shown with every result for the act, e.g. a transitional rule or a second reading of the start date.
 
 Only add an act whose period, start and provision the statute states itself. Every act needs at least one deadline vector (`"act": "istinaf"` instead of `"period"`); a test fails otherwise.
 
