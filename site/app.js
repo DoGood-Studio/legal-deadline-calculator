@@ -167,11 +167,15 @@ function renderForm() {
   renderOptions();
 }
 
+// The pack's acts as one-click chips: the first few, the chosen one, and the rest behind "N more".
+const CHIPS = 6;
 function renderActChips() {
   const acts = Object.values(rulepack(state.pack).acts);
+  const all = state.allActs === state.pack || acts.length <= CHIPS + 1;
+  const shown = all ? acts : acts.filter((a, i) => i < CHIPS || a.id === state.act);
   radioGroup(
     $("presets"),
-    acts.map((a) => ({ a, className: "preset", content: [txt(a.label, "form"), el("small", {}, `${periodText(a.period)} · ${txt(a.citation.label, "form")}`)] })),
+    shown.map((a) => ({ a, className: "preset", content: [txt(a.label, "form"), el("small", {}, `${periodText(a.period)} · ${txt(a.citation.label, "form")}`)] })),
     ({ a }) => a.id === state.act,
     ({ a }) => {
       applyAct(a.id);
@@ -179,6 +183,12 @@ function renderActChips() {
       run();
     },
   );
+  if (shown.length < acts.length) {
+    $("presets").append(el("button", { type: "button", class: "preset preset--more", onclick: () => {
+      state.allActs = state.pack;
+      renderActChips();
+    } }, t("acts.more", { n: num(acts.length - shown.length) })));
+  }
 }
 
 const periodText = (p) => (p.unit === "business_day" ? `${num(p.amount)} ${t("u.business_day")}` : quantity(p.amount, p.unit));
