@@ -79,6 +79,14 @@
     }
   },
   "citations": {
+    "iyuk_7": { "label": { "en": "İYUK Art. 7/1, Art. 7/2-a", "tr": "İYUK m.7/1, m.7/2-a" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Dava açma süresi, özel kanunlarında ayrı süre gösterilmeyen hallerde Danıştayda ve idare mahkemelerinde altmış ve vergi mahkemelerinde otuz gündür. […] İdari uyuşmazlıklarda; yazılı bildirimin yapıldığı," } },
+    "iyuk_7_vergi": { "label": { "en": "İYUK Art. 7/1, Art. 7/2-b", "tr": "İYUK m.7/1, m.7/2-b" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Dava açma süresi, özel kanunlarında ayrı süre gösterilmeyen hallerde Danıştayda ve idare mahkemelerinde altmış ve vergi mahkemelerinde otuz gündür. […] Vergi, resim ve harçlar ile benzeri mali yükümler ve bunların zam ve cezalarından doğan uyuşmazlıklarda: Tahakkuku tahsile bağlı olan vergilerde tahsilatın; tebliğ yapılan hallerde veya tebliğ yerine geçen işlemlerde tebliğin;" } },
+    "iyuk_45": { "label": { "en": "İYUK Art. 45/1", "tr": "İYUK m.45/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "İdare ve vergi mahkemelerinin kararlarına karşı, başka kanunlarda farklı bir kanun yolu öngörülmüş olsa dahi, mahkemenin bulunduğu yargı çevresindeki bölge idare mahkemesine, kararın tebliğinden itibaren otuz gün içinde istinaf yoluna başvurulabilir." } },
+    "iyuk_46": { "label": { "en": "İYUK Art. 46/1-2", "tr": "İYUK m.46/1-2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Danıştay dava dairelerinin nihai kararları ile bölge idare mahkemelerinin aşağıda sayılan davalar hakkında verdikleri kararlar, başka kanunlarda aksine hüküm bulunsa dahi Danıştayda, kararın tebliğinden itibaren otuz gün içinde temyiz edilebilir:" } },
+    "iyuk_27": { "label": { "en": "İYUK Art. 27/7", "tr": "İYUK m.27/7" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Yürütmenin durdurulması istemleri hakkında verilen kararlar; […] kararın tebliğini izleyen günden itibaren yedi gün içinde bir defaya mahsus olmak üzere itiraz edilebilir." } },
+    "iyuk_16": { "label": { "en": "İYUK Art. 16/3", "tr": "İYUK m.16/3" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Taraflar, yapılacak tebliğlere karşı, tebliğ tarihinden itibaren otuz gün içinde cevap verebilirler. Bu süre, ancak haklı sebeplerin bulunması halinde, taraflardan birinin isteği üzerine görevli mahkeme kararı ile otuz günü geçmemek ve bir defaya mahsus olmak üzere uzatılabilir." } },
+    "iyuk_10": { "label": { "en": "İYUK Art. 10/2", "tr": "İYUK m.10/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Otuz gün içinde bir cevap verilmezse istek reddedilmiş sayılır. İlgililer otuz günün bittiği tarihten itibaren dava açma süresi içinde, konusuna göre Danıştaya, idare ve vergi mahkemelerine dava açabilirler." } },
+    "iyuk_53": { "label": { "en": "İYUK Art. 53/3", "tr": "İYUK m.53/3" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2577.pdf", "quote": { "tr": "Yargılamanın yenilenmesi süresi, (1) numaralı fıkranın (h) bendinde yazılı sebep için on yıl, (1) numaralı fıkranın (ı) bendinde yazılı sebep için Avrupa İnsan Hakları Mahkemesi kararının kesinleştiği tarihten itibaren bir yıl ve diğer sebepler için altmış gündür. Bu süreler, dayanılan sebebin istemde bulunan yönünden gerçekleştiği tarihi izleyen günden başlatılarak hesaplanır." } },
     "tk_7a": {
       "label": {
         "en": "Notification Law No. 7201, Art. 7/a (VUK Art. 107/A for GİB e-notifications)",
@@ -445,5 +453,77 @@
         "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK, HMK, CMK, İYUK ve İİK'daki taraf ve hâkim süreleri ile arabuluculuk ve uzlaştırma sürelerini 6 Şubat – 6 Nisan 2023 arasında, kural olarak olağanüstü hal ilan edilen illerde yerleşik veya 6 Şubat'ta orada bulunan kişiler için durdurdu; durma bazı yerlerde sonradan uzatıldı. Bu hesap durmayı içermez: uygulanıp uygulanmadığını kontrol edip yeniden hesaplayın."
       }
     }
-  ]
+  ],
+  "acts": {
+    "iptal-davasi": {
+      "label": { "en": "Filing an action for annulment (administrative court, Council of State)", "tr": "İptal davası açma (idare mahkemesi, Danıştay)", "de": "Klage vor dem Verwaltungsgericht", "fr": "Recours devant le juge administratif", "es": "Recurso contencioso-administrativo", "it": "Ricorso al giudice amministrativo", "pt": "Ação administrativa", "nl": "Beroep bij de bestuursrechter", "ru": "Иск в административный суд", "ar": "دعوى أمام المحكمة الإدارية", "zh": "向行政法院起诉", "ja": "行政裁判所への訴え" },
+      "trigger": { "tr": "İdari işlemin size yazılı olarak bildirildiği (tebliğ edildiği) tarih", "en": "Date the administrative act was notified to you in writing" },
+      "period": "P60D",
+      "cite": "iyuk_7",
+      "keywords": { "tr": ["idari dava", "iptal"], "en": ["annulment"] },
+      "notice": { "tr": "Özel kanunlar başka süreler öngörebilir (İYUK m.7/1); ivedi yargılama usulünde süre otuz gündür (m.20/A).", "en": "Special laws may set other periods (İYUK Art. 7(1)); in the expedited procedure it is thirty days (Art. 20/A)." }
+    },
+    "vergi-davasi": {
+      "label": { "en": "Filing a tax action (tax court)", "tr": "Vergi davası açma (vergi mahkemesi)", "de": "Klage vor dem Finanzgericht", "fr": "Recours devant le juge fiscal", "es": "Recurso tributario", "it": "Ricorso tributario", "pt": "Ação tributária", "nl": "Beroep in belastingzaken", "ru": "Иск в налоговый суд", "ar": "دعوى أمام المحكمة الضريبية", "zh": "向税务法院起诉", "ja": "税務裁判所への訴え" },
+      "trigger": { "tr": "Vergi/ceza ihbarnamesinin size tebliğ edildiği tarih (tahakkuku tahsile bağlı vergilerde tahsilat tarihi)", "en": "Date the tax or penalty notice was served on you (for taxes assessed on collection: date of collection)" },
+      "period": "P30D",
+      "cite": "iyuk_7_vergi",
+      "keywords": { "tr": ["vergi", "ihbarname"], "en": ["tax"] },
+      "notice": { "tr": "Tahsile bağlı vergilerde tahsilat, tevkif suretiyle alınan vergilerde ödeme, tescile bağlı vergilerde tescil tarihi başlangıçtır (İYUK m.7/2-b). Uzlaşma talebi dava süresini etkiler (VUK ek m.7).", "en": "For taxes tied to collection, withholding or registration the start is that event (İYUK Art. 7(2)(b)). A settlement request affects the action period (VUK add. Art. 7)." }
+    },
+    "istinaf": {
+      "label": { "en": "Appeal (istinaf)", "tr": "İstinaf", "de": "Berufung", "fr": "Appel", "es": "Apelación", "it": "Appello", "pt": "Recurso", "nl": "Hoger beroep", "ru": "Апелляция", "ar": "الاستئناف", "zh": "上诉", "ja": "控訴" },
+      "trigger": { "tr": "İdare veya vergi mahkemesi kararının size tebliğ edildiği tarih", "en": "Date the administrative or tax court's decision was served on you" },
+      "period": "P30D",
+      "cite": "iyuk_45",
+      "keywords": { "tr": ["bölge idare", "kanun yolu"], "en": ["appeal"] }
+    },
+    "temyiz": {
+      "label": { "tr": "Temyiz", "en": "Appeal on points of law (temyiz)" },
+      "trigger": { "tr": "Danıştay dairesi veya bölge idare mahkemesi kararının size tebliğ edildiği tarih", "en": "Date the Council of State chamber's or regional administrative court's decision was served on you" },
+      "period": "P30D",
+      "cite": "iyuk_46",
+      "keywords": { "tr": ["Danıştay", "kanun yolu"], "en": ["appeal on points of law"] },
+      "notice": { "tr": "Yalnızca İYUK m.46'da sayılan kararlara karşı açıktır; ivedi yargılamada süre on beş gündür.", "en": "Only against the decisions listed in İYUK Art. 46; fifteen days in the expedited procedure." },
+      "new": true
+    },
+    "yurutmenin-durdurulmasi-kararina-itiraz": {
+      "label": { "tr": "Yürütmenin durdurulması kararına itiraz", "en": "Objection to a decision on a stay of execution" },
+      "trigger": { "tr": "Yürütmenin durdurulması istemi hakkındaki kararın size tebliğ edildiği tarih", "en": "Date the decision on the stay request was served on you" },
+      "period": "P7D",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_27",
+      "keywords": { "tr": ["yürütmeyi durdurma", "YD"], "en": ["stay"] },
+      "notice": { "tr": "Bir defaya mahsus yapılır. Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "Only once. The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "cevap-dilekcesi": {
+      "label": { "tr": "Cevap (savunma) dilekçesi", "en": "Statement of defence (savunma)" },
+      "trigger": { "tr": "Dava dilekçesinin (veya cevaplanacak dilekçenin) size tebliğ edildiği tarih", "en": "Date the statement of claim (or the pleading to be answered) was served on you" },
+      "period": "P30D",
+      "cite": "iyuk_16",
+      "keywords": { "tr": ["savunma"], "en": ["defence"] },
+      "notice": { "tr": "Her dilekçe teatisi için geçerlidir (savunma, cevaba cevap, ikinci savunma). Süresinde istenirse bir defaya mahsus otuz güne kadar ek süre verilebilir.", "en": "Applies to every exchange of pleadings. One extension of up to thirty days may be granted if asked in time." },
+      "new": true
+    },
+    "zimni-ret": {
+      "label": { "tr": "İdareye başvuruda zımni ret (İYUK 10)", "en": "Implied rejection of a request to the administration (Art. 10)" },
+      "trigger": { "tr": "İdareye başvurduğunuz tarih", "en": "Date you applied to the administration" },
+      "period": "P30D",
+      "options": { "court_break": "not_applicable" },
+      "cite": "iyuk_10",
+      "keywords": { "tr": ["zımni ret", "cevap verilmemesi", "başvuru"], "en": ["implied rejection"] },
+      "notice": { "tr": "Otuz gün içinde cevap verilmezse istek reddedilmiş sayılır; dava açma süresi bu günden başlar. 14 Temmuz 2021'den önceki başvurularda süre altmış gündü. Yaz ara vermesinin (İYUK m.8/3) bu süreyi uzatıp uzatmadığı kanunda açık değil; hesap uzatmayan, daha erken tarihi gösterir.", "en": "Without an answer within thirty days the request counts as rejected and the action period starts. For applications before 14 July 2021 it was sixty days. The statute does not say whether the summer break (İYUK Art. 8(3)) extends this period; the result is the earlier date, without an extension." },
+      "new": true
+    },
+    "yargilamanin-yenilenmesi": {
+      "label": { "tr": "Yargılamanın yenilenmesi", "en": "Retrial (yargılamanın yenilenmesi)" },
+      "trigger": { "tr": "Dayanılan yenileme sebebinin sizin bakımınızdan gerçekleştiği tarih", "en": "Date the ground for retrial arose for you" },
+      "period": "P60D",
+      "cite": "iyuk_53",
+      "keywords": { "tr": ["yenileme"], "en": ["retrial"] },
+      "notice": { "tr": "Altmış günlük süre m.53/1 (a)–(g) sebepleri içindir; (h) ve (ı) sebeplerinin süreleri farklıdır.", "en": "Sixty days for grounds (a)–(g) of Art. 53(1); grounds (h) and (ı) have other periods." },
+      "new": true
+    }
+  }
 }

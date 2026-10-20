@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Cour de justice et Tribunal", "Règlement de procédure art. 49–51", "Date de notification ou de l'événement"],
     "de/zpo": ["Procédure civile (ZPO)", "§ 222 ZPO", "Date de notification"],
   },
-  presets: {
-    "tr/hmk": ["Appel (istinaf)", "Pourvoi (temyiz)", "Mémoire en défense"],
-    "tr/iik": ["Opposition au commandement de payer", "Opposition (effets de commerce)", "Plainte", "Appel (juge de l'exécution)"],
-    "tr/cmk": ["Appel (istinaf)", "Pourvoi (temyiz)", "Opposition"],
-    "tr/iyuk": ["Recours devant le juge administratif", "Recours devant le juge fiscal", "Appel"],
-    "tr/vuk": ["15 jours", "30 jours"],
-    "tr/aym": ["Recours individuel"],
-    "us/frcp": ["Réponse à la demande (answer)", "Requête en nouveau procès", "Signifier la requête avant l'audience"],
-    "gb-eaw/cpr": ["Acte de comparution (acknowledgment)", "Mémoire en défense (après comparution)", "Signifier la demande avant l'audience"],
-    "eu/cj": ["Recours en annulation", "Pourvoi devant la Cour de justice"],
-    "de/zpo": ["Berufung (appel)", "Berufungsbegründung (motifs d'appel)", "Einspruch (jugement par défaut)", "Revision (pourvoi)"],
-  },
   options: {
     service: "Quelle date avez-vous saisie ?",
     distance_extension: "Le délai de distance de 10 jours s'applique-t-il ?",

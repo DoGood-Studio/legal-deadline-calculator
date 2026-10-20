@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Corte di giustizia e Tribunale", "Regolamento di procedura artt. 49–51", "Data di notifica o dell'evento"],
     "de/zpo": ["Procedura civile (ZPO)", "§ 222 ZPO", "Data di notifica"],
   },
-  presets: {
-    "tr/hmk": ["Appello (istinaf)", "Ricorso per cassazione (temyiz)", "Comparsa di risposta"],
-    "tr/iik": ["Opposizione all'ingiunzione di pagamento", "Opposizione (titoli cambiari)", "Reclamo", "Appello (giudice dell'esecuzione)"],
-    "tr/cmk": ["Appello (istinaf)", "Ricorso per cassazione (temyiz)", "Opposizione"],
-    "tr/iyuk": ["Ricorso al giudice amministrativo", "Ricorso tributario", "Appello"],
-    "tr/vuk": ["15 giorni", "30 giorni"],
-    "tr/aym": ["Ricorso individuale"],
-    "us/frcp": ["Comparsa di risposta (answer)", "Istanza di nuovo processo", "Notificare l'istanza prima dell'udienza"],
-    "gb-eaw/cpr": ["Costituzione del convenuto (acknowledgment)", "Comparsa di risposta (dopo la costituzione)", "Notificare la domanda prima dell'udienza"],
-    "eu/cj": ["Ricorso di annullamento", "Impugnazione dinanzi alla Corte di giustizia"],
-    "de/zpo": ["Berufung (appello)", "Berufungsbegründung (motivi d'appello)", "Einspruch (sentenza contumaciale)", "Revision (cassazione)"],
-  },
   options: {
     service: "Quale data hai inserito?",
     distance_extension: "Si applica la proroga di 10 giorni in ragione della distanza?",

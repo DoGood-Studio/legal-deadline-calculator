@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Tribunal de Justicia y Tribunal General", "Reglamento de Procedimiento arts. 49–51", "Fecha de notificación o del hecho"],
     "de/zpo": ["Procedimiento civil (ZPO)", "§ 222 ZPO", "Fecha de notificación"],
   },
-  presets: {
-    "tr/hmk": ["Apelación (istinaf)", "Casación (temyiz)", "Contestación a la demanda"],
-    "tr/iik": ["Oposición al requerimiento de pago", "Oposición (títulos cambiarios)", "Queja", "Apelación (juzgado de ejecución)"],
-    "tr/cmk": ["Apelación (istinaf)", "Casación (temyiz)", "Recurso (itiraz)"],
-    "tr/iyuk": ["Recurso contencioso-administrativo", "Recurso tributario", "Apelación"],
-    "tr/vuk": ["15 días", "30 días"],
-    "tr/aym": ["Recurso individual"],
-    "us/frcp": ["Contestación a la demanda (answer)", "Moción de nuevo juicio", "Notificar la moción antes de la audiencia"],
-    "gb-eaw/cpr": ["Personación (acknowledgment)", "Contestación (tras la personación)", "Notificar la solicitud antes de la audiencia"],
-    "eu/cj": ["Recurso de anulación", "Recurso de casación ante el Tribunal de Justicia"],
-    "de/zpo": ["Berufung (apelación)", "Berufungsbegründung (motivos)", "Einspruch (sentencia en rebeldía)", "Revision (casación)"],
-  },
   options: {
     service: "¿Qué fecha ha introducido?",
     distance_extension: "¿Se aplica la ampliación de 10 días por razón de la distancia?",

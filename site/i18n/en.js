@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Court of Justice and General Court", "Rules of Procedure Arts. 49–51", "Date of notification or event"],
     "de/zpo": ["Civil procedure (ZPO)", "§ 222 ZPO", "Date of service"],
   },
-  presets: {
-    "tr/hmk": ["Appeal (istinaf)", "Appeal on points of law (temyiz)", "Statement of defence"],
-    "tr/iik": ["Objection to a payment order", "Objection (bills of exchange)", "Complaint", "Appeal (enforcement court)"],
-    "tr/cmk": ["Appeal (istinaf)", "Appeal on points of law (temyiz)", "Objection"],
-    "tr/iyuk": ["Administrative action", "Tax court action", "Appeal"],
-    "tr/vuk": ["15 days", "30 days"],
-    "tr/aym": ["Individual application"],
-    "us/frcp": ["Answer to the complaint", "Motion for a new trial", "Serve motion before hearing"],
-    "gb-eaw/cpr": ["Acknowledgment of service", "Defence (if acknowledgment filed)", "Serve application before hearing"],
-    "eu/cj": ["Action for annulment", "Appeal to the Court of Justice"],
-    "de/zpo": ["Berufung (appeal)", "Berufungsbegründung (grounds of appeal)", "Einspruch (default judgment)", "Revision"],
-  },
   options: {
     service: "Which date did you enter?",
     distance_extension: "Does the 10-day extension on account of distance apply?",

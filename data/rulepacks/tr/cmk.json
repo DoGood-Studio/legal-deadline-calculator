@@ -68,6 +68,12 @@
     }
   },
   "citations": {
+    "cmk_273": { "label": { "en": "CMK Art. 273/1", "tr": "CMK m.273/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "İstinaf istemi, hükmün gerekçesiyle birlikte tebliğ edildiği tarihten itibaren iki hafta içinde hükmü veren mahkemeye bir dilekçe verilmesi veya zabıt kâtibine bir beyanda bulunulması suretiyle yapılır;" } },
+    "cmk_291": { "label": { "en": "CMK Art. 291/1", "tr": "CMK m.291/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Temyiz istemi, hükmün gerekçesiyle birlikte tebliğ edildiği tarihten itibaren iki hafta içinde hükmü veren mahkemeye bir dilekçe verilmesi veya zabıt kâtibine bir beyanda bulunulması suretiyle yapılır;" } },
+    "cmk_268": { "label": { "en": "CMK Art. 268/1", "tr": "CMK m.268/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Hâkim veya mahkeme kararına karşı itiraz, kanunun ayrıca hüküm koymadığı hâllerde 35 inci maddeye göre ilgililerin kararı öğrendiği günden itibaren iki hafta içinde kararı veren mercie verilecek bir dilekçe veya tutanağa geçirilmek koşulu ile zabıt kâtibine beyanda bulunmak suretiyle yapılır." } },
+    "cmk_41": { "label": { "en": "CMK Art. 41/1", "tr": "CMK m.41/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Eski hâle getirme dilekçesi, engelin kalkmasından itibaren iki hafta içinde, süreye uyulduğunda usule ilişkin işlemleri yapacak olan mahkemeye verilir." } },
+    "cmk_173": { "label": { "en": "CMK Art. 173/1", "tr": "CMK m.173/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "Suçtan zarar gören, kovuşturmaya yer olmadığına dair kararın kendisine tebliğ edildiği tarihten itibaren iki hafta içinde, bu kararı veren Cumhuriyet savcısının yargı çevresinde görev yaptığı ağır ceza mahkemesinin bulunduğu yerdeki sulh ceza hâkimliğine itiraz edebilir." } },
+    "cmk_277": { "label": { "en": "CMK Art. 277/1", "tr": "CMK m.277/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.5271.pdf", "quote": { "tr": "276 ncı maddeye göre hükmü veren mahkemece reddedilmeyen istinaf dilekçesi veya beyana ilişkin tutanağın bir örneği karşı tarafa tebliğ olunur. Karşı taraf, tebliğ tarihinden itibaren iki hafta içinde yazılı olarak cevabını verebilir." } },
     "tk_7a": {
       "label": {
         "en": "Notification Law No. 7201, Art. 7/a",
@@ -410,5 +416,58 @@
         "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK, HMK, CMK, İYUK ve İİK'daki taraf ve hâkim süreleri ile arabuluculuk ve uzlaştırma sürelerini 6 Şubat – 6 Nisan 2023 arasında, kural olarak olağanüstü hal ilan edilen illerde yerleşik veya 6 Şubat'ta orada bulunan kişiler için durdurdu; durma bazı yerlerde sonradan uzatıldı. Bu hesap durmayı içermez: uygulanıp uygulanmadığını kontrol edip yeniden hesaplayın."
       }
     }
-  ]
+  ],
+  "acts": {
+    "istinaf": {
+      "label": { "en": "Appeal (istinaf)", "tr": "İstinaf", "de": "Berufung (istinaf)", "fr": "Appel (istinaf)", "es": "Apelación (istinaf)", "it": "Appello (istinaf)", "pt": "Recurso (istinaf)", "nl": "Hoger beroep (istinaf)", "ru": "Апелляция (istinaf)", "ar": "الاستئناف (istinaf)", "zh": "上诉 (istinaf)", "ja": "控訴 (istinaf)" },
+      "trigger": { "tr": "Gerekçeli hükmün size tebliğ edildiği tarih (hükmün açıklandığı tarih değil)", "en": "Date the reasoned judgment was served on you (not the date it was pronounced)" },
+      "period": "P2W",
+      "cite": "cmk_273",
+      "keywords": { "tr": ["kanun yolu", "bölge adliye"], "en": ["appeal"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre yedi gündü ve hükmün açıklanmasından başlıyordu (CMK Geçici m.6).", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was seven days from pronouncement (CMK provisional Art. 6)." }
+    },
+    "temyiz": {
+      "label": { "en": "Appeal on points of law (temyiz)", "tr": "Temyiz", "de": "Revision (temyiz)", "fr": "Pourvoi (temyiz)", "es": "Casación (temyiz)", "it": "Ricorso per cassazione (temyiz)", "pt": "Recurso de cassação (temyiz)", "nl": "Cassatie (temyiz)", "ru": "Кассация (temyiz)", "ar": "النقض (temyiz)", "zh": "法律审上诉 (temyiz)", "ja": "上告 (temyiz)" },
+      "trigger": { "tr": "Gerekçeli hükmün size tebliğ edildiği tarih (hükmün açıklandığı tarih değil)", "en": "Date the reasoned judgment was served on you (not the date it was pronounced)" },
+      "period": "P2W",
+      "cite": "cmk_291",
+      "keywords": { "tr": ["kanun yolu", "Yargıtay"], "en": ["appeal on points of law"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre on beş gündü ve hükmün açıklanmasından başlıyordu (CMK Geçici m.6).", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was fifteen days from pronouncement (CMK provisional Art. 6)." }
+    },
+    "itiraz": {
+      "label": { "en": "Objection against a judge's or court's decision (itiraz)", "tr": "İtiraz (hâkim ve mahkeme kararlarına)", "de": "Beschwerde", "fr": "Opposition", "es": "Recurso (itiraz)", "it": "Opposizione", "pt": "Oposição", "nl": "Bezwaar", "ru": "Возражение", "ar": "الاعتراض", "zh": "异议", "ja": "異議" },
+      "trigger": { "tr": "Kararı öğrendiğiniz gün: yüzünüze karşı açıklandıysa açıklama günü, değilse tebliğ tarihi (CMK m.35)", "en": "Date you learned of the decision: the day it was pronounced in your presence, otherwise the date of service (CMK Art. 35)" },
+      "period": "P2W",
+      "cite": "cmk_268",
+      "keywords": { "tr": ["itiraz"], "en": ["objection"] },
+      "notice": { "tr": "Kanunun ayrıca hüküm koymadığı hâller içindir. Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre yedi gündü.", "en": "Only where no special rule applies. This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was seven days." }
+    },
+    "eski-hale-getirme": {
+      "label": { "tr": "Eski hale getirme", "en": "Restoration of a missed period (eski hâle getirme)" },
+      "trigger": { "tr": "Süreyi kaçırmanıza neden olan engelin kalktığı tarih", "en": "Date the obstacle that caused you to miss the period ended" },
+      "period": "P2W",
+      "cite": "cmk_41",
+      "keywords": { "tr": ["eski hâle getirme", "mazeret"], "en": ["restoration"] },
+      "notice": { "tr": "Yapılamayan işlem dilekçeyle birlikte yapılmalıdır (CMK m.41/2). Engel 1 Haziran 2024'ten önce kalktıysa süre yedi gündü (CMK Geçici m.6).", "en": "The missed act must be done with the petition (CMK Art. 41(2)). If the obstacle ended before 1 June 2024 the period was seven days." },
+      "new": true
+    },
+    "kovusturmaya-yer-olmadigina-itiraz": {
+      "label": { "tr": "Kovuşturmaya yer olmadığına dair karara itiraz", "en": "Objection to a decision not to prosecute" },
+      "trigger": { "tr": "Kovuşturmaya yer olmadığına dair kararın size tebliğ edildiği tarih", "en": "Date the decision not to prosecute was served on you" },
+      "period": "P2W",
+      "cite": "cmk_173",
+      "keywords": { "tr": ["KYOK", "takipsizlik"], "en": ["non-prosecution"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre on beş gündü.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was fifteen days." },
+      "new": true
+    },
+    "istinaf-dilekcesine-cevap": {
+      "label": { "tr": "İstinaf dilekçesine cevap", "en": "Answer to the appeal (istinaf)" },
+      "trigger": { "tr": "İstinaf dilekçesinin (veya beyan tutanağının) size tebliğ edildiği tarih", "en": "Date the notice of appeal (or the record of the oral appeal) was served on you" },
+      "period": "P2W",
+      "cite": "cmk_277",
+      "keywords": { "tr": ["istinaf cevabı"], "en": ["answer to the appeal"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre yedi gündü.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was seven days." },
+      "new": true
+    }
+  }
 }

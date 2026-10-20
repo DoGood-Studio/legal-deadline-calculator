@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Gerichtshof und Gericht der EU", "Verfahrensordnung Art. 49–51", "Zustellungs- oder Ereignisdatum"],
     "de/zpo": ["Zivilprozess (ZPO)", "§ 222 ZPO", "Zustellungsdatum"],
   },
-  presets: {
-    "tr/hmk": ["Berufung (istinaf)", "Revision (temyiz)", "Klageerwiderung"],
-    "tr/iik": ["Widerspruch gegen den Zahlungsbefehl", "Widerspruch (Wechselbetreibung)", "Beschwerde", "Berufung (Vollstreckungsgericht)"],
-    "tr/cmk": ["Berufung (istinaf)", "Revision (temyiz)", "Beschwerde"],
-    "tr/iyuk": ["Klage vor dem Verwaltungsgericht", "Klage vor dem Finanzgericht", "Berufung"],
-    "tr/vuk": ["15 Tage", "30 Tage"],
-    "tr/aym": ["Individualbeschwerde"],
-    "us/frcp": ["Klageerwiderung (Answer)", "Antrag auf neue Verhandlung", "Antrag vor dem Termin zustellen"],
-    "gb-eaw/cpr": ["Verteidigungsanzeige (Acknowledgment)", "Klageerwiderung (nach Verteidigungsanzeige)", "Antrag vor dem Termin zustellen"],
-    "eu/cj": ["Nichtigkeitsklage", "Rechtsmittel beim Gerichtshof"],
-    "de/zpo": ["Berufung", "Berufungsbegründung", "Einspruch gegen Versäumnisurteil", "Revision"],
-  },
   options: {
     service: "Welches Datum haben Sie eingegeben?",
     distance_extension: "Gilt die Entfernungsfrist von 10 Tagen?",

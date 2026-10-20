@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Tribunal de Justiça e Tribunal Geral", "Regulamento de Processo arts. 49.º–51.º", "Data da notificação ou do evento"],
     "de/zpo": ["Processo civil (ZPO)", "§ 222 ZPO", "Data da notificação"],
   },
-  presets: {
-    "tr/hmk": ["Apelação (istinaf)", "Recurso de revista (temyiz)", "Contestação"],
-    "tr/iik": ["Oposição à injunção de pagamento", "Oposição (títulos cambiais)", "Reclamação", "Recurso (tribunal de execução)"],
-    "tr/cmk": ["Recurso (istinaf)", "Recurso de cassação (temyiz)", "Oposição"],
-    "tr/iyuk": ["Ação administrativa", "Ação tributária", "Recurso"],
-    "tr/vuk": ["15 dias", "30 dias"],
-    "tr/aym": ["Queixa individual"],
-    "us/frcp": ["Contestação (answer)", "Pedido de novo julgamento", "Notificar o pedido antes da audiência"],
-    "gb-eaw/cpr": ["Declaração de intenção de defesa (acknowledgment)", "Contestação (após a declaração)", "Notificar o requerimento antes da audiência"],
-    "eu/cj": ["Recurso de anulação", "Recurso para o Tribunal de Justiça"],
-    "de/zpo": ["Berufung (apelação)", "Berufungsbegründung (alegações)", "Einspruch (sentença à revelia)", "Revision (revista)"],
-  },
   options: {
     service: "Que data introduziu?",
     distance_extension: "Aplica-se a dilação de 10 dias em razão da distância?",

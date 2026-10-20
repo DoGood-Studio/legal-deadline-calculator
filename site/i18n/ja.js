@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["EU 司法裁判所・一般裁判所", "手続規則 49–51 条", "送達日またはできごとの日"],
     "de/zpo": ["民事訴訟 (ZPO)", "§ 222 ZPO", "送達日"],
   },
-  presets: {
-    "tr/hmk": ["控訴 (istinaf)", "上告 (temyiz)", "答弁書"],
-    "tr/iik": ["支払命令への異議", "異議（手形執行）", "不服申立て", "控訴（執行裁判所）"],
-    "tr/cmk": ["控訴 (istinaf)", "上告 (temyiz)", "異議"],
-    "tr/iyuk": ["行政裁判所への訴え", "税務裁判所への訴え", "控訴"],
-    "tr/vuk": ["15 日", "30 日"],
-    "tr/aym": ["個人申立て"],
-    "us/frcp": ["答弁 (answer)", "再審理の申立て", "審問前に申立てを送達"],
-    "gb-eaw/cpr": ["応訴の意思表示（acknowledgment）", "答弁書（応訴の意思表示後）", "審問前に申請を送達"],
-    "eu/cj": ["取消訴訟", "司法裁判所への上訴"],
-    "de/zpo": ["Berufung（控訴）", "Berufungsbegründung（控訴理由書）", "Einspruch（欠席判決への異議）", "Revision（上告）"],
-  },
   options: {
     service: "入力した日付はどれですか？",
     distance_extension: "距離による10日の延長は適用されますか？",

@@ -17,6 +17,7 @@
     "tr": "Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Sonuca güvenmeden önce Anayasa Mahkemesinin kabul edilebilirlik içtihadını kontrol edin."
   },
   "citations": {
+    "law_6216_47_mazeret": { "label": { "en": "6216 Art. 47/5", "tr": "6216 s.K. m.47/5" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6216.pdf", "quote": { "tr": "Haklı bir mazereti nedeniyle süresi içinde başvuramayanlar, mazeretin kalktığı tarihten itibaren onbeş gün içinde ve mazeretlerini belgeleyen delillerle birlikte başvurabilirler." } },
     "law_6216_47": {
       "label": { "en": "Law No. 6216, Art. 47/5", "tr": "6216 s.K. m.47/5" },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.5.6216.pdf",
@@ -169,5 +170,23 @@
         "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK ve ilgili kararlarla olağanüstü hal ilan edilen illerdeki kişiler için bazı süreler durduruldu (6 Şubat – 6 Nisan 2023, bazı yerlerde uzatıldı). Bu hesap bunu içermez; bu süreye uygulanıp uygulanmadığını kontrol edin."
       }
     }
-  ]
+  ],
+  "acts": {
+    "bireysel-basvuru": {
+      "label": { "en": "Individual application", "tr": "Bireysel başvuru", "de": "Individualbeschwerde", "fr": "Recours individuel", "es": "Recurso individual", "it": "Ricorso individuale", "pt": "Queixa individual", "nl": "Individueel verzoekschrift", "ru": "Индивидуальная жалоба", "ar": "الطعن الفردي", "zh": "个人申诉", "ja": "個人申立て" },
+      "trigger": { "tr": "Nihai kararı öğrendiğiniz tarih (başvuru yollarının tüketildiği tarih)", "en": "Date you learned of the final decision (exhaustion of remedies)" },
+      "period": "P30D",
+      "cite": "law_6216_47",
+      "keywords": { "tr": ["Anayasa Mahkemesi", "hak ihlali"], "en": ["individual application"] }
+    },
+    "mazeret-hali": {
+      "label": { "tr": "Mazeret hâlinde bireysel başvuru (eski hale getirme)", "en": "Individual application after a justified excuse" },
+      "trigger": { "tr": "Mazeretin ortadan kalktığı tarih", "en": "Date the excuse ended" },
+      "period": "P15D",
+      "cite": "law_6216_47_mazeret",
+      "keywords": { "tr": ["mazeret", "eski hâle getirme"], "en": ["excuse"] },
+      "notice": { "tr": "Mazereti gösteren belgeler başvuruyla birlikte verilir; Mahkeme önce mazeretin haklı olup olmadığına karar verir.", "en": "Evidence of the excuse is filed with the application; the Court first decides whether it is valid." },
+      "new": true
+    }
+  }
 }

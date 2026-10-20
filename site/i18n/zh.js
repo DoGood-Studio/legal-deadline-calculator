@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["欧盟法院与普通法院", "程序规则第 49–51 条", "送达或事件日期"],
     "de/zpo": ["民事诉讼 (ZPO)", "§ 222 ZPO", "送达日期"],
   },
-  presets: {
-    "tr/hmk": ["上诉 (istinaf)", "法律审上诉 (temyiz)", "答辩状"],
-    "tr/iik": ["对支付令提出异议", "异议（票据追索）", "申诉", "上诉（执行法院）"],
-    "tr/cmk": ["上诉 (istinaf)", "法律审上诉 (temyiz)", "异议"],
-    "tr/iyuk": ["向行政法院起诉", "向税务法院起诉", "上诉"],
-    "tr/vuk": ["15天", "30天"],
-    "tr/aym": ["个人申诉"],
-    "us/frcp": ["答辩 (answer)", "申请重新审理", "在听证前送达动议"],
-    "gb-eaw/cpr": ["应诉通知（acknowledgment）", "答辩（已提交应诉通知）", "在听证前送达申请"],
-    "eu/cj": ["撤销之诉", "向欧盟法院上诉"],
-    "de/zpo": ["Berufung（上诉）", "Berufungsbegründung（上诉理由）", "Einspruch（缺席判决异议）", "Revision（法律审上诉）"],
-  },
   options: {
     service: "您输入的是哪个日期？",
     distance_extension: "是否适用因距离延长的10天？",

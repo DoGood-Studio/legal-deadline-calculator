@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Adalet Divanı ve Genel Mahkeme", "Usul Kuralları m.49–51", "Tebliğ veya olay tarihi"],
     "de/zpo": ["Hukuk yargılaması (ZPO)", "§ 222 ZPO", "Tebliğ tarihi"],
   },
-  presets: {
-    "tr/hmk": ["İstinaf", "Temyiz", "Cevap dilekçesi"],
-    "tr/iik": ["Ödeme emrine itiraz", "Kambiyo takibinde itiraz", "Şikâyet", "İstinaf (icra mahkemesi)"],
-    "tr/cmk": ["İstinaf", "Temyiz", "İtiraz"],
-    "tr/iyuk": ["İdari dava açma", "Vergi davası açma", "İstinaf"],
-    "tr/vuk": ["15 gün", "30 gün"],
-    "tr/aym": ["Bireysel başvuru"],
-    "us/frcp": ["Davaya cevap", "Yeniden yargılama talebi", "Duruşmadan önce talep tebliği"],
-    "gb-eaw/cpr": ["Savunma niyeti bildirimi (acknowledgment)", "Cevap dilekçesi (bildirim yapıldıysa)", "Duruşmadan önce başvuru tebliği"],
-    "eu/cj": ["İptal davası", "Adalet Divanı'na temyiz"],
-    "de/zpo": ["Berufung (istinaf)", "Berufungsbegründung (istinaf gerekçesi)", "Einspruch (gıyabi karara itiraz)", "Revision (temyiz)"],
-  },
   options: {
     service: "Girdiğiniz tarih neyi gösteriyor?",
     distance_extension: "Mesafe nedeniyle 10 günlük uzama uygulanıyor mu?",

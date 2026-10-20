@@ -44,18 +44,6 @@ export default {
     "eu/cj": ["Hof van Justitie en Gerecht", "Reglement voor de procesvoering art. 49–51", "Datum van betekening of gebeurtenis"],
     "de/zpo": ["Burgerlijk procesrecht (ZPO)", "§ 222 ZPO", "Datum van betekening"],
   },
-  presets: {
-    "tr/hmk": ["Hoger beroep (istinaf)", "Cassatie (temyiz)", "Conclusie van antwoord"],
-    "tr/iik": ["Verzet tegen het betalingsbevel", "Verzet (wisselvordering)", "Klacht", "Hoger beroep (executierechter)"],
-    "tr/cmk": ["Hoger beroep (istinaf)", "Cassatie (temyiz)", "Bezwaar"],
-    "tr/iyuk": ["Beroep bij de bestuursrechter", "Beroep in belastingzaken", "Hoger beroep"],
-    "tr/vuk": ["15 dagen", "30 dagen"],
-    "tr/aym": ["Individueel verzoekschrift"],
-    "us/frcp": ["Antwoord op de dagvaarding (answer)", "Verzoek om nieuw proces", "Verzoek betekenen vóór de zitting"],
-    "gb-eaw/cpr": ["Verschijning (acknowledgment)", "Verweer (na verschijning)", "Verzoek betekenen vóór de zitting"],
-    "eu/cj": ["Beroep tot nietigverklaring", "Hogere voorziening bij het Hof van Justitie"],
-    "de/zpo": ["Berufung (hoger beroep)", "Berufungsbegründung (grieven)", "Einspruch (verstekvonnis)", "Revision (cassatie)"],
-  },
   options: {
     service: "Welke datum heeft u ingevoerd?",
     distance_extension: "Geldt de termijn van 10 dagen wegens afstand?",

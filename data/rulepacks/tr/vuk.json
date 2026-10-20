@@ -35,6 +35,8 @@
     }
   },
   "citations": {
+    "vuk_371": { "label": { "en": "VUK Art. 371/1-3, 4, 5", "tr": "VUK m.371/1-3, 4, 5" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Hiç verilmemiş olan vergi beyannamelerinin mükellefin haber verme dilekçesinin verildiği tarihten başlayarak onbeş gün içinde tevdi olunması. […] Eksik veya yanlış yapılan vergi beyanının mükellefin keyfiyeti haber verme tarihinden başlayarak onbeş gün içinde tamamlanması veya düzeltilmesi. […] haber verme tarihinden başlayarak onbeş gün içinde ödenmesi." } },
+    "vuk_ek_1": { "label": { "en": "VUK add. Art. 1/1", "tr": "VUK ek m.1/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf", "quote": { "tr": "Uzlaşma talebi vergi ihbarnemesinin tebliğ tarihinden itibaren otuz gün içinde yapılır." } },
     "vuk_107a": {
       "label": { "en": "VUK Art. 107/A", "tr": "VUK m.107/A" },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.4.213.pdf",
@@ -191,5 +193,25 @@
         "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK ve ilgili kararlarla olağanüstü hal ilan edilen illerdeki kişiler için bazı süreler durduruldu (6 Şubat – 6 Nisan 2023, bazı yerlerde uzatıldı). Bu hesap bunu içermez; bu süreye uygulanıp uygulanmadığını kontrol edin."
       }
     }
-  ]
+  ],
+  "acts": {
+    "pismanlik": {
+      "label": { "tr": "Pişmanlık ve ıslah (beyan ve ödeme)", "en": "Voluntary disclosure (pişmanlık): filing and payment" },
+      "trigger": { "tr": "Pişmanlık dilekçesini verdiğiniz (haber verme) tarih", "en": "Date you filed the voluntary-disclosure petition" },
+      "period": "P15D",
+      "cite": "vuk_371",
+      "keywords": { "tr": ["pişmanlık", "ıslah"], "en": ["voluntary disclosure"] },
+      "notice": { "tr": "Beyan ve ödeme aynı on beş gün içinde yapılır; inceleme başlamışsa veya ihbar varsa pişmanlık hükümleri uygulanmaz. 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "Filing and payment share the same fifteen days; not available once an audit has started or after an informer report. The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    },
+    "uzlasma-talebi": {
+      "label": { "tr": "Uzlaşma talebi (tarhiyat sonrası)", "en": "Request for settlement after assessment (uzlaşma)" },
+      "trigger": { "tr": "Vergi/ceza ihbarnamesinin size tebliğ edildiği tarih", "en": "Date the tax or penalty notice was served on you" },
+      "period": "P30D",
+      "cite": "vuk_ek_1",
+      "keywords": { "tr": ["uzlaşma", "ihbarname"], "en": ["settlement"] },
+      "notice": { "tr": "Uzlaşma talebi ile ceza indirimi (m.376) birbirini dışlar. Uzlaşma sağlanamazsa dava süresi tutanağın tebliğinden en az on beş gündür (VUK ek m.7). 1–20 Temmuz arasındaki mali tatil (5604 sayılı Kanun) bu dönemde biten süreleri uzatabilir; hesap mali tatili dikkate almaz.", "en": "A settlement request and the penalty reduction (Art. 376) exclude each other. If it fails, the action period is at least fifteen days from service of the minutes (VUK add. Art. 7). The fiscal recess of 1–20 July (Law No. 5604) may extend periods ending in it; the result does not take it into account." },
+      "new": true
+    }
+  }
 }

@@ -44,6 +44,21 @@
     }
   },
   "citations": {
+    "iik_62": { "label": { "en": "İİK Art. 62/1", "tr": "İİK m.62/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "İtiraz etmek istiyen borçlu, itirazını, ödeme emrinin tebliği tarihinden itibaren yedi gün içinde dilekçe ile veya sözlü olarak icra dairesine bildirmeye mecburdur." } },
+    "iik_60": { "label": { "en": "İİK Art. 60/1-2 ve 4", "tr": "İİK m.60/1-2 ve 4" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Borcun ve masrafların yedi gün içinde icra dairesine ait ödeme emrinde yazılı olan banka hesabına ödenmesi […] Senet veya borca itirazını bildirmediği takdirde yukarda yazılı yedi günlük süre içinde 74 üncü maddeye göre mal beyanında bulunması" } },
+    "iik_78": { "label": { "en": "İİK Art. 78/2", "tr": "İİK m.78/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Haciz istemek hakkı, ödeme emrinin tebliği tarihinden itibaren bir sene geçmekle düşer. İtiraz veya dava halinde bunların vukuundan hükmün katileşmesine kadar veya alacaklıyla borçlunun icra dairesinde taksit sözleşmeleri yapmaları halinde taksit sözleşmesinin ihlaline kadar geçen zaman hesaba katılmaz." } },
+    "iik_67": { "label": { "en": "İİK Art. 67/1", "tr": "İİK m.67/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Takip talebine itiraz edilen alacaklı, itirazın tebliği tarihinden itibaren bir sene içinde mahkemeye başvurarak, genel hükümler dairesinde alacağının varlığını ispat suretiyle itirazın iptalini dava edebilir." } },
+    "iik_68": { "label": { "en": "İİK Art. 68/1, Art. 68/a-1", "tr": "İİK m.68/1, m.68/a-1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "alacaklı itirazın kendisine tebliği tarihinden itibaren altı ay içinde […] itirazın kaldırılmasını isteyebilir. Bu süre içerisinde itirazın kaldırılması istenilmediği takdirde yeniden ilâmsız takip yapılamaz. […] Takibin dayandığı senet hususî olup, imza itiraz sırasında borçlu tarafından reddedilmişse, alacaklı itirazın kendisine tebliği tarihinden itibaren altı ay içinde itirazın geçici olarak kaldırılmasını isteyebilir." } },
+    "iik_168": { "label": { "en": "İİK Art. 168/1-5, Art. 169", "tr": "İİK m.168/1-5, m.169" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Borçlu olmadığı veya borcun itfa edildiği veya mehil verildiği veya alacağın zaman aşımına uğradığı veya yetki itirazını sebepleri ile birlikte beş gün içinde icra mahkemesine bir dilekçe ile bildirerek icra mahkemesinden itirazın kabulüne dair bir karar getirmediği takdirde cebri icraya devam olunacağı ihtarı." } },
+    "iik_16": { "label": { "en": "İİK Art. 16/1", "tr": "İİK m.16/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Şikayet bu muamelelerin öğrenildiği tarihten yedi gün içinde yapılır." } },
+    "iik_363": { "label": { "en": "İİK Art. 363/1", "tr": "İİK m.363/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "İstinaf yoluna başvuru süresi (…) […] tebliğ tarihinden itibaren iki haftadır." } },
+    "iik_265": { "label": { "en": "İİK Art. 265/1", "tr": "İİK m.265/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Borçlu kendisi dinlenmeden verilen ihtiyatî haczin dayandığı sebeplere, mahkemenin yetkisine ve teminata karşı; huzuriyle yapılan hacizlerde haczin tatbiki, aksi hâlde haciz tutanağının kendisine tebliği tarihinden itibaren yedi gün içinde mahkemeye müracaatla itiraz edebilir." } },
+    "iik_264": { "label": { "en": "İİK Art. 264/1", "tr": "İİK m.264/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Dava açılmadan veya icra takibine başlanmadan evvel ihtiyati haciz yaptırmış olan alacaklı; haczin tatbikinden, haciz gıyabında yapılmışsa haciz tutanağının kendisine tebliğinden itibaren yedi gün içinde ya takip talebinde (Haciz veya iflas) bulunmaya veya dava açmaya mecburdur." } },
+    "iik_142": { "label": { "en": "İİK Art. 142/1", "tr": "İİK m.142/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Cetvel suretinin tebliğinden yedi gün içinde her alacaklı takibin icra edildiği mahal mahkemesinde alakadarlar aleyhine dava etmek suretiyle cetvel mündericatına itiraz edebilir." } },
+    "iik_134": { "label": { "en": "İİK Art. 134/2", "tr": "İİK m.134/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "İhalenin feshini, 11/1/2011 tarihli ve 6098 sayılı Türk Borçlar Kanununun 281 inci maddesinde yazılı sebepler de dâhil olmak üzere yalnız satış isteyen alacaklı, borçlu, mahcuzun resmî sicilinde kayıtlı olan ilgililer ve sınırlı ayni hak sahipleri ile pey sürmek suretiyle ihaleye iştirak edenler yurt içinde bir adres göstermek koşuluyla icra mahkemesinden şikâyet yolu ile ihale tarihinden itibaren yedi gün içinde isteyebilirler." } },
+    "iik_106": { "label": { "en": "İİK Art. 106/1", "tr": "İİK m.106/1" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Alacaklı veya borçlu, hacizden itibaren bir yıl içinde haczolunan malın satışını isteyebilir." } },
+    "iik_96": { "label": { "en": "İİK Art. 96/2", "tr": "İİK m.96/2" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "İcra dairesi aynı zamanda istihkak iddiasına karşı itirazları olup olmadığını bildirmek üzere alacaklı ve borçluya üç günlük mühlet verir. Sükütları halinde istihkak iddiasını kabul etmiş sayılırlar." } },
+    "iik_72": { "label": { "en": "İİK Art. 72/7", "tr": "İİK m.72/7" }, "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.2004.pdf", "quote": { "tr": "Takibe itiraz etmemiş veya itirazının kaldırılmış olması yüzünden borçlu olmadığı bir parayı tamamen ödemek mecburiyetinde kalan şahıs, ödediği tarihten itibaren bir sene içinde, umumi hükümler dairesinde mahkemeye başvurarak paranın geriye alınmasını istiyebilir." } },
     "tk_7a": {
       "label": { "en": "Notification Law No. 7201, Art. 7/a", "tr": "7201 s. Tebligat K. m.7/a" },
       "url": "https://www.mevzuat.gov.tr/MevzuatMetin/1.3.7201.pdf",
@@ -212,5 +227,141 @@
         "tr": "6 Şubat 2023 depremlerinden sonra 120 s. CBK, HMK, CMK, İYUK ve İİK'daki taraf ve hâkim süreleri ile arabuluculuk ve uzlaştırma sürelerini 6 Şubat – 6 Nisan 2023 arasında, kural olarak olağanüstü hal ilan edilen illerde yerleşik veya 6 Şubat'ta orada bulunan kişiler için durdurdu; durma bazı yerlerde sonradan uzatıldı. Bu hesap durmayı içermez: uygulanıp uygulanmadığını kontrol edip yeniden hesaplayın."
       }
     }
-  ]
+  ],
+  "acts": {
+    "odeme-emrine-itiraz": {
+      "label": { "en": "Objection to a payment order", "tr": "Ödeme emrine itiraz", "de": "Widerspruch gegen den Zahlungsbefehl", "fr": "Opposition au commandement de payer", "es": "Oposición al requerimiento de pago", "it": "Opposizione all'ingiunzione di pagamento", "pt": "Oposição à injunção de pagamento", "nl": "Verzet tegen het betalingsbevel", "ru": "Возражение на платёжный приказ", "ar": "الاعتراض على أمر الأداء", "zh": "对支付令提出异议", "ja": "支払命令への異議" },
+      "trigger": { "tr": "Ödeme emrinin size tebliğ edildiği tarih", "en": "Date the payment order was served on you" },
+      "period": "P7D",
+      "cite": "iik_62",
+      "group": "odeme-emri",
+      "keywords": { "tr": ["borca itiraz", "itiraz"], "en": ["payment order"] }
+    },
+    "mal-beyani": {
+      "label": { "tr": "Mal beyanı (ilamsız takip)", "en": "Declaration of assets (enforcement without judgment)" },
+      "trigger": { "tr": "Ödeme emrinin size tebliğ edildiği tarih", "en": "Date the payment order was served on you" },
+      "period": "P7D",
+      "cite": "iik_60",
+      "group": "odeme-emri",
+      "keywords": { "tr": ["mal beyanı"], "en": ["declaration of assets"] },
+      "notice": { "tr": "İtiraz edilmemişse geçerlidir. İtirazın iptali veya kaldırılmasından sonra mal beyanı süresi üç gündür (İİK m.75).", "en": "Applies when no objection was made; after the objection is set aside the period is three days (İİK Art. 75)." },
+      "new": true
+    },
+    "haciz-isteme-suresi": {
+      "label": { "tr": "Haciz isteme süresi", "en": "Time limit to request attachment" },
+      "trigger": { "tr": "Ödeme emrinin borçluya tebliğ edildiği tarih", "en": "Date the payment order was served on the debtor" },
+      "period": "P1Y",
+      "cite": "iik_78",
+      "group": "odeme-emri",
+      "keywords": { "tr": ["haciz"], "en": ["attachment request"] },
+      "notice": { "tr": "İtiraz veya dava ile geçen süre ve taksit anlaşması hesaba katılmaz (İİK m.78/2); hesap bunları ekleyemez, gösterilen en erken tarihtir.", "en": "Time taken by an objection or action, and an instalment agreement, does not count (İİK Art. 78(2)); the calculator cannot add it, so this is the earliest date." },
+      "new": true
+    },
+    "itirazin-iptali-davasi": {
+      "label": { "tr": "İtirazın iptali davası", "en": "Action to annul the debtor's objection" },
+      "trigger": { "tr": "Borçlunun itirazının size (alacaklıya) tebliğ edildiği tarih", "en": "Date the debtor's objection was served on you (the creditor)" },
+      "period": "P1Y",
+      "cite": "iik_67",
+      "group": "itiraz-tebligi",
+      "keywords": { "tr": ["itirazın iptali"], "en": ["action to annul the objection"] },
+      "new": true
+    },
+    "itirazin-kaldirilmasi": {
+      "label": { "tr": "İtirazın kaldırılması talebi", "en": "Request to set aside the debtor's objection" },
+      "trigger": { "tr": "Borçlunun itirazının size (alacaklıya) tebliğ edildiği tarih", "en": "Date the debtor's objection was served on you (the creditor)" },
+      "period": "P6M",
+      "cite": "iik_68",
+      "group": "itiraz-tebligi",
+      "keywords": { "tr": ["itirazın kaldırılması"], "en": ["removal of the objection"] },
+      "new": true
+    },
+    "kambiyo-borca-itiraz": {
+      "label": { "en": "Objection to the debt (bills of exchange)", "tr": "Kambiyo senetlerine dayalı takipte borca itiraz", "de": "Widerspruch (Wechselbetreibung)", "fr": "Opposition (effets de commerce)", "es": "Oposición (títulos cambiarios)", "it": "Opposizione (titoli cambiari)", "pt": "Oposição (títulos cambiais)", "nl": "Verzet (wisselvordering)", "ru": "Возражение (вексельное взыскание)", "ar": "الاعتراض (الأوراق التجارية)", "zh": "异议（票据追索）", "ja": "異議（手形執行）" },
+      "trigger": { "tr": "Kambiyo senedine dayalı ödeme emrinin size tebliğ edildiği tarih", "en": "Date the bill-of-exchange payment order was served on you" },
+      "period": "P5D",
+      "cite": "iik_168",
+      "group": "kambiyo-odeme-emri",
+      "keywords": { "tr": ["kambiyo", "çek", "senet", "bono"], "en": ["bill of exchange"] },
+      "notice": { "tr": "İcra mahkemesine yapılır. İİK m.168 beş günü ödeme emrinin içeriği olarak düzenler; süre ödeme emrinin tebliğinden başlar.", "en": "Filed with the enforcement court. İİK Art. 168 states the five days as content of the payment order; they run from its service." }
+    },
+    "sikayet": {
+      "label": { "en": "Complaint against an enforcement-office act", "tr": "Şikâyet (icra mahkemesine)", "de": "Beschwerde", "fr": "Plainte", "es": "Queja", "it": "Reclamo", "pt": "Reclamação", "nl": "Klacht", "ru": "Жалоба", "ar": "الشكوى", "zh": "申诉", "ja": "不服申立て" },
+      "trigger": { "tr": "Şikâyet edilen icra işlemini öğrendiğiniz tarih", "en": "Date you learned of the enforcement-office act" },
+      "period": "P7D",
+      "cite": "iik_16",
+      "keywords": { "tr": ["şikâyet", "şikayet", "icra mahkemesi"], "en": ["complaint"] },
+      "notice": { "tr": "Süre, işlemin öğrenildiği günden başlar. Bir hakkın yerine getirilmemesi veya sürüncemede bırakılması nedeniyle şikâyet her zaman yapılabilir (İİK m.16/2).", "en": "Runs from the day you learned of the act. Complaints about a failure to act or undue delay can be made at any time (İİK Art. 16(2))." }
+    },
+    "istinaf": {
+      "label": { "en": "Appeal against an enforcement-court decision", "tr": "İcra mahkemesi kararlarına karşı istinaf", "de": "Berufung (Vollstreckungsgericht)", "fr": "Appel (juge de l'exécution)", "es": "Apelación (juzgado de ejecución)", "it": "Appello (giudice dell'esecuzione)", "pt": "Recurso (tribunal de execução)", "nl": "Hoger beroep (executierechter)", "ru": "Апелляция (суд по исполнению)", "ar": "الاستئناف (محكمة التنفيذ)", "zh": "上诉（执行法院）", "ja": "控訴（執行裁判所）" },
+      "trigger": { "tr": "İcra mahkemesi kararının size tebliğ edildiği tarih", "en": "Date the enforcement-court decision was served on you" },
+      "period": "P2W",
+      "cite": "iik_363",
+      "keywords": { "tr": ["icra mahkemesi", "kanun yolu"], "en": ["appeal"] },
+      "notice": { "tr": "Bu süre 7499 sayılı Kanunla 1 Haziran 2024'ten itibaren verilen kararlar için geçerlidir. Daha önce verilen kararlarda süre on gündü ve tefhimden ya da tebliğden başlıyordu.", "en": "This period applies to decisions given on or after 1 June 2024 (Law No. 7499). For earlier decisions the period was ten days from pronouncement or service." }
+    },
+    "ihtiyati-hacze-itiraz": {
+      "label": { "tr": "İhtiyati hacze itiraz (borçlu)", "en": "Debtor's objection to a precautionary attachment" },
+      "trigger": { "tr": "Haczin uygulandığı tarih (hazır bulunduysanız) veya haciz tutanağının size tebliğ edildiği tarih", "en": "Date the attachment was carried out (if you were present) or the attachment record was served on you" },
+      "period": "P7D",
+      "cite": "iik_265",
+      "group": "ihtiyati-haciz",
+      "keywords": { "tr": ["ihtiyati haciz"], "en": ["precautionary attachment"] },
+      "notice": { "tr": "Borçlu dinlenmeden verilen ihtiyati haciz kararlarına karşıdır.", "en": "Against attachments ordered without hearing the debtor." },
+      "new": true
+    },
+    "ihtiyati-hacizden-sonra-dava-veya-takip": {
+      "label": { "tr": "İhtiyati hacizden sonra dava açma veya takip", "en": "Suing or starting enforcement after a pre-action precautionary attachment" },
+      "trigger": { "tr": "Haczin uygulandığı tarih (haciz yokluğunuzda yapıldıysa haciz tutanağının size tebliğ edildiği tarih)", "en": "Date the attachment was carried out (if done in your absence: date the attachment record was served on you)" },
+      "period": "P7D",
+      "cite": "iik_264",
+      "group": "ihtiyati-haciz",
+      "keywords": { "tr": ["ihtiyati haciz"], "en": ["precautionary attachment"] },
+      "notice": { "tr": "Süresinde dava açılmaz veya takip yapılmazsa ihtiyati haciz kendiliğinden kalkar (İİK m.264/4).", "en": "Otherwise the attachment lapses (İİK Art. 264(4))." },
+      "new": true
+    },
+    "sira-cetveline-itiraz": {
+      "label": { "tr": "Sıra cetveline itiraz", "en": "Objection to the ranking schedule" },
+      "trigger": { "tr": "Sıra cetveli suretinin size tebliğ edildiği tarih", "en": "Date the ranking schedule was served on you" },
+      "period": "P7D",
+      "cite": "iik_142",
+      "keywords": { "tr": ["sıra cetveli"], "en": ["ranking"] },
+      "new": true
+    },
+    "ihalenin-feshi": {
+      "label": { "tr": "İhalenin feshi", "en": "Annulment of an auction" },
+      "trigger": { "tr": "İhale tarihi", "en": "Date of the auction" },
+      "period": "P7D",
+      "cite": "iik_134",
+      "keywords": { "tr": ["ihale"], "en": ["auction"] },
+      "notice": { "tr": "Satış ilanı tebliğ edilmediyse veya sonradan öğrenilen bir sebep varsa süre öğrenmeden başlar, ama ihalenin e-satış portalında ilanından itibaren bir yılı geçemez (İİK m.134).", "en": "If the sale notice was not served or a ground is learned later, the period runs from learning, but not beyond one year from the e-portal announcement of the auction (İİK Art. 134)." },
+      "new": true
+    },
+    "satis-isteme-suresi": {
+      "label": { "tr": "Satış isteme süresi", "en": "Time limit to request sale of attached property" },
+      "trigger": { "tr": "Haciz tarihi", "en": "Date of the attachment" },
+      "period": "P1Y",
+      "cite": "iik_106",
+      "keywords": { "tr": ["satış"], "en": ["sale request"] },
+      "notice": { "tr": "Bütün mallar için bir yıllık süre 7343 sayılı Kanunla getirildi ve il il farklı tarihlerde yürürlüğe girdi (İİK Geçici m.18); daha önce yapılan hacizlerde eski süreler uygulanabilir.", "en": "The one-year period for all goods came with Law No. 7343 and took effect province by province (İİK provisional Art. 18); older attachments may keep the earlier periods." },
+      "new": true
+    },
+    "istihkak-iddiasina-itiraz": {
+      "label": { "tr": "İstihkak iddiasına itiraz", "en": "Objection to a third-party ownership claim" },
+      "trigger": { "tr": "İstihkak iddiasının ve mühletin size bildirildiği tarih", "en": "Date the third-party claim and the time limit were notified to you" },
+      "period": "P3D",
+      "cite": "iik_96",
+      "keywords": { "tr": ["istihkak"], "en": ["third-party claim"] },
+      "notice": { "tr": "Mal borçlunun elindeyse geçerlidir; süre içinde itiraz edilmezse iddia kabul edilmiş sayılır. Mal üçüncü kişinin elindeyse İİK m.99'a bakın.", "en": "Where the goods are in the debtor's possession; silence counts as acceptance. If a third party holds them see İİK Art. 99." },
+      "new": true
+    },
+    "istirdat-davasi": {
+      "label": { "tr": "İstirdat davası", "en": "Action for restitution of money paid" },
+      "trigger": { "tr": "Borçlu olmadığınız parayı ödediğiniz tarih", "en": "Date you paid the money you did not owe" },
+      "period": "P1Y",
+      "cite": "iik_72",
+      "keywords": { "tr": ["istirdat", "menfi tespit"], "en": ["restitution"] },
+      "new": true
+    }
+  }
 }
