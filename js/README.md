@@ -6,7 +6,7 @@
 - Judicial recesses, half-day holidays, deemed service, add-on days for mail, counting back from a hearing, clear days, month ends
 - Calculation steps explained in 12 languages
 - Disputed points are options with a notice; dates outside the verified holiday data throw instead of guessing
-- No dependencies, MIT licensed, typed, ESM and CommonJS; the Python package (`pip install lexdays`) gives identical results
+- No dependencies, AGPL-3.0 licensed, typed, ESM and CommonJS; the Python package (`pip install lexdays`) gives identical results
 
 ```bash
 npm install lexdays

@@ -28,8 +28,8 @@ Every MUST criterion is met or does not apply, except the two statements only th
 | `interact` | MUST | Met | README sections *Install*, *Contributing*; issue templates in [.github/ISSUE_TEMPLATE](../.github/ISSUE_TEMPLATE/); GitHub Discussions. |
 | `contribution` | MUST | Met | [CONTRIBUTING.md, *Commits and pull requests*](../CONTRIBUTING.md#commits-and-pull-requests): fork, branch, pull request, CI, review. |
 | `contribution_requirements` | SHOULD | Met | [CONTRIBUTING.md, *Coding standards*](../CONTRIBUTING.md#coding-standards) and [*Tests are required*](../CONTRIBUTING.md#tests-are-required). |
-| `floss_license` | MUST | Met | MIT License: [LICENSE](../LICENSE). |
-| `floss_license_osi` | SUGGESTED | Met | MIT is OSI-approved. |
+| `floss_license` | MUST | Met | GNU AGPL-3.0 (AGPL-3.0-only) from the release after 0.2.0; versions up to 0.2.0 were released under MIT: [LICENSE](../LICENSE). |
+| `floss_license_osi` | SUGGESTED | Met | AGPL-3.0 is OSI-approved (as is MIT, for the earlier versions). |
 | `license_location` | MUST | Met | [LICENSE](../LICENSE) at the repository root, copied into [python/LICENSE](../python/LICENSE) and [js/LICENSE](../js/LICENSE) for the packages. |
 | `documentation_basics` | MUST | Met | [README.md](../README.md), [docs/](.), [CONTRIBUTING.md](../CONTRIBUTING.md). |
 | `documentation_interface` | MUST | Met | README *Quick start* (Python, TypeScript, command line); rule pack format in [docs/rulepacks.md](rulepacks.md); JSON Schemas in [spec/](../spec/); typed APIs (`py.typed`, `.d.ts`). |

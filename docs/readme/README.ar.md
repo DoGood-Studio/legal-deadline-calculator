@@ -20,7 +20,7 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="ترخيص AGPL-3.0" src="https://img.shields.io/badge/license-AGPL--3.0-1e3a5c"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/DoGood-Studio/legal-deadline-calculator"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/DoGood-Studio/legal-deadline-calculator/badge"></a>
 </p>
 
@@ -148,10 +148,21 @@ lexdays acts us/frcp --lang ar
 
 </div>
 
+<div dir="rtl">
+
+## الترخيص
+
+يُوزَّع lexdays بموجب [رخصة GNU AGPL-3.0](../../LICENSE) (AGPL-3.0-only). يمكنك استخدامه مجانًا، بما في ذلك في عملك. إذا وزّعت نسخة معدّلة أو قدّمتها خدمةً عبر الشبكة، فعليك نشر شيفرتها المصدرية بالرخصة نفسها. صدرت الإصدارات حتى 0.2.0 بموجب رخصة MIT. للاستخدام في منتج مغلق المصدر تتوفر رخصة تجارية:
+dogoodstudio.dev@gmail.com
+
+Copyright © 2026 DoGood-Studio and contributors.
+
+</div>
+
 ---
 
 <div dir="rtl">
 
-<sub>lexdays أداة معلوماتية وليست استشارة قانونية. تكون الأولوية للقانون والاجتهاد القضائي وقرارات المحكمة وما جرى عليه العمل محليًا؛ تحقّق دائمًا من أي ميعاد مهم. [رخصة MIT](../../LICENSE).</sub>
+<sub>lexdays أداة معلوماتية وليست استشارة قانونية. تكون الأولوية للقانون والاجتهاد القضائي وقرارات المحكمة وما جرى عليه العمل محليًا؛ تحقّق دائمًا من أي ميعاد مهم. [AGPL-3.0](../../LICENSE).</sub>
 
 </div>

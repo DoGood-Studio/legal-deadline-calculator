@@ -20,7 +20,7 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="Licence AGPL-3.0" src="https://img.shields.io/badge/license-AGPL--3.0-1e3a5c"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/DoGood-Studio/legal-deadline-calculator"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/DoGood-Studio/legal-deadline-calculator/badge"></a>
 </p>
 
@@ -119,6 +119,12 @@ Plus d'exemples, toutes les options et l'API : [docs/usage.md](../usage.md) (en 
 
 Les corrections et les relectures par des juristes sont les contributions les plus précieuses. Si un résultat est faux, ouvrez une [correction de règle](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) avec la source. Une nouvelle juridiction est un paquet de règles JSON accompagné de cas de test ; voir [CONTRIBUTING.md](../../CONTRIBUTING.md) et [docs/rulepacks.md](../rulepacks.md).
 
+## Licence
+
+lexdays est distribué sous la [GNU AGPL-3.0](../../LICENSE) (AGPL-3.0-only). Vous pouvez l'utiliser gratuitement, y compris dans un cadre professionnel. Si vous distribuez une version modifiée ou la proposez comme service en réseau, vous devez publier son code source sous la même licence. Les versions jusqu'à 0.2.0 ont été publiées sous licence MIT. Pour une utilisation dans un produit à code fermé, une licence commerciale est disponible : dogoodstudio.dev@gmail.com.
+
+Copyright © 2026 DoGood-Studio and contributors.
+
 ---
 
-<sub>lexdays est un outil d'information, pas un conseil juridique. La loi, la jurisprudence, les décisions de justice et la pratique locale priment ; vérifiez toujours un délai important. [Licence MIT](../../LICENSE).</sub>
+<sub>lexdays est un outil d'information, pas un conseil juridique. La loi, la jurisprudence, les décisions de justice et la pratique locale priment ; vérifiez toujours un délai important. [AGPL-3.0](../../LICENSE).</sub>

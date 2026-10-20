@@ -20,7 +20,7 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="AGPL-3.0 许可证" src="https://img.shields.io/badge/license-AGPL--3.0-1e3a5c"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/DoGood-Studio/legal-deadline-calculator"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/DoGood-Studio/legal-deadline-calculator/badge"></a>
 </p>
 
@@ -119,6 +119,12 @@ lexdays acts us/frcp --lang zh
 
 最有价值的贡献是法律专业人士的更正和审阅。如果某个结果有误，请附上出处提交[规则更正](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml)。新增法域只需一个 JSON 规则包和测试用例；参见 [CONTRIBUTING.md](../../CONTRIBUTING.md) 和 [docs/rulepacks.md](../rulepacks.md)。
 
+## 许可证
+
+lexdays 采用 [GNU AGPL-3.0](../../LICENSE)（AGPL-3.0-only）许可。你可以免费使用，包括在工作中使用。如果你分发修改后的版本，或通过网络将其作为服务提供，就必须以相同许可证公开其源代码。0.2.0 及之前的版本以 MIT 许可证发布。如需在闭源产品中使用，可获取商业许可：dogoodstudio.dev@gmail.com
+
+Copyright © 2026 DoGood-Studio and contributors.
+
 ---
 
-<sub>lexdays 仅供参考，不构成法律意见。以法律、判例、法院裁定和当地惯例为准；重要期限请务必核实。 [MIT 许可](../../LICENSE).</sub>
+<sub>lexdays 仅供参考，不构成法律意见。以法律、判例、法院裁定和当地惯例为准；重要期限请务必核实。 [AGPL-3.0](../../LICENSE).</sub>

@@ -17,6 +17,6 @@ keywords:
   - rules as code
   - computational law
   - holidays
-license: MIT
+license: AGPL-3.0-only
 version: 0.2.0
 date-released: "2026-10-20"

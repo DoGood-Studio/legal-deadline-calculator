@@ -20,7 +20,7 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="Licenza AGPL-3.0" src="https://img.shields.io/badge/license-AGPL--3.0-1e3a5c"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/DoGood-Studio/legal-deadline-calculator"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/DoGood-Studio/legal-deadline-calculator/badge"></a>
 </p>
 
@@ -119,6 +119,12 @@ Altri esempi, tutte le opzioni e l'API: [docs/usage.md](../usage.md) (in inglese
 
 Le correzioni e le revisioni da parte di giuristi sono i contributi più preziosi. Se un risultato è sbagliato, apri una [correzione di regola](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) con la fonte. Un nuovo ordinamento è un pacchetto di regole JSON con casi di test; vedi [CONTRIBUTING.md](../../CONTRIBUTING.md) e [docs/rulepacks.md](../rulepacks.md).
 
+## Licenza
+
+lexdays è distribuito con la [GNU AGPL-3.0](../../LICENSE) (AGPL-3.0-only). Puoi usarlo gratuitamente, anche per lavoro. Se distribuisci una versione modificata o la offri come servizio in rete, devi pubblicarne il codice sorgente con la stessa licenza. Le versioni fino alla 0.2.0 sono state pubblicate con licenza MIT. Per l'uso in un prodotto a codice chiuso è disponibile una licenza commerciale: dogoodstudio.dev@gmail.com.
+
+Copyright © 2026 DoGood-Studio and contributors.
+
 ---
 
-<sub>lexdays è uno strumento informativo, non una consulenza legale. Prevalgono legge, giurisprudenza, provvedimenti giudiziari e prassi locale; verifica sempre un termine importante. [Licenza MIT](../../LICENSE).</sub>
+<sub>lexdays è uno strumento informativo, non una consulenza legale. Prevalgono legge, giurisprudenza, provvedimenti giudiziari e prassi locale; verifica sempre un termine importante. [AGPL-3.0](../../LICENSE).</sub>

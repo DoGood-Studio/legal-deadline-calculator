@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Changed
+
+- License: lexdays is now licensed under the GNU AGPL-3.0 (AGPL-3.0-only) instead of MIT. Anyone can still use it free of charge, including at work; whoever distributes a modified version or offers it as a network service must publish its source under the same license. Versions up to 0.2.0 remain available under MIT. A commercial license for closed-source use is available from the maintainer. Contributions are licensed under AGPL-3.0 and may also be distributed by DoGood-Studio under other terms (CONTRIBUTING.md).
+
 ### Added
 
 - Demo: a page for each of the 90 Turkish acts (`/tr/sureler/<pack>-<act>/`) and a list of all of them, generated from the rule packs by `scripts/build-act-pages.py`: the period and its start, the provision quoted verbatim, two worked examples computed by the engine (one ending in a recess where the pack has one), the act's notices, related acts and a form that opens the calculator with the act and a date. The pages are in the sitemap and CI checks that they match the data.

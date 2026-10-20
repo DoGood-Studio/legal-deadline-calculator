@@ -20,7 +20,7 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="../../LICENSE"><img alt="MIT License" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="AGPL-3.0-Lizenz" src="https://img.shields.io/badge/license-AGPL--3.0-1e3a5c"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/DoGood-Studio/legal-deadline-calculator"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/DoGood-Studio/legal-deadline-calculator/badge"></a>
 </p>
 
@@ -120,6 +120,12 @@ Weitere Beispiele, alle Optionen und die API: [docs/usage.md](../usage.md) (engl
 
 Korrekturen und Prüfungen durch Juristinnen und Juristen sind am wertvollsten. Wenn ein Ergebnis falsch ist, eröffnen Sie eine [Regelkorrektur](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) mit der Quelle. Eine neue Rechtsordnung ist ein JSON-Regelpaket mit Testfällen; siehe [CONTRIBUTING.md](../../CONTRIBUTING.md) und [docs/rulepacks.md](../rulepacks.md).
 
+## Lizenz
+
+lexdays steht unter der [GNU AGPL-3.0](../../LICENSE) (AGPL-3.0-only). Sie können es kostenlos nutzen, auch beruflich. Wenn Sie eine veränderte Fassung verbreiten oder über ein Netzwerk als Dienst anbieten, müssen Sie deren Quellcode unter derselben Lizenz veröffentlichen. Versionen bis 0.2.0 wurden unter der MIT-Lizenz veröffentlicht. Für den Einsatz in einem Closed-Source-Produkt ist eine kommerzielle Lizenz erhältlich: dogoodstudio.dev@gmail.com.
+
+Copyright © 2026 DoGood-Studio and contributors.
+
 ---
 
-<sub>lexdays ist ein unverbindliches Hilfsmittel und keine Rechtsberatung. Gesetze, Rechtsprechung, gerichtliche Anordnungen und örtliche Praxis gehen vor; prüfen Sie jede wichtige Frist. [MIT-Lizenz](../../LICENSE).</sub>
+<sub>lexdays ist ein unverbindliches Hilfsmittel und keine Rechtsberatung. Gesetze, Rechtsprechung, gerichtliche Anordnungen und örtliche Praxis gehen vor; prüfen Sie jede wichtige Frist. [AGPL-3.0](../../LICENSE).</sub>

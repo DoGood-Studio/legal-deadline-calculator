@@ -92,7 +92,7 @@ To propose a change:
 
 - Keep pull requests focused. Describe what changed and why, and link the legal source for rule changes.
 - CI must be green: tests on Linux, Windows and macOS, coverage ≥ 95%, strict type checks, and the cross-checks.
-- By contributing you agree that your contribution is licensed under the MIT License.
+- By contributing you agree that your contribution is licensed under the GNU AGPL-3.0 (AGPL-3.0-only), and you grant DoGood-Studio the right to also distribute it under other terms, including commercial licenses.
 
 ## Code of conduct
 

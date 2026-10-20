@@ -52,6 +52,13 @@ def test_citation_matches_the_latest_release() -> None:
     assert _citation("date-released") == date
 
 
-def test_citation_license_matches_license_file() -> None:
-    assert _citation("license") == "MIT"
-    assert (REPO / "LICENSE").read_text(encoding="utf-8").startswith("MIT License")
+def test_license_is_the_same_everywhere() -> None:
+    pyproject = (REPO / "python" / "pyproject.toml").read_text(encoding="utf-8")
+    package = json.loads((REPO / "js" / "package.json").read_text(encoding="utf-8"))
+    assert _citation("license") == "AGPL-3.0-only"
+    assert _field(pyproject, r'^license\s*=\s*"([^"]+)"', "pyproject.toml") == "AGPL-3.0-only"
+    assert package["license"] == "AGPL-3.0-only"
+    for path in ("LICENSE", "python/LICENSE", "js/LICENSE"):
+        text = (REPO / path).read_text(encoding="utf-8")
+        assert text.lstrip().startswith("GNU AFFERO GENERAL PUBLIC LICENSE"), path
+        assert "Version 3, 19 November 2007" in text, path

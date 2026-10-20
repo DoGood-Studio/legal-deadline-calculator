@@ -220,7 +220,7 @@ def page_head(title: str, description: str, url: str, depth: str, extra: str = "
 FOOT = """  <footer class="foot">
     <div class="wrap foot__row">
       <p>Bilgilendirme amaçlıdır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir. Önemli bir süreyi mutlaka kontrol edin.</p>
-      <p><a href="https://github.com/DoGood-Studio/legal-deadline-calculator">lexdays</a>, MIT lisansı. Bu sayfa kural paketlerinden otomatik üretilir; hesap örnekleri lexdays {version} ile yapıldı.</p>
+      <p><a href="https://github.com/DoGood-Studio/legal-deadline-calculator">lexdays</a>, AGPL-3.0 lisansı. Bu sayfa kural paketlerinden otomatik üretilir; hesap örnekleri lexdays {version} ile yapıldı.</p>
     </div>
   </footer>
 """

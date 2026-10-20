@@ -20,7 +20,7 @@
   <a href="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/DoGood-Studio/legal-deadline-calculator/actions/workflows/ci.yml/badge.svg"></a>
   <a href="https://pypi.org/project/lexdays/"><img alt="PyPI" src="https://img.shields.io/pypi/v/lexdays?color=1e3a5c"></a>
   <a href="https://www.npmjs.com/package/lexdays"><img alt="npm" src="https://img.shields.io/npm/v/lexdays?color=1e3a5c"></a>
-  <a href="../../LICENSE"><img alt="MIT lisansı" src="https://img.shields.io/badge/license-MIT-1e3a5c"></a>
+  <a href="../../LICENSE"><img alt="AGPL-3.0 lisansı" src="https://img.shields.io/badge/license-AGPL--3.0-1e3a5c"></a>
   <a href="https://scorecard.dev/viewer/?uri=github.com/DoGood-Studio/legal-deadline-calculator"><img alt="OpenSSF Scorecard" src="https://api.scorecard.dev/projects/github.com/DoGood-Studio/legal-deadline-calculator/badge"></a>
 </p>
 
@@ -135,6 +135,12 @@ Aynı motor ABD federal mahkemeleri (FRCP 6), İngiltere ve Galler (CPR), AB Ada
 
 En değerli katkı, avukatların kural incelemesi ve hata bildirimidir. Yanlış bulduğunuz bir sonucu dayanağıyla birlikte ["Kural düzeltmesi" formuyla](https://github.com/DoGood-Studio/legal-deadline-calculator/issues/new?template=rule-correction.yml) bildirin. Ayrıntılar [CONTRIBUTING.md](../../CONTRIBUTING.md) dosyasındadır.
 
+## Lisans
+
+lexdays, [GNU AGPL-3.0](../../LICENSE) (AGPL-3.0-only) lisanslıdır. Ücretsiz kullanabilirsiniz, işinizde de. Değiştirilmiş bir sürümü dağıtır ya da internet üzerinden hizmet olarak sunarsanız, kaynak kodunu aynı lisansla yayınlamanız gerekir. 0.2.0'a kadarki sürümler MIT lisansıyla yayınlandı. Kapalı kaynaklı bir üründe kullanmak için ticari lisans: dogoodstudio.dev@gmail.com
+
+Copyright © 2026 DoGood-Studio and contributors.
+
 ---
 
-<sub>lexdays bilgilendirme amaçlı bir araçtır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir; önemli bir süreyi mutlaka kontrol edin. [MIT lisansı](../../LICENSE).</sub>
+<sub>lexdays bilgilendirme amaçlı bir araçtır, hukuki danışmanlık değildir. Kanun, içtihat, mahkeme kararları ve yerel uygulama önceliklidir; önemli bir süreyi mutlaka kontrol edin. [AGPL-3.0](../../LICENSE).</sub>
