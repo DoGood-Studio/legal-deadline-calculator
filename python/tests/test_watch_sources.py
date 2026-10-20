@@ -346,7 +346,7 @@ def test_report_and_accepted_state_follow_each_other() -> None:
 
     report, findings = ws.render([ok, down], {}, **run)
     assert report.startswith("**Özet:**")
-    assert "https://b.test" in report
+    assert any(line.startswith("- https://b.test") for line in report.splitlines())
     assert "tr/hmk (hgk_2017): Court of Cassation: court decision without a link" in report
     assert findings == 1  # 82% is above the threshold for a new quote; the hand check is due
 

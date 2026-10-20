@@ -315,6 +315,7 @@ def decision_share_found(number: str, quote: str) -> float:
 def read_source(src: Source, attempts: int = 2) -> Result:
     act, decision = eu_act(src.url), aym_decision(src.url)
     amended_by: list[tuple[str, str]] = []
+    data, ctype = b"", ""
     for attempt in range(attempts):
         try:
             if decision and src.quotes:  # the page needs a browser, so only its quotes are checked
@@ -468,8 +469,8 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
     findings += bool(cj_error) + manual_due
 
     lines = [
-        f"**Özet:** {today:%d.%m.%Y} tarihinde kural paketlerinin ve takvimlerin dayandığı "
-        f"{len(results)} kaynak tarandı.",
+        (f"**Özet:** {today:%d.%m.%Y} tarihinde kural paketlerinin ve takvimlerin dayandığı "
+         f"{len(results)} kaynak tarandı."),
         "",
         f"- Kanun metni değişmiş olabilecek alıntı: {n_quotes}",
         f"- Atıf yapılan AB metnini değiştiren işlem: {n_amended}",
@@ -483,10 +484,10 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
         + (" (üç aylık elle kontrol zamanı geldi)" if manual_due else "")
         + (f"; {len(broken)} kaynak önceden okunabiliyordu" if broken else ""),
         "",
-        "Bekçi veriyi kendisi değiştirmez; her bulguyu bir kişi kontrol eder ve gerekirse düzeltir. "
-        "Anayasa Mahkemesi karar sayfaları otomatik okunamadığı için bu kararlardan yapılan alıntılar "
-        "Mahkemenin karar arama servisinde aranır. "
-        "Takvimler ayrıca her hafta CI'da python-holidays ve GOV.UK ile karşılaştırılır.",
+        ("Bekçi veriyi kendisi değiştirmez; her bulguyu bir kişi kontrol eder ve gerekirse düzeltir. "
+         "Anayasa Mahkemesi karar sayfaları otomatik okunamadığı için bu kararlardan yapılan alıntılar "
+         "Mahkemenin karar arama servisinde aranır. "
+         "Takvimler ayrıca her hafta CI'da python-holidays ve GOV.UK ile karşılaştırılır."),
         "",
         f"Checked {len(results)} sources cited by the rule packs and calendars on {today.isoformat()}. "
         "The watcher never changes data; a person reviews every finding. Quotes from Constitutional "
@@ -549,9 +550,9 @@ def render(results: list[Result], accepted: dict, *, cj_lists: list[tuple[str, s
     lines.extend([
         "## İncelemeden sonra / After review",
         "",
-        "Fix the data if a source really changed (with a changelog entry and vectors), then run "
-        "`uv run --project python --with pypdf==6.19.0 python scripts/watch_sources.py --accept` and commit "
-        "`scripts/source-fingerprints.json`. Accepting also records that section 6 was checked by hand.",
+        ("Fix the data if a source really changed (with a changelog entry and vectors), then run "
+         "`uv run --project python --with pypdf==6.19.0 python scripts/watch_sources.py --accept` and commit "
+         "`scripts/source-fingerprints.json`. Accepting also records that section 6 was checked by hand."),
     ])
     return "\n".join(lines) + "\n", findings
 

@@ -15,9 +15,9 @@ addEventListener("beforeinstallprompt", (event) => {
 addEventListener("appinstalled", () => (document.getElementById("install-app").hidden = true));
 
 // Interface text lives in i18n/<code>.js; English is always loaded as the fallback.
-const dicts = { en: (await import("./i18n/en.js")).default };
+const dicts = new Map([["en", (await import("./i18n/en.js")).default]]);
 async function loadDict(code) {
-  dicts[code] ??= (await import(`./i18n/${code}.js`)).default;
+  if (!dicts.has(code)) dicts.set(code, (await import(`./i18n/${code}.js`)).default);
 }
 
 // ------------------------------------------------------------------ helpers
@@ -43,7 +43,7 @@ const state = { lang: detectLang(), pack: null, act: null, options: {} };
 
 // Looks up a path such as ("packs", "tr/hmk", 0) in the current language, then in English.
 function label(...path) {
-  for (const dict of [dicts[state.lang], dicts.en]) {
+  for (const dict of [dicts.get(state.lang), dicts.get("en")]) {
     let value = dict;
     for (const key of path) value = value?.[key];
     if (value != null) return value;
@@ -744,7 +744,7 @@ function calendarEvent() {
 
 function downloadIcs() {
   const event = calendarEvent();
-  const id = globalThis.crypto?.randomUUID?.() ?? String(Math.random()).slice(2);
+  const id = crypto.randomUUID?.() ?? Array.from(crypto.getRandomValues(new Uint32Array(4)), (n) => n.toString(16)).join("");
   const file = new Blob([buildIcs({ ...event, uid: `${event.date}-${id}@lexdays` })], { type: "text/calendar;charset=utf-8" });
   const link = el("a", { href: URL.createObjectURL(file), download: `lexdays-${event.date}.ics` });
   document.body.append(link);
@@ -758,10 +758,12 @@ $("lang").replaceChildren(...LANGUAGES.map((l) => el("option", { value: l.code, 
 $("lang").value = state.lang;
 // Switching language opens that language's page and keeps the inputs, which saveUrl() keeps in the query.
 $("lang").addEventListener("change", () => {
+  const lang = $("lang").value;
+  if (!SUPPORTED.has(lang)) return;
   const q = new URLSearchParams(location.search);
   q.delete("lang");
   const query = q.toString();
-  location.href = `${PAGE_LANG ? "../" : "./"}${$("lang").value}/${query ? `?${query}` : ""}`;
+  location.href = `${PAGE_LANG ? "../" : "./"}${lang}/${query ? `?${query}` : ""}`;
 });
 // Light or dark page; the choice is remembered in this browser (the head script applies it early).
 function showTheme() {

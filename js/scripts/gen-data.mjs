@@ -1,6 +1,6 @@
 // Embeds the shared ../data JSON into src/data.generated.ts so the package
 // works in Node, Deno, bundlers and browsers without file-system access.
-import { readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { dirname, join, relative, sep } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -11,10 +11,12 @@ function collect(kind) {
   const base = join(dataDir, kind);
   const out = {};
   const walk = (dir) => {
-    for (const name of readdirSync(dir).sort()) {
+    const entries = readdirSync(dir, { withFileTypes: true }).sort((a, b) => (a.name < b.name ? -1 : a.name > b.name ? 1 : 0));
+    for (const entry of entries) {
+      const { name } = entry;
       const path = join(dir, name);
-      if (statSync(path).isDirectory()) walk(path);
-      else if (name.endsWith(".json") && !name.startsWith("_")) {
+      if (entry.isDirectory()) walk(path);
+      else if (entry.isFile() && name.endsWith(".json") && !name.startsWith("_")) {
         const id = relative(base, path).slice(0, -5).split(sep).join("/");
         out[id] = JSON.parse(readFileSync(path, "utf8"));
       }
