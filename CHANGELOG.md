@@ -4,6 +4,8 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-10-21
+
 ### Changed
 
 - License: lexdays is now licensed under the GNU AGPL-3.0 (AGPL-3.0-only) instead of MIT. Anyone can still use it free of charge, including at work; whoever distributes a modified version or offers it as a network service must publish its source under the same license. Versions up to 0.2.0 remain available under MIT. A commercial license for closed-source use is available from the maintainer. Contributions are licensed under AGPL-3.0 and may also be distributed by DoGood-Studio under other terms (CONTRIBUTING.md).
@@ -76,7 +78,8 @@ First public release.
 - Shared conformance vectors, property-based tests, a Python/TypeScript differential test, and calendar cross-checks against python-holidays and the GOV.UK bank holidays feed.
 - A pre-release verification report (docs/verification.md): every rule pack checked against primary sources, 41 new test vectors, translations reviewed in all languages, and the demo tested in Chromium, Firefox and WebKit.
 
-[Unreleased]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.2.0...HEAD
+[Unreleased]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.2.1...HEAD
+[0.2.1]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.2.0...v0.2.1
 [0.2.0]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.1.1...v0.2.0
 [0.1.1]: https://github.com/DoGood-Studio/legal-deadline-calculator/compare/v0.1.0...v0.1.1
 [0.1.0]: https://github.com/DoGood-Studio/legal-deadline-calculator/releases/tag/v0.1.0
